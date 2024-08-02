@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sign In</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -39,38 +39,52 @@
 					<a href="/main">여기가자</a>
 				</div>
 				<div class="nav-top-right">
-					<button>로그인/회원가입</button>
+					<button onclick="location.href='/sign'">로그인/회원가입</button>
 				</div>
 			</div>
 		</div>
-
 		<div class="content">
 			<div class="signmain">
+				<div class="signmaingtext">
+					<span>여기가자</span>
+				</div>
 				<div class="signlogo">
-					<p>여기가자</p>
+					<span class="strikethrough"></span>
+					<span class="signlogotext">로그인/회원가입</span>
 				</div>
-
-				<div>
-					<p>로그인/회원가입</p>
-				</div>
-
 				<div class="signuplist">
-					<div class="naver sociallogin">
-						<p>네이버로 로그인하기</p>
+				
+					<div class="sociallogin naver">
+						<button>
+							<img src="img/naver.png" alt="네이버로 로그인하기">
+							네이버로 로그인하기
+						</button>
+					</div>
+					
+					<div class="sociallogin kakao">
+						<button>
+							<img src="img/kakaotalk.png" alt="카카오톡으로 로그인하기">
+							카카오톡으로 로그인하기
+						</button>
 					</div>
 
-					<div class="kakao sociallogin">
-						<p>카카오톡으로 로그인하기</p>
+					<div class="sociallogin google">
+						<button>
+							<img src="img/google.png" alt="구글로 로그인하기">
+							구글로 로그인하기
+						</button>
 					</div>
-
-					<div class="google sociallogin">
-						<p>구글로 로그인하기</p>
+					
+					<div class="sociallogin email">
+						<button>
+							<img src="img/email.png" alt="구글로 로그인하기">
+							이메일로 로그인하기
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/script.js"></script>
 	</div>
-
 </body>
 </html>
