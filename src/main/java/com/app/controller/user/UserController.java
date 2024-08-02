@@ -8,7 +8,11 @@ public class UserController {
 
 	@GetMapping("/signup")
 	public String sign() {
-		return "user/signup";
+		return "user/signUp";
 	}
 	
+	@GetMapping("/user/mypage")
+	public String CEOMypage() {
+		return "user/myPage";
+	}
 }
