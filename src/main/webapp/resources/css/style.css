@@ -1,0 +1,452 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* a {
+	text-decoration: none;
+}
+
+body, html {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.nav-top {
+	display: flex;
+	justify-content: space-between;
+	height: 80px;
+	width: 90%;
+	margin: 0 auto;
+	align-items: center;
+}
+
+.nav-top-left img {
+	width: 30px;
+	height: auto;
+}
+
+.nav-top-left {
+	width: 17%;
+}
+
+.nav-top-right {
+	width: 17%;
+}
+
+.hidenav {
+	position: fixed;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background-color: #fff;
+	overflow-x: hidden;
+	transition: 0.3s;
+	z-index: 25;
+}
+
+.hidenav.show {
+	left: 0;
+}
+
+.hidenavcontent {
+	margin-top: 100px;
+}
+
+.hidenavcontent ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hidenavcontent ul li {
+	padding: 8px 16px;
+}
+
+.hidenavcontent ul li a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: black;
+}
+
+.subcategories {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories.show {
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories li {
+	opacity: 0;
+}
+
+.category {
+	cursor: pointer;
+}
+
+.nav-top-right button {
+	width: 120px;
+	height: 50px;
+	background-color: transparent;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.nav-top-right button:hover {
+	background-color: lightgray;
+	border: 1px solid lightgray;
+	cursor: pointer;
+}
+
+.nav-top-center a {
+	font-family: 'SUIT-Regular';
+	font-weight: normal;
+	font-style: normal;
+}
+
+.main_content {
+	margin: 0 auto;
+	padding-top: 100px;
+	background-color: skyblue;
+	width: 100%;
+	height: 500px;
+	background-image: url('/img/mainbackground.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.main_content h1 {
+	margin-left: 50px;
+	font-weight: bold;
+	color: white;
+}
+
+.btn-search {
+	margin: 50px 50px;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: white;
+	color: gray;
+	border: 1px solid lightgray;
+	height: 70px;
+	width: calc(100% - 100px);
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.search {
+	position: relative;
+}
+
+.search button {
+	cursor: pointer;
+}
+
+.btn-close {
+	cursor: pointer;
+	right: 10px;
+	position: absolute;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	border: none;
+	font-size: 30px;
+}
+
+.hidesearch {
+	position: fixed;
+	bottom: -100%;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	z-index: 20;
+	padding: 20px;
+	transition: bottom 0.3s ease-in-out;
+}
+
+.search-top {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.search-main {
+	display: flex;
+	align-items: center;
+}
+
+.hidesearch.show {
+	bottom: 0;
+}
+
+.searchcontent {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.eventsection {
+	width: calc(100% - 100px);
+	margin: 0 auto;
+	position: relative;
+	margin-top: 30px;
+}
+
+.eventsection p {
+	margin-bottom: 20px;
+}
+
+.sectionpage {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.slides {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
+	width: calc(( 100% - 40px)* 3/3);
+}
+
+.event.list {
+	width: calc(( 100% - 40px)/3);
+	flex-shrink: 0;
+}
+
+.event.list img {
+	width: 100%;
+	height: auto;
+}
+
+.btn_sectionpage {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 10;
+}
+
+.btn_sectionpage.prev {
+	left: -30px;
+	top: 100px;
+}
+
+.btn_sectionpage.next {
+	right: -30px;
+	top: 100px;
+}
+
+.btn_sectionpage button {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: #ddd;
+	font-size: 20px;
+	border: none;
+}
+
+.dots {
+	text-align: center;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.dot {
+	height: 10px;
+	width: 10px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 2px;
+}
+
+.dot.active {
+	background-color: #717171;
+}
+
+.footer {
+	margin-top: 50px;
+}
+
+/* --------------- signmain 페이지 css 설정 --------------- */
+.signmain {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 120px;
+	width: 400px;
+	justify-content: center;
+}
+
+.signmaingtext {
+	margin-bottom: 60px;
+}
+
+.signlogo {
+	display: flex;
+	height: 22px;
+	justify-content: center;
+	margin-bottom: 16px;
+	position: relative;
+}
+
+.signlogo .strikethrough {
+	background-color: #ebebeb;
+	height: 1px;
+	position: absolute;
+	top: 9px;
+	width: 100%;
+}
+
+.signlogo .signlogotext {
+	padding: 0 8px;
+	background-color: #fff;
+	color: #858585;
+	z-index: 1;
+}
+
+.sociallogin button {
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.naver button {
+	border: none;
+	background-color: #00C73C;
+	font: #fff;
+}
+
+.kakao button {
+	border: none;
+	background-color: #FAE100;
+}
+
+.google button {
+	border: 1px solid rgba(0, 0, 0, .16);
+	background-color: #fff;
+}
+
+.email button {
+	border: none;
+	background-color: #fff;
+}
+
+.email button:hover {
+	border: none;
+	background-color: #e7f1fc;
+}
+
+.business button {
+	border: none;
+	background-color: #fff;
+	color: #4285F4;
+}
+
+.business button:hover {
+	border: none;
+	background-color: #e7f1fc;
+}
+
+/*---------------userlogin페이지---------------*/
+
+.login input {
+	width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.login h4 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.login {
+	display: flex;
+    flex-direction: column;
+}
+
+.btn-login button{
+	width: 100%;
+    height: 40px;
+    margin: 20px 0px;
+    border: none;
+    background-color: #0060ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-login button:hover {
+	background-color: #3480ff;
+}
+
+.loginfunction {
+	display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.loginfunction a{
+	color: black;
+}
+
+.logincheckbox {
+	display: flex;
+    align-items: center;
+}
+
+.loginsignup h5{
+	margin-bottom: 10px;
+}
