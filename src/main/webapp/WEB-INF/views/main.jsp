@@ -52,7 +52,38 @@
 					</h1>
 				</div>
 				<div class="search">
-					<button>🔍 지역이나 숙소를 검색해보세요</button>
+					<button class="btn-search">🔍 지역이나 숙소를 검색해보세요</button>
+					<div class="hidesearch" id="searchbar">
+						<div class="hidesearchcontent">
+							<button id="btn-close" class="btn-close">X</button>
+							<div class="searchcontent">
+								<div class="search-top">
+									<p>여행일정을 검색해보세요</p>
+								</div>
+								<div class="search-main">
+									<div class="input-search">
+										<input name="search_term" type="text"
+											placeholder="여행지나 숙소를 검색해보세요.">
+									</div>
+									<div class="btn-date">
+										<button>
+											<span> 08.15 목 - 08.16 금 (1박 2일) </span>
+										</button>
+									</div>
+									<div class="btn-people">
+										<button>
+											<span> 인원 2 </span>
+										</button>
+									</div>
+									<div class="btn-searchright">
+										<button>
+											<span> 검색 </span>
+										</button>
+									`</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -65,7 +96,6 @@
 				<button class="prev">&lt;</button>
 			</div>
 			<div class="sectionpage">
-
 				<div class="slides">
 					<div class="event list">
 						<img src="img/eventlist.jpg" />
@@ -95,20 +125,19 @@
 						<img src="img/eventlist.jpg" />
 					</div>
 				</div>
-
 			</div>
-
 			<div class="btn_sectionpage next">
 				<button class="next">&gt;</button>
 			</div>
-
 			<div class="dots">
 				<span class="dot active"></span> <span class="dot"></span> <span
 					class="dot"></span>
 			</div>
 		</div>
 
-		<div class="footer"></div>
+		<div class="footer">
+		
+		</div>
 
 		<script src="js/script.js"></script>
 	</div>

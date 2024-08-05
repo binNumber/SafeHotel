@@ -22,4 +22,13 @@ public class TestController {
 		return "sign";
 	}
 	
+	@GetMapping("/userlogin")
+	public String userlogin() {
+		return "userlogin";
+	}
+	
+	@GetMapping("/businesslogin")
+	public String businesslogin() {
+		return "businesslogin";
+	}
 }
