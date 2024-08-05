@@ -6,18 +6,28 @@
 	box-sizing: border-box;
 }
 
-* a {
-	text-decoration: none;
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
 
-@font-face {
-	font-family: 'Jalnan2';
-	src: url('/fonts/Jalnan2TTF.ttf') format('truetype');
+* a {
+	text-decoration: none;
 }
 
 body, html {
 	width: 100%;
 	overflow-x: hidden; /* 수평 스크롤 제거 */
+}
+
+body {
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
 }
 
 .nav-top {
@@ -30,8 +40,16 @@ body, html {
 }
 
 .nav-top-left img {
-	width: 50%;
+	width: 30px;
 	height: auto;
+}
+
+.nav-top-left {
+	width: 17%;
+}
+
+.nav-top-right {
+	width: 17%;
 }
 
 .hidenav {
@@ -47,7 +65,11 @@ body, html {
 
 .hidenav.show {
 	left: 0;
-	margin-top: 22px;
+	margin-top: -60px;
+}
+
+.hidenavcontent {
+	margin-top: 100px;
 }
 
 .hidenavcontent ul {
@@ -77,17 +99,17 @@ body, html {
 }
 
 .subcategories {
-    overflow: hidden; /* 넘치는 내용 숨기기 */
-    max-height: 0; /* 초기 상태에서 높이 0 */
-    transition: max-height 0.5s ease-out; /* max-height 변화 트랜지션 */
+	overflow: hidden; /* 넘치는 내용 숨기기 */
+	max-height: 0; /* 초기 상태에서 높이 0 */
+	transition: max-height 0.5s ease-out; /* max-height 변화 트랜지션 */
 }
 
 .subcategories.show {
-    transition: max-height 0.5s ease-out; /* 트랜지션 적용 */
+	transition: max-height 0.5s ease-out; /* 트랜지션 적용 */
 }
 
 .subcategories li {
-    opacity: 0; /* 초기 상태에서 투명 */
+	opacity: 0; /* 초기 상태에서 투명 */
 }
 
 .category {
@@ -95,7 +117,6 @@ body, html {
 }
 
 .nav-top-right button {
-	margin-right: 20px;
 	width: 120px;
 	height: 50px;
 	background-color: transparent;
@@ -112,7 +133,9 @@ body, html {
 }
 
 .nav-top-center a {
-	font-family: 'Jalnan2', sans-serif;
+	font-family: 'SUIT-Regular';
+	font-weight: normal;
+	font-style: normal;
 }
 
 .main_content {
@@ -132,7 +155,7 @@ body, html {
 	color: white;
 }
 
-.content button {
+.main_content button {
 	margin: 50px 50px;
 	padding: 20px;
 	border-radius: 10px;
@@ -235,12 +258,73 @@ body, html {
 }
 
 /* --------------- signmain 페이지 css 설정 --------------- */
-
 .signmain {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+	flex-direction: column;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 120px;
+	width: 400px;
+	justify-content: center;
 }
 
+.signlogo {
+	display: flex;
+	height: 22px;
+	justify-content: center;
+	margin-bottom: 16px;
+	position: relative;
+}
+
+.signlogo .strikethrough {
+	background-color: #ebebeb;
+	height: 1px;
+	position: absolute;
+	top: 9px;
+	width: 100%;
+}
+
+.signlogo .signlogotext {
+	padding: 0 8px;
+	background-color: #fff;
+	color: #858585;
+	z-index: 1;
+}
+
+.sociallogin button {
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.naver button {
+	border: none;
+	background-color: #00C73C;
+	font: #fff;
+}
+
+.kakao button {
+	border: none;
+	background-color: #FAE100;
+}
+
+.google button {
+	border: 1px solid rgba(0, 0, 0, .16);
+	background-color: #fff;
+}
+
+.email button {
+	border: none;
+	background-color: #fff;
+}
+
+.email button:hover {
+	border: none;
+	background-color: #e7f1fc;
+}
