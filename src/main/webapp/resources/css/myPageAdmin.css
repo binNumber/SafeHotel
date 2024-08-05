@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+}
+
+.top {
+    background-color: #5a7d9a;
+    padding: 15px;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0;
+}
+
+.top a {
+    color: white;
+    text-decoration: none;
+}
+
+.top a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    font-family: "Dongle", sans-serif;
+    font-size: 25px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul .submenu {
+    margin-top: 10px;
+    margin-left: 20px;
+    display: none; /* 기본적으로 숨김 */
+}
+
+.sidebar ul .submenu li {
+    margin: 10px 0;
+    font-size: 20px; /* 하위 메뉴 폰트 크기 조정 */
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    font-family: "Dongle", sans-serif;
+    font-size: 20px;
+    background-color: #fff;
+}
+
+.content > div {
+    display: none; /* 초기에는 모든 섹션 숨김 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-family: "Dongle", sans-serif;
+    font-size: 20px;
+}
+
+th {
+    background-color: #5a7d9a;
+    color: white;
+}
+
+.deleteBtn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.deleteBtn:hover {
+    background-color: #c9302c;
+}
+
+.btn {
+    background-color: #5a7d9a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #476a82;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background-color: #3b5a6c;
+    transform: scale(1);
+}
+
+input[type="text"], 
+input[type="password"], 
+input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: "Dongle", sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="date"]:focus {
+    border-color: #5a7d9a;
+    outline: none;
+}

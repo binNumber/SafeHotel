@@ -11,8 +11,23 @@ public class UserController {
 		return "user/signUp";
 	}
 	
-	@GetMapping("/user/mypage")
-	public String CEOMypage() {
-		return "user/myPage";
+	@GetMapping("/user/mypageCEO")
+	public String myPageCEO() {
+		return "user/myPageCEO";
+	}
+	
+	@GetMapping("/review/report")
+	public String reviewReport() {
+		return "user/reviewReportPopup";
+	}
+	
+	@GetMapping("/user/mypageAdmin")
+	public String myPageAdmin() {
+		return "user/myPageAdmin";
+	}
+	
+	@GetMapping("/user/mypageUser")
+	public String myPageUser() {
+		return "user/myPageUser";
 	}
 }

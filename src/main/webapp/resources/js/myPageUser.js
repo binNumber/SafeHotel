@@ -6,8 +6,8 @@ function checkPassword() {
 
     if (password === correctPassword) {
         isAuthenticated = true; // 인증 성공
-        document.querySelector(".updateCEO").style.display = "block";
         document.getElementById("password-container").style.display = "none";
+        updateUser(); // 비밀번호 입력 후 기본 섹션을 표시합니다.
     } else {
         alert("비밀번호가 올바르지 않습니다.");
     }
@@ -16,34 +16,36 @@ function checkPassword() {
 function showReservation() {
     // 예약내역을 표시하는 함수
     if (isAuthenticated) {
+        hideAllSections();
         document.querySelector(".checkReservation").style.display = "block";
-        document.querySelector(".updateCEO").style.display = "none";
-        document.getElementById("password-container").style.display = "none";
-        document.querySelector(".deleteUserCEO").style.display = "none";
     } else {
         alert("먼저 비밀번호를 입력해주세요.");
     }
 }
 
-function deleteUserCEO() {
-    // 예약내역을 표시하는 함수
+function deleteUser() {
     if (isAuthenticated) {
-        document.querySelector(".checkReservation").style.display = "none";
-        document.querySelector(".updateCEO").style.display = "none";
-        document.getElementById("password-container").style.display = "none";
-        document.querySelector(".deleteUserCEO").style.display = "block";
+        hideAllSections();
+        document.querySelector(".deleteUser").style.display = "block";
     } else {
         alert("먼저 비밀번호를 입력해주세요.");
     }
 }
 
-function updateCEO() {
-    // 회원 정보 변경 화면을 표시하는 함수
+function updateUser() {
+    // 개인정보 변경 화면을 표시하는 함수
     if (isAuthenticated) {
-        document.querySelector(".checkReservation").style.display = "none";
-        document.querySelector(".updateCEO").style.display = "block";
-        document.getElementById("password-container").style.display = "none";
-        document.querySelector(".deleteUserCEO").style.display = "none";
+        hideAllSections();
+        document.querySelector(".updateUser").style.display = "block";
+    } else {
+        alert("먼저 비밀번호를 입력해주세요.");
+    }
+}
+
+function showReviewList() {
+    if (isAuthenticated) {
+        hideAllSections();
+        document.querySelector(".checkReview").style.display = "block";
     } else {
         alert("먼저 비밀번호를 입력해주세요.");
     }
@@ -55,10 +57,17 @@ function deleteReservation(button) {
     row.parentNode.removeChild(row);
 }
 
+function deleteReview(button) {
+    // 버튼이 속한 <tr> 요소를 찾아 삭제하는 함수
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
 function checkDeleteUser(event) {
     event.preventDefault(); // 폼의 기본 제출 동작을 막음
 
     var enteredPassword = document.getElementById("deletePassword").value;
+    var correctPassword = "1234"; // 여기에 실제 비밀번호를 설정하세요.
 
     if (enteredPassword === correctPassword) {
         var userConfirmed = confirm("정말 탈퇴하시겠습니까?");
@@ -70,4 +79,11 @@ function checkDeleteUser(event) {
     } else {
         alert("비밀번호가 올바르지 않습니다.");
     }
+}
+
+function hideAllSections() {
+    document.querySelector(".updateUser").style.display = "none";
+    document.querySelector(".checkReservation").style.display = "none";
+    document.querySelector(".checkReview").style.display = "none";
+    document.querySelector(".deleteUser").style.display = "none";
 }
