@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var sidebar = document.getElementById("sidebar");
             if (sidebar) {
                 sidebar.classList.toggle("show");
-                console.log("2222");
             }
         });
     }
@@ -126,6 +125,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
             });
+        });
+    }
+
+    // 검색바 열기 버튼 클릭 이벤트
+    const searchButton = document.querySelector(".search button");
+    if (searchButton) {
+        searchButton.addEventListener("click", function() {
+            var searchBar = document.getElementById("searchbar");
+            if (searchBar) {
+                searchBar.classList.add("show");
+            }
+        });
+    }
+
+    // 검색바 닫기 버튼 클릭 이벤트
+    const searchCloseBtn = document.getElementById("btn-close");
+    if (searchCloseBtn) {
+        searchCloseBtn.addEventListener("click", function() {
+            var searchBar = document.getElementById("searchbar");
+            if (searchBar) {
+                searchBar.classList.remove("show");
+            }
         });
     }
 });

@@ -21,7 +21,7 @@
 
 body, html {
 	width: 100%;
-	overflow-x: hidden; /* 수평 스크롤 제거 */
+	overflow-x: hidden;
 }
 
 body {
@@ -54,7 +54,7 @@ body {
 
 .hidenav {
 	position: fixed;
-	left: -250px; /* 화면 밖에 숨기기 */
+	left: -250px;
 	width: 250px;
 	height: 100%;
 	background-color: #fff;
@@ -65,7 +65,6 @@ body {
 
 .hidenav.show {
 	left: 0;
-	margin-top: -60px;
 }
 
 .hidenavcontent {
@@ -99,21 +98,21 @@ body {
 }
 
 .subcategories {
-	overflow: hidden; /* 넘치는 내용 숨기기 */
-	max-height: 0; /* 초기 상태에서 높이 0 */
-	transition: max-height 0.5s ease-out; /* max-height 변화 트랜지션 */
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
 }
 
 .subcategories.show {
-	transition: max-height 0.5s ease-out; /* 트랜지션 적용 */
+	transition: max-height 0.5s ease-out;
 }
 
 .subcategories li {
-	opacity: 0; /* 초기 상태에서 투명 */
+	opacity: 0;
 }
 
 .category {
-	cursor: pointer; /* 클릭 가능한 커서 모양 */
+	cursor: pointer;
 }
 
 .nav-top-right button {
@@ -155,7 +154,7 @@ body {
 	color: white;
 }
 
-.main_content button {
+.btn-search {
 	margin: 50px 50px;
 	padding: 20px;
 	border-radius: 10px;
@@ -166,6 +165,58 @@ body {
 	width: calc(100% - 100px);
 	font-size: 20px;
 	cursor: pointer;
+}
+
+.search {
+	position: relative;
+}
+
+.search button {
+	cursor: pointer;
+}
+
+.btn-close {
+	cursor: pointer;
+	right: 10px;
+	position: absolute;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	background: transparent;
+	border: none;
+	font-size: 30px;
+}
+
+.hidesearch {
+	position: fixed;
+	bottom: -100%;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	z-index: 20;
+	padding: 20px;
+	transition: bottom 0.3s ease-in-out;
+}
+
+.search-top {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.search-main {
+	display: flex;
+	align-items: center;
+}
+
+.hidesearch.show {
+	bottom: 0;
+}
+
+.searchcontent {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
 }
 
 .eventsection {
@@ -186,19 +237,19 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	max-width: 1200px; /* 화면 크기에 맞게 최대 너비를 설정 */
+	max-width: 1200px;
 	margin: 0 auto;
 }
 
 .slides {
 	display: flex;
 	transition: transform 0.5s ease-in-out;
-	gap: 20px; /* 슬라이드 간 간격 */
-	width: calc(( 100% - 40px)* 3/3); /* 3개 슬라이드 표시 */
+	gap: 20px;
+	width: calc(( 100% - 40px)* 3/3);
 }
 
 .event.list {
-	width: calc(( 100% - 40px)/3); /* 간격을 고려한 슬라이드 너비 */
+	width: calc(( 100% - 40px)/3);
 	flex-shrink: 0;
 }
 
@@ -227,34 +278,34 @@ body {
 
 .btn_sectionpage button {
 	border-radius: 50%;
-	width: 40px;
-	height: 40px;
-	border: 1px solid lightgray;
-	font-size: 30px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-	background-color: white;
+	width: 30px;
+	height: 30px;
+	background-color: #ddd;
+	font-size: 20px;
+	border: none;
 }
 
 .dots {
 	text-align: center;
-	position: absolute;
-	bottom: 10px;
-	width: 100%;
+	margin-top: 10px;
+	cursor: pointer;
 }
 
 .dot {
-	z-index: 15;
-	height: 15px;
-	width: 15px;
-	margin: 0 5px;
+	height: 10px;
+	width: 10px;
 	background-color: #bbb;
 	border-radius: 50%;
 	display: inline-block;
-	cursor: pointer;
+	margin: 0 2px;
 }
 
 .dot.active {
 	background-color: #717171;
+}
+
+.footer {
+	margin-top: 50px;
 }
 
 /* --------------- signmain 페이지 css 설정 --------------- */
@@ -266,6 +317,10 @@ body {
 	margin-top: 120px;
 	width: 400px;
 	justify-content: center;
+}
+
+.signmaingtext {
+	margin-bottom: 60px;
 }
 
 .signlogo {
@@ -327,4 +382,71 @@ body {
 .email button:hover {
 	border: none;
 	background-color: #e7f1fc;
+}
+
+.business button {
+	border: none;
+	background-color: #fff;
+	color: #4285F4;
+}
+
+.business button:hover {
+	border: none;
+	background-color: #e7f1fc;
+}
+
+/*---------------userlogin페이지---------------*/
+
+.login input {
+	width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.login h4 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.login {
+	display: flex;
+    flex-direction: column;
+}
+
+.btn-login button{
+	width: 100%;
+    height: 40px;
+    margin: 20px 0px;
+    border: none;
+    background-color: #0060ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-login button:hover {
+	background-color: #3480ff;
+}
+
+.loginfunction {
+	display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.loginfunction a{
+	color: black;
+}
+
+.logincheckbox {
+	display: flex;
+    align-items: center;
+}
+
+.loginsignup h5{
+	margin-bottom: 10px;
 }

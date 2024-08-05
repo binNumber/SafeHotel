@@ -11,4 +11,19 @@ public class MainController {
 	public String main() {
 		return "main";
 	}
+	
+	@GetMapping("/sign")
+	public String sign() {
+		return "sign";
+	}
+	
+	@GetMapping("/userlogin")
+	public String userlogin() {
+		return "userlogin";
+	}
+	
+	@GetMapping("/businesslogin")
+	public String businesslogin() {
+		return "businesslogin";
+	}
 }
