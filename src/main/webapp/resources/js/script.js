@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
+//체크박스 클릭 관련
 document.addEventListener('DOMContentLoaded', function () {
     const acceptAll = document.getElementById('accept-all');
     const checkboxes = document.querySelectorAll('.accept-checkbox');
@@ -180,3 +180,103 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+//주소창 DaumApi
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById('address').value = data.address;
+            document.getElementById('detailAddress').focus();
+        }
+    }).open();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const ssnInput = document.getElementById('ssn-input');
+
+    if (ssnInput) {
+        // 주민등록번호를 포맷하는 함수
+        const formatSSN = (value) => {
+            // 숫자가 아닌 문자를 모두 제거
+            value = value.replace(/\D/g, '');
+            // 6번째 자리 후에 하이픈 추가
+            if (value.length > 6) {
+                value = value.slice(0, 6) + '-' + value.slice(6, 13);
+            }
+            return value;
+        };
+
+        // 입력할 때마다 포맷 적용
+        ssnInput.addEventListener('input', function () {
+            const formattedValue = formatSSN(ssnInput.value);
+            ssnInput.value = formattedValue;
+        });
+
+        // 입력 시 숫자만 허용하고 13자리로 제한
+        ssnInput.addEventListener('keydown', function (event) {
+            // 백스페이스, 탭, 화살표 키는 허용
+            if (event.key === 'Backspace' || event.key === 'Tab' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                return;
+            }
+            // 숫자가 아닌 문자는 입력을 막음
+            if (!/\d/.test(event.key)) {
+                event.preventDefault();
+            }
+        });
+
+        ssnInput.addEventListener('input', function () {
+            // 입력 길이를 13자로 제한
+            if (ssnInput.value.length > 13) {
+                ssnInput.value = ssnInput.value.slice(0, 13);
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneInput = document.getElementById('phone-input');
+
+    if (phoneInput) {
+        // 핸드폰 번호를 포맷하는 함수
+        const formatPhone = (value) => {
+            // 숫자만 남기고 제거
+            value = value.replace(/\D/g, '');
+            // 포맷 적용
+            if (value.length > 10) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+            } else if (value.length > 6) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7);
+            } else if (value.length > 3) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            }
+            return value;
+        };
+
+        // 입력할 때마다 포맷 적용
+        phoneInput.addEventListener('input', function () {
+            const formattedValue = formatPhone(phoneInput.value);
+            phoneInput.value = formattedValue;
+        });
+
+        // 입력 시 숫자만 허용하고 11자리로 제한
+        phoneInput.addEventListener('keydown', function (event) {
+            // 백스페이스, 탭, 화살표 키는 허용
+            if (event.key === 'Backspace' || event.key === 'Tab' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                return;
+            }
+            // 숫자가 아닌 문자는 입력을 막음
+            if (!/\d/.test(event.key)) {
+                event.preventDefault();
+            }
+        });
+
+        phoneInput.addEventListener('input', function () {
+            // 입력 길이를 11자로 제한
+            if (phoneInput.value.replace(/\D/g, '').length > 11) {
+                phoneInput.value = phoneInput.value.slice(0, 11 + Math.floor((phoneInput.value.length - 11) / 3));
+            }
+        });
+    }
+});
+
