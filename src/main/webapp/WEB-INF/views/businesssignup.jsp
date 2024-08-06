@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Signuppage</title>
+<title>businessSignUpPage</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>

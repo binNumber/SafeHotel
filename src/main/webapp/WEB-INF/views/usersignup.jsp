@@ -46,7 +46,7 @@
 		<div class="content">
 			<div class="signmain">
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">여기가자 회원가입</span>
+					<span class="strikethrough"></span> <span class="signlogotext">비즈니스 회원가입</span>
 				</div>
 				<div class="loginbox">
 					<div class="signupcontent">

@@ -111,7 +111,7 @@
 									<button>중복확인</button>
 								</div>
 							</div>
-							<button onclick="location.href='/usersignuppage'" class="btn-signup">회원가입</button>
+							<button onclick="location.href='/businesssignuppage'" class="btn-signup">회원가입</button>
 						</div>
 				</div>
 			</div>

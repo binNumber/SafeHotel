@@ -472,6 +472,7 @@ body {
 	font-size: 10px;
     color: #838383;
     font-weight: 200;
+    margin-left: 10px;
 }
 
 .accept-all input {
@@ -530,6 +531,10 @@ background-color: #3480ff;
 	display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.signupcontent button {
+	cursor: pointer;
 }
 
 .signinfo {

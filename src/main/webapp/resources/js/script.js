@@ -150,34 +150,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
 //체크박스 클릭 관련
-document.addEventListener('DOMContentLoaded', function () {
-    const acceptAll = document.getElementById('accept-all');
-    const checkboxes = document.querySelectorAll('.accept-checkbox');
-    const nextBtn = document.getElementById('next-btn');
+document.addEventListener("DOMContentLoaded", function() {
+    const nextButton = document.getElementById("next-btn");
 
-    acceptAll.addEventListener('change', function () {
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = acceptAll.checked;
-        });
-    });
+    nextButton.addEventListener("click", function() {
+        const requiredCheckboxes = document.querySelectorAll(".accept-checkbox[data-required='true']");
+        let allChecked = true;
 
-    nextBtn.addEventListener('click', function (event) {
-        const requiredCheckboxes = document.querySelectorAll('.accept-checkbox[data-required="true"]');
-        let allRequiredChecked = true;
-
-        requiredCheckboxes.forEach(checkbox => {
+        requiredCheckboxes.forEach(function(checkbox) {
             if (!checkbox.checked) {
-                allRequiredChecked = false;
+                allChecked = false;
             }
         });
 
-        if (!allRequiredChecked) {
-            event.preventDefault();
-            alert('(필수) 항목은 필수선택 사항입니다.');
+        if (allChecked) {
+            if (window.location.pathname.includes("/businesssignup")) {
+                window.location.href = "/businesssignuppage";
+            } else if (window.location.pathname.includes("/usersignup")) {
+                window.location.href = "/usersignuppage";
+            }
         } else {
-            location.href = '/usersignuppage';
+            alert("필수 항목에 모두 동의해주세요.");
         }
+    });
+
+    const acceptAllCheckbox = document.getElementById("accept-all");
+    acceptAllCheckbox.addEventListener("change", function() {
+        const allCheckboxes = document.querySelectorAll(".accept-checkbox");
+        allCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = acceptAllCheckbox.checked;
+        });
+    });
+
+    const individualCheckboxes = document.querySelectorAll(".accept-checkbox");
+    individualCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener("change", function() {
+            const totalCheckboxes = individualCheckboxes.length;
+            const checkedCheckboxes = document.querySelectorAll(".accept-checkbox:checked").length;
+            acceptAllCheckbox.checked = (totalCheckboxes === checkedCheckboxes);
+        });
     });
 });
 
@@ -226,13 +239,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         ssnInput.addEventListener('input', function () {
-            // 입력 길이를 13자로 제한
-            if (ssnInput.value.length > 13) {
-                ssnInput.value = ssnInput.value.slice(0, 13);
+            // 입력 길이를 14자로 제한
+            if (ssnInput.value.length > 14) {
+                ssnInput.value = ssnInput.value.slice(0, 14);
             }
         });
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const phoneInput = document.getElementById('phone-input');
