@@ -137,6 +137,22 @@ body {
 	font-style: normal;
 }
 
+/* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
+#success-login {
+	display:flex;
+}
+
+#mypage-btn {
+	width: 100px;
+	margin-right : 3px;
+}
+
+#logout-btn {
+	width: 80px;
+}
+
+/* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
+
 .main_content {
 	margin: 0 auto;
 	padding-top: 100px;
@@ -495,7 +511,7 @@ body {
 	cursor: pointer;
 }
 
-.signupcontent button {
+.btn-signup {
 	width: 100%;
     height: 40px;
     margin: 20px 0px;
@@ -506,7 +522,22 @@ body {
     cursor: pointer;
 }
 
-.signupcontent button:hover {
+.btn-signup:hover {
+background-color: #3480ff;
+}
+
+#next-btn {
+	width: 100%;
+    height: 40px;
+    margin: 20px 0px;
+    border: none;
+    background-color: #0060ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#next-btn:hover {
 background-color: #3480ff;
 }
 
@@ -524,10 +555,81 @@ background-color: #3480ff;
     width: 100%;
 }
 
+.addresssigninfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.addressbox {
+	display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.addressbox input {
+	width: 45%;
+}
+
+.addressbox button {
+	width: 30%;
+	margin: 10px 0px;
+    border: 1px solid lightgray;
+    height: 25px;
+}
+
+.addresstitle {
+	margin-bottom: 10px;
+}
+
+.namecheck button {
+	margin: 10px 0px;
+    border: 1px solid lightgray;
+    width: 50%;
+    height: 25px;
+}
+
+.addresssigninfo input{
+	width: 49%;
+	height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid lightgray;
+        border-radius: 5px;
+}
+
+.addressinput {
+	display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+}
+
 .gendersigninfo {
 	display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.namecheck {
+	display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.namecheck button {
+	width: 20%;
+}
+
+.nickname {
+	width: 75%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
 
 .signinfo input {
@@ -539,6 +641,24 @@ background-color: #3480ff;
     border: 1px solid lightgray;
     padding: 0 15px;
     font-size: 16px;
+}
+
+.nicknamesigninfo {
+	margin-top: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.namecheck button {
+	width: 20%;
+    margin: 10px 0px;
+    border: 1px solid lightgray;
+    height: 25px;
 }
 
 .gender input{

@@ -1,7 +1,15 @@
-package com.app.controller.user;
+package com.app.controller.customer;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.app.dto.user.User;
 
 @Controller
 public class UserController {
@@ -24,10 +32,5 @@ public class UserController {
 	@GetMapping("/user/mypageAdmin")
 	public String myPageAdmin() {
 		return "user/myPageAdmin";
-	}
-	
-	@GetMapping("/user/mypageUser")
-	public String myPageUser() {
-		return "user/myPageUser";
 	}
 }
