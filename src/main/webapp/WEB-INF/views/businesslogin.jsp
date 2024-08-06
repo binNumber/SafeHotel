@@ -49,7 +49,8 @@
 					<span>여기가자</span>
 				</div>
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">비즈니스 로그인</span>
+					<span class="strikethrough"></span> <span class="signlogotext">비즈니스
+						로그인</span>
 				</div>
 				<div class="loginbox">
 					<form>
@@ -78,13 +79,13 @@
 
 						<div class="loginsignup">
 							<h5>여기가자 계정이 없으신가요?</h5>
-							<a href="/signup">여기가자 비즈니스 회원가입</a>
+							<a href="/businesssignup">여기가자 비즈니스 회원가입</a>
 						</div>
 					</form>
 				</div>
 			</div>
-
-			<script src="js/script.js"></script>
 		</div>
+		<script src="js/script.js"></script>
+	</div>
 </body>
 </html>

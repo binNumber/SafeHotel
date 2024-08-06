@@ -450,3 +450,97 @@ body {
 .loginsignup h5{
 	margin-bottom: 10px;
 }
+
+/*-------------------------유저회원가입페이지--------------------------*/
+.accept-all {
+	display: flex;
+    align-items: center;
+    background-color: #e7e7e7;
+    width: 100%;
+    height: 40px;
+    padding: 0 15px;
+    margin-top: 15px;
+}
+
+.accept-all label{
+	display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accepttext {
+	font-size: 10px;
+    color: #838383;
+    font-weight: 200;
+}
+
+.accept-all input {
+	margin-right: 10px;
+}
+
+.acceptitem {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.accept {
+	font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 15px 15px;
+}
+
+.accept label{
+	cursor: pointer;
+}
+
+.signupcontent button {
+	width: 100%;
+    height: 40px;
+    margin: 20px 0px;
+    border: none;
+    background-color: #0060ff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.signupcontent button:hover {
+background-color: #3480ff;
+}
+
+/*---------------------유저회원가입 2번째 페이지-----------------------*/
+.signupcontent {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.signinfo {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.gendersigninfo {
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.signinfo input {
+	margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.gender input{
+	margin: 10px 0;
+}

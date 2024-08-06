@@ -26,4 +26,19 @@ public class MainController {
 	public String businesslogin() {
 		return "businesslogin";
 	}
+	
+	@GetMapping("/usersignup")
+	public String usersignup() {
+		return "usersignup";
+	}
+	
+	@GetMapping("/usersignuppage")
+	public String usersignuppage() {
+		return "usersignuppage";
+	}
+	
+	@GetMapping("/businesssignup")
+	public String businesssignup() {
+		return "businesssignup";
+	}
 }

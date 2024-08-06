@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Sign In</title>
+<title>Signup</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -45,41 +45,43 @@
 		</div>
 		<div class="content">
 			<div class="signmain">
-				<div class="signmaingtext">
-					<span>여기가자</span>
-				</div>
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">이메일로
-						시작하기</span>
+					<span class="strikethrough"></span> <span class="signlogotext">여기가자
+						회원가입</span>
 				</div>
 				<div class="loginbox">
 					<form>
-						<div class="id login">
-							<h4>이메일</h4>
-							<input type="email" placeholder="이메일을 입력해주세요.">
-						</div>
-
-						<div class="pw login">
-							<h4>비밀번호</h4>
-							<input type="password" placeholder="비밀번호를 입력해주세요.">
-						</div>
-
-						<div class="loginfunction">
-							<div class="logincheckbox">
-								<input type="checkbox"> 로그인 유지
+						<div class="signupcontent">
+							<div class="name signinfo">
+								<h4>이름</h4>
+								<input type="text" placeholder="이름을 입력해주세요.">
 							</div>
-							<div>
-								<a href="/findaccount">아이디/비밀번호 찾기</a>
+							
+							<div class="email signinfo">
+								<h4>이메일</h4>
+								<input type="email" placeholder="최소 8자 이상">
 							</div>
-						</div>
-
-						<div class="btn-login">
-							<button type="submit">로그인</button>
-						</div>
-
-						<div class="loginsignup">
-							<h5>여기가자 계정이 없으신가요?</h5>
-							<a href="/usersignup">여기가자 회원가입</a>
+							
+							<div class="pw signinfo">
+								<h4>비밀번호</h4>
+								<input type="password" placeholder="8자 이상 비밀번호를 입력해주세요.">
+							</div>
+							<div class="pw signinfo">
+								<h4>비밀번호 확인</h4>
+								<input type="password" placeholder="위 비밀번호와 동일한 비밀번호 입력">
+							</div>
+							<div class="gendersigninfo">
+								<h4>성별</h4>
+								<div class="gender">
+								<input type="radio"> 여자
+								<input type="radio"> 남자
+								</div>
+							</div>
+							<div class="name signinfo">
+								<h4>닉네임</h4>
+								<input type="text" placeholder="닉네임을 입력해주세요">
+							</div>
+							<button onclick="location.href='/usersignuppage'">다음</button>
 						</div>
 					</form>
 				</div>
