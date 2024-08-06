@@ -53,16 +53,18 @@
 						로그인</span>
 				</div>
 				<div class="loginbox">
-					<form>
+					<form action="" method="post">
 						<div class="id login">
 							<h4>이메일</h4>
-							<input type="email" placeholder="이메일을 입력해주세요.">
+							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
 						</div>
 
 						<div class="pw login">
 							<h4>비밀번호</h4>
-							<input type="password" placeholder="비밀번호를 입력해주세요.">
+							<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요.">
 						</div>
+						
+						<input type="hidden" name="userType" value="BIS">
 
 						<div class="loginfunction">
 							<div class="logincheckbox">

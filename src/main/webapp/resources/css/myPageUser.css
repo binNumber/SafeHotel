@@ -1,12 +1,168 @@
 @charset "UTF-8"; 
 
+/* ------- main이랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* a {
+	text-decoration: none;
+}
+
+body, html {
+	width: 100%;
+	overflow-x: hidden;
+}
+
 body {
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+/* body {
     display: flex;
-    flex-direction: column; /* 전체적인 레이아웃을 위에서 아래로 정렬 */
+    flex-direction: column; 전체적인 레이아웃을 위에서 아래로 정렬
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5; /* 배경색 추가 */
+    background-color: #f0f2f5; 배경색 추가
+} */
+
+.nav-top {
+	display: flex;
+	justify-content: space-between;
+	height: 80px;
+	width: 90%;
+	margin: 0 auto;
+	align-items: center;
+	
+	border-bottom : 1px solid lightgray;
 }
+
+.nav-top-left img {
+	width: 30px;
+	height: auto;
+}
+
+.nav-top-left {
+	width: 17%;
+}
+
+.nav-top-right {
+	width: 17%;
+}
+
+.hidenav {
+	position: fixed;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background-color: #fff;
+	overflow-x: hidden;
+	transition: 0.3s;
+	z-index: 25;
+}
+
+.hidenav.show {
+	left: 0;
+}
+
+.hidenavcontent {
+	margin-top: 100px;
+}
+
+.hidenavcontent ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hidenavcontent ul li {
+	padding: 8px 16px;
+}
+
+.hidenavcontent ul li a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: black;
+}
+
+.subcategories {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories.show {
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories li {
+	opacity: 0;
+}
+
+.category {
+	cursor: pointer;
+}
+
+.nav-top-right button {
+	width: 120px;
+	height: 50px;
+	background-color: transparent;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.nav-top-right button:hover {
+	background-color: lightgray;
+	border: 1px solid lightgray;
+	cursor: pointer;
+}
+
+.nav-top-center a {
+	font-family: 'SUIT-Regular';
+	font-weight: normal;
+	font-style: normal;
+}
+
+#success-login {
+	display:flex;
+}
+
+#mypage-btn {
+	width: 100px;
+	margin-right : 3px;
+}
+
+#logout-btn {
+	width: 80px;
+}
+
+/* ------- main이랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
 
 .main {
     display: flex;
@@ -17,38 +173,19 @@ a {
     text-decoration-line: none;
 }
 
-.top {
-    background-color: #4093a1; /* 배경색 설정 */
-    padding: 15px; /* 패딩을 추가하여 공간 확보 */
-    text-align: left;
-    color: white; /* 글자 색상 흰색 */
-    font-weight: bold;
-    font-size: 20px;
-    margin: 0;
-}
-
-.top a {
-    color: white; /* 링크 글자 색상 흰색 */
-    text-decoration: none; /* 밑줄 제거 */
-}
-
-.top a:hover {
-    text-decoration: underline; /* 마우스를 올렸을 때 밑줄 표시 */
-}
-
-.sidebar {
+.mypage-sidebar {
     width: 200px;
     padding: 10px;
     background-color: white;
     font-family: "Dongle", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 }
 
-.sidebar a {
+.mypage-sidebar a {
     color: black;
 }
 
-.sidebar a:hover {
+.mypage-sidebar a:hover {
     color: aquamarine;
 }
 
@@ -56,15 +193,16 @@ a {
     flex: 1;
     padding: 20px;
     font-family: "Dongle", sans-serif;
-    font-size: 20px;
+    font-size: 12px;
 }
 
-ul {
+.mypage-sidebar ul {
     list-style-type: none;
     padding: 0;
+    padding-left : 20px;
 }
 
-li {
+.mypage-sidebar li {
     margin: 25px 0px;
 }
 
@@ -86,11 +224,6 @@ li {
 .deleteUser {
     display: none;
 }
-
-.dongle { 
-    font-family: "Dongle", sans-serif;
-    font-size: 50px;
-} 
 
 .btn {
     background-color: #4093a1;
@@ -137,18 +270,18 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+/* th, td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
     font-family: "Dongle", sans-serif;
-    font-size: 18px; /* 글자 크기를 조절 */
+    font-size: 15px; 글자 크기를 조절
 }
 
 th {
     background-color: #4093a1;
     color: white;
-}
+} */
 
 .deleteBtn {
     background-color: #d9534f;

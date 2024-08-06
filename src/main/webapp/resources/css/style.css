@@ -137,6 +137,22 @@ body {
 	font-style: normal;
 }
 
+/* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
+#success-login {
+	display:flex;
+}
+
+#mypage-btn {
+	width: 100px;
+	margin-right : 3px;
+}
+
+#logout-btn {
+	width: 80px;
+}
+
+/* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
+
 .main_content {
 	margin: 0 auto;
 	padding-top: 100px;
