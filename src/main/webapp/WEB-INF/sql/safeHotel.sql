@@ -138,4 +138,45 @@ CREATE TABLE REVIEW_IMG(
     review_img_url VARCHAR2(258) NOT NULL
 );
 
+SELECT * FROM REVIEW_IMG;
+
+
+--이용자 리뷰에 대한 사업자 답글 관리 테이블
+CREATE TABLE BUSINESS_REPLY(
+    reply_code NUMBER(10) NOT NULL PRIMARY KEY,
+    review_code NUMBER(10) NOT NULL,
+    user_code NUMBER(10) NOT NULL,
+    reply_text VARCHAR2(2000) NOT NULL,
+    reply_date DATE NOT NULL
+);
+
+SELECT * FROM BUSINESS_REPLY;
+
+
+--전국 경찰서 위치 정보 관리
+CREATE TABLE POLICE_STATION(
+    plc_code NUMBER(10) NOT NULL PRIMARY KEY,
+    plc_provincial_office VARCHAR2(20) NOT NULL,
+    plc_station VARCHAR2(20) NOT NULL,
+    plc_name VARCHAR2(30) NOT NULL,
+    plc_type VARCHAR2(15) NOT NULL,
+    plc_addr VARCHAR2(500) NOT NULL,
+    plc_tel VARCHAR2(15) NOT NULL
+);
+
+SELECT * FROM POLICE_STATION;
+
+
+--전국 병원 위치 정보 관리
+CREATE TABLE HOSPITAL(
+    hospital_code NUMBER(10) NOT NULL PRIMARY KEY,
+    hospital_name VARCHAR2(100) NOT NULL,
+    hospital_type VARCHAR2(35) NOT NULL,
+    hospital_addr VARCHAR2(500) NOT NULL,
+    hospital_map_x VARCHAR2(15) NOT NULL,
+    hospital_map_y VARCHAR2(15) NOT NULL
+);
+
+SELECT * FROM HOSPITAL;
+
 COMMIT;
