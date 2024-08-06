@@ -41,7 +41,7 @@
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
-					<button onclick="location.href='/sign'">로그인/회원가입</button>
+					<button onclick="location.href='/usersign'">로그인/회원가입</button>
 					</c:if>
 					
 					<c:if test="${not empty user}">

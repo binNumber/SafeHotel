@@ -26,9 +26,9 @@ public class BusinessController {
 			@RequestParam(value = "checkRememberUser", defaultValue = "false") boolean checkRememberUser,
 			HttpServletResponse response, HttpSession session) {
 
-		User user = userService.findUserByUserSearchCondition(userSearchCondition);
+		//User user = userService.findUserByUserSearchCondition(userSearchCondition);
 
-		return "businesslogin";
+		return "business/businesslogin";
 	}
 
 
@@ -65,13 +65,13 @@ public class BusinessController {
 
 			//경고창 띄우기
 
-			return "/businesslogin";
+			return "business/businesslogin";
 		}
 	}
 	
 	@GetMapping("/businesssignup")
 	public String businesssignup() {
-		return "businesssignup";
+		return "business/businesssignup";
 	}
 
 }

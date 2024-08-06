@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.user.UserService;
+
 
 @Controller
 public class LoginController {
@@ -22,13 +24,13 @@ public class LoginController {
 	
 	@GetMapping("/usersign")
 	public String sign() {
-		return "sign";
+		return "customer/sign";
 	}
 	
 	//유저 로그인 페이지로 이동
 	@GetMapping("/userlogin")
 	public String userlogin() {
-		return "userlogin";
+		return "customer/userlogin";
 	}
 	
 	//유저 로그인 액션
@@ -64,7 +66,7 @@ public class LoginController {
 			
 			//경고창 띄우기
 			
-			return "/userlogin";
+			return "customer/userlogin";
 		}
 	}
 	
@@ -89,11 +91,11 @@ public class LoginController {
 	public String usersignup() {
 		
 		
-		return "usersignup";
+		return "customer/usersignup";
 	}
 	
 	@GetMapping("/usersignuppage")
 	public String usersignuppage() {
-		return "usersignuppage";
+		return "customer/usersignuppage";
 	}
 }
