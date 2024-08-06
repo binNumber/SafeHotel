@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Signup</title>
 <link rel="stylesheet" href="css/style.css" />
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -50,18 +51,17 @@
 						회원가입</span>
 				</div>
 				<div class="loginbox">
-					<form>
 						<div class="signupcontent">
 							<div class="name signinfo">
 								<h4>이름</h4>
 								<input type="text" placeholder="이름을 입력해주세요.">
 							</div>
-							
+
 							<div class="email signinfo">
 								<h4>이메일</h4>
 								<input type="email" placeholder="최소 8자 이상">
 							</div>
-							
+
 							<div class="pw signinfo">
 								<h4>비밀번호</h4>
 								<input type="password" placeholder="8자 이상 비밀번호를 입력해주세요.">
@@ -70,20 +70,49 @@
 								<h4>비밀번호 확인</h4>
 								<input type="password" placeholder="위 비밀번호와 동일한 비밀번호 입력">
 							</div>
+
+							<div class="phone_num signinfo">
+								<h4>휴대폰 번호</h4>
+								<input type="text" id="phone-input" maxlength="13"
+									placeholder="휴대폰 번호를 입력해주세요.">
+							</div>
+							
+							<div class="user_rsd_reg_num signinfo">
+                            <h4>주민등록번호</h4>
+                            <input type="text" id="ssn-input" maxlength="13" placeholder="주민등록번호를 입력해주세요.">
+                        </div>
+
+							<div class="addresssigninfo">
+								<div class="addresstitle">
+									<h4>주소</h4>
+								</div>
+								<div class="addressbox">
+								<input type="text" id="postcode" placeholder="우편번호" readonly>
+								<button onclick="execDaumPostcode()">우편번호 찾기</button>
+								<div></div>
+								</div>
+								<div class="addressinput">
+									<input type="text" id="address" placeholder="주소" readonly>
+									<input type="text" id="detailAddress" placeholder="상세주소">
+								</div>
+							</div>
+
 							<div class="gendersigninfo">
 								<h4>성별</h4>
 								<div class="gender">
-								<input type="radio"> 여자
-								<input type="radio"> 남자
+									<input type="radio" id="female" name="gender"> 여자 <input
+										type="radio" id="male" name="gender"> 남자
 								</div>
 							</div>
-							<div class="name signinfo">
+							<div class="nicknamesigninfo">
 								<h4>닉네임</h4>
-								<input type="text" placeholder="닉네임을 입력해주세요">
+								<div class="namecheck">
+									<input type="text" placeholder="닉네임을 입력해주세요" class="nickname">
+									<button>중복확인</button>
+								</div>
 							</div>
-							<button onclick="location.href='/usersignuppage'">다음</button>
+							<button onclick="location.href='/usersignuppage'" class="btn-signup">회원가입</button>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>
