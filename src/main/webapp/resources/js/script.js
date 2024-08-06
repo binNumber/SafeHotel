@@ -150,3 +150,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const acceptAll = document.getElementById('accept-all');
+    const checkboxes = document.querySelectorAll('.accept-checkbox');
+    const nextBtn = document.getElementById('next-btn');
+
+    acceptAll.addEventListener('change', function () {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = acceptAll.checked;
+        });
+    });
+
+    nextBtn.addEventListener('click', function (event) {
+        const requiredCheckboxes = document.querySelectorAll('.accept-checkbox[data-required="true"]');
+        let allRequiredChecked = true;
+
+        requiredCheckboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                allRequiredChecked = false;
+            }
+        });
+
+        if (!allRequiredChecked) {
+            event.preventDefault();
+            alert('(필수) 항목은 필수선택 사항입니다.');
+        } else {
+            location.href = '/usersignuppage';
+        }
+    });
+});
+
