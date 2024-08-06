@@ -6,10 +6,11 @@
 	<settings>						
 		<setting name="mapUnderscoreToCamelCase" value="true"/>	
 			<!--	_ 표시 -> CamelCase 맵핑	 -->
-	</settings>						
-							
-	<typeAliases>						
-<!-- 		<typeAlias type="com.app.dto.user.User" alias="User"/>					 -->
-	</typeAliases>						
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.app.dto.user.User" alias="User"/>
+		<typeAlias type="com.app.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
+	</typeAliases>
 							
 </configuration>							

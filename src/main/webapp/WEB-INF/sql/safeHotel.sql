@@ -2,19 +2,22 @@
 CREATE TABLE USER_INFO(
     user_code NUMBER(10) NOT NULL PRIMARY KEY,
     user_type VARCHAR(3) NOT NULL,
-    user_id VARCHAR2(20) NOT NULL,
+    user_email VARCHAR2(30) NOT NULL,
     user_pw VARCHAR2(20) NOT NULL,
     user_nickname VARCHAR2(50) NOT NULL,
     user_name VARCHAR2(20) NOT NULL,
     user_rsd_reg_num VARCHAR2(14) NOT NULL,
     user_phone_num VARCHAR2(15) NOT NULL,
-    user_email VARCHAR2(30) NOT NULL,
     user_addr VARCHAR2(100) NOT NULL,
     user_reg_dt DATE NOT NULL,
     user_status VARCHAR(1) NOT NULL
 );
 
 SELECT * FROM USER_INFO;
+
+SELECT user_email, user_pw
+FROM user_info
+WHERE user_email = 'leejinsoo1053@example.com';
 
 --사업자 정보 테이블
 CREATE TABLE BUSINESS (

@@ -53,25 +53,27 @@
 						시작하기</span>
 				</div>
 				<div class="loginbox">
-					<form>
+					<form action="/userlogin" method="post">
 						<div class="id login">
 							<h4>이메일</h4>
-							<input type="email" placeholder="이메일을 입력해주세요.">
+							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
 						</div>
 
 						<div class="pw login">
 							<h4>비밀번호</h4>
-							<input type="password" placeholder="비밀번호를 입력해주세요.">
+							<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요.">
 						</div>
 
 						<div class="loginfunction">
 							<div class="logincheckbox">
-								<input type="checkbox"> 로그인 유지
+								<input type="checkbox" name="checkRememberUser"> 로그인 유지
 							</div>
 							<div>
 								<a href="/findaccount">아이디/비밀번호 찾기</a>
 							</div>
 						</div>
+						
+						
 
 						<div class="btn-login">
 							<button type="submit">로그인</button>
