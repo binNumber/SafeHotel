@@ -23,7 +23,7 @@ public class MainController {
 	UserService userService;
 	
 	
-	@GetMapping("/main")
+	@GetMapping("/")
 	public String main(HttpSession session, Model model) {
 		
 		//session에서 유저 정보 가져옴
