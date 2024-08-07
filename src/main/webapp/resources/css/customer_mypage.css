@@ -32,14 +32,6 @@ body {
 	font-style: normal;
 }
 
-/* body {
-    display: flex;
-    flex-direction: column; 전체적인 레이아웃을 위에서 아래로 정렬
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5; 배경색 추가
-} */
-
 .nav-top {
 	display: flex;
 	justify-content: space-between;
@@ -162,11 +154,16 @@ body {
 	width: 80px;
 }
 
-/* ------- main이랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
+/* ------- main페이지랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
+
+
+/* ------- userCheck 페이지 ------- */
 
 .main {
     display: flex;
     flex: 1;
+    
+    margin : ;
 }
 
 a {
@@ -269,19 +266,6 @@ table {
     border-collapse: collapse;
     margin-top: 20px;
 }
-
-/* th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    font-family: "Dongle", sans-serif;
-    font-size: 15px; 글자 크기를 조절
-}
-
-th {
-    background-color: #4093a1;
-    color: white;
-} */
 
 .deleteBtn {
     background-color: #d9534f;
