@@ -560,6 +560,28 @@ background-color: #3480ff;
     width: 100%;
 }
 
+.business_rsd_reg_num_signinfo {
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.regnumfile {
+	margin: 10px 0;
+}
+
+.regnumtext {
+	margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
 .addresssigninfo {
     display: flex;
     flex-direction: column;

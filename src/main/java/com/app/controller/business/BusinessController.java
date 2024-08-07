@@ -74,4 +74,8 @@ public class BusinessController {
 		return "business/businesssignup";
 	}
 
+	@GetMapping("/businesssignuppage")
+	public String businesssignuppage() {
+		return "business/businesssignuppage";
+	}	
 }

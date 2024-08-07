@@ -315,3 +315,46 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+//사업자 등록 번호 관련
+document.addEventListener("DOMContentLoaded", function () {
+  const bizRegNumInput = document.getElementById("biz-reg-num");
+
+  if (bizRegNumInput) {
+    // 사업자 등록번호를 포맷하는 함수
+    const formatBizRegNum = (value) => {
+      // 숫자가 아닌 문자를 모두 제거
+      value = value.replace(/\D/g, "");
+      // 3번째와 5번째 자리 후에 하이픈 추가
+      if (value.length > 3 && value.length <= 5) {
+        value = value.slice(0, 3) + "-" + value.slice(3);
+      } else if (value.length > 5) {
+        value = value.slice(0, 3) + "-" + value.slice(3, 5) + "-" + value.slice(5);
+      }
+      return value;
+    };
+
+    // 입력할 때마다 포맷 적용
+    bizRegNumInput.addEventListener("input", function () {
+      const formattedValue = formatBizRegNum(bizRegNumInput.value);
+      bizRegNumInput.value = formattedValue;
+    });
+
+    // 입력 시 숫자만 허용하고 12자리로 제한
+    bizRegNumInput.addEventListener("keydown", function (event) {
+      // 백스페이스, 탭, 화살표 키는 허용
+      if (
+        event.key === "Backspace" ||
+        event.key === "Tab" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowRight"
+      ) {
+        return;
+      }
+      // 숫자가 아닌 문자는 입력을 막음
+      if (!/[0-9]/.test(event.key)) {
+        event.preventDefault();
+      }
+    });
+  }
+});
