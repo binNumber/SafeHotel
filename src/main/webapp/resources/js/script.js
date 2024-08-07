@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 검색바 열기 버튼 클릭 이벤트
-  const searchButton = document.querySelector(".search button");
+  const  searchButton = document.querySelector(".search button");
   if (searchButton) {
     searchButton.addEventListener("click", function () {
       var searchBar = document.getElementById("searchbar");
@@ -314,4 +314,123 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+});
+
+//사업자 등록 번호 관련
+document.addEventListener("DOMContentLoaded", function () {
+  const bizRegNumInput = document.getElementById("biz-reg-num");
+
+  if (bizRegNumInput) {
+    // 사업자 등록번호를 포맷하는 함수
+    const formatBizRegNum = (value) => {
+      // 숫자가 아닌 문자를 모두 제거
+      value = value.replace(/\D/g, "");
+      // 3번째와 5번째 자리 후에 하이픈 추가
+      if (value.length > 3 && value.length <= 5) {
+        value = value.slice(0, 3) + "-" + value.slice(3);
+      } else if (value.length > 5) {
+        value = value.slice(0, 3) + "-" + value.slice(3, 5) + "-" + value.slice(5);
+      }
+      return value;
+    };
+
+    // 입력할 때마다 포맷 적용
+    bizRegNumInput.addEventListener("input", function () {
+      const formattedValue = formatBizRegNum(bizRegNumInput.value);
+      bizRegNumInput.value = formattedValue;
+    });
+
+    // 입력 시 숫자만 허용하고 12자리로 제한
+    bizRegNumInput.addEventListener("keydown", function (event) {
+      // 백스페이스, 탭, 화살표 키는 허용
+      if (
+        event.key === "Backspace" ||
+        event.key === "Tab" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowRight"
+      ) {
+        return;
+      }
+      // 숫자가 아닌 문자는 입력을 막음
+      if (!/[0-9]/.test(event.key)) {
+        event.preventDefault();
+      }
+    });
+  }
+});
+
+/*---------------------------main페이지-------------------------*/
+document.addEventListener("DOMContentLoaded", function () {
+    // 기본 인원수 설정
+    const peopleCount = document.querySelector('#people_picker .people-count');
+    peopleCount.textContent = '2';
+    updatePeopleButton();
+
+    // .input-search input 클릭 이벤트
+    document.querySelector('.input-search input').addEventListener('click', function(event) {
+        closeAllHiddenSections();
+        document.getElementById('search_best').classList.toggle('show');
+        event.stopPropagation();
+    });
+
+    // #btn_date 클릭 이벤트
+    document.querySelector('#btn_date').addEventListener('click', function(event) {
+        closeAllHiddenSections();
+        document.getElementById('date_picker').classList.toggle('show');
+        event.stopPropagation();
+    });
+
+    // #btn_people 클릭 이벤트
+    document.querySelector('#btn_people').addEventListener('click', function(event) {
+        closeAllHiddenSections();
+        document.getElementById('people_picker').classList.toggle('show');
+        event.stopPropagation();
+    });
+
+    // 다른 곳 클릭 시 숨겨진 요소 닫기
+    document.addEventListener('click', function(event) {
+        closeAllHiddenSections();
+    });
+
+    // 요소 내부 클릭 시 숨겨진 요소 닫히지 않게 하기
+    document.querySelector('#search_best').addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    document.querySelector('#date_picker').addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    document.querySelector('#people_picker').addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
+
+    // 인원 수 조절 버튼 이벤트
+    const decreaseButton = document.querySelector('#people_picker .decrease');
+    const increaseButton = document.querySelector('#people_picker .increase');
+
+    decreaseButton.addEventListener('click', function () {
+        let count = parseInt(peopleCount.textContent);
+        if (count > 1) {
+            peopleCount.textContent = count - 1;
+            updatePeopleButton();
+        }
+    });
+
+    increaseButton.addEventListener('click', function () {
+        let count = parseInt(peopleCount.textContent);
+        peopleCount.textContent = count + 1;
+        updatePeopleButton();
+    });
+
+    function updatePeopleButton() {
+        const btnPeopleSpan = document.querySelector('#btn_people span');
+        btnPeopleSpan.textContent = `인원 ${peopleCount.textContent}`;
+    }
+
+    function closeAllHiddenSections() {
+        document.getElementById('search_best').classList.remove('show');
+        document.getElementById('date_picker').classList.remove('show');
+        document.getElementById('people_picker').classList.remove('show');
+    }
 });

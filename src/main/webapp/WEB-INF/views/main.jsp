@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +37,13 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
-					<button onclick="location.href='/usersign'">로그인/회원가입</button>
+						<button onclick="location.href='/usersign'">로그인/회원가입</button>
 					</c:if>
-					
+
 					<c:if test="${not empty user}">
 						<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
 						<button id="logout-btn" onclick="location.href='/userlogout'">로그아웃</button>
@@ -62,6 +62,7 @@
 				<div class="search">
 					<button class="btn-search">🔍 지역이나 숙소를 검색해보세요</button>
 					<div class="hidesearch" id="searchbar">
+						<div class="backimg"></div>
 						<div class="hidesearchcontent">
 							<button id="btn-close" class="btn-close">X</button>
 							<div class="searchcontent">
@@ -70,24 +71,45 @@
 								</div>
 								<div class="search-main">
 									<div class="input-search">
-										<input name="search_term" type="text"
-											placeholder="여행지나 숙소를 검색해보세요.">
+										<img src='img/magnifier.png' /> <input id="search_term"
+											name="search_term" type="text" placeholder="여행지나 숙소를 검색해보세요.">
+										<div class="hide search-best" id="search_best">
+											<div class="search-best-history">
+												<h3>최근 검색어</h3>
+											</div>
+											<p>검색한 단어1</p>
+											<p>검색한 단어2</p>
+										</div>
 									</div>
 									<div class="btn-date">
-										<button>
-											<span> 08.15 목 - 08.16 금 (1박 2일) </span>
+										<button id="btn_date">
+											<img src='img/calendar.png' /> <span> 08.15 목 - 08.16
+												금 (1박 2일) </span>
 										</button>
+										<div class="hide date-picker" id="date_picker">
+											<p>날짜 선택</p>
+										</div>
 									</div>
 									<div class="btn-people">
-										<button>
-											<span> 인원 2 </span>
+										<button id="btn_people">
+											<img src='img/human.png' /> <span> 인원 2 </span>
 										</button>
+										<div class="hide people-picker" id="people_picker">
+											<p>인원</p>
+											<div class="people-controls">
+												<button class="decrease">-</button>
+												<span class="people-count">2</span>
+												<button class="increase">+</button>
+											</div>
+											<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
+										</div>
 									</div>
+
 									<div class="btn-searchright">
 										<button>
-											<span> 검색 </span>
+											<span><img> 검색 </span>
 										</button>
-									`</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -143,9 +165,7 @@
 			</div>
 		</div>
 
-		<div class="footer">
-		
-		</div>
+		<div class="footer"></div>
 
 		<script src="js/script.js"></script>
 	</div>
