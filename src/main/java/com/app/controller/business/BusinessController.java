@@ -20,6 +20,12 @@ public class BusinessController {
 	@Autowired
 	UserService userService;
 
+	// 사업자 메인
+	@GetMapping("/businessMain")
+	public String businessMain() {
+		return "business/businessmain";
+	}
+	
 	//사업자 로그인
 	@GetMapping("/businesslogin")
 	public String businessLogin(UserSearchCondition userSearchCondition,
@@ -73,5 +79,7 @@ public class BusinessController {
 	public String businesssignup() {
 		return "business/businesssignup";
 	}
+	
+
 
 }
