@@ -664,3 +664,8 @@ background-color: #3480ff;
 .gender input{
 	margin: 10px 0;
 }
+
+/* -- 자바스크립트 class add/remove로 사용하기 위한 css -- */
+.display-none {
+	display : none;
+}

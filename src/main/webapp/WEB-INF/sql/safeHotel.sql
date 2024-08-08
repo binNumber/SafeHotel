@@ -15,9 +15,19 @@ CREATE TABLE USER_INFO(
 
 SELECT * FROM USER_INFO;
 
-SELECT user_email, user_pw
+SELECT * FROM user_info WHERE user_pw = 'jinsulee1053!#';
+
+COMMIT;
+
+SELECT NVL(MAX(user_code), 0)+1 new_user_code FROM user_info;
+
+SELECT * FROM user_info WHERE user_nickname = '별빛킹123';
+
+DELETE
+--SELECT *
 FROM user_info
-WHERE user_email = 'leejinsoo1053@example.com';
+WHERE user_code=36;
+
 
 --사업자 정보 테이블
 CREATE TABLE BUSINESS (
@@ -106,11 +116,13 @@ CREATE TABLE RESERVATION(
     rsvt_discount NUMBER(3),
     rsvt_payment_info VARCHAR2(50) NOT NULL,
     rsvt_payment_amount NUMBER(10) NOT NULL,
-    rsvt_user_code VARCHAR2(30) NOT NULL,
+    rsvt_user_code NUMBER(10) NOT NULL,
     rsvt_guest_name VARCHAR2(100) NOT NULL,
     rsvt_guest_tel VARCHAR2(15) NOT NULL,
     rsvt_status VARCHAR(1) NOT NULL
 );
+
+Drop table reservation;
 
 SELECT * FROM RESERVATION;
 
@@ -124,11 +136,12 @@ CREATE TABLE USER_REVIEW(
     rating NUMBER(1) NOT NULL,
     review_text VARCHAR2(2000) NOT NULL,
     review_date DATE NOT NULL,
-    reply_exists VARCHAR2(30) NOT NULL
+    reply_exists VARCHAR2(1) NOT NULL
 );
 
-SELECT * FROM USER_REVIEW;
+DROP TABLE user_review;
 
+SELECT * FROM USER_REVIEW;
 
 
 --유저 리뷰 이미지 관리 테이블
