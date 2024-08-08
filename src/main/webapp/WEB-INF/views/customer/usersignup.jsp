@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Signuppage</title>
+<title>userSignUpPage</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right">
 					<button onclick="location.href='/sign'">로그인/회원가입</button>
@@ -46,7 +46,7 @@
 		<div class="content">
 			<div class="signmain">
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">여기가자 회원가입</span>
+					<span class="strikethrough"></span> <span class="signlogotext">비즈니스 회원가입</span>
 				</div>
 				<div class="loginbox">
 					<div class="signupcontent">

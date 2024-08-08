@@ -12,7 +12,7 @@
 </head>
 <body onload="hideAllSections()">
     <div class="top">
-        <p class="dongle"><a href="#">여기가자</a></p>
+        <p class="dongle"><a href="/">여기가자</a></p>
     </div>
     <div class="main">
         <div class="sidebar">

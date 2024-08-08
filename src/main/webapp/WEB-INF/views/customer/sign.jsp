@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right">
 					<button onclick="location.href='/sign'">로그인/회원가입</button>
@@ -49,41 +49,44 @@
 					<span>여기가자</span>
 				</div>
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">비즈니스
-						로그인</span>
+					<span class="strikethrough"></span>
+					<span class="signlogotext">로그인/회원가입</span>
 				</div>
-				<div class="loginbox">
-					<form action="" method="post">
-						<div class="id login">
-							<h4>이메일</h4>
-							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
-						</div>
+				<div class="signuplist">
+				
+					<div class="sociallogin naver">
+						<button>
+							<img src="img/naver.png" alt="네이버로 로그인하기">
+							네이버로 로그인하기
+						</button>
+					</div>
+					
+					<div class="sociallogin kakao">
+						<button>
+							<img src="img/kakaotalk.png" alt="카카오톡으로 로그인하기">
+							카카오톡으로 로그인하기
+						</button>
+					</div>
 
-						<div class="pw login">
-							<h4>비밀번호</h4>
-							<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요.">
-						</div>
-						
-						<input type="hidden" name="userType" value="BIS">
-
-						<div class="loginfunction">
-							<div class="logincheckbox">
-								<input type="checkbox"> 로그인 유지
-							</div>
-							<div>
-								<a href="/findaccount">아이디/비밀번호 찾기</a>
-							</div>
-						</div>
-
-						<div class="btn-login">
-							<button type="submit">로그인</button>
-						</div>
-
-						<div class="loginsignup">
-							<h5>여기가자 계정이 없으신가요?</h5>
-							<a href="/businesssignup">여기가자 비즈니스 회원가입</a>
-						</div>
-					</form>
+					<div class="sociallogin google">
+						<button>
+							<img src="img/google.png" alt="구글로 로그인하기">
+							구글로 로그인하기
+						</button>
+					</div>
+					
+					<div class="sociallogin email">
+						<button onclick="location.href='/userlogin'">
+							<img src="img/email.png" alt="구글로 로그인하기">
+							이메일로 로그인하기
+						</button>
+					</div>
+					
+					<div class="sociallogin business">
+						<button onclick="location.href='/businesslogin'">
+							비즈니스 로그인하기
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
