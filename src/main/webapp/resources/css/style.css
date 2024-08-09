@@ -592,12 +592,14 @@ body {
 	align-items: center;
 	font-size: 15px;
 	cursor: pointer;
+	text-decoration: none;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
 }
 
 .naver button {
 	border: none;
 	background-color: #00C73C;
-	font: #fff;
 }
 
 .kakao button {
