@@ -64,4 +64,14 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	//유저 회원정보 업데이트
+	@Override
+	public int updateUserInfo(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.updateUserInfo", user);
+		
+		return result;
+	}
+
 }

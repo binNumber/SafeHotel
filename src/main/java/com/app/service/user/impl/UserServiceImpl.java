@@ -36,15 +36,15 @@ public class UserServiceImpl implements UserService{
 
 	//입력한 닉네임이 사용 가능한지 확인 (닉네임 중복 검색)
 	@Override
-	public boolean isNicknameAvailable(String userNickname) {
+	public boolean isNicknameDuplicate(String userNickname) {
 		// TODO Auto-generated method stub
 
 		//해당 닉네임의 유저가 있는지 검색
 		User user = userDAO.findUserByNickname(userNickname);
 
-		if(user == null) { //닉네임 중복X 사용가능
+		if(user != null) { //닉네임 중복O 사용X
 			return true;
-		} else { //닉네임 중복O 사용X
+		} else { //닉네임 중복X 사용O
 			return false;
 		}
 	}
@@ -66,6 +66,16 @@ public class UserServiceImpl implements UserService{
 
 		int result = userDAO.saveUserInfo(user);
 
+		return result;
+	}
+
+	//유저 회원정보 업데이트
+	@Override
+	public int updateUserInfo(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = userDAO.updateUserInfo(user);
+		
 		return result;
 	}
 

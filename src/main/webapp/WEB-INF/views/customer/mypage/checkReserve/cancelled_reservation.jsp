@@ -53,8 +53,8 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/useInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/checkReserve">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/coupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
@@ -65,65 +65,38 @@
 					<h1>예약내역</h1>
 					
 					<div class="status-container">
-						<div class="reserve-status">예약 완료</div>
-						<div class="reserve-status">이용 완료</div>
-						<div class="reserve-status">예약 취소</div>
-					
+						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/confirmed'">예약 완료</div>
+						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/complete'">이용 완료</div>
+						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/cancelled'">예약 취소</div>
 					</div>
 
-					<div class="reserve-box">
-						<img src="../../img/accomodation_img/1 아바니호텔(A+VANI HOTEL&PLAY)/대표 사진.jpg"
-							width="150px" height="150px">
-						<div class="reserve-text-container">
-							<div>
-								<p>예약번호 : 202408071419-000001 | 예약 완료</p>
-								<h2>아바니호텔(A+VANI HOTEL&PLAY)</h2>
+					<c:forEach var="reservation" items="${cancelledList}">
+
+						<div class="reserve-box">
+							<img
+								src="/img/${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
+								width="160px" height="160px">
+							<div class="reserve-text-container">
+								<div>
+									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
+									<h2>${reservation.acmNmae}</h2>
+								</div>
+								<h3>${reservation.roomName} · ${reservation.totalNight}박
+									${reservation.totalDays}일</h3>
+								<p>체크인 : ${reservation.checkInDate} | 체크아웃 :
+									${reservation.checkOutDate}</p>
+								<div class="reserve-btn">
+									<button type="button" onclick="location.href=''">예약 상세</button>
+									<button type="button" onclick="location.href=''">다시 예약</button>
+								</div>
 							</div>
-							<h3>AVANI_DELUXE 1박</h3>
-							<div class="reserve-btn">
-								<button type="button">예약 취소</button>
-								<button type="button">다시 예약</button>
-								<button type="button">리뷰 작성</button>
+							<div class="moreItems">
+								<i class="fa-solid fa-ellipsis"></i>
 							</div>
 						</div>
-						<div class="moreItems"><i class="fa-solid fa-ellipsis"></i></div>
-					</div>
+
+					</c:forEach>
 					
-					<div class="reserve-box">
-						<img src="../../img/accomodation_img/1 아바니호텔(A+VANI HOTEL&PLAY)/대표 사진.jpg"
-							width="150px" height="150px">
-						<div class="reserve-text-container">
-							<div>
-								<p>예약번호 : 202408071419-000001 | 예약 완료</p>
-								<h2>아바니호텔(A+VANI HOTEL&PLAY)</h2>
-							</div>
-							<h3>AVANI_DELUXE 1박</h3>
-							<div class="reserve-btn">
-								<button type="button">예약 취소</button>
-								<button type="button">다시 예약</button>
-								<button type="button">리뷰 작성</button>
-							</div>
-						</div>
-						<div class="moreItems"><i class="fa-solid fa-ellipsis"></i></div>
-					</div>
-					
-					<div class="reserve-box">
-						<img src="../../img/accomodation_img/1 아바니호텔(A+VANI HOTEL&PLAY)/대표 사진.jpg"
-							width="150px" height="150px">
-						<div class="reserve-text-container">
-							<div>
-								<p>예약번호 : 202408071419-000001 | 예약 완료</p>
-								<h2>아바니호텔(A+VANI HOTEL&PLAY)</h2>
-							</div>
-							<h3>AVANI_DELUXE 1박</h3>
-							<div class="reserve-btn">
-								<button type="button">예약 취소</button>
-								<button type="button">다시 예약</button>
-								<button type="button">리뷰 작성</button>
-							</div>
-						</div>
-						<div class="moreItems"><i class="fa-solid fa-ellipsis"></i></div>
-					</div>
 				</div>
 			</div>
 

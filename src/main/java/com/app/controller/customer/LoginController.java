@@ -10,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
@@ -27,93 +25,22 @@ public class LoginController {
 	UserService userService;
 
 	//로그인&회원가입 메인 화면
-	@GetMapping("/sign")
-	public String userSign(HttpServletRequest request,
-			HttpSession session, Model model) {
-		//userCode 쿠키값이 있거나 user session 값이 있으면 알림창 띄우고 main 페이지로 이동
-		
-		User user = null;
+	@GetMapping("/signupMain")
+	public String userSign() {
 
-		//브라우저 쿠키값 가져오기
-		Cookie[] cookies = request.getCookies();
+		return "customer/signup/signupMain";
 
-		if(cookies != null) { //cookies에 값이 있을 경우
-
-			for(Cookie cookie : cookies) {
-				if("userCode".equals(cookie.getName())) { //userCode 값을 가진 Cookie가 있음
-
-					//cookie 값에서 userCode 뽑아서 int로 저장
-					int userCode = Integer.parseInt(cookie.getValue());
-
-					//userCode 바탕으로 유저 검색 후 user 값 저장
-					user = userService.findUserByUserCode(userCode);
-
-					break;
-				}
-			}
-
-			//session에 user값 저장
-			session.setAttribute("user", user);
-
-			//이미 로그인되었다고 알림창 보내기
-			model.addAttribute("LoginCheckMsg", "현재 로그인 상태입니다. 로그아웃 후 다시 시도해주세요.");
-
-			return "redirect:/main";
-
-		} else if(session.getAttribute("user") != null) { //쿠키값이 없고, 세션 값이 있을 때
-
-			//이미 로그인되었다고 알림창 보내기
-			model.addAttribute("LoginCheckMsg", "현재 로그인 상태입니다. 로그아웃 후 다시 시도해주세요.");
-
-			return "redirect:/main";
-		}
-
-		//user 관련 쿠키값 or session 없으면 정상적으로 로그인 관련 페이지로 이동
-		return "user/cus/signup/sign";
 	}
 
-	
+
 	//유저 로그인 페이지로 이동
 	@GetMapping("/userlogin")
-	public String userLogin(HttpServletRequest request,
-			HttpSession session, Model model) {
+	public String userLogin() {
 		//userCode 쿠키값이 있거나 user session 값이 있으면 알림창 띄우고 main 페이지로 이동
 
-		User user = null;
-		
-		//브라우저 쿠키값 가져오기
-		Cookie[] cookies = request.getCookies();
+		return "customer/signup/userlogin";
 
-		if(cookies != null) { //cookies에 값이 있을 경우
 
-			for(Cookie cookie : cookies) {
-				if("userCode".equals(cookie.getName())) { //userCode 값을 가진 Cookie가 있음
-
-					//cookie 값에서 userCode 뽑아서 int로 저장
-					int userCode = Integer.parseInt(cookie.getValue());
-					//userCode 바탕으로 유저 검색 후 user 값 저장
-					user = userService.findUserByUserCode(userCode);
-					break;
-				}
-			}
-
-			//session에 user값 저장
-			session.setAttribute("user", user);
-			//이미 로그인되었다고 알림창 보내기
-			model.addAttribute("LoginCheckMsg", "현재 로그인 상태입니다. 로그아웃 후 다시 시도해주세요.");
-
-			return "redirect:/main";
-
-		} else if(session.getAttribute("user") != null) { //쿠키값이 없고, 세션 값이 있을 때
-
-			//이미 로그인되었다고 알림창 보내기
-			model.addAttribute("LoginCheckMsg", "현재 로그인 상태입니다. 로그아웃 후 다시 시도해주세요.");
-
-			return "redirect:/main";
-		}
-		
-		//user 관련 쿠키값 or session 없으면 정상적으로 로그인 관련 페이지로 이동
-		return "user/cus/signup/userlogin";
 	}
 
 	//유저 로그인 액션
@@ -146,8 +73,7 @@ public class LoginController {
 		} else { //일치하는 유저가 없음
 
 			//경고창 띄우기
-
-			return "user/cus/signup/userlogin";
+			return "customer/signup/userlogin";
 		}
 	}
 
@@ -168,17 +94,23 @@ public class LoginController {
 		return "redirect:/main";
 	}
 
+	//회원가입 전 약관 동의 페이지 불러오기
 	@GetMapping("/signup-agreement")
-	public String userSignupAgreement() { //회원가입 전 약관 동의 페이지 불러오기
+	public String userSignupAgreement(HttpServletRequest request,
+			HttpSession session, Model model) {
 
-		return "user/cus/signup/usersignup_agreement";
+		return "customer/signup/usersignup_agreement";
 	}
 
+
+	//회원가입 화면 불러오기
 	@GetMapping("/usersignup")
-	public String userSignup() { //회원가입 화면 불러오기
-		return "user/cus/signup/usersignup";
+	public String userSignup() { 
+
+		return "customer/signup/usersignup";
 	}
 
+	//회원가입 액션
 	@PostMapping("/usersignup")
 	public String userSingupAction(User user, @RequestParam boolean isNicknameAvailable,
 			Model model) { //회원가입 정보 DB에 저장
@@ -199,27 +131,33 @@ public class LoginController {
 
 				//실패메세지 전달 후 로그인 페이지로 이동
 				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
-				return "user/cus/signup/usersignup";
+				return "customer/signup/usersignup";
 			}
 
 		} else { //중복 확인이 되지 않았거나 닉네임이 중복
-			
+
 			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
 			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
 
-			return "user/cus/signup/usersignup";
-
+			return "customer/signup/usersignup";
 		}
-
 	}
 
 	//닉네임 중복확인
-//	@ResponseBody
-//	@RequestMapping("/usersignup/isNicknameAvailable")
-//	public boolean isNicknameAvailable(@RequestBody String userNickname) {
+//	@RequestMapping("/usersignup/isNicknameDuplicate")
+//	public String isNicknameDuplicateAction(String userNickname) {
+//		
+//		boolean result = false;
+//		
+//		//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
+//		boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
 //
-//		boolean result = userService.isNicknameAvailable(userNickname);
-//
-//		return result;
+//		if(isNicknameDuplicate != false) { //중복X사용가능
+//			result = true;
+//		} else {
+//			result = false;
+//		}
+//		
+//		return "forward:/usersignup";
 //	}
 }

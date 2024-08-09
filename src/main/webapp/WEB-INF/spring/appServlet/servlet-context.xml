@@ -13,7 +13,8 @@
 	<annotation-driven>
 		<message-converters>
 			<!-- @ResponseBody로 String 처리할때 한글처리 -->
-			<beans:bean	class="org.springframework.http.converter.StringHttpMessageConverter">
+			<beans:bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
 				<beans:property name="supportedMediaTypes">
 					<beans:list>
 						<beans:value>text/html;charset=UTF-8</beans:value>
@@ -28,8 +29,10 @@
 
 	<context:component-scan
 		base-package="com.app.controller"></context:component-scan>
-	<context:component-scan base-package="com.app.service"></context:component-scan>
-	<context:component-scan	base-package="com.app.dao"></context:component-scan>
+	<context:component-scan
+		base-package="com.app.service"></context:component-scan>
+	<context:component-scan
+		base-package="com.app.dao"></context:component-scan>
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -38,33 +41,66 @@
 	</beans:bean>
 
 	<resources location="/resources/" mapping="/**"></resources>
-	
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/customer/**"/> -->
-<!-- 			<mapping path="/**"/> -->
-<!-- 			<exclude-mapping path="/login"/> -->
-<!-- 			<exclude-mapping path="/"/> -->
-<!-- 			<exclude-mapping path="/main"/> -->
-<!-- 			<exclude-mapping path="/customer/signup"/> -->
-<!-- 			<exclude-mapping path="/customer/isDuplicatedId"/> -->
-<!-- 			<exclude-mapping path="/resources/**"/> -->
-<!-- 			<exclude-mapping path="/css/**"/> -->
-<!-- 			<exclude-mapping path="/js/**"/> -->
-<!-- 			<exclude-mapping path="/image/**"/> -->
-<!-- 			<exclude-mapping path="admin/**"/> -->
-			
-<!-- 			<beans:bean class="com.app.interceptor.LoginInterceptor"></beans:bean> -->
-<!-- 		</interceptor> -->
+
+	<interceptors>
 		
+		<!-- 작동이 되다가 말다가를 반복함....ㅠㅠ -->
+		<interceptor>
+			<mapping path="/**" />
+			<beans:bean
+				class="com.app.interceptor.user.LoginByCookieInterceptor"></beans:bean>
+		</interceptor>
 		
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/admin/**"/> -->
-<!-- 			<exclude-mapping path=""/> -->
-<!-- 			<beans:bean></beans:bean> -->
-<!-- 		</interceptor> -->
+		<interceptor>
+			<mapping path="/signupMain" />
+			<mapping path="/userlogin" />
+			<mapping path="/signup-agreement" />
+			<mapping path="/usersignup" />
+			<beans:bean 
+				class="com.app.interceptor.user.SignCheckLoginInterceptor"></beans:bean> 
+		</interceptor>
 		
-<!-- 	</interceptors> -->
+		<interceptor>
+			<mapping path="/mypage/**" />
+			<exclude-mapping path="/mypage/checkPw" />
+			<beans:bean
+				class="com.app.interceptor.user.CheckPwInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor>
+			<mapping path="/mypage/**" />
+			<beans:bean
+				class="com.app.interceptor.user.MypageCheckLoginInterceptor"></beans:bean>
+		</interceptor>
+		
+	</interceptors>
+
+
+	<!-- <interceptors> -->
+	<!-- <interceptor> -->
+	<!-- <mapping path="/customer/**"/> -->
+	<!-- <mapping path="/**"/> -->
+	<!-- <exclude-mapping path="/login"/> -->
+	<!-- <exclude-mapping path="/"/> -->
+	<!-- <exclude-mapping path="/main"/> -->
+	<!-- <exclude-mapping path="/customer/signup"/> -->
+	<!-- <exclude-mapping path="/customer/isDuplicatedId"/> -->
+	<!-- <exclude-mapping path="/resources/**"/> -->
+	<!-- <exclude-mapping path="/css/**"/> -->
+	<!-- <exclude-mapping path="/js/**"/> -->
+	<!-- <exclude-mapping path="/image/**"/> -->
+	<!-- <exclude-mapping path="admin/**"/> -->
+
+	<!-- <beans:bean class="com.app.interceptor.LoginInterceptor"></beans:bean> -->
+	<!-- </interceptor> -->
+
+
+	<!-- <interceptor> -->
+	<!-- <mapping path="/admin/**"/> -->
+	<!-- <exclude-mapping path=""/> -->
+	<!-- <beans:bean></beans:bean> -->
+	<!-- </interceptor> -->
+
+	<!-- </interceptors> -->
 
 </beans:beans>
 

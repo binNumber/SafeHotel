@@ -37,11 +37,11 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/main">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
-						<button onclick="location.href='/usersign'">로그인/회원가입</button>
+						<button onclick="location.href='/signupMain'">로그인/회원가입</button>
 					</c:if>
 
 					<c:if test="${not empty user}">

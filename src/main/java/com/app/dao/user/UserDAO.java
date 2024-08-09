@@ -20,4 +20,7 @@ public interface UserDAO {
 	
 	//유저 회원가입 정보 DB에 저장
 	public int saveUserInfo(User user);
+	
+	//유저 회원정보 업데이트
+	public int updateUserInfo(User user);
 }

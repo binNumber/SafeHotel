@@ -36,10 +36,10 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/main">여기가자</a>
 				</div>
 				<div class="nav-top-right">
-					<button onclick="location.href='/sign'">로그인/회원가입</button>
+					<button onclick="location.href='/signupMain'">로그인/회원가입</button>
 				</div>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 					
 					<div class="sociallogin email">
 						<button onclick="location.href='/userlogin'">
-							<img src="img/email.png" alt="구글로 로그인하기">
+							<img src="img/email.png" alt="이메일로 로그인하기">
 							이메일로 로그인하기
 						</button>
 					</div>

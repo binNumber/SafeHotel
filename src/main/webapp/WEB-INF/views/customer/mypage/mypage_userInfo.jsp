@@ -49,8 +49,8 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li class="backgorundColor-gray"><a href="/mypage/useInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/checkReserve">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
@@ -58,10 +58,15 @@
 			<div class="userinfo-content">
 				<div id="userinfo-container">
 					<h1>회원정보 확인 및 변경</h1>
-					<form action="" method="post" class="modifycontent" id="modifyForm">
+					<form action="/ModifyuserInfo" method="post" class="modifycontent" id="modifyForm">
 						<div class="email modifyinfo">
 							<h4>이메일</h4>
-							<input type="email" name="userEmail" value="${user.userEmail}">
+							<input type="email" value="${user.userEmail}" disabled>
+						</div>
+						
+						<div class="name modifyinfo">
+							<h4>이름</h4>
+							<input type="text" value="${user.userName}" disabled>
 						</div>
 						
 						<div class="nicknamemodifyinfo">
@@ -70,11 +75,6 @@
 									class="nickname">
 							<button type="button" class="check-btn" onclick="location.href='/usersignup/isNicknameAvailable'">중복확인</button>
 							<p id="nicknameMessage" class="display-none"></p>
-						</div>
-						
-						<div class="name modifyinfo">
-							<h4>이름</h4>
-							<input type="text" name="userName" value="${user.userName}">
 						</div>
 
 						<div class="pw modifyinfo">
@@ -110,10 +110,6 @@
 									placeholder="상세주소">
 							</div>
 						</div>
-
-						<input type="hidden" name="userType" value="${user.userType}">
-						<input type="hidden" name="userCode" value="${user.userCode}">
-						<input type="hidden" name="userRsdRegNum" value="${user.userRsdRegNum}">
 
 						<button type="submit" class="btn-modify">수정하기</button>
 					</form>
