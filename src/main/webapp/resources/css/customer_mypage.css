@@ -814,8 +814,8 @@ body {
 }
 
 .reply-line {
-	width:70px;
-	height:50px;
+	width:4vw;
+	height:3vw;
 	
 	border-left : 2px solid gray;
 	border-bottom : 2px solid gray;
