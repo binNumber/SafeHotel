@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.admin.AdminDAO;
+import com.app.dto.admin.ReviewReport;
 import com.app.dto.admin.UserList;
-import com.app.dto.user.User;
 import com.app.service.admin.AdminService;
 
 @Service
@@ -29,5 +29,20 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void updateUser(UserList user) {
         adminDAO.updateUser(user);
+    }
+    
+    @Override
+    public List<ReviewReport> getAllReviewReports() {
+        return adminDAO.findAllReviewReports();
+    }
+
+    @Override
+    public void processReviewReport(int reviewCode) {
+        adminDAO.updateReviewReportStatus(reviewCode);
+    }
+    
+    @Override
+    public void revertReviewReportStatus(int reviewCode) {
+        adminDAO.updateReviewReportStatusToZero(reviewCode);
     }
 }

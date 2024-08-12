@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.app.dto.admin.ReviewReport;
 import com.app.dto.admin.UserList;
 import com.app.service.admin.AdminService;
 
@@ -33,11 +34,6 @@ public class AdminController {
 		return "admin/eventCouponManagement";
 	}
 
-	@GetMapping("/adminpage/reviewReportManagement")
-	public String reviewReportManagement() {
-		return "admin/reviewReportManagement";
-	}
-
 	@GetMapping("/adminpage/userManagement")
 	public String getUserManagementPage(Model model) {
 		List<UserList> userList = adminService.getAllUsers();
@@ -57,5 +53,24 @@ public class AdminController {
 		adminService.updateUser(user); // 유저 정보를 업데이트하는 메서드
 		return "redirect:/admin/userManagement";
 	}
+	
+    @GetMapping("/adminpage/reviewReportManagement")
+    public String getReviewReportManagementPage(Model model) {
+        List<ReviewReport> reviewReportList = adminService.getAllReviewReports();
+        model.addAttribute("reviewReportList", reviewReportList);
+        return "admin/reviewReportManagement";
+    }
+
+    @PostMapping("/adminpage/reviewReportManagement/process")
+    public String processReviewReport(@RequestParam("reviewCode") int reviewCode) {
+        adminService.processReviewReport(reviewCode);
+        return "redirect:/adminpage/reviewReportManagement";
+    }
+    
+    @PostMapping("/adminpage/reviewReportManagement/revert")
+    public String revertReviewReport(@RequestParam("reviewCode") int reviewCode) {
+        adminService.revertReviewReportStatus(reviewCode);
+        return "redirect:/adminpage/reviewReportManagement";
+    }
 
 }
