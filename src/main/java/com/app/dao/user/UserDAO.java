@@ -1,5 +1,6 @@
 package com.app.dao.user;
 
+import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -23,4 +24,8 @@ public interface UserDAO {
 	
 	//유저 회원정보 업데이트
 	public int updateUserInfo(User user);
+
+	public User findUserById(String id);
+
+
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -74,4 +75,9 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+
+	@Override
+	public User findUserById(String id) {
+		return sqlSessionTemplate.selectOne("user_mapper.findUserById", id);
+	}
 }

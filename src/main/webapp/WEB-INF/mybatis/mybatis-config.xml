@@ -11,8 +11,8 @@
 		<typeAlias type="com.app.dto.user.User" alias="User"/>
 		<typeAlias type="com.app.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
 		<typeAlias type="com.app.dto.user.ModifyUser" alias="ModifyUser"/>
-		
 		<typeAlias type="com.app.dto.reservation.Reservation" alias="Reservation"/>
+		<typeAlias type="com.app.dto.business.Business" alias="Business"/>
 	</typeAliases>
 							
 </configuration>							

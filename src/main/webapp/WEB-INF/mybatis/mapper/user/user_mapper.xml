@@ -11,7 +11,10 @@
 		SELECT * FROM user_info
 		WHERE user_status = '1'
 		AND user_email = #{userEmail}
+		SELECT * FROM USER_INFO
+		WHERE user_email = #{userEmail}
 		AND user_pw = #{userPw}
+		<!-- AND user_type = #{userType} -->
 		<if test="userType == null">
 			AND user_type != 'ADM'
 		</if>
@@ -58,5 +61,10 @@
     		user_addr_line = #{userAddrLine}
 		WHERE user_code = #{userCode}
 	</update>
+	
+	<select id="findUserById" parameterType="String" resultType="User">
+		SELECT * FROM user_info
+		WHERE user_email = #{id}
+	</select>
 	
 </mapper>

@@ -53,7 +53,7 @@
 						로그인</span>
 				</div>
 				<div class="loginbox">
-					<form action="" method="post">
+					<form action="/businesslogin" method="post">
 						<div class="id login">
 							<h4>이메일</h4>
 							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
