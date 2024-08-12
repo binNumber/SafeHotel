@@ -13,7 +13,9 @@ public class User {
     String userName;	//이름
     String userRsdRegNum;	//주민번호 
     String userPhoneNum;	//전화번호
-    String userAddr;	//주소
+    String userPostalCode;	//우편번호
+    String userAddr;		//주소
+    String userAddrLine;	//상세주소
     String userRegDt;	//가입날짜
     String userStatus;	//회원 상태	1-가입 / 0-탈퇴	
 }

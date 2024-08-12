@@ -15,6 +15,7 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
+	//로그인 페이지에서 받아온 정보 기반으로 유저 검색
 	@Override
 	public User findUserByUserSearchCondition(UserSearchCondition userSearchCondition) {
 		// TODO Auto-generated method stub
@@ -23,6 +24,57 @@ public class UserDAOImpl implements UserDAO {
 		
 		return user;
 	}
+	
+	//닉네임 기반으로 유저 검색
+	@Override
+	public User findUserByNickname(String userNickname) {
+		// TODO Auto-generated method stub
+		
+		User user = sqlSessionTemplate.selectOne("user_mapper.findUserByNickname", userNickname);
+		
+		return user;
+	}
+
+	//유저코드 기반으로 유저 검색
+	@Override
+	public User findUserByUserCode(int userCode) {
+		// TODO Auto-generated method stub
+		
+		User user = sqlSessionTemplate.selectOne("user_mapper.findUserByUserCode", userCode);
+		
+		return user;
+	}
+	
+	//다음 유저 번호 불러오기(유저코드 생성)
+	@Override
+	public int getNextUserCode() {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.selectOne("user_mapper.getNextUserCode");
+		
+		return result;
+	}
+
+	//유저 회원가입 정보 DB에 저장
+	@Override
+	public int saveUserInfo(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("user_mapper.saveUserInfo", user);
+		
+		return result;
+	}
+
+	//유저 회원정보 업데이트
+	@Override
+	public int updateUserInfo(User user) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.updateUserInfo", user);
+		
+		return result;
+	}
+
 
 	@Override
 	public User findUserById(String id) {
