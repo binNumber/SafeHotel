@@ -106,7 +106,7 @@
 									</div>
 
 									<div class="btn-searchright">
-										<button>
+										<button onclick="location.href='/listpage'">
 											<span><img> 검색 </span>
 										</button>
 									</div>

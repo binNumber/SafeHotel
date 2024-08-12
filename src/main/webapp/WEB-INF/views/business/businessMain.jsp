@@ -12,18 +12,19 @@
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/business/businessCommon.css" />
+<link rel="stylesheet" href="css/business/businessNavbar.css" />
 <link rel="stylesheet" href="css/business/businessMain.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 
 </head>
 <body>
-	<div>
-		<div class="container_back">
+		<div class="container container_backSize">
 			<nav
 				class="navbar navbar-expand-lg bg-body-tertiary nav_top mb-1 shadow-lg rounded">
 				<div class="container-fluid">
-					<a class="navbar-brand div_logo" href="#">여기 가자 비즈니스</a>
+					<a class="navbar-brand div_logo" href="businessMain">여기 가자 비즈니스</a>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navbarNavDropdown">
 						<ul class="navbar-nav">
@@ -31,8 +32,7 @@
 								class="nav-link dropdown-toggle" href="#" role="button"
 								data-bs-toggle="dropdown" aria-expanded="false"> 유저 프로필 </a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">마이 페이지</a></li>
-									<li><a class="dropdown-item" href="#">정보 수정</a></li>
+									<li><a class="dropdown-item" href="/businessMyPage">내 정보</a></li>
 									<li><a class="dropdown-item" href="#">로그아웃</a></li>
 								</ul></li>
 						</ul>
@@ -40,7 +40,7 @@
 				</div>
 			</nav>
 
-			<div class="container mt-0">
+			<div class="container-size">
 				<div class="flex-shrink-0 p-3 bg-white shadow-lg rounded side_bar">
 					<ul class="list-unstyled ps-0">
 						<li class="mb-1">
@@ -100,7 +100,6 @@
 
 				<!-- 본문 -->
 				<div class="container_main shadow-lg rounded">
-
 					<div class="contents_main shadow rounded bold-effect">
 						<h3 class="mt-3 ms-3">예약 승인 대기 목록</h3><br/>
 						<ul class="list-group">
@@ -174,9 +173,8 @@
 
 
 		<div class="footer"></div>
-	</div>
 
-	<script src="js/business/businessScript.js"></script>
+	<script src="js/business/businessMain.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
