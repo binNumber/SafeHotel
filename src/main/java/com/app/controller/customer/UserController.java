@@ -13,11 +13,6 @@ import com.app.dto.user.User;
 
 @Controller
 public class UserController {
-
-	@GetMapping("/signup")
-	public String sign() {
-		return "user/signUp";
-	}
 	
 	@GetMapping("/user/mypageCEO")
 	public String myPageCEO() {
