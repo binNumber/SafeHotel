@@ -86,7 +86,7 @@
 								<p>체크인 : ${reservation.checkInDate} | 체크아웃 :
 									${reservation.checkOutDate}</p>
 								<div class="reserve-btn">
-									<button type="button" onclick="location.href=''">예약 상세</button>
+									<button type="button" onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약 상세</button>
 									<button type="button" onclick="location.href=''">다시 예약</button>
 								</div>
 							</div>

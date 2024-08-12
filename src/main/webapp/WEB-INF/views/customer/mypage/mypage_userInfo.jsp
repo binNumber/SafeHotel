@@ -97,17 +97,24 @@
 							<div class="addresstitle">
 								<h4>주소</h4>
 							</div>
-							<!-- 우편번호 form으로 안 보냄 / DB에 우편번호 추가되면 그때 name 추가 후 form으로 보낼 예정 -->
 							<div class="addressbox">
-								<input type="text" id="postcode" placeholder="우편번호" readonly>
+								<input type="text" id="postcode" name="userPostalCode" value="${user.userPostalCode}" readonly>
 								<button type="button" class="check-btn" onclick="execDaumPostcode()">우편번호
 									찾기</button>
 								<div></div>
 							</div>
 							<div class="addressinput">
-								<input type="text" id="address" name="userAddr" value="${user.userAddr}"
-									readonly> <input type="text" id="detailAddress"
-									placeholder="상세주소">
+								<input type="text" id="address" name="userAddr" value="${user.userAddr}" readonly>
+									<input type="text" id="detailAddress" name="userAddrLine"
+										<c:choose>
+        									<c:when test="${not empty user.userAddrLine}">
+        										value="${user.userAddrLine}"
+											</c:when>
+        									<c:otherwise>
+												placeholder="상세주소"
+											</c:otherwise>
+										</c:choose>
+									>
 							</div>
 						</div>
 

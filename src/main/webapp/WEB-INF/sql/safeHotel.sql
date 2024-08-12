@@ -1,6 +1,6 @@
 --유저 정보 테이블
 CREATE TABLE USER_INFO(
-    user_code NUMBER(10) NOT NULL PRIMARY KEY,
+    user_code NUMBER(10) NOT NULL,
     user_type VARCHAR(3) NOT NULL,
     user_email VARCHAR2(30) NOT NULL,
     user_pw VARCHAR2(20) NOT NULL,
@@ -8,10 +8,15 @@ CREATE TABLE USER_INFO(
     user_name VARCHAR2(20) NOT NULL,
     user_rsd_reg_num VARCHAR2(14) NOT NULL,
     user_phone_num VARCHAR2(15) NOT NULL,
+    user_postal_code VARCHAR2(5) NOT NULL,
+    user_addr_line VARCHAR2(100),
     user_addr VARCHAR2(100) NOT NULL,
     user_reg_dt DATE NOT NULL,
-    user_status VARCHAR(1) NOT NULL
+    user_status VARCHAR(1) NOT NULL,
+    PRIMARY KEY (user_code, user_email, user_rsd_reg_num)
 );
+
+DROP TABLE user_info;
 
 SELECT * FROM USER_INFO;
 
@@ -76,6 +81,8 @@ CREATE TABLE ROOM (
     room_name VARCHAR2(50) NOT NULL,
     room_type VARCHAR2(30),
     total_rooms NUMBER(2) NOT NULL,
+    check_in_time DATE NOT NULL,
+    check_out_time DATE NOT NULL,
     room_capacity NUMBER(2) NOT NULL,
     room_max_capacity NUMBER(2) NOT NULL,
     room_weekday_price NUMBER(10) NOT NULL,
@@ -88,6 +95,10 @@ CREATE TABLE ROOM (
 );
 
 SELECT * FROM ROOM;
+
+DROP TABLE ROOM;
+
+COMMIT;
 
 --숙소 사진 정보 테이블
 CREATE TABLE ACCOMMODATION_IMG (
@@ -163,26 +174,30 @@ WHERE rv.user_code = 1
 AND rv.rsvt_status != 0
 AND img.acc_img_origin_name LIKE '%대표%';
 
-INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712', 'YYYYMMDD')), (TO_DATE('20240714', 'YYYYMMDD')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 3);
+UPDATE reservation
+SET rsvt_status = 1
+WHERE rsvt_code = '20240809-00005';
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712', 'YYYYMMDD')), (TO_DATE('20240714', 'YYYYMMDD')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 3);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 3);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240719', 'YYYYMMDD')), (TO_DATE('20240721', 'YYYYMMDD')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 2);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 3);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 11, 41, (TO_DATE('20240802', 'YYYYMMDD')), (TO_DATE('20240803', 'YYYYMMDD')), '', '신용카드 결제', 600000, 1, '이진수', '010-1234-5678', 2);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240719 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240721 15:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 220000, 1, '이진수', '010-1234-5678', 2);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 18, 78, (TO_DATE('20240830', 'YYYYMMDD')), (TO_DATE('20240831', 'YYYYMMDD')), '', '신용카드 결제', 75000, 1, '이진수', '010-1234-5678', 1);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 11, 41, (TO_DATE('20240802 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240803 11:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 600000, 1, '이진수', '010-1234-5678', 2);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 24, 109, (TO_DATE('20240920', 'YYYYMMDD')), (TO_DATE('20240922', 'YYYYMMDD')), '', '신용카드 결제', 60000, 1, '이진수', '010-1234-5678', 1);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 18, 78, (TO_DATE('20240830 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240831 11:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 75000, 1, '이진수', '010-1234-5678', 1);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 1, 1, (TO_DATE('20241020', 'YYYYMMDD')), (TO_DATE('20241023', 'YYYYMMDD')), '', '신용카드 결제', 180000, 1, '이진수', '010-1234-5678', 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 24, 109, (TO_DATE('20240920 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240922 11:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 60000, 1, '이진수', '010-1234-5678', 1);
+
+INSERT INTO reservation
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 1, 1, (TO_DATE('20241020 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20241023 12:00', 'YYYYMMDD HH24:MI')), '', '신용카드 결제', 180000, 1, '이진수', '010-1234-5678', 0);
 
 COMMIT;
 

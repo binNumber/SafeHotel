@@ -25,7 +25,7 @@
 		INSERT INTO user_info
 		VALUES(#{userCode}, #{userType}, #{userEmail}, #{userPw},
 			#{userNickname}, #{userName}, #{userRsdRegNum}, #{userPhoneNum},
-			#{userAddr}, SYSDATE, '1')
+			#{userPostalCode}, #{userAddr}, #{userAddrLine}, SYSDATE, '1')
 	</insert>
 	
 	<!-- user_code의 다음 번호를 자동으로 생성하는 쿼리문 -->
@@ -53,7 +53,9 @@
 		SET user_pw = #{userPw},
     		user_nickname = #{userNickname},
     		user_phone_num = #{userPhoneNum},
-    		user_addr = #{userAddr}
+    		user_postal_code = #{userPostalCode},
+    		user_addr = #{userAddr},
+    		user_addr_line = #{userAddrLine}
 		WHERE user_code = #{userCode}
 	</update>
 	

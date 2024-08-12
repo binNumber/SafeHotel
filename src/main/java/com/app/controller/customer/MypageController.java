@@ -246,12 +246,12 @@ public class MypageController {
 		}
 	}
 	
-	@RequestMapping("/checkReservation/reservationInfo")
+	@GetMapping("/checkReservation/reservationInfo")
 	public String reservationInfo(@RequestParam String rsvtCode, Model model) {
 		
-		Reservation reservation = reservationService.findResrvationByRsvtCode(rsvtCode);
+//		Reservation reservation = reservationService.findResrvationByRsvtCode(rsvtCode);
 		
-		return "";
+		return "customer/mypage/checkReserve/checkReserve_reservationInfo";
 	}
 	
 	//리뷰작성
