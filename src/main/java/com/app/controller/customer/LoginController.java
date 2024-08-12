@@ -71,7 +71,7 @@ public class LoginController {
 				response.addCookie(userCookie);
 			}
 
-			return "redirect:/main";
+			return "redirect:/";
 		} else { //일치하는 유저가 없음
 
 			//경고창 띄우기
@@ -93,7 +93,7 @@ public class LoginController {
 		response.addCookie(userCodeCookie);
 
 		//로그아웃 후 main 페이지로 이동
-		return "redirect:/main";
+		return "redirect:/";
 	}
 
 	//회원가입 전 약관 동의 페이지 불러오기

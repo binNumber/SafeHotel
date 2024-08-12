@@ -13,7 +13,7 @@
 <link href="../../css/customer_mypage.css" rel="stylesheet"
 	type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -54,9 +54,9 @@
 			<div class="mypage-sidebar">
 				<ul>
 					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/coupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -67,7 +67,7 @@
 					<div class="status-container">
 						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/confirmed'">예약 완료</div>
 						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/complete'">이용 완료</div>
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/cancelled'">예약 취소</div>
+						<div class="reserve-status status-select" onclick="location.href='/mypage/checkReservation/cancelled'">예약 취소</div>
 					</div>
 
 					<c:forEach var="reservation" items="${cancelledList}">
@@ -102,6 +102,5 @@
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
 </body>
 </html>

@@ -263,8 +263,8 @@ public class MypageController {
 	}
 
 	//쿠폰 확인
-	@GetMapping("/coupon")
-	public String mypageCoupon(HttpSession session, Model model) {
+	@GetMapping("/useableCoupon")
+	public String mypageUseableCoupon(HttpSession session, Model model) {
 
 
 		return "customer/mypage/mypage_coupon";

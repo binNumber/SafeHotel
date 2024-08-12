@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/customer_mypage.css" rel="stylesheet" type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -129,12 +129,7 @@
 					<p>더 이상 이용을 원치 않으신가요?<a href="">회원 탈퇴 <i class="fa-solid fa-chevron-right"></i></a></p>
 				</div>
 			</div>
-			
-			
-			
-			
 		</div>
 	</div>
-	<script src="/js/customer_mypage.js"></script>
 </body>
 </html>
