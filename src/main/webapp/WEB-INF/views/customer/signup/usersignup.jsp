@@ -113,7 +113,7 @@
 							<div class="namecheck">
 								<input type="text" name="userNickname" placeholder="닉네임을 입력해주세요"
 									class="nickname">
-								<button type="button" onclick="location.href='/usersignup/isNicknameDuplicate'">중복확인</button>
+								<button type="button" onclick="location.href='/usersignup/isNicknameDuplicate?userNickName=${userNickNmae}'">중복확인</button>
 							</div>
 							<p id="nicknameMessage" class="display-none"></p>
 						</div>

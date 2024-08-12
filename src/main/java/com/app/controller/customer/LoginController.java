@@ -1,5 +1,7 @@
 package com.app.controller.customer;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -113,9 +115,14 @@ public class LoginController {
 	//회원가입 액션
 	@PostMapping("/usersignup")
 	public String userSingupAction(User user,
-			@RequestParam(value = "checkRememberUser", defaultValue = "false") boolean isNicknameAvailable,
-			Model model) { //회원가입 정보 DB에 저장
+			HttpSession session ,Model model) { //회원가입 정보 DB에 저장
 
+		boolean isNicknameAvailable = false;
+		
+		if(session.getAttribute("isNicknameAvailable") != null) {
+			isNicknameAvailable = true;
+		}
+		
 		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
 
 			user.setUserCode(userService.getNextUserCode());
@@ -147,19 +154,25 @@ public class LoginController {
 
 	//닉네임 중복확인
 	@RequestMapping("/usersignup/isNicknameDuplicate")
-	public String isNicknameDuplicateAction(String userNickname, HttpSession session) {
-		
-		boolean result = false;
+	public String isNicknameDuplicateAction(@RequestParam String userNickname,
+			@RequestParam Map<String, String> formData,
+			HttpSession session, Model model) {
 		
 		//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
 		boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
 
 		if(isNicknameDuplicate != false) { //중복X사용가능
-			result = true;
+			model.addAttribute("sucessMsg", "사용 가능한 닉네임입니다.");
+			
 		} else {
-			result = false;
+			model.addAttribute("falseMsg", "사용할 수 없는 닉네임입니다. 다시 입력해주세요.");
 		}
 		
-		return "forward:/usersignup";
+		//입력된 모든 파라미터를 세션에 저장
+		session.setAttribute("isNicknameDuplicate", isNicknameDuplicate);
+		session.setAttribute("formData", formData);
+		
+		//result 값을 파라미터를 회원가입 페이지로 리디렉션
+		return "redirect:/usersignup?isNicknameDuplicate=" + isNicknameDuplicate;
 	}
 }
