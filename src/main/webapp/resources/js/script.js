@@ -434,3 +434,71 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('people_picker').classList.remove('show');
     }
 });
+
+//상세페이지 stiky nav bar
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    var stickyNav = document.getElementById("sticky-nav");
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        stickyNav.classList.add("show");
+    } else {
+        stickyNav.classList.remove("show");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const stickyNav = document.getElementById("sticky-nav");
+    const navItems = document.querySelectorAll('.sticky-nav ul li a');
+    const sections = document.querySelectorAll('#section1, #section2, #section3, #section4, #section5');
+
+    const updateActiveNavItem = () => {
+        let currentSection = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const stickyNavHeight = stickyNav.offsetHeight + 150; // sticky-nav 아래 150px 추가
+
+            // 현재 스크롤 위치가 섹션의 상단을 지나고, 섹션의 하단보다 위에 있을 때
+            if (sectionTop <= stickyNavHeight && sectionTop + section.offsetHeight > stickyNavHeight) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        // 모든 navItems에서 active 클래스를 제거
+        navItems.forEach(item => {
+            item.parentElement.classList.remove('active');
+            // 현재 섹션에 해당하는 메뉴 항목에 active 클래스 추가
+            if (item.getAttribute('href').substring(1) === currentSection) {
+                item.parentElement.classList.add('active');
+            }
+        });
+    };
+
+    window.addEventListener('scroll', updateActiveNavItem);
+    updateActiveNavItem(); // 초기 로드 시 호출
+
+    navItems.forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault(); // 기본 링크 이동을 막음
+
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                const stickyNavHeight = stickyNav.offsetHeight + 150; // sticky-nav 높이 + 150px
+                const targetPosition = targetElement.offsetTop - stickyNavHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // active 클래스 추가
+                navItems.forEach(nav => nav.parentElement.classList.remove('active'));
+                this.parentElement.classList.add('active');
+            }
+        });
+    });
+});
+
