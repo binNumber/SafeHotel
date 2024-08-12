@@ -26,7 +26,7 @@ public class MainController {
 	UserService userService;
 
 
-	@RequestMapping("/main")
+	@RequestMapping("/")
 	public String main(HttpServletRequest request
 			, HttpSession session, Model model) {
 
