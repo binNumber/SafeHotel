@@ -11,8 +11,6 @@
 		SELECT * FROM user_info
 		WHERE user_status = '1'
 		AND user_email = #{userEmail}
-		SELECT * FROM USER_INFO
-		WHERE user_email = #{userEmail}
 		AND user_pw = #{userPw}
 		<!-- AND user_type = #{userType} -->
 		<if test="userType == null">
