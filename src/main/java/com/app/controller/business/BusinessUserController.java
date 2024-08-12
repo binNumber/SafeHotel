@@ -1,13 +1,21 @@
 package com.app.controller.business;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.dto.api.ApiResponse;
+import com.app.dto.api.ApiResponseHeader;
+import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
@@ -44,6 +52,35 @@ public class BusinessUserController {
 		return "business/user/businessMyPage";
 	}
 	
+	@ResponseBody
+	@PutMapping("/modifyBusiness/{userCode}")
+	public ApiResponse<String> modifyUser(HttpSession session, @PathVariable int userCode, @Valid @RequestBody BusinessUserUpdatdReq bsnsUserUpdateReq) {
+		
+		//bsnsUserUpdateReq.setUserPw("q1w2e3r4t5");
+		
+		// 비밀번호 수정 따로 빼기
+		// 코드 조금 더 정갈하게 다듬어야함
+		
+		int result = userService.modifyUser(bsnsUserUpdateReq);
+		
+		ApiResponse<String> response = new ApiResponse<String>();
+		ApiResponseHeader header = new ApiResponseHeader();
+		
+		if(result > 0) { // 업데이트 성공
+			header.setResultCode("200");
+			header.setResultMessage("업데이트 성공");
+			response.setBody("성공");
+		} else { // 업데이트 실패
+			header.setResultCode("400");
+			header.setResultMessage("업데이트 실패");
+			response.setBody("실패");
+		}
+		
+		response.setHeader(header);
+		
+		return response;
+	}
+	
 	//사업자 로그인
 	@GetMapping("/businesslogin")
 	public String businessLogin() {
@@ -54,7 +91,6 @@ public class BusinessUserController {
 	@PostMapping("/businesslogin")
 	public String businessLoginAction(UserSearchCondition userSearchCondition, HttpSession session) {
 
-		
 		//User 검색
 		User user = userService.findUserByUserSearchCondition(userSearchCondition);
 

@@ -1,10 +1,13 @@
 package com.app.dao.user.impl;
 
+import javax.validation.Valid;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
@@ -79,5 +82,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User findUserById(String id) {
 		return sqlSessionTemplate.selectOne("user_mapper.findUserById", id);
+	}
+
+	@Override
+	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
+		return sqlSessionTemplate.update("user_mapper.modifyUser", bsnsUserUpdateReq);
 	}
 }

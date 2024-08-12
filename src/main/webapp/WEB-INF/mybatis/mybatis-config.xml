@@ -13,6 +13,8 @@
 		<typeAlias type="com.app.dto.user.ModifyUser" alias="ModifyUser"/>
 		<typeAlias type="com.app.dto.reservation.Reservation" alias="Reservation"/>
 		<typeAlias type="com.app.dto.business.Business" alias="Business"/>
+		<typeAlias type="com.app.dto.api.BusinessUserUpdatdReq" alias="BusinessUserUpdatdReq"/>
+		
 	</typeAliases>
 							
 </configuration>							

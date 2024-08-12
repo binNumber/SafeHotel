@@ -1,5 +1,8 @@
 package com.app.dao.user;
 
+import javax.validation.Valid;
+
+import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
@@ -26,6 +29,8 @@ public interface UserDAO {
 	public int updateUserInfo(User user);
 
 	public User findUserById(String id);
+
+	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq);
 
 
 }

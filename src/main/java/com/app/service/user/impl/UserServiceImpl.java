@@ -1,9 +1,12 @@
 package com.app.service.user.impl;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
@@ -80,15 +83,14 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
-
-
-	
-
-
-
 	@Override
 	public User findUserById(String id) {
 		return userDAO.findUserById(id);
+	}
+
+	@Override
+	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
+		return userDAO.modifyUser(bsnsUserUpdateReq);
 	}
 
 }

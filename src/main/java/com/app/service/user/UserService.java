@@ -1,5 +1,8 @@
 package com.app.service.user;
 
+import javax.validation.Valid;
+
+import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -24,8 +27,7 @@ public interface UserService {
 	//유저 회원정보 업데이트
 	public int updateUserInfo(User user);
 	
-	
-	
-
 	public User findUserById(String id);
+
+	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq);
 }

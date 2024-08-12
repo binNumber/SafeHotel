@@ -65,4 +65,14 @@
 		WHERE user_email = #{id}
 	</select>
 	
+	<!-- 비즈니스 사용자 정보 업데이트 -->
+	<update id="modifyUser" parameterType="BusinessUserUpdatdReq">
+		UPDATE user_info SET user_pw = #{userPw},
+			user_email = #{userEmail}, 
+			user_nickname = #{userNickname}, 
+			user_phone_num = #{userPhoneNum}, 
+			user_name = #{userName}, 
+			user_addr = #{userAddr} 
+			WHERE user_code = #{userCode}
+	</update>	
 </mapper>

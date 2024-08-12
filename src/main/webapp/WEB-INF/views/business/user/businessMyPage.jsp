@@ -131,9 +131,9 @@
 							<div class="w-25">
 								<input type="button" id="btn_updateName"
 									class="btn btn-sm btn-outline-primary d-none"
-									onclick="btnUpdate()" value="확인" /> <input type="button"
+									onclick="btnUpdateName(${user.userCode})" value="확인" /> <input type="button"
 									id="btn_changeName" class="btn btn-sm btn-outline-secondary"
-									onclick="btnChangeName()" value="변경" />
+									onclick="btnChangeName('${user.userName}')" value="변경" />
 							</div>
 
 						</div>
@@ -256,7 +256,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="js/business/businessMyPage.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
