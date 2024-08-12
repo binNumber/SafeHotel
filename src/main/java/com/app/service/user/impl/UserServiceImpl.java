@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.business.Business;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.user.UserService;
@@ -22,7 +23,10 @@ public class UserServiceImpl implements UserService{
 		
 		return user;
 	}
-	
-	
+
+	@Override
+	public User findUserById(String id) {
+		return userDAO.findUserById(id);
+	}
 
 }

@@ -54,3 +54,29 @@ body {
     margin: 3px auto;
     width: 95%;
 }
+
+
+.container-size{
+	width: 85vw;
+	height: 85vh;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.container_main{
+	width: 67vw;
+	height: 85vh;
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}

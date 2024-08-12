@@ -7,17 +7,21 @@
 <mapper namespace="user_mapper">
 
 	<select id="findUserByUserSearchCondition" parameterType="UserSearchCondition" resultType="User">
-		SELECT * FROM user_info
+		SELECT * FROM USER_INFO
 		WHERE user_email = #{userEmail}
 		AND user_pw = #{userPw}
 		<!-- AND user_type = #{userType} -->
-		
 		<if test="userType == null">
 			AND user_type != 'ADM'
 		</if>
 		<if test="userType != null">
 			AND user_type = #{userType}
 		</if>
+	</select>
+	
+	<select id="findUserById" parameterType="String" resultType="User">
+		SELECT * FROM user_info
+		WHERE user_email = #{id}
 	</select>
 	
 </mapper>

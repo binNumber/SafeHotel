@@ -15,22 +15,20 @@
 <link rel="stylesheet" href="css/business/businessCommon.css" />
 <link rel="stylesheet" href="css/business/businessNavbar.css" />
 <link rel="stylesheet" href="css/business/businessMain.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+<link rel="stylesheet" href="css/business/businessSidebar.css"/>
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
 
 </head>
 <body>
 		<div class="container container_backSize">
-			<nav
-				class="navbar navbar-expand-lg bg-body-tertiary nav_top mb-1 shadow-lg rounded">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary nav_top mb-1 shadow-lg rounded">
 				<div class="container-fluid">
 					<a class="navbar-brand div_logo" href="businessMain">여기 가자 비즈니스</a>
-					<div class="collapse navbar-collapse justify-content-end"
-						id="navbarNavDropdown">
+					<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 						<ul class="navbar-nav">
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> 유저 프로필 </a>
+								data-bs-toggle="dropdown" aria-expanded="false">${user.userNickname}</a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="/businessMyPage">내 정보</a></li>
 									<li><a class="dropdown-item" href="#">로그아웃</a></li>
@@ -42,61 +40,70 @@
 
 			<div class="container-size">
 				<div class="flex-shrink-0 p-3 bg-white shadow-lg rounded side_bar">
-					<ul class="list-unstyled ps-0">
-						<li class="mb-1">
-							<button
-								class="btn btn-toggle align-items-center rounded collapsed"
-								data-bs-toggle="collapse" data-bs-target="#home-collapse"
-								aria-expanded="true">사업장</button>
-							<div class="collapse show" id="home-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">사업장 등록</a></li>
-									<li><a href="#" class="link-dark rounded">사업장 정보 수정</a></li>
-									<li><a href="#" class="link-dark rounded">사업장 삭제</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button
-								class="btn btn-toggle align-items-center rounded collapsed"
-								data-bs-toggle="collapse" data-bs-target="#dashboard-collapse"
-								aria-expanded="false">예약 현황</button>
-							<div class="collapse" id="dashboard-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">대기 예약 조회</a></li>
-									<li><a href="#" class="link-dark rounded">예약 관리</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="mb-1">
-							<button
-								class="btn btn-toggle align-items-center rounded collapsed"
-								data-bs-toggle="collapse" data-bs-target="#orders-collapse"
-								aria-expanded="false">리뷰</button>
-							<div class="collapse" id="orders-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">사업장 리뷰 조회</a></li>
-									<li><a href="#" class="link-dark rounded">나의 리뷰 보기</a></li>
-									<li><a href="#" class="link-dark rounded">리뷰 관리</a></li>
-								</ul>
-							</div>
-						</li>
-						<li class="border-top my-3"></li>
-						<li class="mb-1">
-							<button
-								class="btn btn-toggle align-items-center rounded collapsed"
-								data-bs-toggle="collapse" data-bs-target="#account-collapse"
-								aria-expanded="false">통계</button>
-							<div class="collapse" id="account-collapse">
-								<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-									<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
-									<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
-									<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
+				<ul class="list-unstyled ps-0">
+					<li class="mb-1">
+						<button
+							class="btn btn-toggle align-items-center rounded collapsed"
+							data-bs-toggle="collapse" data-bs-target="#business-collapse"
+							aria-expanded="false">사업장</button>
+						<div class="collapse" id="business-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="/businessRegister" class="link-dark rounded">사업장 등록</a></li>
+								<li><a href="/businessManagement" class="link-dark rounded">사업장 관리</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="mb-1">
+						<button
+							class="btn btn-toggle align-items-center rounded collapsed"
+							data-bs-toggle="collapse" data-bs-target="#reservation-collapse"
+							aria-expanded="false">예약 현황</button>
+						<div class="collapse" id="reservation-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="/businessWaitingReservation" class="link-dark rounded">예약 조회</a></li>
+								<li><a href="/businessReservationManagement" class="link-dark rounded">예약 관리</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="mb-1">
+						<button
+							class="btn btn-toggle align-items-center rounded collapsed"
+							data-bs-toggle="collapse" data-bs-target="#review-collapse"
+							aria-expanded="false">리뷰</button>
+						<div class="collapse" id="review-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="/review" class="link-dark rounded">사업장 리뷰 조회</a></li>
+								<li><a href="/reviewManagement" class="link-dark rounded">리뷰 관리</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="mb-1">
+						<button
+							class="btn btn-toggle align-items-center rounded collapsed"
+							data-bs-toggle="collapse" data-bs-target="#user-collapse"
+							aria-expanded="false">사용자 정보</button>
+						<div class="collapse" id="user-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="/businessMyPage" class="link-dark rounded">내 정보 관리</a></li>
+							</ul>
+						</div>
+					</li>					
+					<li class="border-top my-3"></li>
+					<li class="mb-1">
+						<button
+							class="btn btn-toggle align-items-center rounded collapsed"
+							data-bs-toggle="collapse" data-bs-target="#statistics-collapse"
+							aria-expanded="false">통계</button>
+						<div class="collapse" id="statistics-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+								<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
+								<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
+								<li><a href="#" class="link-dark rounded">개선 구현 시 구현</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
 
 				<!-- 본문 -->
 				<div class="container_main shadow-lg rounded">

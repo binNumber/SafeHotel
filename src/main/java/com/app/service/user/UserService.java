@@ -7,4 +7,5 @@ public interface UserService {
 	
 	public User findUserByUserSearchCondition(UserSearchCondition userSearchCondition);
 
+	public User findUserById(String id);
 }
