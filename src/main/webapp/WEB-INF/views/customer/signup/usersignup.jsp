@@ -51,7 +51,7 @@
 						회원가입</span>
 				</div>
 				<div class="loginbox">
-					<form action="" method="post" class="signupcontent" id="signupForm">
+					<form action="/usersignup" method="post" class="signupcontent" id="signupForm">
 						<div class="name signinfo">
 							<h4>이름</h4>
 							<input type="text" name="userName" placeholder="이름을 입력해주세요.">

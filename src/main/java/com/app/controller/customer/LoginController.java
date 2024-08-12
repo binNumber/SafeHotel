@@ -112,7 +112,8 @@ public class LoginController {
 
 	//회원가입 액션
 	@PostMapping("/usersignup")
-	public String userSingupAction(User user, @RequestParam boolean isNicknameAvailable,
+	public String userSingupAction(User user,
+			@RequestParam(value = "checkRememberUser", defaultValue = "false") boolean isNicknameAvailable,
 			Model model) { //회원가입 정보 DB에 저장
 
 		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
@@ -142,22 +143,23 @@ public class LoginController {
 			return "customer/signup/usersignup";
 		}
 	}
+	
 
 	//닉네임 중복확인
-//	@RequestMapping("/usersignup/isNicknameDuplicate")
-//	public String isNicknameDuplicateAction(String userNickname) {
-//		
-//		boolean result = false;
-//		
-//		//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
-//		boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
-//
-//		if(isNicknameDuplicate != false) { //중복X사용가능
-//			result = true;
-//		} else {
-//			result = false;
-//		}
-//		
-//		return "forward:/usersignup";
-//	}
+	@RequestMapping("/usersignup/isNicknameDuplicate")
+	public String isNicknameDuplicateAction(String userNickname, HttpSession session) {
+		
+		boolean result = false;
+		
+		//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
+		boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
+
+		if(isNicknameDuplicate != false) { //중복X사용가능
+			result = true;
+		} else {
+			result = false;
+		}
+		
+		return "forward:/usersignup";
+	}
 }
