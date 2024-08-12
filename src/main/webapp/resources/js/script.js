@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (allChecked) {
       if (window.location.pathname.includes("/businesssignup")) {
         window.location.href = "/businesssignuppage";
-      } else if (window.location.pathname.includes("/usersignup")) {
-        window.location.href = "/usersignuppage";
+      } else if (window.location.pathname.includes("/signup-agreement")) {
+        window.location.href = "/usersignup";
       }
     } else {
       alert("필수 항목에 모두 동의해주세요.");

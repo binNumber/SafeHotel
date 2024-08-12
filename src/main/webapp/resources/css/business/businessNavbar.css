@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.nav_top {
+	width: 85vw;
+	height: 6vh;
+	display: flex;
+	background-color: white;
+	justify-content: space-between;
+	margin: 0 auto;
+	align-items: center;
+}
+
+.div_logo{
+	 margin-left: 1vw;
+	 cursor: pointer;
+}
+
+.div_profile{
+	margin-right: 3vw;
+	cursor: potiner;
+}
