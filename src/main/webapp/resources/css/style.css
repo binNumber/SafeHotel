@@ -19,7 +19,14 @@
 	text-decoration: none;
 	font-family: 'SUIT-Regular';
 	font-weight: bold;
+	color: inherit;
+    text-decoration: none;
 }
+
+* a:hover {
+            color: inherit; /* 마우스를 올렸을 때도 색상이 변하지 않도록 설정 */
+            text-decoration: none; /* 마우스를 올렸을 때도 밑줄이 생기지 않도록 설정 */
+        }
 
 body, html {
 	width: 100%;
@@ -319,7 +326,7 @@ body {
 .search-main {
 	display: flex;
     justify-content: space-around;
-    width: 95%;
+    width: 90%;
     height: 100px;
     background-color: #fff;
     border-radius: 10px;
@@ -373,6 +380,7 @@ body {
     font-size: 15px;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .btn-people {
@@ -396,6 +404,7 @@ body {
     font-size: 15px;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .btn-searchright {
@@ -412,6 +421,8 @@ body {
     border-radius: 10px;
     background-color: #1273E4;
     font-size: 15px;
+    cursor: pointer;
+    color: #fff
 }
 
 .btn-searchright button:hover {
@@ -434,7 +445,7 @@ body {
 	position: absolute;
 }
 
-.input-search input:hover, .btn-date button:hover, .btn-people button:hover {
+.input-search input:hover, .btn-date button:hover, #btn_people:hover {
 	background-color: #d7d7d7;
 }
 
@@ -592,12 +603,14 @@ body {
 	align-items: center;
 	font-size: 15px;
 	cursor: pointer;
+	text-decoration: none;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
 }
 
 .naver button {
 	border: none;
 	background-color: #00C73C;
-	font: #fff;
 }
 
 .kakao button {
@@ -912,3 +925,92 @@ background-color: #3480ff;
 	margin: 10px 0;
 }
 
+/*---------------------------------------리스트페이지-----------------------------------------*/
+
+.content-top-text {
+	margin-top: 50px;
+}
+
+.content-top-search {
+	display: flex;
+    justify-content: center;
+}
+
+.content-top, .content-main {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.roomlist {
+	display: flex;
+    flex-direction: column;
+    margin-bottom: 65px;
+}
+
+.roomthumbnail {
+	display: flex;
+    margin-top: 50px;
+    padding-bottom: 65px;
+    border-bottom: 2px solid #797979;
+}
+
+.roomphoto {
+	width: 80%;
+    height: 250px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-right: 25px;
+}
+
+.roominfo {
+	width: 100%;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.roominfo-price {
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
+}
+
+.roominfo-price h5 {
+    color: #999999;
+    text-decoration-line: line-through;
+}
+
+/*-------------------------상세페이지----------------------------*/
+
+.content-info {
+	width: 95%;
+	margin: 0 auto;
+}
+.content-mainphoto {
+	display: flex;
+}
+
+.subphoto {
+	display: flex;
+    width: 50%;
+    flex-direction: column;
+    height: 400px;
+}
+
+.mainphoto {
+	border: 1px solid black;
+	width: 50%;
+	height: 400px;
+	padding: 10px;
+}
+
+.photosection {
+    display: flex;
+    height: 50%;
+}
+
+.photo2, .photo3, .photo4, .photo5 {
+	width: 50%;
+	border: 1px solid black;
+	padding: 10px;
+}

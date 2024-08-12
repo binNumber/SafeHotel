@@ -1,80 +1,6 @@
-@charset "UTF-8";
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-@font-face {
-	font-family: 'SUIT-Regular';
-	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* a {
-	color: inherit; 
-	text-decoration: none;
-}
-
-body, html {
-	width: 100%;
-/* 	overflow-x: hidden; */
-/* 	overflow-y: hidden; */
-}
-
-body {
-	font-family: 'SUIT-Regular';
-	font-weight: bold;
-	font-style: normal;
-	background-color: #A7A9AC;
-	display : flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-direction: row;
-	flex-wrap: wrap;
-	margin-top: 3vh;
-	margin-left: 1vw;
-	margin-right: 1vw;
-}
-
-.container_back{
-	width: 90vw;
+.container-size{
+	width: 85vw;
 	height: 85vh;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;	
-	flex-wrap: wrap;
-	margin: 0 auto;
-	padding: 0;
-}
-
-.nav_top {
-	width: 85vw;
-	height: 8%;
-	display: flex;
-	background-color: white;
-	justify-content: space-between;
-	margin: 0 auto;
-	align-items: center;
-}
-
-.div_logo{
-	 margin-left: 1vw;
-	 cursor: pointer;
-}
-
-.div_profile{
-	margin-right: 3vw;
-	cursor: potiner;
-}
-
-.container{
-	width: 85vw;
-	height: 100%;
 	padding: 0;
 	display: flex;
 	flex-direction: row;
@@ -82,11 +8,13 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .container_main{
-	width: 78%;
-	height: 98%;
+	width: 67vw;
+	height: 85vh;
 	background-color: white;
 	display: flex;
 	flex-direction: row;
@@ -102,9 +30,8 @@ body {
 	display:flex;
 	flex-direction: column;
 	flex-wrap: wrap;
-/* 	align-items: center; */
-	width: 20%;
-	height: 98%;
+	width: 17vw;
+	height: 85vh;
 }
 
 .btn-toggle {
@@ -171,7 +98,7 @@ body {
 .division-line{
 	border-top: 1px solid #D1CCC8;
     margin: 3px auto;
-    width: 95%;
+    width: 63vw;
 }
 
 /* footer */

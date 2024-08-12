@@ -33,4 +33,14 @@ public class UserController {
 	public String myPageAdmin() {
 		return "admin/myPageAdmin";
 	}
+	
+	@GetMapping("/listpage")
+	public String listpage() {
+		return "customer/listpage";
+	}
+	
+	@GetMapping("/roominfo")
+	public String roominfo() {
+		return "customer/roominfo";
+	}
 }

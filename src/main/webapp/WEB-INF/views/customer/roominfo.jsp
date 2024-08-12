@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Sign In</title>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -51,51 +51,30 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="content">
-			<div class="signmain">
-				<div class="signmaingtext">
-					<span>여기가자</span>
-				</div>
-				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">이메일로
-						시작하기</span>
-				</div>
-				<div class="loginbox">
-					<form action="/userlogin" method="post">
-						<div class="id login">
-							<h4>이메일</h4>
-							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
+			<div class="content-info">
+				<div class="content-mainphoto">
+					<div class="mainphoto">사진1</div>
+
+					<div class="subphoto">
+
+						<div class="photosection">
+							<div class="photo2">사진2</div>
+							<div class="photo3">사진3</div>
 						</div>
 
-						<div class="pw login">
-							<h4>비밀번호</h4>
-							<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요.">
+						<div class="photosection">
+							<div class="photo4">사진4</div>
+							<div class="photo5">사진5</div>
 						</div>
 
-						<div class="loginfunction">
-							<div class="logincheckbox">
-								<input type="checkbox" name="checkRememberUser"> 로그인 유지
-							</div>
-							<div>
-								<a href="/findaccount">아이디/비밀번호 찾기</a>
-							</div>
-						</div>
-						
-						
-
-						<div class="btn-login">
-							<button type="submit">로그인</button>
-						</div>
-
-						<div class="loginsignup">
-							<h5>여기가자 계정이 없으신가요?</h5>
-							<a href="/usersignup">여기가자 회원가입</a>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/script.js"></script>
 	</div>
+
 </body>
 </html>

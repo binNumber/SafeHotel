@@ -23,7 +23,13 @@ public class BusinessController {
 	// 사업자 메인
 	@GetMapping("/businessMain")
 	public String businessMain() {
-		return "business/businessmain";
+		return "business/businessMain";
+	}
+	
+	// 사업자 내 정보 조회
+	@GetMapping("/businessMyPage")
+	public String myPage() {
+		return "business/businessMyPage";
 	}
 	
 	//사업자 로그인
@@ -79,11 +85,10 @@ public class BusinessController {
 	public String businesssignup() {
 		return "business/businesssignup";
 	}
-	
-
 
 	@GetMapping("/businesssignuppage")
 	public String businesssignuppage() {
 		return "business/businesssignuppage";
-	}	
+	}
+	
 }

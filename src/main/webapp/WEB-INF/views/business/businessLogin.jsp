@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,15 +38,8 @@
 				<div class="nav-top-center">
 					<a href="/">여기가자</a>
 				</div>
-				<div class="nav-top-right" id="success-login">
-					<c:if test="${empty user}">
-						<button onclick="location.href='/usersign'">로그인/회원가입</button>
-					</c:if>
-
-					<c:if test="${not empty user}">
-						<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
-						<button id="logout-btn" onclick="location.href='/userlogout'">로그아웃</button>
-					</c:if>
+				<div class="nav-top-right">
+					<button onclick="location.href='/sign'">로그인/회원가입</button>
 				</div>
 			</div>
 		</div>
@@ -57,11 +49,11 @@
 					<span>여기가자</span>
 				</div>
 				<div class="signlogo">
-					<span class="strikethrough"></span> <span class="signlogotext">이메일로
-						시작하기</span>
+					<span class="strikethrough"></span> <span class="signlogotext">비즈니스
+						로그인</span>
 				</div>
 				<div class="loginbox">
-					<form action="/userlogin" method="post">
+					<form action="" method="post">
 						<div class="id login">
 							<h4>이메일</h4>
 							<input type="email" name="userEmail" placeholder="이메일을 입력해주세요.">
@@ -71,17 +63,17 @@
 							<h4>비밀번호</h4>
 							<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요.">
 						</div>
+						
+						<input type="hidden" name="userType" value="BIS">
 
 						<div class="loginfunction">
 							<div class="logincheckbox">
-								<input type="checkbox" name="checkRememberUser"> 로그인 유지
+								<input type="checkbox"> 로그인 유지
 							</div>
 							<div>
 								<a href="/findaccount">아이디/비밀번호 찾기</a>
 							</div>
 						</div>
-						
-						
 
 						<div class="btn-login">
 							<button type="submit">로그인</button>
@@ -89,7 +81,7 @@
 
 						<div class="loginsignup">
 							<h5>여기가자 계정이 없으신가요?</h5>
-							<a href="/usersignup">여기가자 회원가입</a>
+							<a href="/businesssignup">여기가자 비즈니스 회원가입</a>
 						</div>
 					</form>
 				</div>

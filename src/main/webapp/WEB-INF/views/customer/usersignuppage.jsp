@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +40,15 @@
 				<div class="nav-top-center">
 					<a href="/">여기가자</a>
 				</div>
-				<div class="nav-top-right">
-					<button onclick="location.href='/sign'">로그인/회원가입</button>
+				<div class="nav-top-right" id="success-login">
+					<c:if test="${empty user}">
+						<button onclick="location.href='/usersign'">로그인/회원가입</button>
+					</c:if>
+
+					<c:if test="${not empty user}">
+						<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
+						<button id="logout-btn" onclick="location.href='/userlogout'">로그아웃</button>
+					</c:if>
 				</div>
 			</div>
 		</div>
