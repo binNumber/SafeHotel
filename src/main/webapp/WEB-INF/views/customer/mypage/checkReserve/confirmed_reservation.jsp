@@ -10,10 +10,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="/css/customer_mypage.css" rel="stylesheet"
-	type="text/css">
+<link href="/css/customer_mypage.css" rel="stylesheet" type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -42,7 +41,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -53,15 +52,10 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/userInfo">회원정보 변경<i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a
-						href="/mypage/checkReservation/confirmed">예약 내역 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/review">내가 쓴 리뷰 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/coupon">쿠폰함 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -70,9 +64,15 @@
 					<h1>예약내역</h1>
 
 					<div class="status-container">
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/confirmed'">예약 완료</div>
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/complete'">이용 완료</div>
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/cancelled'">예약 취소</div>
+						<div class="reserve-status status-select"
+							onclick="location.href='/mypage/checkReservation/confirmed'">예약
+							완료</div>
+						<div class="reserve-status"
+							onclick="location.href='/mypage/checkReservation/complete'">이용
+							완료</div>
+						<div class="reserve-status"
+							onclick="location.href='/mypage/checkReservation/cancelled'">예약
+							취소</div>
 					</div>
 
 					<c:forEach var="reservation" items="${comfirmedList}">
@@ -86,13 +86,17 @@
 									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
 									<h2>${reservation.acmNmae}</h2>
 								</div>
-								<h3>${reservation.roomName} · ${reservation.totalNight}박
+								<h3>${reservation.roomName}· ${reservation.totalNight}박
 									${reservation.totalDays}일</h3>
-								<p class="checkin-text">체크인 : ${reservation.checkInDate} | 체크아웃 :
-									${reservation.checkOutDate}</p>
+								<p class="checkin-text">체크인 : ${reservation.checkInDate} |
+									체크아웃 : ${reservation.checkOutDate}</p>
 								<div class="reserve-btn">
-									<button type="button" onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약 상세</button>
-									<button type="button" onclick="location.href='/mypage/checkReservation/cancel?rsvtCode=${reservation.rsvtCode}'">예약 취소</button>
+									<button type="button"
+										onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약
+										상세</button>
+									<button type="button"
+										onclick="location.href='/mypage/checkReservation/cancel?rsvtCode=${reservation.rsvtCode}'">예약
+										취소</button>
 								</div>
 							</div>
 							<div class="moreItems">
@@ -108,6 +112,5 @@
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
 </body>
 </html>

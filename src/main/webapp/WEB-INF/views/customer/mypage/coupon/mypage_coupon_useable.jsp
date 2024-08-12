@@ -13,7 +13,7 @@
 <link href="../../css/customer_mypage.css" rel="stylesheet"
 	type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -56,7 +56,7 @@
 					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/coupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -65,7 +65,7 @@
 					<h1>받은 쿠폰 확인</h1>
 
 					<div class="coupon-container">
-						<div class="coupon-status">사용 가능</div>
+						<div class="coupon-status status-select">사용 가능</div>
 						<div class="coupon-status">사용 완료</div>
 					</div>
 
@@ -133,7 +133,7 @@
 						
 						<div class="coupon-box">
 							<div>
-								<h2>호텔 30% 할인</h2>
+								<h2>호텔 30% 할인</h2>사용할 수 있는
 								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
 									<span class="coupon-status-text">30일 남음</span>
 								</p>
@@ -159,6 +159,5 @@
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
 </body>
 </html>

@@ -12,8 +12,8 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer_mypage.css" rel="stylesheet" type="text/css">
 </head>
-<body onload="hideAllSections()">
-	<div id="modify-reservation-popup">
+<body>
+	<div id="modify-reservation-popup" class="display-none">
 		<div id="modify-reservation-container">
 			<div id="modify-reservation-box">
 
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -259,7 +259,7 @@
 					</div>
 
 					<div id="reserve-modify-btn">
-						<button type="button">예약 정보 수정하기</button>
+						<button type="button" id="modify-reservation-popup-btn">예약 정보 수정하기</button>
 						<button type="button">예약 취소</button>
 					</div>
 
@@ -268,6 +268,6 @@
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
+	<script src="/js/customer/customer_modifyReview.js"></script>
 </body>
 </html>

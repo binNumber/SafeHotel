@@ -22,7 +22,7 @@ public class SignCheckLoginInterceptor implements HandlerInterceptor {
 		if(LoginManager.isSessionLogin(request, session)) {
 			//세션에 로그인 값이 있을 경우
 			
-			response.sendRedirect("/main");
+			response.sendRedirect("/");
 			return false;
 		}
 		
