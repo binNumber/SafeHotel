@@ -10,7 +10,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet"
+<link href="/css/customer/mypage_coupon.css" rel="stylesheet"
 	type="text/css">
 </head>
 <body>
@@ -65,8 +65,8 @@
 					<h1>받은 쿠폰 확인</h1>
 
 					<div class="coupon-container">
-						<div class="coupon-status">사용 가능</div>
-						<div class="coupon-status status-select">사용 완료</div>
+						<div class="coupon-status" onclick="location.href='/mypage/useableCoupon'">사용 가능</div>
+						<div class="coupon-status status-select" onclick="location.href='/mypage/usedCoupon'">사용 완료</div>
 					</div>
 
 					<div class="couponbox-container">

@@ -47,13 +47,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //리뷰 작성&수정 관련 스크립트
 document.addEventListener("DOMContentLoaded", function() {
-	const reviewbtn = document.querySelector("#write-review-popup-btn");
+	const reviewbtn = document.querySelectorAll(".write-review-popup-btn");
 	const cancelIcon = document.querySelector("#icon-cancel");
 
 	// 리뷰 작성 팝업 열기
 	if (reviewbtn) {
-		reviewbtn.addEventListener("click", () => {
-			document.querySelector("#write-review-popup").classList.remove("display-none");
+
+		reviewbtn.forEach(btn => {
+			btn.addEventListener("click", () => {
+				document.querySelector("#write-review-popup").classList.remove("display-none");
+				//
+			});
 		});
 	}
 
@@ -63,5 +67,4 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.querySelector("#write-review-popup").classList.add("display-none");
 		});
 	}
-
 });

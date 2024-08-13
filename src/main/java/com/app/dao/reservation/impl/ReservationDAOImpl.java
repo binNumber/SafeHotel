@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dao.reservation.ReservationDAO;
 import com.app.dto.reservation.Reservation;
+import com.app.dto.reservation.ReservationGuestInfo;
 
 @Repository
 public class ReservationDAOImpl implements ReservationDAO {
@@ -23,6 +24,16 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 		return reservationList;
 	}
+	
+	//예약코드 기반으로 예약정보 불러오기
+	@Override
+	public Reservation findResrvationByRsvtCode(String rsvtCode) {
+		// TODO Auto-generated method stub
+		
+		Reservation reservation = sqlSessionTemplate.selectOne("reservation_mapper.findResrvationByRsvtCode", rsvtCode);
+		
+		return reservation;
+	}
 
 	//예약코드 기반으로 예약 정보 확인 후 예약상태 예약취소로 변경
 	@Override
@@ -34,5 +45,13 @@ public class ReservationDAOImpl implements ReservationDAO {
 		return result;
 	}
 
-	
+	//예약자 정보 변경
+	@Override
+	public int updateGuestInfo(ReservationGuestInfo guestInfo) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("reservation_mapper.updateGuestInfo", guestInfo);
+		
+		return result;
+	}
 }

@@ -1,0 +1,21 @@
+<div class="review-modify-popup">
+		<div class="review-modify-container">
+			<p> 평점 : 
+				<span class="star-rating">
+					<span class="star" onmouseover="highlightStar(1)" onclick="rating(1)" onmouseout="resetStars(1)">&#9733;</span>
+					<span class="star" onmouseover="highlightStar(2)" onclick="rating(2)" onmouseout="resetStars(2)">&#9733;</span>
+					<span class="star" onmouseover="highlightStar(3)" onclick="rating(3)" onmouseout="resetStars(3)">&#9733;</span>
+					<span class="star" onmouseover="highlightStar(4)" onclick="rating(4)" onmouseout="resetStars(4)">&#9733;</span>
+					<span class="star" onmouseover="highlightStar(5)" onclick="rating(5)" onmouseout="resetStars(5)">&#9733;</span>
+				</span>
+			</p>
+			<form action="" method="post">
+				<textarea name="reviewText" rows="4" cols="50">
+					리뷰내용 작성작성작성 (추후 수정)
+				</textarea>
+				<label for="fileUp"><div class="registerPhoto"><i class="fa-solid fa-camera"></i></div></label>
+				<input type="file" accept="image/*" name="review_image" id="fileUp">
+				<button type="submit" id="review-modify-button">리뷰 수정</button>
+			</form>
+		</div>
+	</div>

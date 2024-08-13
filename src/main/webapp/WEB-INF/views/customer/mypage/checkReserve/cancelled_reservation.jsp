@@ -10,7 +10,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet"
+<link href="/css/customer/mypage_reservation.css" rel="stylesheet"
 	type="text/css">
 </head>
 <body>
@@ -54,9 +54,9 @@
 			<div class="mypage-sidebar">
 				<ul>
 					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -83,15 +83,12 @@
 								</div>
 								<h3>${reservation.roomName} · ${reservation.totalNight}박
 									${reservation.totalDays}일</h3>
-								<p>체크인 : ${reservation.checkInDate} | 체크아웃 :
-									${reservation.checkOutDate}</p>
+								<p>체크인 : ${reservation.rsvtChekInDate} | 체크아웃 :
+									${reservation.rsvtChekOutDate}</p>
 								<div class="reserve-btn">
 									<button type="button" onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약 상세</button>
 									<button type="button" onclick="location.href=''">다시 예약</button>
 								</div>
-							</div>
-							<div class="moreItems">
-								<i class="fa-solid fa-ellipsis"></i>
 							</div>
 						</div>
 

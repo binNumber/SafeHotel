@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet"
+<link href="/css/customer/mypage_review.css" rel="stylesheet"
 	type="text/css">
 </head>
 <body>
@@ -100,7 +101,7 @@
 					<div id="wirte-review-form">
 						<form action="" method="post">
 							<textarea id="write-review" name="reviewText">내용내용내용</textarea>
-
+							<input type="hidden" name="reviewCode" id="reviewCode">
 							<button type="submit" class="btn-write">작성하기</button>
 						</form>
 
@@ -108,11 +109,12 @@
 							<button type="submit">
 								<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
 							</button>
-							<input type="file" name="" id="fileInput" accept="image/*"
-								multiple /> <input type="hidden" name="reviewCode" value="">
-							<input type="hidden" name="reviewImgOriginName" value="">
-							<input type="hidden" name="reviewImgExtension"> <input
-								type="hidden" name="reviewImgUrl">
+							<input type="file" name="fileInput" id="fileInput"
+								accept="image/*" multiple /> <input type="hidden"
+								name="reviewCode"> <input type="hidden"
+								name="reviewImgOriginName" id="reviewImgOriginName"> <input
+								type="hidden" name="reviewImgExtension" id="reviewImgExtension">
+							<input type="hidden" name="reviewImgUrl">
 						</form>
 					</div>
 				</div>
@@ -125,7 +127,7 @@
 		<div class="header">
 			<div class="nav-top">
 				<div class="nav-top-left">
-					<a href="#" id="icon-btn"><img src="../../img/icon1.png" /></a>
+					<a href="#" id="icon-btn"><img src="/img/icon1.png" /></a>
 					<div class="hidenav" id="sidebar">
 						<div class="hidenavcontent">
 							<button id="close-btn" class="close-btn">X</button>
@@ -167,7 +169,7 @@
 					<li class="backgorundColor-gray"><a href="/mypage/review">내가
 							쓴 리뷰 <i class="fa-solid fa-chevron-right"></i>
 					</a></li>
-					<li><a href="/mypage/coupon">쿠폰함 <i
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i
 							class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
@@ -176,81 +178,133 @@
 				<div id="review-container">
 					<h1>내가 쓴 리뷰</h1>
 
-					<div class="review-box">
-						<img
-							src="../../img/accomodation_img/1 아바니호텔(A+VANI HOTEL&PLAY)/대표 사진.jpg"
-							width="180px" height="180px">
-						<div class="review-text-container">
-							<div>
-								<h2>아바니호텔(A+VANI HOTEL&PLAY)</h2>
-								<h4>
-									<span class="star-rating-view"> <span class="star">&#9733;</span>
-										<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-										<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-									</span> | 작성날짜 : 2024/08/09
-								</h4>
-							</div>
-							<p>숙소가 친절하고 사장님이 깨끗했어요!</p>
-							<div class="more-text display-none">
-								더보기<i class="fa-solid fa-chevron-down"></i>
-							</div>
-							<div class="review-btn">
-								<button type="button">리뷰 수정</button>
-								<button type="button">리뷰 삭제</button>
-							</div>
-						</div>
-						<div class="moreItems">
-							<i class="fa-solid fa-ellipsis"></i>
-						</div>
-					</div>
+					<c:forEach var="review" items="${reviewList}">
+						<div class="review-box">
+							<div class="review-text-container">
+								<div>
+									<h2>${review.acmName }</h2>
+									<h4>
+										<c:choose>
+											<c:when test="${review.rating == 5}">
+												<span class="star-rating-view"> <span
+													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+													<span class="color-gold">&#9733;</span> <span
+													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:when test="${review.rating == 4}">
+												<span class="star-rating-view"> <span
+													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+													<span class="color-gold">&#9733;</span> <span
+													class="color-gold">&#9733;</span> <span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:when test="${review.rating == 3}">
+												<span class="star-rating-view"> <span
+													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+													<span class="color-gold">&#9733;</span> <span>&#9734;</span>
+													<span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:when test="${review.rating == 2}">
+												<span class="star-rating-view"> <span
+													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+													<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:when test="${review.rating == 1}">
+												<span class="star-rating-view"> <span
+													class="color-gold">&#9733;</span> <span>&#9734;</span> <span>&#9734;</span>
+													<span>&#9734;</span> <span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:otherwise>
+												<span class="star-rating-view"> <span>&#9734;</span>
+													<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+													<span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:otherwise>
+										</c:choose>
+									</h4>
+								</div>
 
-					<div class="reply-box">
-						<div class="reply-line"></div>
-						<div class="reply-text-container">
-							<div>
-								<h3>아바니호텔 사장님 답변</h3>
-								<h3>|</h3>
-								<h4>작성날짜 : 2024/08/10</h4>
 
-							</div>
-							<p>어쩌구저쩌구님 안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상 노력하겠습니다^^</p>
-							<div class="more-text display-none">
-								더보기<i class="fa-solid fa-chevron-down"></i>
-							</div>
-						</div>
-					</div>
+								<c:choose>
+									<c:when test="${fn:length(review.reviewImgList) > 2}">
+										<div class="review-img-event-container">
+											<div class="review-eventsection">
+												<div class="review-btn_sectionpage prev">
+													<button class="prev">&lt;</button>
+												</div>
+												<div class="review-sectionpage">
+													<div class="review-img-slides">
+														<c:forEach var="img" items="${review.reviewImgList }">
+															<div class="review-event list">
+																<img
+																	src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
+															</div>
+														</c:forEach>
+													</div>
+												</div>
+												<div class="review-btn_sectionpage next">
+													<button class="next">&gt;</button>
+												</div>
+											</div>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="review-img-container">
+											<div class="review-imgsection">
+												<div class="review-img-sectionpage">
+													<div class="review-img-box">
+														<c:forEach var="img" items="${review.reviewImgList }">
+															<div class="review-img">
+																<img
+																	src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
+															</div>
+														</c:forEach>
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
 
-					<div class="review-box">
-						<img
-							src="../../img/accomodation_img/1 아바니호텔(A+VANI HOTEL&PLAY)/대표 사진.jpg"
-							width="180px" height="180px">
-						<div class="review-text-container">
-							<div>
-								<h2>아바니호텔(A+VANI HOTEL&PLAY)</h2>
-								<h4>
-									<span class="star-rating"> <span class="star">&#9733;</span>
-										<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-										<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-									</span> | 2024/08/09
-								</h4>
-							</div>
-							<p>숙소가 친절하고 사장님이 깨끗했어요!</p>
-							<div class="more-text display-none">
-								더보기<i class="fa-solid fa-chevron-down"></i>
-							</div>
-							<div class="review-btn">
-								<button type="button">리뷰 수정</button>
-								<button type="button">리뷰 삭제</button>
+								<p class="review-text-box">${review.reviewText }</p>
+								<div class="more-text display-none">
+									더보기<i class="fa-solid fa-chevron-down"></i>
+								</div>
+								<div class="review-btn">
+									<button type="button" class="write-review-popup-btn">리뷰
+										수정</button>
+									<button type="button">리뷰 삭제</button>
+								</div>
 							</div>
 						</div>
-						<div class="moreItems">
-							<i class="fa-solid fa-ellipsis"></i>
-						</div>
-					</div>
+						<c:if test="${review.replyExists == '1' }">
+							<div class="reply-box">
+								<div class="reply-line"></div>
+								<div class="reply-text-container">
+									<div>
+										<h3>아바니호텔 사장님 답변</h3>
+										<h3>|</h3>
+										<h4>작성날짜 : 2024/08/10</h4>
+
+									</div>
+									<p>어쩌구저쩌구님 안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상
+										노력하겠습니다^^</p>
+									<div class="more-text display-none">
+										더보기<i class="fa-solid fa-chevron-down"></i>
+									</div>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="/js/customer/customer_mypage.js"></script>
+	<script src="/js/customer/customer_mypage_review.js"></script>
 </body>
 </html>

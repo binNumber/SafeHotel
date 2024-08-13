@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// 수정 팝업 열기
 	if (modifybtn) {
-		reviewbtn.addEventListener("click", () => {
+
+		modifybtn.addEventListener("click", () => {
 			document.querySelector("#modify-reservation-popup").classList.remove("display-none");
 		});
 	}
@@ -16,5 +17,14 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.querySelector("#modify-reservation-popup").classList.add("display-none");
 		});
 	}
-
+	
+	
+	//페이지 뒤로가기
+	const backbtn = document.querySelector('.fa-arrow-left');
+	
+	if (backbtn) {
+		backbtn.addEventListener("click", ()=> {
+			window.history.back(); // 이전 페이지로 돌아가기
+		});
+	}
 });

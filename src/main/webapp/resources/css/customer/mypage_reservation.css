@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-/* ------- main이랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
+@charset "UTF-8";
+
+/* ------- top 설정 ------- */
 * {
 	margin: 0;
 	padding: 0;
@@ -152,7 +154,10 @@ body {
 	width: 80px;
 }
 
-/* ------- main페이지랑 디자인 같이 가져가기 위해서 css 가져옴 ------- */
+/* ------- top 설정 ------- */
+
+
+/* -----mypage sidebar 설정-----*/
 .main {
 	display: flex;
 	justify-content: space-between;
@@ -204,116 +209,7 @@ body {
 	color: white;
 }
 
-/* ------- userCheck 페이지 ------- */
-
-/* -- passwo --*/
-.pwcheck_content {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-#password-container input {
-	width: 300px;
-	height: 50px;
-	margin-top: 20px;
-	border-radius: 5px;
-	border: 1px solid lightgray;
-	padding: 0 15px;
-	font-size: 16px;
-}
-
-.paaword-btn {
-	width: 70px;
-	height: 50px;
-	margin-left: 3px;
-	background-color: #1273E4;
-	color: white;
-	border: 1px solid lightgray;
-	border-radius: 10px;
-	cursor: pointer;
-	font-weight: bold;
-	background-color: #1273E4;
-}
-
-.paaword-btn:hover {
-	background-color: lightgray;
-	border: 1px solid lightgray;
-	cursor: pointer;
-}
-
-/* -- userInfo 페이지 css -- */
-.userinfo-content {
-	width: 100%;
-	padding: 0 20px;
-}
-
-#userinfo-container input {
-	margin-top: 0px;
-	margin-bottom: 20px;
-	width: 300px;
-	height: 50px;
-	border-radius: 5px;
-	border: 1px solid lightgray;
-	padding: 0 15px;
-	font-size: 16px;
-}
-
-#userinfo-container h1 {
-	margin-bottom: 30px;
-}
-
-.check-btn {
-	width: 120px;
-	height: 50px;
-	background-color: white;
-	border: 1px solid lightgray;
-	border-radius: 10px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-#userinfo-container button:hover {
-	background-color: lightgray;
-	border: 1px solid lightgray;
-	cursor: pointer;
-}
-
-.btn-modify {
-	width: 100%;
-	height: 50px;
-	background-color: #1273E4;
-	color: white;
-	border: 1px solid lightgray;
-	border-radius: 10px;
-	cursor: pointer;
-	font-size: 18px;
-	font-weight: bold;
-	margin-top: 20px;
-}
-
-#userinfo-container h4 {
-	margin-bottom: 5px;
-}
-
-#userinfo-container hr {
-	border: 0;
-	height: 2px;
-	background-color: lightgray;
-}
-
-#deleteUser p {
-	color: gray;
-	font-weight: normal;
-}
-
-#deleteUser a {
-	color: gray;
-	font-weight: bold;
-	margin-left: 10px;
-	cursor: pointer;
-}
+/* -----mypage sidebar 설정-----*/
 
 /* -- reservation 페이지 css -- */
 .reserve_content {
@@ -377,9 +273,9 @@ body {
 }
 
 .reserve-text-container {
-	width: 80%;
+	width: 100%;
 	height: 170px;
-	margin: 0 20px;
+	margin-left: 20px;
 	/* position: relative; */
 	display: flex;
 	flex-direction: column;
@@ -411,10 +307,6 @@ body {
 	font-weight: bold;
 }
 
-.moreItems {
-	height: 170px;
-}
-
 /* -- 리뷰작성 팝업창 -- */
 #write-review-popup {
 	position: fixed; /* 화면에 고정 */
@@ -435,8 +327,8 @@ body {
 }
 
 #write-review-box {
-	width: 80%;
-	height: 75%;
+	width: 90vw;
+	/* height: 70vw; */
 	border-radius: 10px;
 	background-color: white;
 	opacity: 100%;
@@ -541,8 +433,6 @@ body {
 	box-sizing: border-box;
 	border: 1px solid lightgray;
 	border-radius: 10px;
-
-	/* resize: none; */
 }
 
 #write-review-btn {
@@ -588,7 +478,7 @@ body {
 	margin-right : 10px;
 }
 
-/* -- 리뷰 이미지 이벤트 관련 css -- */
+/* -- 리뷰 작성용 이미지 이벤트 css -- */
 .eventsection {
 	width: calc(100% - 100px);
 	margin: 0 auto;
@@ -790,8 +680,8 @@ body {
 }
 
 #modify-reservation-box {
-	width: 80%;
-	height: 70%;
+	width: 80vw;
+	/* height: 58vw; */
 	border-radius: 10px;
 	background-color: white;
 	opacity: 100%;
@@ -893,270 +783,25 @@ body {
 #reservation-modify-form input {
 	width: 100%;
 	height: 50px;
-	margin-top: 10px;
-	margin-bottom: 20px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
 	padding: 0 15px;
 	font-size: 16px;
 }
 
-/* -- review 페이지 css -- */
-.review_content {
-	width: 100%;
-	padding: 0 20px;
-}
-
-.review-container {
+.btn-modify {
 	width: 100%;
 	height: 50px;
-	border-bottom: 2px solid lightgray;
-	margin: 20px 0;
-	display: flex;
-	font-size: 20px;
-	display: flex;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-}
-
-.review-status {
-	width: 150px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
 	cursor: pointer;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
-	border-bottom: 2px solid transparent; /* 기본 상태에서 border-bottom 설정 */
-}
-
-.review-status:hover {
-	color: #1273E4;
-	border-bottom: 2px solid #1273E4;
-}
-
-#review-container hr {
-	border: 0;
-	height: 1px;
-	background-color: lightgray;
-}
-
-.review-box {
-	width: 100%;
-	height: 250px;
-	padding: 35px;
-	margin: 30px 0;
-	border-radius: 10px;
-	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-	display: flex;
-	justify-content: space-between;
-	/* align-items:center; */
-}
-
-.review-box img {
-	border-radius: 10px;
-}
-
-.review-text-container {
-	width: 80%;
-	height: 180px;
-	margin: 0 20px;
-	position: relative;
-}
-
-.review-text-container h4 {
-	color: gray;
-	font-weight: normal;
-	margin-top: 4px;
-	margin-bottom: 10px;
-}
-
-.review-text-container p {
-	margin: 5px 0;
-	font-size: 17px;
-	font-weight: normal;
-	overflow: hidden; /* 넘치는 부분을 숨김 */
-	max-height: 20px; /* 보여줄 글의 최대 높이 */
-	transition: max-height 0.3s ease;
-}
-
-.more-text {
+	font-size: 18px;
 	font-weight: bold;
-	font-size: 16px;
-	margin-top: 10px;
-	opacity: 80%;
-	cursor: pointer;
 }
 
-/* -- javascript 상에서 class add/remove 하려고 작성 -- */
+/* -----js용 css------ */
 .display-none {
-	display: none;
-}
-
-/* -- javascript 상에서 class add/remove 하려고 작성 -- */
-.review-btn {
-	position: absolute;
-	bottom: 0;
-}
-
-.review-btn button {
-	width: 120px;
-	height: 50px;
-	background-color: #EBEBEB;
-	border: 1px solid #EBEBEB;
-	border-radius: 10px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.moreItems {
-	height: 160px;
-}
-
-.reply-box {
-	margin-top: 30px;
-	margin-bottom: 40px;
-}
-
-.reply-line {
-	width: 4vw;
-	height: 3vw;
-	border-left: 2px solid gray;
-	border-bottom: 2px solid gray;
-	margin: 0 20px;
-	margin-left: 40px;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.reply-text-container {
-	width: 80%;
-	height: 150px;
-	padding: 30px;
-	background-color: #EBEBEB;
-	border-radius: 10px;
-	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-	display: inline-block;
-	vertical-align: top;
-}
-
-.reply-text-container h3, .reply-text-container h4 {
-	display: inline-block;
-}
-
-.reply-text-container h4 {
-	font-weight: normal;
-}
-
-.reply-text-container p {
-	font-size: 17px;
-	font-weight: normal;
-}
-
-.reply-text-container div {
-	margin-bottom: 10px;
-}
-
-/* -- coupon 페이지 css -- */
-.coupon_content {
-	width: 100%;
-	padding: 0 20px;
-}
-
-.coupon-container {
-	width: 100%;
-	height: 50px;
-	border-bottom: 2px solid lightgray;
-	margin: 20px 0;
-	display: flex;
-	font-size: 20px;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-}
-
-.coupon-status {
-	width: 150px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
-	border-bottom: 2px solid transparent; /* 기본 상태에서 border-bottom 설정 */
-}
-
-.coupon-status:hover {
-	color: #1273E4;
-	border-bottom: 2px solid #1273E4;
-}
-
-#coupon-container hr {
-	border: 0;
-	height: 1px;
-	background-color: lightgray;
-	display: flex;
-	flex: wrap;
-	justify-content: center;
-}
-
-.couponbox-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.coupon-box {
-	width: 360px;
-	height: 230px;
-	padding: 20px;
-	margin: 30px 20px;
-	border-radius: 10px;
-	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	text-align: center;
-}
-
-.coupon-box p {
-	margin: 5px 0;
-	font-weight: normal;
-	font-size: 12px;
-}
-
-.coupon-status-text {
-	font-weight: bold;
-	font-size: 14px;
-}
-
-.coupon-box h5 {
-	font-weight: normal;
-	font-size: 14px;
-}
-
-.coupon-box span {
-	margin-left: 5px;
-}
-
-.readMore {
-	font-weight: bold;
-	cursor: pointer;
-	margin-left: 5px;
-}
-
-.coupon-btn button {
-	width: 120px;
-	height: 50px;
-	background-color: #EBEBEB;
-	border: 1px solid #EBEBEB;
-	border-radius: 10px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.moreItems {
-	height: 160px;
-}
-
-.backgorundColor-gray {
-	background-color: lightgray;
+	display:none;
 }

@@ -9,15 +9,21 @@
 	<!-- login 페이지에서 가져온 정보 기반으로 유저 검색 -->
 	<select id="findReservationListByUserCode" parameterType="int" resultType="Reservation">
 		SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
-        	TO_CHAR(rv.rsvt_chek_in_date, 'YYYY/MM/DD') check_in_date, TO_CHAR(rv.rsvt_chek_out_date, 'YYYY/MM/DD') check_out_date,
+				TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
+        			|| ' (' || TO_CHAR(rsvt_chek_in_date, 'DY') || ') ' ||
+        			TO_CHAR(rsvt_chek_in_date, 'HH:MI') AS rsvt_chek_in_date,
+        		TO_CHAR(rsvt_chek_out_date, 'YYYY/MM/DD')
+        			|| ' (' || TO_CHAR(rsvt_chek_out_date, 'DY') || ') ' ||
+        			TO_CHAR(rsvt_chek_out_date, 'HH:MI') AS rsvt_chek_out_date,
         	(TRUNC(rv.rsvt_chek_out_date) - TRUNC(rv.rsvt_chek_in_date)) AS total_night,
         	(TRUNC(rv.rsvt_chek_out_date) - TRUNC(rv.rsvt_chek_in_date) + 1) AS total_days,
+        	TO_CHAR(rv.rsvt_pament_date, 'YYYY/MM/DD HH24:MI') rsvt_pament_date, rv.rsvt_room_amount rsvt_room_amount,
         	rv.rsvt_discount rsvt_discount, rv.rsvt_payment_info rsvt_payment_info, rv.rsvt_payment_amount rsvt_payment_amount,
-        	rv.user_code user_code, rv.rsvt_guest_name guest_name, rv.rsvt_guest_tel guest_tel,
+        	rv.user_code user_code, rv.rsvt_guest_name rsvt_guest_name, rv.rsvt_guest_tel rsvt_guest_tel,
         	rv.rsvt_status rsvt_status, acm.acm_name acm_nmae, r.room_name || ' ' || r.room_type AS room_name,
         	img.acc_img_code img_code, img.acc_img_origin_name img_origin_name,
         	img.acc_img_save_name img_save_name, img.acc_img_extension img_extension, img.acc_img_url img_url
-		FROM RESERVATION rv
+        FROM RESERVATION rv
 		INNER JOIN ACCOMMODATION acm
 		ON rv.acm_code = acm.acm_code
 		INNER JOIN ROOM r
@@ -29,9 +35,46 @@
 		AND img.acc_img_origin_name LIKE '%대표%'
 	</select>
 	
+	
+	<select id="findResrvationByRsvtCode" parameterType="String" resultType="Reservation">
+		SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
+				TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
+        			|| ' (' || TO_CHAR(rsvt_chek_in_date, 'DY') || ') ' ||
+        			TO_CHAR(rsvt_chek_in_date, 'HH:MI') AS rsvt_chek_in_date,
+        		TO_CHAR(rsvt_chek_out_date, 'YYYY/MM/DD')
+        			|| ' (' || TO_CHAR(rsvt_chek_out_date, 'DY') || ') ' ||
+        			TO_CHAR(rsvt_chek_out_date, 'HH:MI') AS rsvt_chek_out_date,
+        	(TRUNC(rv.rsvt_chek_out_date) - TRUNC(rv.rsvt_chek_in_date)) AS total_night,
+        	(TRUNC(rv.rsvt_chek_out_date) - TRUNC(rv.rsvt_chek_in_date) + 1) AS total_days,
+        	TO_CHAR(rv.rsvt_pament_date, 'YYYY/MM/DD HH24:MI') rsvt_pament_date, rv.rsvt_room_amount rsvt_room_amount,
+        	rv.rsvt_discount rsvt_discount, rv.rsvt_payment_info rsvt_payment_info, rv.rsvt_payment_amount rsvt_payment_amount,
+        	rv.user_code user_code, rv.rsvt_guest_name rsvt_guest_name, rv.rsvt_guest_tel rsvt_guest_tel,
+        	rv.rsvt_status rsvt_status, acm.acm_name acm_nmae, r.room_name || ' ' || r.room_type AS room_name,
+        	img.acc_img_code img_code, img.acc_img_origin_name img_origin_name,
+        	img.acc_img_save_name img_save_name, img.acc_img_extension img_extension, img.acc_img_url img_url
+        FROM RESERVATION rv
+		INNER JOIN ACCOMMODATION acm
+		ON rv.acm_code = acm.acm_code
+		INNER JOIN ROOM r
+		ON rv.room_code = r.room_code
+		INNER JOIN ACCOMMODATION_IMG img
+		ON rv.acm_code = img.acm_code
+		WHERE rv.rsvt_code = #{rsvtCode}
+		AND rv.rsvt_status != 0
+		AND img.acc_img_origin_name LIKE '%대표%'
+	</select>
+	
+	<!-- 예약코드 기반으로 예약상태 예약취소로 업데이트 -->
 	<update id="updateRsvtStatusByRsvtCode" parameterType="String">
 		UPDATE reservation
 		SET rsvt_status = 3
+		WHERE rsvt_code = #{rsvtCode}
+	</update>
+	
+	<update id="updateGuestInfo" parameterType="ReservationGuestInfo">
+		UPDATE reservation
+		SET rsvt_guest_name = #{guestName},
+			rsvt_guest_tel = #{guestTel}
 		WHERE rsvt_code = #{rsvtCode}
 	</update>
 	
