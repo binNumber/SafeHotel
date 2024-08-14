@@ -544,6 +544,71 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+//상세정보 창 사진 모두보기버튼
+document.addEventListener("DOMContentLoaded", function() {
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const modal = document.getElementById("photoModal");
+    const largeImage = document.getElementById("largeImage");
+    const thumbnails = document.querySelectorAll(".gallery-thumbnail");
+    const prevBtn = document.querySelector(".gallery-prev");
+    const nextBtn = document.querySelector(".gallery-next");
+
+    let currentIndex = 0;
+
+    openModalBtn.addEventListener("click", function() {
+        modal.style.display = "block";
+    });
+
+    closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    thumbnails.forEach(function(thumbnail, index) {
+        thumbnail.addEventListener("click", function() {
+            const largeSrc = this.getAttribute("data-large-src");
+            largeImage.setAttribute("src", largeSrc);
+            currentIndex = index;
+
+            thumbnails.forEach(function(thumb) {
+                thumb.classList.remove("active");
+            });
+
+            this.classList.add("active");
+        });
+    });
+
+    prevBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+        updateLargeImage();
+    });
+
+    nextBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+        updateLargeImage();
+    });
+
+    function updateLargeImage() {
+        const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
+        largeImage.setAttribute("src", largeSrc);
+
+        thumbnails.forEach(function(thumb) {
+            thumb.classList.remove("active");
+        });
+
+        thumbnails[currentIndex].classList.add("active");
+    }
+});
+
+
+
+
 //검색창 달력 라이브러리
 $(document).ready(function() {
     // Date Range Picker 초기화
@@ -581,3 +646,4 @@ $(document).ready(function() {
     var initialEnd = moment().startOf('day').add(1, 'days');
     $('#btn_date span').html(initialStart.format('MM월 DD일') + ' - ' + initialEnd.format('MM월 DD일') + ' (1박 2일)');
 });
+
