@@ -7,6 +7,10 @@
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 </head>
 <body>
 	<div class="container-list">
@@ -66,19 +70,19 @@
 							<p>검색한 단어2</p>
 						</div>
 					</div>
+
 					<div class="btn-date">
 						<button id="btn_date">
 							<img src='img/calendar.png' /> <span> 08.15 목 - 08.16 금
 								(1박 2일) </span>
 						</button>
-						<div class="hide date-picker" id="date_picker">
-							<p>날짜 선택</p>
-						</div>
 					</div>
+
 					<div class="btn-people">
 						<button id="btn_people">
 							<img src='img/human.png' /> <span> 인원 2 </span>
 						</button>
+
 						<div class="hide people-picker" id="people_picker">
 							<p>인원</p>
 							<div class="people-controls">
@@ -107,16 +111,26 @@
 					<div class="roomlist">
 						<div class="roomthumbnail">
 							<div class="roomphoto">
-								<p><a href="roominfo">숙소 대표사진</a></p>
+								<p>
+									<a href="roominfo">숙소 대표사진</a>
+								</p>
 							</div>
 							<div class="roominfo">
 								<div class="roominfo-title">
-									<h2><a href="roominfo">숙소명</a></h2>
-									<h5><a href="roominfo">()시</a></h5>
+									<h2>
+										<a href="roominfo">숙소명</a>
+									</h2>
+									<h5>
+										<a href="roominfo">()시</a>
+									</h5>
 								</div>
 								<div class="roominfo-price">
-									<h5><a href="roominfo">(쿠폰사용전금액)원</a></h5>
-									<h3><a href="roominfo">(쿠폰적용금액)원</a></h3>
+									<h5>
+										<a href="roominfo">(쿠폰사용전금액)원</a>
+									</h5>
+									<h3>
+										<a href="roominfo">(쿠폰적용금액)원</a>
+									</h3>
 								</div>
 							</div>
 						</div>
@@ -126,6 +140,7 @@
 			</div>
 
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 		<script src="js/script.js"></script>
 	</div>
 

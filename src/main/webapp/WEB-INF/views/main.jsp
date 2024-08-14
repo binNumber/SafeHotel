@@ -7,6 +7,12 @@
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 </head>
 <body>
 	<div class="container">
@@ -37,7 +43,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
@@ -81,15 +87,13 @@
 											<p>검색한 단어2</p>
 										</div>
 									</div>
+
 									<div class="btn-date">
 										<button id="btn_date">
-											<img src='img/calendar.png' /> <span> 08.15 목 - 08.16
-												금 (1박 2일) </span>
+											<img src='img/calendar.png' /> <span></span>
 										</button>
-										<div class="hide date-picker" id="date_picker">
-											<p>날짜 선택</p>
-										</div>
 									</div>
+
 									<div class="btn-people">
 										<button id="btn_people">
 											<img src='img/human.png' /> <span> 인원 2 </span>
@@ -167,6 +171,8 @@
 
 		<div class="footer"></div>
 
+		<script
+			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 		<script src="js/script.js"></script>
 	</div>
 </body>

@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 * {
 	margin: 0;
 	padding: 0;
@@ -255,7 +253,7 @@ body {
     font-size: 11px;
 }
 
-.search-best p, .date-picker p, .people-picker p {
+.search-best p, .people-picker p {
     margin: 10px;
 }
 
@@ -263,20 +261,6 @@ body {
     display: block !important;
 }
 
-.date-picker {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 180%;
-    background-color: #fff;
-    border: 1px solid lightgray;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    z-index: 10;
-    display: none;
-    margin-top: 5px;
-    min-height: 500px;
-}
 
 .people-picker {
     position: absolute;
@@ -381,6 +365,9 @@ body {
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
 }
 
 .btn-people {
@@ -405,6 +392,9 @@ body {
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
 }
 
 .btn-searchright {
@@ -519,7 +509,7 @@ body {
 
 .btn_sectionpage.next {
 	right: -30px;
-	top: 100px;
+	top: 100px;     
 }
 
 .btn_sectionpage button {
@@ -529,6 +519,7 @@ body {
 	background-color: #ddd;
 	font-size: 20px;
 	border: none;
+	cursor: pointer;
 }
 
 .dots {
@@ -1000,7 +991,6 @@ background-color: #3480ff;
 .container-roominfo {
     padding-top: 160px;
     scroll-behavior: smooth;
-    height: 2000px;
 }
 
 .sticky-nav {
@@ -1010,7 +1000,7 @@ background-color: #3480ff;
     z-index: 999;
     background-color: white;
     display: flex;
-    padding: 30px 400px;
+    padding: 30px 300px;
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
     border-bottom: 1px solid lightgray;
@@ -1116,7 +1106,7 @@ background-color: #3480ff;
 .sectionline {
 	width: 100%;
     height: 2px;
-    background-color: #F5F7FA;
+    background-color: #a7a7a7;
     margin: 50px 0;
 }
 
@@ -1131,7 +1121,7 @@ background-color: #3480ff;
 
 .listsection-photo {
 	border: 1px solid;
-    width: 25%;
+    width: 35%;
     height: 100%;
     padding: 20px;
     border-radius: 20px;
@@ -1183,6 +1173,7 @@ background-color: #3480ff;
     color: #fff;
     font-family: 'SUIT-Regular';
     font-style: normal;
+    cursor: pointer;
 }
 
 .listsection-roominfo {
@@ -1202,9 +1193,160 @@ background-color: #3480ff;
 	margin-right: 20px;
 }
 
+.review-section-main {
+	display: flex;
+    border-bottom: 1px solid #a7a7a7;
+    padding-bottom: 40px;
+    margin-top: 40px;
+}
 
+.review-section-title {
+	border-bottom: 1px solid #a7a7a7;
+	padding-bottom: 10px;
+}
 
+.userinfo-review {
+	display: flex;
+}
 
+.review-section-left {
+	width: 20%;
+}
 
+.review-right-score {
+	margin-bottom: 40px;
+}
 
+.review-section-right {
+	padding: 0 30px;
+	border-left: 1px solid #a7a7a7;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+/*리뷰섹션 사용자등록 리뷰사진*/
+.review-right-photo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.review-right-photo:hover .btn_reviewpage {
+    opacity: 1;
+    visibility: visible;
+}
+
+.reviewsection-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px;
+}
+
+.reviewsection-photo {
+    flex-shrink: 0;
+    width: calc(100% / 3 - 20px); /* 슬라이드 하나의 너비 (3개의 슬라이드가 동시에 보이도록 설정) */
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reviewsection-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn_reviewpage {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(133, 133, 133, 0.7);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0; /* 기본 상태에서 투명하게 설정 */
+    visibility: hidden; /* 기본 상태에서 보이지 않도록 설정 */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.btn_reviewpage.prev {
+    left: 10px;
+}
+
+.btn_reviewpage.next {
+    right: 10px;
+}
+
+.btn_reviewpage button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.reviewsection-roominfo h5 {
+	margin-bottom: 10px;
+}
+
+.reviewsection-msg {
+    position: relative;
+    max-width: 100%;
+}
+
+.review-message {
+    margin: 0;
+    padding: 5px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 표시할 최대 줄 수 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    mask-image: linear-gradient(180deg, black 60%, transparent 100%);
+}
+
+.review-message.expanded {
+    -webkit-line-clamp: unset; /* 확장 시 제한을 풀어줌 */
+    overflow: visible;
+    mask-image: none;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: #656565;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    margin: 10px 0 0;
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
+}
+
+.reviewsection-adminmsg {
+	margin-top: 20px;
+	background-color: #a3a3a3;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.adminmsg-msg {
+	margin-top: 10px;
+}
+
+.adminmsg-date {
+	display: flex;
+	align-items: center;
+}
+/*----------------------------------달력설정----------------------------------*/
 

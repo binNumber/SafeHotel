@@ -55,37 +55,39 @@
 
 		<div class="sticky-nav" id="sticky-nav">
 			<ul>
-				<li><a href="#section1">숙소명, 위치</a></li>
-				<li><a href="#section2">객실선택</a></li>
-				<li><a href="#section3">객실</a></li>
-				<li><a href="#section4">위치</a></li>
-				<li><a href="#section5">리뷰</a></li>
+				<li><a href="#section1">개요</a></li>
+				<li><a href="#section2">지도</a></li>
+				<li><a href="#section3">객실선택</a></li>
+				<li><a href="#section4">리뷰</a></li>
 			</ul>
 		</div>
 		<div class="content-roominfo">
-			<div class="content-info">
-				<div class="content-mainphoto">
-					<div class="mainphoto">사진1</div>
+			<div id="section1">
+				<div class="content-info">
+					<div class="content-mainphoto">
+						<div class="mainphoto">사진1</div>
 
-					<div class="subphoto">
-						<div class="photosection">
-							<div class="photo2">사진2</div>
-							<div class="photo3">사진3</div>
-						</div>
+						<div class="subphoto">
+							<div class="photosection">
+								<div class="photo2">사진2</div>
+								<div class="photo3">사진3</div>
+							</div>
 
-						<div class="photosection">
-							<div class="photo4">사진4</div>
-							<div class="photo5">
-								사진5
-								<div class="btn-photo">
-									<button>사진 모두보기</button>
+							<div class="photosection">
+								<div class="photo4">사진4</div>
+								<div class="photo5">
+									사진5
+									<div class="btn-photo">
+										<button>사진 모두보기</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="sectionline"></div>
 			</div>
-			<div id="section1">
+			<div id="section2">
 				<div class=content-roominfo-main>
 					<div class="roominfo-top">
 						<div class="roominfo-title">
@@ -101,7 +103,7 @@
 				</div>
 				<div class="sectionline"></div>
 			</div>
-			<div id="section2">
+			<div id="section3">
 				<div class=content-roominfo-list>
 					<div>
 						<h1>객실 선택</h1>
@@ -136,9 +138,80 @@
 				</div>
 				<div class="sectionline"></div>
 			</div>
-		</div>
-		<script src="js/script.js"></script>
-	</div>
+			<div id="section4">
+				<div class="content-roominfo-review">
+					<div class="review-section">
+						<div class="review-section-title">
+							<h1>리뷰</h1>
+							<h3>평점 x.x점</h3>
+						</div>
+						<div class="review-section-main">
+							<div class="review-section-left">
+								<div class="review-section-left-userinfo">
+									<div class="userinfo-nickname">
+										<p>닉네임</p>
+									</div>
+									<div class="userinfo-review">
+										<h5>리뷰</h5>
+										<h5>·</h5>
+										<h5>사진</h5>
+									</div>
+								</div>
+							</div>
+							<div class="review-section-right">
+								<div class="review-right-score">
+									<p>(0/5)</p>
+									<p>리뷰 남긴 날짜</p>
+								</div>
+								<div class="review-right-photo">
 
+									<div class="btn_reviewpage prev">
+										<button class="prev">&lt;</button>
+									</div>
+									<div class="reviewsection-slides">
+										<div class="reviewsection-photo">사용자가 등록한 리뷰사진1</div>
+										<div class="reviewsection-photo">사용자가 등록한 리뷰사진2</div>
+										<div class="reviewsection-photo">사용자가 등록한 리뷰사진3</div>
+										<div class="reviewsection-photo">사용자가 등록한 리뷰사진4</div>
+									</div>
+									<div class="btn_reviewpage next">
+										<button class="next">&gt;</button>
+									</div>
+								</div>
+
+								<div class="reviewsection-roominfo">
+									<h4>이용한 객실명</h4>
+								</div>
+
+								<div class="reviewsection-msg">
+									<p class="review-message" id="review-text">리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
+										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다.</p>
+									<button class="toggle-button" id="toggle-button"
+										style="display: none;">더 보기 ▾</button>
+								</div>
+
+								<div class="reviewsection-adminmsg">
+									<div class="adminmsg-date">
+										<h4>업체명/</h4>
+										<h5>답글남긴 날짜,시간</h5>
+									</div>
+									<div class="adminmsg-msg">
+										<h5>업체가 남긴 답글</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="sectionline"></div>
+				</div>
+			</div>
+			<script src="js/script.js"></script>
+		</div>
+	</div>
 </body>
 </html>
