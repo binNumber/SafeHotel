@@ -35,4 +35,14 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return rvImgList;
 	}
 
+	//예약코드 기반으로 이미지 리스트 불러오기
+	@Override
+	public List<ReviewImg> findReviewImgListByRsvtCode(String rsvtCode) {
+		// TODO Auto-generated method stub
+		
+		List<ReviewImg> rvImgList = sqlSessionTemplate.selectList("review_mapper.findReviewImgListByRsvtCode", rsvtCode);
+		
+		return rvImgList;
+	}
+
 }

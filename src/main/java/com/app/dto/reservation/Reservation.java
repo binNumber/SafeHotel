@@ -22,9 +22,10 @@ public class Reservation {
 	String rsvtGuestName;	//예약자 이름(예약하는 유저와 실제 예약자가 다른 경우 상정)
 	String rsvtGuestTel;	//예약자 전화번호(예약하는 유저와 실제 예약자가 다른 경우 상정)
 	int rsvtStatus;	//예약상태 : 0-'승인 전' 1-'승인' 2-'취소' 3-'이용완료'
+	String rsvtReviewStatus;	//댓글 작성 여부
 	
 	//숙소 테이블에서 가져온 정보
-	String acmNmae;	//숙소 이름
+	String acmName;	//숙소 이름
 	
 	//룸 테이블에서 가져온 정보
 	String roomName;	//객실 이름

@@ -230,6 +230,8 @@ public class MypageController {
 				}
 			}
 		}
+		
+		//예약코드 기반으로 
 
 		//예약 완료된 리스트만 정보 전달
 		model.addAttribute("cancelledList", cancelledList);

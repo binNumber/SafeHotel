@@ -30,7 +30,7 @@
 					<h2>숙소 정보</h2>
 
 					<div id="modify-reservation-acmInfo">
-						<h3>${reservation.acmNmae }</h3>
+						<h3>${reservation.acmName }</h3>
 
 						<div id="modify-reserve-info">
 							<table>
@@ -138,7 +138,7 @@
 							width="180px" height="180px">
 						<div class="acm-info-text">
 							<h2>
-								<a href="">${reservation.acmNmae }</a>
+								<a href="">${reservation.acmName }</a>
 							</h2>
 							<h3>
 								<i class="fa-solid fa-copy"></i> 주소 복사

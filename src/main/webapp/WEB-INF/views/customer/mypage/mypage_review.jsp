@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>유저 MY PAGE</title>
+<title>MY PAGE</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -31,98 +31,102 @@
 					<div id="write-review-info">
 
 						<div>
-							<h2>어반스테이 속초등대해변</h2>
+							<h2>${review.acmName }</h2>
 							<h4>
-								<span class="star-rating-view"> <span class="star">&#9733;</span>
-									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-								</span> | 작성날짜 : 2024/08/09
+								<c:choose>
+									<c:when test="${review.rating == 5}">
+										<span> <span class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+										<span class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+										<span class="color-gold">&#9733;</span> </span>
+										| 작성날짜 : ${review.reviewDate}
+    								</c:when>
+									<c:when test="${review.rating == 4}">
+										<span> <span class="color-gold">&#9733;</span> <span
+											class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+											<span class="color-gold">&#9733;</span> <span>&#9734;</span>
+										</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+									<c:when test="${review.rating == 3}">
+										<span> <span class="color-gold">&#9733;</span> <span
+											class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+											<span>&#9734;</span> <span>&#9734;</span>
+										</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+									<c:when test="${review.rating == 2}">
+										<span> <span class="color-gold">&#9733;</span> <span
+											class="color-gold">&#9733;</span> <span>&#9734;</span> <span>&#9734;</span>
+											<span>&#9734;</span>
+										</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+									<c:when test="${review.rating == 1}">
+										<span> <span class="color-gold">&#9733;</span> <span>&#9734;</span>
+											<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+										</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+									<c:otherwise>
+										<span> <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+											<span>&#9734;</span> <span>&#9734;</span>
+										</span> | 작성날짜 : ${review.reviewDate}
+    										</c:otherwise>
+								</c:choose>
 							</h4>
 						</div>
+					</div>
 
-						<div id="review-picture-list">
-							<div>
-								<h3>업로드할 이미지 목록</h3>
-							</div>
-
-							<div class="eventsection">
-								<div class="btn_sectionpage prev">
-									<button class="prev">&lt;</button>
-								</div>
-								<div class="sectionpage">
-									<div class="slides">
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-									</div>
-								</div>
-								<div class="btn_sectionpage next">
-									<button class="next">&gt;</button>
-								</div>
-							</div>
-
+					<div id="review-picture-list">
+						<div>
+							<h3>리뷰 이미지 목록</h3>
 						</div>
 
+						<c:choose>
+							<c:when test="${fn:length(review.reviewImgList) > 2}">
+								<div class="eventsection">
+							<div class="btn_sectionpage prev">
+								<button class="prev">&lt;</button>
+							</div>
+							<div class="sectionpage">
+								<div class="slides">
+									<c:forEach var="img" items="${review.reviewImgList }">
+										<div class="event list">
+											<img src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
+											<button type="button" onclick="location.href=''">사진 삭제</button>
+										</div>
+									</c:forEach>
+								</div>
+							</div>
+							<div class="btn_sectionpage next">
+								<button class="next">&gt;</button>
+							</div>
+						</div>
+							</c:when>
+						
+						</c:choose>
 					</div>
 
-					<div id="wirte-review-form">
-						<form action="" method="post">
-							<textarea id="write-review" name="reviewText">내용내용내용</textarea>
-							<input type="hidden" name="reviewCode" id="reviewCode">
-							<button type="submit" class="btn-write">작성하기</button>
-						</form>
-
-						<form action="" method="post" class="file-upload-container">
-							<button type="submit">
-								<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
-							</button>
-							<input type="file" name="fileInput" id="fileInput"
-								accept="image/*" multiple /> <input type="hidden"
-								name="reviewCode"> <input type="hidden"
-								name="reviewImgOriginName" id="reviewImgOriginName"> <input
-								type="hidden" name="reviewImgExtension" id="reviewImgExtension">
-							<input type="hidden" name="reviewImgUrl">
-						</form>
-					</div>
 				</div>
 
+				<div id="wirte-review-form">
+					<form action="" method="post">
+						<textarea id="write-review" name="reviewText">${review.reviewText}</textarea>
+						<input type="hidden" name="reviewCode" id="reviewCode" value="${review.reviewCode }">
+						<button type="submit" class="btn-write">작성하기</button>
+					</form>
 
+					<form action="" method="post" class="file-upload-container">
+						<button type="submit">
+							<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+						</button>
+						<input type="file" name="fileInput" id="fileInput" accept="image/*" multiple />
+						<input type="hidden" name="reviewCode">
+						<input type="hidden" name="reviewImgOriginName" id="reviewImgOriginName">
+						<input type="hidden" name="reviewImgExtension" id="reviewImgExtension">
+						<input type="hidden" name="reviewImgUrl">
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
+	
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -186,42 +190,38 @@
 									<h4>
 										<c:choose>
 											<c:when test="${review.rating == 5}">
-												<span class="star-rating-view"> <span
+												<span> <span class="color-gold">&#9733;</span> <span
 													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
 													<span class="color-gold">&#9733;</span> <span
-													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
+													class="color-gold">&#9733;</span>
 												</span> | 작성날짜 : ${review.reviewDate}
     										</c:when>
 											<c:when test="${review.rating == 4}">
-												<span class="star-rating-view"> <span
+												<span> <span class="color-gold">&#9733;</span> <span
 													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-													<span class="color-gold">&#9733;</span> <span
-													class="color-gold">&#9733;</span> <span>&#9734;</span>
+													<span class="color-gold">&#9733;</span> <span>&#9734;</span>
 												</span> | 작성날짜 : ${review.reviewDate}
     										</c:when>
 											<c:when test="${review.rating == 3}">
-												<span class="star-rating-view"> <span
+												<span> <span class="color-gold">&#9733;</span> <span
 													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-													<span class="color-gold">&#9733;</span> <span>&#9734;</span>
-													<span>&#9734;</span>
-												</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-											<c:when test="${review.rating == 2}">
-												<span class="star-rating-view"> <span
-													class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-													<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
-												</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-											<c:when test="${review.rating == 1}">
-												<span class="star-rating-view"> <span
-													class="color-gold">&#9733;</span> <span>&#9734;</span> <span>&#9734;</span>
 													<span>&#9734;</span> <span>&#9734;</span>
 												</span> | 작성날짜 : ${review.reviewDate}
     										</c:when>
-											<c:otherwise>
-												<span class="star-rating-view"> <span>&#9734;</span>
-													<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+											<c:when test="${review.rating == 2}">
+												<span> <span class="color-gold">&#9733;</span> <span
+													class="color-gold">&#9733;</span> <span>&#9734;</span> <span>&#9734;</span>
 													<span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:when test="${review.rating == 1}">
+												<span> <span class="color-gold">&#9733;</span> <span>&#9734;</span>
+													<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+												</span> | 작성날짜 : ${review.reviewDate}
+    										</c:when>
+											<c:otherwise>
+												<span> <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
+													<span>&#9734;</span> <span>&#9734;</span>
 												</span> | 작성날짜 : ${review.reviewDate}
     										</c:otherwise>
 										</c:choose>
@@ -251,6 +251,8 @@
 												</div>
 											</div>
 										</div>
+									</c:when>
+									<c:when test="${fn:length(review.reviewImgList) == 0}">
 									</c:when>
 									<c:otherwise>
 										<div class="review-img-container">

@@ -79,7 +79,7 @@
 							<div class="reserve-text-container">
 								<div>
 									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
-									<h2>${reservation.acmNmae}</h2>
+									<h2>${reservation.acmName}</h2>
 								</div>
 								<h3>${reservation.roomName} · ${reservation.totalNight}박
 									${reservation.totalDays}일</h3>

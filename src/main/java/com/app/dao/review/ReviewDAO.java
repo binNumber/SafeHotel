@@ -13,4 +13,6 @@ public interface ReviewDAO {
 	//리뷰코드 기반으로 이미지 리스트 불러오기
 	public List<ReviewImg> findReviewImgListByReviewCode(int reviewCode); 
 
+	//예약코드 기반으로 이미지 리스트 불러오기
+	public List<ReviewImg> findReviewImgListByRsvtCode(String rsvtCode);
 }

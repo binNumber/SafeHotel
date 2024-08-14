@@ -30,12 +30,15 @@
 					<div id="write-review-info">
 
 						<div>
-							<h2>어반스테이 속초등대해변</h2>
+							<h2 id="review-acm-name"></h2>
 							<h4>
-								<span class="star-rating-view"> <span class="star">&#9733;</span>
-									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-									<span class="star">&#9733;</span> <span class="star">&#9733;</span>
-								</span> | 작성날짜 : 2024/08/09
+								<span class="star-rating-view"> <span class="star"
+									onclick="rating(1)">&#9733;</span> <span class="star"
+									onclick="rating(2)">&#9733;</span> <span class="star"
+									onclick="rating(3)">&#9733;</span> <span class="star"
+									onclick="rating(4)">&#9733;</span> <span class="star"
+									onclick="rating(5)">&#9733;</span>
+								</span>
 							</h4>
 						</div>
 
@@ -43,86 +46,37 @@
 							<div>
 								<h3>업로드할 이미지 목록</h3>
 							</div>
-						
-							<div class="eventsection">
-								<div class="btn_sectionpage prev">
-									<button class="prev">&lt;</button>
-								</div>
-								<div class="sectionpage">
-									<div class="slides">
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-										<div class="event list">
-											<img src="/img/mainbackground.jpg" />
-											<button type="button">사진 삭제</button>
-										</div>
-									</div>
-								</div>
-								<div class="btn_sectionpage next">
-									<button class="next">&gt;</button>
-								</div>
-							</div>
+
+							<div id="review-img-preview"></div>
 
 						</div>
 
+						<div id="wirte-review-form">
+							<form action="" method="post" enctype="multipart/form-data">
+								<textarea id="reviewText" name="reviewText"
+									placeholder="리뷰를 작성해주세요."></textarea>
+								<input type="hidden" name="rsvtCode" id="rsvtCode"> <input
+									type="hidden" name="userCode" id="userCode"> <input
+									type="hidden" name="acmCode" id="acmCode"> <input
+									type="hidden" name="roomCode" id="roomCode"> <input
+									type="hidden" name="rating" id="rating">
+								<button type="submit" class="btn-write">작성하기</button>
+
+								<div>
+									<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+								</div>
+								<input type="file" name="" id="fileInput" accept="image/*"
+									multiple />
+								<div id="hidden-img-info-container"></div>
+							</form>
+						</div>
 					</div>
 
-					<div id="wirte-review-form">
-						<form action="" method="post">
-							<textarea id="write-review" name="reviewText">내용내용내용</textarea>
 
-							<button type="submit" class="btn-write">작성하기</button>
-						</form>
-
-						<form action="" method="post" class="file-upload-container">
-							<button type="submit">
-								<i class="fa-regular fa-image"></i>
-								<span>사진 업로드</span>
-							</button>
-							<input type="file" name="" id="fileInput" accept="image/*" multiple />
-							<input type="hidden" name="reviewCode" value="">
-							<input type="hidden" name="reviewImgOriginName" value="">
-							<input type="hidden" name="reviewImgExtension">
-							<input type="hidden" name="reviewImgUrl">
-						</form>
-					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-
 
 	<div class="container">
 		<div class="header">
@@ -163,10 +117,15 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a
+						href="/mypage/checkReservation/confirmed">예약 내역 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/review">내가 쓴 리뷰 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -175,9 +134,15 @@
 					<h1>예약내역</h1>
 
 					<div class="status-container">
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/confirmed'">예약 완료</div>
-						<div class="reserve-status status-select" onclick="location.href='/mypage/checkReservation/complete'">이용 완료</div>
-						<div class="reserve-status" onclick="location.href='/mypage/checkReservation/cancelled'">예약 취소</div>
+						<div class="reserve-status"
+							onclick="location.href='/mypage/checkReservation/confirmed'">예약
+							완료</div>
+						<div class="reserve-status status-select"
+							onclick="location.href='/mypage/checkReservation/complete'">이용
+							완료</div>
+						<div class="reserve-status"
+							onclick="location.href='/mypage/checkReservation/cancelled'">예약
+							취소</div>
 					</div>
 
 					<c:forEach var="reservation" items="${completedList}">
@@ -189,14 +154,19 @@
 							<div class="reserve-text-container">
 								<div>
 									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
-									<h2>${reservation.acmNmae}</h2>
+									<h2>${reservation.acmName}</h2>
 								</div>
 								<h3>${reservation.roomName}·${reservation.totalNight}박
 									${reservation.totalDays}일</h3>
-								<p class="checkin-text">체크인 : ${reservation.rsvtChekInDate} |
-									체크아웃 : ${reservation.rsvtChekOutDate}</p>
+								<p class="checkin-text">체크인 : ${reservation.rsvtChekInDate}
+									| 체크아웃 : ${reservation.rsvtChekOutDate}</p>
 								<div class="reserve-btn">
-									<button type="button" class="write-review-popup-btn">리뷰 작성</button>
+									<c:if test="${reservation.rsvtReviewStatus == '0' }">
+										<button type="button"
+											onclick="writeReviewBtn('${reservation.rsvtCode }', ${reservation.acmCode },
+												'${reservation.acmName}', ${reservation.userCode }, ${reservation. roomCode})"
+											class="write-review-popup-btn">리뷰 작성</button>
+									</c:if>
 									<button type="button"
 										onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약
 										상세</button>

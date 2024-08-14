@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			document.querySelector("#write-review-popup").classList.add("display-none");
 		});
 	}
-
 });
 
 //mypage-review 리뷰 수정 팝업 이미지 슬라이드 스크립트
