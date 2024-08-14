@@ -24,9 +24,9 @@
 	<!-- 회원가입 페이지에서 가져온 정보 바탕으로 DB에 유저정보 저장 -->
 	<insert id="saveUserInfo" parameterType="User">	
 		INSERT INTO user_info
-		VALUES(#{userCode}, #{userType}, #{userEmail}, #{userPw},
+		VALUES (#{userCode}, #{userType}, #{userEmail}, #{userPw},
 			#{userNickname}, #{userName}, #{userRsdRegNum}, #{userPhoneNum},
-			#{userPostalCode}, #{userAddr}, #{userAddrLine}, SYSDATE, '1')
+			#{userPostalCode}, #{userAddrLine}, #{userAddr}, SYSDATE, '1')
 	</insert>
 	
 	<!-- user_code의 다음 번호를 자동으로 생성하는 쿼리문 -->
@@ -74,5 +74,12 @@
 			user_name = #{userName}, 
 			user_addr = #{userAddr} 
 			WHERE user_code = #{userCode}
-	</update>	
+	</update>
+	
+	<!-- 사용자 회원탈퇴 기능 -->
+	<update id="updateUserStatusByUserCode" parameterType="int">
+		UPDATE user_info
+		SET user_status = '0'
+		WHERE user_code = #{userCode}
+	</update>
 </mapper>

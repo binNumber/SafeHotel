@@ -15,4 +15,16 @@ public interface ReviewDAO {
 
 	//예약코드 기반으로 이미지 리스트 불러오기
 	public List<ReviewImg> findReviewImgListByRsvtCode(String rsvtCode);
+	
+	//다음 리뷰 코드 불러오기(리뷰코드 생성)
+	public int getNextReviewCode();
+	
+	//다음 리뷰 이미지 코드 불러오기(리뷰 이미지 코드 생성)
+	public int getNextReviewImgCode();
+	
+	//유저 리뷰 DB에 저장
+	public int saveUserReview(Review review);
+	
+	//리뷰 이미지 DB에 저장
+	public int saveReviewImg(ReviewImg reviewImg);
 }

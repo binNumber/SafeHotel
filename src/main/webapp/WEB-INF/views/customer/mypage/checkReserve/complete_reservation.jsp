@@ -33,11 +33,16 @@
 							<h2 id="review-acm-name"></h2>
 							<h4>
 								<span class="star-rating-view"> <span class="star"
-									onclick="rating(1)">&#9733;</span> <span class="star"
-									onclick="rating(2)">&#9733;</span> <span class="star"
-									onclick="rating(3)">&#9733;</span> <span class="star"
-									onclick="rating(4)">&#9733;</span> <span class="star"
-									onclick="rating(5)">&#9733;</span>
+									onclick="rating(1)" onmouseover="mouseoverStar(1)"
+									onmouseout="mouseoutStar(1)"> &#9733; </span> <span
+									class="star" onclick="rating(2)" onmouseover="mouseoverStar(2)"
+									onmouseout="mouseoutStar(2)"> &#9733; </span> <span
+									class="star" onclick="rating(3)" onmouseover="mouseoverStar(3)"
+									onmouseout="mouseoutStar(3)"> &#9733; </span> <span
+									class="star" onclick="rating(4)" onmouseover="mouseoverStar(4)"
+									onmouseout="mouseoutStar(4)"> &#9733; </span> <span
+									class="star" onclick="rating(5)" onmouseover="mouseoverStar(5)"
+									onmouseout="mouseoutStar(5)"> &#9733; </span>
 								</span>
 							</h4>
 						</div>
@@ -52,27 +57,25 @@
 						</div>
 
 						<div id="wirte-review-form">
-							<form action="" method="post" enctype="multipart/form-data">
-								<textarea id="reviewText" name="reviewText"
-									placeholder="리뷰를 작성해주세요."></textarea>
-								<input type="hidden" name="rsvtCode" id="rsvtCode"> <input
-									type="hidden" name="userCode" id="userCode"> <input
-									type="hidden" name="acmCode" id="acmCode"> <input
-									type="hidden" name="roomCode" id="roomCode"> <input
-									type="hidden" name="rating" id="rating">
-								<button type="submit" class="btn-write">작성하기</button>
+							<form action="/mypage/savetReview" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="rsvtCode" id="rsvtCode">
+								<input type="hidden" name="userCode" id="userCode">
+								<input type="hidden" name="acmCode" id="acmCode">
+								<input type="hidden" name="roomCode" id="roomCode">
+								<input type="hidden" name="rating" id="rating">
+								<textarea id="reviewText" name="reviewText" placeholder="리뷰를 작성해주세요."></textarea>
 
-								<div>
-									<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+								<div class="file-upload-container">
+									<div class="file-upload-btn">
+										<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+									</div>
+									<input type="file" name="reviewImgFile" id="fileInput"
+										accept="image/*" multiple />
 								</div>
-								<input type="file" name="" id="fileInput" accept="image/*"
-									multiple />
-								<div id="hidden-img-info-container"></div>
+								<button type="submit" class="btn-write">작성하기</button>
 							</form>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>

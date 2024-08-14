@@ -1,4 +1,4 @@
---À¯Àú Á¤º¸ Å×ÀÌºí
+--ìœ ì € ì •ë³´ í…Œì´ë¸”
 CREATE TABLE USER_INFO(
     user_code NUMBER(10) NOT NULL,
     user_type VARCHAR(3) NOT NULL,
@@ -16,18 +16,14 @@ CREATE TABLE USER_INFO(
     PRIMARY KEY (user_code, user_email, user_rsd_reg_num)
 );
 
+
+
 SELECT * FROM USER_INFO;
 
 COMMIT;
 
 
-DELETE
---SELECT *
-FROM user_info
-WHERE user_code=36;
-
-
---»ç¾÷ÀÚ Á¤º¸ Å×ÀÌºí
+--ì‚¬ì—…ìž ì •ë³´ í…Œì´ë¸”
 CREATE TABLE BUSINESS (
     bsns_code VARCHAR2(12) NOT NULL PRIMARY KEY,
     user_code NUMBER(10) NOT NULL,
@@ -36,7 +32,7 @@ CREATE TABLE BUSINESS (
 
 SELECT * FROM BUSINESS;
 
---¼÷¼Ò Á¤º¸ Å×ÀÌºí
+--ìˆ™ì†Œ ì •ë³´ í…Œì´ë¸”
 CREATE TABLE ACCOMMODATION (
     acm_code NUMBER(10) NOT NULL PRIMARY KEY,
     acm_type VARCHAR(3) NOT NULL,
@@ -51,7 +47,7 @@ CREATE TABLE ACCOMMODATION (
 
 SELECT * FROM ACCOMMODATION;
 
---¼÷¼Ò »ó¼¼Á¤º¸
+--ìˆ™ì†Œ ìƒì„¸ì •ë³´
 CREATE TABLE ACCOMMODATION_DETAILS (
     acm_code NUMBER(10) NOT NULL PRIMARY KEY,
     acm_dtl_introduction VARCHAR2(4000),
@@ -72,7 +68,7 @@ CREATE TABLE ACCOMMODATION_DETAILS (
 
 SELECT * FROM ACCOMMODATION_DETAILS;
 
---°´½Ç Á¤º¸
+--ê°ì‹¤ ì •ë³´
 CREATE TABLE ROOM (
     room_code NUMBER(10) NOT NULL PRIMARY KEY,
     acm_code NUMBER(10) NOT NULL,
@@ -98,7 +94,7 @@ DROP TABLE ROOM;
 
 COMMIT;
 
---¼÷¼Ò »çÁø Á¤º¸ Å×ÀÌºí
+--ìˆ™ì†Œ ì‚¬ì§„ ì •ë³´ í…Œì´ë¸”
 CREATE TABLE ACCOMMODATION_IMG (
     acc_img_code NUMBER(10) NOT NULL PRIMARY KEY,
     acm_code NUMBER(10) NOT NULL,
@@ -112,7 +108,7 @@ CREATE TABLE ACCOMMODATION_IMG (
 SELECT * FROM ACCOMMODATION_IMG;
 
 SELECT * FROM ACCOMMODATION_IMG
-WHERE acc_img_save_name LIKE '%´ëÇ¥%';
+WHERE acc_img_save_name LIKE '%ëŒ€í‘œ%';
 
 SELECT *
 FROM ACCOMMODATION_IMG
@@ -120,7 +116,7 @@ WHERE acm_code = 5;
 
 COMMIT;
 
---¼÷¼Ò ¿¹¾à °ü¸® Å×ÀÌºí
+--ìˆ™ì†Œ ì˜ˆì•½ ê´€ë¦¬ í…Œì´ë¸”
 CREATE TABLE RESERVATION(
     rsvt_code VARCHAR2(18) NOT NULL PRIMARY KEY,
     acm_code NUMBER(10) NOT NULL,
@@ -140,7 +136,7 @@ CREATE TABLE RESERVATION(
 );
 
 UPDATE reservation
-SET rsvt_guest_name = 'ÀÌÁø¼ö',
+SET rsvt_guest_name = 'ì´ì§„ìˆ˜',
 	rsvt_guest_tel = '010-1234-5678'
 WHERE rsvt_code = '20240813-00001';
 
@@ -150,7 +146,7 @@ SELECT * FROM RESERVATION;
 
 commit;
 
---À¯ÀúÄÚµå ±â¹ÝÀ¸·Î ¿¹¾àÁ¤º¸ ºÒ·¯¿À±â(selectList)
+--ìœ ì €ì½”ë“œ ê¸°ë°˜ìœ¼ë¡œ ì˜ˆì•½ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°(selectList)
 		SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
 				TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
         			|| ' (' || TO_CHAR(rsvt_chek_in_date, 'DY') || ') ' ||
@@ -175,7 +171,7 @@ commit;
 		ON rv.acm_code = img.acm_code
 		WHERE rv.user_code = 1
 		AND rv.rsvt_status != 0
-		AND img.acc_img_origin_name LIKE '%´ëÇ¥%';
+		AND img.acc_img_origin_name LIKE '%ëŒ€í‘œ%';
 
 SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
 				TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
@@ -201,9 +197,9 @@ SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
 		ON rv.acm_code = img.acm_code
 		WHERE rv.rsvt_code = '20240813-00005'
 		AND rv.rsvt_status != 0
-		AND img.acc_img_origin_name LIKE '%´ëÇ¥%';
+		AND img.acc_img_origin_name LIKE '%ëŒ€í‘œ%';
 
---¿¹¾à¹øÈ£ ±â¹ÝÀ¸·Î ¿¹¾à Á¤º¸ ºÒ·¯¿À±â(selectOne)
+--ì˜ˆì•½ë²ˆí˜¸ ê¸°ë°˜ìœ¼ë¡œ ì˜ˆì•½ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°(selectOne)
 SELECT rv.rsvt_code rsvt_code, rv.acm_code acm_code, rv.room_code room_code,
         TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
         || ' (' || TO_CHAR(rsvt_chek_in_date, 'DY') || ') ' ||
@@ -228,7 +224,7 @@ INNER JOIN ACCOMMODATION_IMG img
 ON rv.acm_code = img.acm_code
 WHERE rv.rsvt_code = '20240812-00005'
 AND rv.rsvt_status != 0
-AND img.acc_img_origin_name LIKE '%´ëÇ¥%';
+AND img.acc_img_origin_name LIKE '%ëŒ€í‘œ%';
 
 SELECT TO_CHAR(rsvt_chek_in_date, 'YYYY/MM/DD')
         || ' (' || TO_CHAR(rsvt_chek_in_date, 'DY') || ') ' ||
@@ -254,33 +250,39 @@ INNER JOIN ACCOMMODATION_IMG img
 ON rv.acm_code = img.acm_code
 WHERE rv.user_code = 1
 AND rv.rsvt_status != 0
-AND img.acc_img_origin_name LIKE '%´ëÇ¥%';
+AND img.acc_img_origin_name LIKE '%ëŒ€í‘œ%';
 
 COMMIT;
 UPDATE reservation
 SET rsvt_status = 1
 WHERE rsvt_code = '20240809-00005';
 
-INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI'), TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI'), TO_DATE('20240620 23:11', 'YYYYMMDD HH24:MI'), 110000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 220000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 3, 0);
+UPDATE reservation
+SET rsvt_review_status = '1'
+WHERE rsvt_code = '20240814-00003';
+
+COMMIT;
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240620 23:30', 'YYYYMMDD HH24:MI'), 110000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 220000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 3, 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI'), TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI'), TO_DATE('20240620 23:11', 'YYYYMMDD HH24:MI'), 110000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 220000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 3, 0);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240719 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240721 15:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240625 11:53', 'YYYYMMDD HH24:MI'), 110000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 220000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 2, 1);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240712 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240714 15:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240620 23:30', 'YYYYMMDD HH24:MI'), 110000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 220000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 3, 0);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 11, 41, (TO_DATE('20240802 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240803 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240701 21:36', 'YYYYMMDD HH24:MI'), 600000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 600000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 2, 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 5, 16, (TO_DATE('20240719 21:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240721 15:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240625 11:53', 'YYYYMMDD HH24:MI'), 110000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 220000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 2, 1);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 18, 78, (TO_DATE('20240830 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240831 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240712 15:44', 'YYYYMMDD HH24:MI'), 75000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 75000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 1, 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 11, 41, (TO_DATE('20240802 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240803 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240701 21:36', 'YYYYMMDD HH24:MI'), 600000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 600000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 2, 0);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 24, 109, (TO_DATE('20240920 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240922 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240803 17:28', 'YYYYMMDD HH24:MI'), 30000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 60000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 1, 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 18, 78, (TO_DATE('20240830 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240831 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240712 15:44', 'YYYYMMDD HH24:MI'), 75000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 75000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 1, 0);
 
 INSERT INTO reservation
-VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 1, 1, (TO_DATE('20241020 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20241023 12:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240813 00:31', 'YYYYMMDD HH24:MI'), 80000, 0, '½Å¿ë/Ã¼Å©Ä«µå °áÁ¦', 240000, 1, 'ÀÌÁø¼ö', '010-1234-5678', 0, 0);
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 24, 109, (TO_DATE('20240920 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20240922 11:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240803 17:28', 'YYYYMMDD HH24:MI'), 30000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 60000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 1, 0);
+
+INSERT INTO reservation
+VALUES(TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'), 1, 1, (TO_DATE('20241020 15:00', 'YYYYMMDD HH24:MI')), (TO_DATE('20241023 12:00', 'YYYYMMDD HH24:MI')), TO_DATE('20240813 00:31', 'YYYYMMDD HH24:MI'), 80000, 0, 'ì‹ ìš©/ì²´í¬ì¹´ë“œ ê²°ì œ', 240000, 1, 'ì´ì§„ìˆ˜', '010-1234-5678', 0, 0);
 
 COMMIT;
 
@@ -295,7 +297,7 @@ CACHE 20;
 DROP SEQUENCE rsvt_code_sq;
 
 
---À¯Àú ¸®ºä Å×ÀÌºí
+--ìœ ì € ë¦¬ë·° í…Œì´ë¸”
 CREATE TABLE USER_REVIEW(
     review_code NUMBER(10) NOT NULL PRIMARY KEY,
     rsvt_code VARCHAR2(18) NOT NULL,
@@ -309,6 +311,8 @@ CREATE TABLE USER_REVIEW(
     report_status VARCHAR2(1) NOT NULL,
     report_reason VARCHAR2(500)
 );
+
+COMMIT;
 
 DROP TABLE user_review;
 
@@ -328,50 +332,51 @@ AND report_status != 2
 ORDER BY review_date DESC;
 
 SELECT * FROM review_img
-WHERE rsvt_code = #{rsvtCode}
+WHERE rsvt_code = #{rsvtCode};
 
 DROP TABLE user_review;
 
 INSERT INTO user_review
-VALUES (1, '20240814-00003', 1, 5, 16, 5, 'ÁöÇÏÃ¶¿ª¿¡¼­ °¡±î¿î À§Ä¡¶ó¼­ Á¢±Ù¼ºÀÌ ³Ê¹« ÁÁ¾Ò¾î¿ä!!
-´ë½Å ¼÷¼Ò ÁÖº¯¿¡ ÆíÀÇÁ¡ÀÌ ¾ø¾î¼­¤Ð ³»ºÎ ¸ÅÁ¡À» ÀÌ¿ëÇØ¾ßÇÏ±äÇÏÁö¸¸, ¿ª±ÙÃ³ ÆíÀÇÁ¡¿¡¼­ ÇÊ¿äÇÑ°Íµé »ç¿À¸é µÆ¾î¿ä
-È­Àå½Ç¿¡ ºñµ¥°¡ ÀÖ¾î¼­ ÁÁ¾Ò°í, Ä§±¸ ÄÁµð¼Çµµ »ó´çÈ÷ ÁÁ¾Æ¼­ ²ÜÀá Àä½À´Ï´Ù ¤¾¤¾
-±×¸®°í °´½Ç Ã¢¹®À¸·Î »êÀÌ º¸ÀÌ´Âµ¥, ¾ÆÄ§¿¡ ÀÏ¾î³ª¼­ Ä¿Æ°À» ¿­°í ¾É¾Æ¼­ ¸Û¶§¸®±âµµ Çß½À´Ï´Ù ºä°¡ Âü ÁÁ¾Ò¾î¿ä~%%ÁÖÂ÷°ø°£µµ ²Ï ³Ë³ËÇØ¼­ ºÒÆíÇÑ Á¡ÀÌ ¾ø¾ú½À´Ï´Ù!!
-Á÷¿øºÐµéµµ Ä£ÀýÇÏ¼Å¼­ ¾ÆÁÖ ¸¸Á·½º·´°Ô ÀÌ¿ëÇÏ°í ¿Ô³×¿ä~', SYSDATE, '1', '0', '');
+VALUES (1, '20240814-00003', 1, 5, 16, 5, 'ì§€í•˜ì² ì—­ì—ì„œ ê°€ê¹Œìš´ ìœ„ì¹˜ë¼ì„œ ì ‘ê·¼ì„±ì´ ë„ˆë¬´ ì¢‹ì•˜ì–´ìš”!!
+ëŒ€ì‹  ìˆ™ì†Œ ì£¼ë³€ì— íŽ¸ì˜ì ì´ ì—†ì–´ì„œã…  ë‚´ë¶€ ë§¤ì ì„ ì´ìš©í•´ì•¼í•˜ê¸´í•˜ì§€ë§Œ, ì—­ê·¼ì²˜ íŽ¸ì˜ì ì—ì„œ í•„ìš”í•œê²ƒë“¤ ì‚¬ì˜¤ë©´ ëì–´ìš”
+í™”ìž¥ì‹¤ì— ë¹„ë°ê°€ ìžˆì–´ì„œ ì¢‹ì•˜ê³ , ì¹¨êµ¬ ì»¨ë””ì…˜ë„ ìƒë‹¹ížˆ ì¢‹ì•„ì„œ ê¿€ìž  ìž¤ìŠµë‹ˆë‹¤ ã…Žã…Ž
+ê·¸ë¦¬ê³  ê°ì‹¤ ì°½ë¬¸ìœ¼ë¡œ ì‚°ì´ ë³´ì´ëŠ”ë°, ì•„ì¹¨ì— ì¼ì–´ë‚˜ì„œ ì»¤íŠ¼ì„ ì—´ê³  ì•‰ì•„ì„œ ë©ë•Œë¦¬ê¸°ë„ í–ˆìŠµë‹ˆë‹¤ ë·°ê°€ ì°¸ ì¢‹ì•˜ì–´ìš”~%%ì£¼ì°¨ê³µê°„ë„ ê½¤ ë„‰ë„‰í•´ì„œ ë¶ˆíŽ¸í•œ ì ì´ ì—†ì—ˆìŠµë‹ˆë‹¤!!
+ì§ì›ë¶„ë“¤ë„ ì¹œì ˆí•˜ì…”ì„œ ì•„ì£¼ ë§Œì¡±ìŠ¤ëŸ½ê²Œ ì´ìš©í•˜ê³  ì™”ë„¤ìš”~', SYSDATE, '1', '0', '');
 
 COMMIT;
 
+SELECT NVL(MAX(review_code), 0)+1 new_review_code FROM user_review;
 
 SELECT * FROM ACCOMMODATION_DETAIL_TEST;
 
---À¯Àú ¸®ºä ÀÌ¹ÌÁö °ü¸® Å×ÀÌºí
+--ìœ ì € ë¦¬ë·° ì´ë¯¸ì§€ ê´€ë¦¬ í…Œì´ë¸”
 CREATE TABLE REVIEW_IMG(
     review_img_code NUMBER(10) NOT NULL PRIMARY KEY,
     review_code NUMBER(10) NOT NULL,
-    rsvt_code VARCHAR2(18) NOT NULL,
     review_img_origin_name VARCHAR2(258) NOT NULL,
     review_img_save_name VARCHAR2(258) NOT NULL,
     review_img_extension VARCHAR2(10) NOT NULL,
     review_img_url VARCHAR2(258) NOT NULL
 );
 
+SELECT NVL(MAX(review_img_code), 0)+1 new_review_img_code FROM review_img;
+
 DROP TABLE review_img;
 
 SELECT * FROM REVIEW_IMG;
 
 INSERT INTO review_img
-VALUES (1, 1, '20240814-00003', '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '.jpg', '/review_img/1/20240814-00003');
+VALUES (1, 1, '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '.jpg', '/review_img/1/20240814-00003');
 
 INSERT INTO review_img
-VALUES (2, 1, '20240814-00003', '9df5f89dad3541e39437293616f0c5c5_w420_h420', '9df5f89dad3541e39437293616f0c5c5_w420_h420', '.jpg', '/review_img/1/20240814-00003');
+VALUES (2, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h420', '9df5f89dad3541e39437293616f0c5c5_w420_h420', '.jpg', '/review_img/1/20240814-00003');
 
 SELECT * FROM review_img
 WHERE review_code = 1;
 
-
 COMMIT;
 
---ÀÌ¿ëÀÚ ¸®ºä¿¡ ´ëÇÑ »ç¾÷ÀÚ ´ä±Û °ü¸® Å×ÀÌºí
+--ì´ìš©ìž ë¦¬ë·°ì— ëŒ€í•œ ì‚¬ì—…ìž ë‹µê¸€ ê´€ë¦¬ í…Œì´ë¸”
 CREATE TABLE BUSINESS_REPLY(
     reply_code NUMBER(10) NOT NULL PRIMARY KEY,
     review_code NUMBER(10) NOT NULL,
@@ -383,7 +388,7 @@ CREATE TABLE BUSINESS_REPLY(
 SELECT * FROM BUSINESS_REPLY;
 
 
---Àü±¹ °æÂû¼­ À§Ä¡ Á¤º¸ °ü¸®
+--ì „êµ­ ê²½ì°°ì„œ ìœ„ì¹˜ ì •ë³´ ê´€ë¦¬
 CREATE TABLE POLICE_STATION(
     plc_code NUMBER(10) NOT NULL PRIMARY KEY,
     plc_provincial_office VARCHAR2(20) NOT NULL,
@@ -397,7 +402,7 @@ CREATE TABLE POLICE_STATION(
 SELECT * FROM POLICE_STATION;
 
 
---Àü±¹ º´¿ø À§Ä¡ Á¤º¸ °ü¸®
+--ì „êµ­ ë³‘ì› ìœ„ì¹˜ ì •ë³´ ê´€ë¦¬
 CREATE TABLE HOSPITAL(
     hospital_code NUMBER(10) NOT NULL PRIMARY KEY,
     hospital_name VARCHAR2(100) NOT NULL,

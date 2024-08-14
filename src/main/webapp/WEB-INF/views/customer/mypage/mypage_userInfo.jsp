@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>유저 MY PAGE</title>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_userInfo.css" rel="stylesheet" type="text/css">
 </head>
@@ -58,7 +59,7 @@
 			<div class="userinfo-content">
 				<div id="userinfo-container">
 					<h1>회원정보 확인 및 변경</h1>
-					<form action="/ModifyuserInfo" method="post" class="modifycontent" id="modifyForm">
+					<form action="/mypage/ModifyuserInfo" method="post" class="modifycontent" id="modifyForm">
 						<div class="email modifyinfo">
 							<h4>이메일</h4>
 							<input type="email" value="${user.userEmail}" disabled>
@@ -126,10 +127,12 @@
 				<br/><br/>
 				
 				<div id="deleteUser">
-					<p>더 이상 이용을 원치 않으신가요?<a href="">회원 탈퇴 <i class="fa-solid fa-chevron-right"></i></a></p>
+					<p>더 이상 이용을 원치 않으신가요?<a href="/userDeactivation?userCode=${user.userCode }">회원 탈퇴 <i class="fa-solid fa-chevron-right"></i></a></p>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<script src="/js/customer/mypage_userInfo.js"></script>
 </body>
 </html>

@@ -45,12 +45,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-//리뷰 작성&수정 관련 스크립트
+//리뷰 작성 관련 스크립트
 document.addEventListener("DOMContentLoaded", function() {
 	const cancelIcon = document.querySelector("#icon-cancel");
-
-
-
+	
 	// 리뷰 작성&수정 팝업 닫기
 	if (cancelIcon) {
 		cancelIcon.addEventListener("click", () => {
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-
+//리뷰 작성 팝업 오픈 스크립트
 function writeReviewBtn(rsvtCode, acmCode, acmName, userCode, roomCode) {
 	document.querySelector("#write-review-popup").classList.remove("display-none");
 
@@ -86,22 +84,16 @@ function handleFileSelect(event) {
 
 		const files = fileInput.files;
 		const previewContainer = document.getElementById('review-img-preview');
-		const hiddenInfoContainer = document.getElementById('hidden-img-info-container');
 
-		if (previewContainer && hiddenInfoContainer) {
+		if (previewContainer) {
 			
 			previewContainer.style.height = '200px';
 
 			previewContainer.innerHTML = '';
-			hiddenInfoContainer.innerHTML = '';
 
 			for (let i = 0; i < files.length; i++) {
 
 				const file = files[i];
-
-				const fullName = files[i].name;	//파일이름+확장자명
-				const fileName = fullName.substring(0, fullName.lastIndexOf('.'));	//파일 이름만
-				const fileExtenstion = '.' + fullName.split('.').pop();	//파일확장자면
 
 				const reader = new FileReader();
 
@@ -113,21 +105,50 @@ function handleFileSelect(event) {
 				};
 
 				reader.readAsDataURL(file);
-
-				//파일 이름을 저장할 수 있는 input hidden 필드 생성
-				var nameInput = document.createElement('input');
-				nameInput.type = 'hidden';
-				nameInput.name = 'reviewImgOriginName[]';
-				nameInput.value = fileName;
-				hiddenInfoContainer.appendChild(nameInput);
-
-				//파일 확장자를 저장할 수 있는 input hidden 필드 생성
-				var extensionInput = document.createElement('input');
-				extensionInput.type = 'hidden';
-				extensionInput.name = 'reviewImgExtension[]';
-				extensionInput.value = fileExtenstion;
-				hiddenInfoContainer.appendChild(extensionInput);
 			}
 		}
+	}
+}
+
+//리뷰 평점관련 처리
+//평점 마우스오버 했을 때
+function mouseoverStar(count) {
+	const star = document.querySelectorAll('.star');
+	
+	for(var i=0; i<count; i++) {
+		star[i].classList.add('color-gold');
+	}
+}
+
+//평점 클릭했을 때
+let clickStar = false;
+
+function rating(count) {
+	
+	const star = document.querySelectorAll('.star');
+	star.forEach(star => star.classList.remove('color-gold'));
+	
+	for(var i=0; i<count; i++) {
+			star[i].classList.add('color-gold');
+	}
+	
+	clickStar = true;
+	console.log(count + '번 별 클릭되었습니다.');
+	
+	const ratingVlaue = document.getElementById('rating');
+	ratingVlaue.value = count;
+	console.log(ratingVlaue.value);
+}
+
+//평점 마우스아웃 했을 때
+function mouseoutStar(count) {
+
+	//클릭 상태가 아닐 때만 적용
+	if(!clickStar) {
+		const star = document.querySelectorAll('.star');
+			
+			for(var i=0; i<count; i++) {
+				star[i].classList.remove('color-gold');
+			}
 	}
 }

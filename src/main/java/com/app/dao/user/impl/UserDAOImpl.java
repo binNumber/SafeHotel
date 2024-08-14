@@ -79,13 +79,25 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
+	//아이디 기반으로 유저 정보 확인
 	@Override
 	public User findUserById(String id) {
 		return sqlSessionTemplate.selectOne("user_mapper.findUserById", id);
 	}
 
+	//유저 정보 수정
 	@Override
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
 		return sqlSessionTemplate.update("user_mapper.modifyUser", bsnsUserUpdateReq);
+	}
+
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)	
+	@Override
+	public int updateUserStatusByUserCode(int userCode) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.updateUserStatusByUserCode", userCode);
+		
+		return result;
 	}
 }

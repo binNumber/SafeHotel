@@ -117,38 +117,55 @@ public class LoginController {
 	public String userSingupAction(User user,
 			HttpSession session ,Model model) { //회원가입 정보 DB에 저장
 
-		boolean isNicknameAvailable = false;
-		
-		if(session.getAttribute("isNicknameAvailable") != null) {
-			isNicknameAvailable = true;
-		}
-		
-		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
+//		boolean isNicknameAvailable = false;
+//		
+//		if(session.getAttribute("isNicknameAvailable") != null) {
+//			isNicknameAvailable = true;
+//		}
+//		
+//		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
+//
+//			user.setUserCode(userService.getNextUserCode());
+//
+//			int result = userService.saveUserInfo(user);
+//
+//			if(result > 0) { //유저 정보 저장 성공
+//
+//				//성공메세지 전달 후 로그인 페이지로 이동
+//				model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
+//				return "redirect:/userlogin";
+//
+//			} else { //유저 정보 저장 실패
+//
+//				//실패메세지 전달 후 로그인 페이지로 이동
+//				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
+//				return "customer/signup/usersignup";
+//			}
+//
+//		} else { //중복 확인이 되지 않았거나 닉네임이 중복
+//
+//			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
+//			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
+//
+//			return "customer/signup/usersignup";
+//		}
+		user.setUserCode(userService.getNextUserCode());
 
-			user.setUserCode(userService.getNextUserCode());
+		int result = userService.saveUserInfo(user);
 
-			int result = userService.saveUserInfo(user);
+		if(result > 0) { //유저 정보 저장 성공
 
-			if(result > 0) { //유저 정보 저장 성공
+			//성공메세지 전달 후 로그인 페이지로 이동
+			model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
+			return "redirect:/userlogin";
 
-				//성공메세지 전달 후 로그인 페이지로 이동
-				model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
-				return "redirect:/userlogin";
+		} else { //유저 정보 저장 실패
 
-			} else { //유저 정보 저장 실패
-
-				//실패메세지 전달 후 로그인 페이지로 이동
-				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
-				return "customer/signup/usersignup";
-			}
-
-		} else { //중복 확인이 되지 않았거나 닉네임이 중복
-
-			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
-			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
-
+			//실패메세지 전달 후 로그인 페이지로 이동
+			model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
 			return "customer/signup/usersignup";
 		}
+		
 	}
 	
 
@@ -174,5 +191,34 @@ public class LoginController {
 		
 		//result 값을 파라미터를 회원가입 페이지로 리디렉션
 		return "redirect:/usersignup?isNicknameDuplicate=" + isNicknameDuplicate;
+	}
+	
+	//회원탈퇴
+	@GetMapping("/userDeactivation")
+	public String userDeactivation(int userCode,
+			HttpSession session, HttpServletResponse response) {
+		
+		//유저코드 기반으로 회원상태 정보 변경
+		int result = userService.updateUserStatusByUserCode(userCode);
+		
+		if(result > 0) {
+			System.out.println("회원탈퇴 성공");
+			
+			//세션 값 모두 삭제
+			session.invalidate();
+
+			//userCode 쿠키 삭제
+			Cookie userCodeCookie = new Cookie("userCode", null);
+			userCodeCookie.setMaxAge(0);//쿠키 즉시 만료
+			userCodeCookie.setPath("/");
+			response.addCookie(userCodeCookie);
+
+			//로그아웃 후 main 페이지로 이동
+			return "redirect:/";
+		} else {
+			System.out.println("회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요.");
+			
+			return "redirect:/mypage/userInfo";
+		}
 	}
 }

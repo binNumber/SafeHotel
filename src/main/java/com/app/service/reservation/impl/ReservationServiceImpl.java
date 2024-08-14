@@ -56,4 +56,14 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return result;
 	}
+
+	//예약코드 기반으로 리뷰 작성 여부 상태를 작성 완료로 변경
+	@Override
+	public int updateRsvtReviewStatus(String rsvtCode) {
+		// TODO Auto-generated method stub
+		
+		int result = reservationDAO.updateRsvtReviewStatus(rsvtCode);
+		
+		return result;
+	}
 }

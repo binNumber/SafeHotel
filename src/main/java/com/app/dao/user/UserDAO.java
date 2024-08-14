@@ -28,9 +28,12 @@ public interface UserDAO {
 	//유저 회원정보 업데이트
 	public int updateUserInfo(User user);
 
+	//아이디 기반으로 유저 정보 확인
 	public User findUserById(String id);
 
+	//유저 정보 수정
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq);
 
-
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)
+	public int updateUserStatusByUserCode(int userCode);
 }

@@ -14,7 +14,7 @@ public class Review {
     int rating;		//평점
     String reviewText;	//리뷰 텍스트
     String reviewDate;	//리뷰 작성 날짜(쿼리문에서 String으로 출력하게 할 예정)
-    String replyExists;			//숙소 사장님 답글 여부
+    String replyExists;	//숙소 사장님 답글 여부
     
 //신고 관련 컬럼 - mypage에서는 사용X
 //    String reportStatus;	//신고 여부

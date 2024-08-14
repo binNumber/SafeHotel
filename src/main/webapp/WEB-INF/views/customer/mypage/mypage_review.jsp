@@ -107,7 +107,7 @@
 
 				<div id="wirte-review-form">
 					<form action="" method="post">
-						<textarea id="write-review" name="reviewText">${review.reviewText}</textarea>
+						<textarea id="reviewText" name="reviewText">${review.reviewText}</textarea>
 						<input type="hidden" name="reviewCode" id="reviewCode" value="${review.reviewCode }">
 						<button type="submit" class="btn-write">작성하기</button>
 					</form>

@@ -83,14 +83,26 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	//아이디 기반으로 유저 정보 확인
 	@Override
 	public User findUserById(String id) {
 		return userDAO.findUserById(id);
 	}
 
+	//유저 정보 수정
 	@Override
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
 		return userDAO.modifyUser(bsnsUserUpdateReq);
+	}
+
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)
+	@Override
+	public int updateUserStatusByUserCode(int userCode) {
+		// TODO Auto-generated method stub
+		
+		int result = userDAO.updateUserStatusByUserCode(userCode);
+		
+		return result;
 	}
 
 }

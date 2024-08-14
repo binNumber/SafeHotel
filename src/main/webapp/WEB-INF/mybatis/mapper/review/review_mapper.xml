@@ -34,4 +34,28 @@
 		WHERE rsvt_code = #{rsvtCode}
 	</select>
 	
+	<!-- 다음 리뷰 코드 불러오기 -->
+	<select id="getNextReviewCode" resultType="int">
+		SELECT NVL(MAX(review_code), 0)+1 new_review_code FROM user_review
+	</select>
+	
+	<!-- 다음 리뷰 이미지 코드 불러오기 -->
+	<select id="getNextReviewImgCode" resultType="int">
+		SELECT NVL(MAX(review_img_code), 0)+1 new_review_img_code FROM review_img;
+	</select>
+	
+	<!-- 유저 리뷰 DB에 insert -->
+	<insert id="saveUserReview" parameterType="Review">
+		INSERT INTO user_review
+		VALUES (#{reviewCode}, #{rsvtCode}, #{userCode}, #{acmCode}, #{roomCode},
+				#{rating}, #{reviewText}, SYSDATE, '0', '0', '')
+	</insert>
+	
+	<!-- 리뷰 이미지 정보 DB에 insert -->
+	<insert id="saveReviewImg" parameterType="ReviewImg">
+		INSERT INTO review_img
+		VALUES (#{reviewImgCode}, #{reviewCode}, #{reviewImgOriginName}, #{reviewImgSaveName},
+			#{reviewImgExtension}, #{reviewImgUrl})
+	</insert>
+	
 </mapper>

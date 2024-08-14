@@ -78,4 +78,10 @@
 		WHERE rsvt_code = #{rsvtCode}
 	</update>
 	
+	<update id="updateRsvtReviewStatus" parameterType="String">
+		UPDATE reservation
+		SET rsvt_review_status = '1'
+		WHERE rsvt_code = #{rsvtCode}
+	</update>
+	
 </mapper>
