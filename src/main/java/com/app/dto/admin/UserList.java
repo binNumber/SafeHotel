@@ -18,5 +18,7 @@ public class UserList {
 	String userAddr; // 회원 주소
 	Date userRegDt; // 회원가입날짜 YYYY-MM-DD
 	String userStatus; // 회원상태 0=탈퇴, 1=사용
+	String userPostalCode; // 우편번호
+	String userAddrLine; // 상세주소
 
 }
