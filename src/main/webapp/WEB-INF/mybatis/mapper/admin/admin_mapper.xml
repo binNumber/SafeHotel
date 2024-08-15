@@ -20,26 +20,38 @@
 		user_type AS userType,
 		user_email AS userEmail,
 		user_pw AS userPw,
-		user_nickname AS userNickname,
+		user_nickname AS
+		userNickname,
 		user_name AS userName,
 		user_rsd_reg_num AS userRsdRegNum,
 		user_phone_num AS userPhoneNum,
 		user_addr AS userAddr,
-		user_reg_dt AS userRegDt,
-		user_status AS userStatus
+		user_reg_dt AS
+		userRegDt,
+		user_status AS userStatus,
+		user_postal_code AS
+		userPostalCode,
+		user_addr_line AS userAddrLine
 		FROM USER_INFO
-		WHERE user_code = #{userCode}
+		WHERE
+		user_code = #{userCode}
 	</select>
 
 	<update id="updateUser"
 		parameterType="com.app.dto.admin.UserList">
 		UPDATE USER_INFO
 		SET user_name = #{userName},
-		user_email = #{userEmail},
+		user_email =
+		#{userEmail},
 		user_nickname = #{userNickname},
-		user_phone_num = #{userPhoneNum},
-		user_addr = #{userAddr}
-		WHERE user_code = #{userCode}
+		user_phone_num =
+		#{userPhoneNum},
+		user_addr = #{userAddr},
+		user_postal_code =
+		#{userPostalCode},
+		user_addr_line = #{userAddrLine}
+		WHERE user_code =
+		#{userCode}
 	</update>
 
 	<!-- 리뷰 신고 목록 조회 -->
@@ -49,7 +61,8 @@
 		user_code AS userCode,
 		report_reason AS reportReason,
 		review_text AS reviewText,
-		review_date AS reviewDate
+		review_date AS
+		reviewDate
 		FROM USER_REVIEW
 		WHERE report_status = '1'
 	</select>
@@ -58,13 +71,171 @@
 	<update id="updateReviewReportStatus">
 		UPDATE USER_REVIEW
 		SET report_status = '2'
-		WHERE review_code = #{reviewCode}
+		WHERE
+		review_code = #{reviewCode}
 	</update>
-	
+
 	<update id="updateReviewReportStatusToZero">
-    UPDATE USER_REVIEW
-    SET report_status = '0'
-    WHERE review_code = #{reviewCode}
-</update>
+		UPDATE USER_REVIEW
+		SET report_status = '0'
+		WHERE
+		review_code = #{reviewCode}
+	</update>
+
+	<select id="findPendingAccommodations"
+		resultType="com.app.dto.admin.Accommodation">
+		SELECT acm_code AS acmCode,
+		acm_type AS acmType,
+		acm_name AS
+		acmName,
+		bsns_code AS bsnsCode,
+		acm_addr AS acmAddr,
+		acm_tel AS acmTel
+		FROM ACCOMMODATION
+		WHERE acm_reg_site = 0
+	</select>
+
+	<update id="approveAccommodation">
+		UPDATE ACCOMMODATION
+		SET acm_reg_site = 1
+		WHERE
+		acm_code = #{acmCode}
+	</update>
+
+	<update id="rejectAccommodation">
+		UPDATE ACCOMMODATION
+		SET acm_reg_site = 2
+		WHERE
+		acm_code = #{acmCode}
+	</update>
+
+	<select id="findAllAccommodations"
+		resultType="com.app.dto.admin.Accommodation">
+		SELECT acm_code AS acmCode,
+		acm_type AS acmType,
+		acm_type_name AS acmTypeName,
+		acm_name AS acmName,
+		bsns_code AS
+		bsnsCode,
+		acm_tel AS acmTel,
+		acm_addr AS acmAddr,
+		acm_reg_dt AS acmRegDt,
+		acm_status AS acmStatus,
+		acm_reg_site AS acmRegSite
+		FROM ACCOMMODATION
+	</select>
+
+	<select id="findAccommodationByCode" parameterType="int"
+		resultType="com.app.dto.admin.Accommodation">
+		SELECT acm_code AS acmCode,
+		acm_type AS acmType,
+		acm_type_name AS acmTypeName,
+		acm_name AS acmName,
+		bsns_code AS
+		bsnsCode,
+		acm_tel AS acmTel,
+		acm_addr AS acmAddr,
+		acm_reg_dt AS acmRegDt,
+		acm_status AS acmStatus,
+		acm_reg_site AS acmRegSite
+		FROM ACCOMMODATION
+		WHERE acm_code = #{acmCode}
+	</select>
+
+	<select id="findAccommodationDetailsByCode" parameterType="int"
+		resultType="com.app.dto.admin.AccommodationDetails">
+		SELECT acm_code AS acmCode,
+		acm_dtl_introduction AS
+		acmDtlIntroduction,
+		acm_dtl_notice AS acmDtlNotice,
+		acm_dtl_info AS
+		acmDtlInfo,
+		acm_dtl_usage_guide AS acmDtlUsageGuide,
+		acm_dtl_add_personnel AS acmDtlAddPersonnel,
+		acm_dtl_room_info AS
+		acmDtlRoomInfo,
+		acm_dtl_faciliteis AS acmDtlFacilities,
+		acm_dtl_parking
+		AS acmDtlParking,
+		acm_dtl_transport AS acmDtlTransport,
+		acm_dtl_benefit
+		AS acmDtlBenefit,
+		acm_dtl_surrounding_info AS acmDtlSurroundingInfo,
+		acm_dtl_guide AS acmDtlGuide,
+		acm_dtl_policy AS acmDtlPolicy,
+		acm_dtl_etc AS acmDtlEtc
+		FROM ACCOMMODATION_DETAILS
+		WHERE acm_code =
+		#{acmCode}
+	</select>
+
+	<update id="updateAccommodation"
+		parameterType="com.app.dto.admin.Accommodation">
+		UPDATE ACCOMMODATION
+		SET acm_name = #{acmName},
+		acm_addr =
+		#{acmAddr},
+		acm_tel = #{acmTel}
+		WHERE acm_code = #{acmCode}
+	</update>
+
+	<update id="updateAccommodationDetails"
+		parameterType="com.app.dto.admin.AccommodationDetails">
+		UPDATE ACCOMMODATION_DETAILS
+		SET acm_dtl_introduction =
+		#{acmDtlIntroduction},
+		acm_dtl_notice = #{acmDtlNotice},
+		acm_dtl_info =
+		#{acmDtlInfo},
+		acm_dtl_usage_guide = #{acmDtlUsageGuide},
+		acm_dtl_add_personnel = #{acmDtlAddPersonnel},
+		acm_dtl_room_info =
+		#{acmDtlRoomInfo},
+		acm_dtl_faciliteis = #{acmDtlFacilities},
+		acm_dtl_parking = #{acmDtlParking},
+		acm_dtl_transport =
+		#{acmDtlTransport},
+		acm_dtl_benefit = #{acmDtlBenefit},
+		acm_dtl_surrounding_info = #{acmDtlSurroundingInfo},
+		acm_dtl_guide =
+		#{acmDtlGuide},
+		acm_dtl_policy = #{acmDtlPolicy},
+		acm_dtl_etc =
+		#{acmDtlEtc}
+		WHERE acm_code = #{acmCode}
+	</update>
+
+	<select id="findUserByEmailAndPassword"
+		parameterType="com.app.dto.admin.UserList"
+		resultType="com.app.dto.admin.UserList">
+		SELECT user_code AS userCode,
+		user_type AS userType,
+		user_email AS userEmail,
+		user_pw AS userPw,
+		user_nickname AS
+		userNickname,
+		user_name AS userName,
+		user_rsd_reg_num AS userRsdRegNum,
+		user_phone_num AS userPhoneNum,
+		user_addr AS userAddr,
+		user_reg_dt AS
+		userRegDt,
+		user_status AS userStatus,
+		user_postal_code AS
+		userPostalCode,
+		user_addr_line AS userAddrLine
+		FROM user_info
+		WHERE
+		user_email = #{userEmail} AND user_pw = #{userPw} AND user_type =
+		'ADM'
+	</select>
+
+	<update id="setPendingAccommodation">
+		UPDATE ACCOMMODATION
+		SET acm_reg_site = 0
+		WHERE acm_code = #{acmCode}
+	</update>
+
+
 
 </mapper>
