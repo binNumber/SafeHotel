@@ -41,6 +41,14 @@
 		AND user_nickname = #{userNickname}
 	</select>
 	
+	<!-- DupCheck로 유저 검색 -->
+	<select id="findUserByDupCheck" parameterType="MypageSearchNickname" resultType="User">
+		SELECT * FROM user_info
+		WHERE user_nickname = #{nickname}
+		AND user_code = #{userCode}
+		AND user_status != '1'
+	</select>
+	
 	<!-- 유저코드로 유저 검색 -->
 	<select id="findUserByUserCode" parameterType="int" resultType="User">
 		SELECT * FROM user_info

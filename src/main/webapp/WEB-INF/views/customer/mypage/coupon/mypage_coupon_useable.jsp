@@ -53,10 +53,15 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/review">내가 쓴 리뷰 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a
+						href="/mypage/useableCoupon">쿠폰함 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -65,8 +70,10 @@
 					<h1>받은 쿠폰 확인</h1>
 
 					<div class="coupon-container">
-						<div class="coupon-status status-select" onclick="location.href='/mypage/useableCoupon'">사용 가능</div>
-						<div class="coupon-status" onclick="location.href='/mypage/usedCoupon'">사용 완료</div>
+						<div class="coupon-status status-select"
+							onclick="location.href='/mypage/useableCoupon'">사용 가능</div>
+						<div class="coupon-status"
+							onclick="location.href='/mypage/usedCoupon'">사용 완료</div>
 					</div>
 
 					<div class="couponbox-container">
@@ -74,8 +81,9 @@
 						<div class="coupon-box">
 							<div>
 								<h2>호텔 30% 할인</h2>
-								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
-									<span class="coupon-status-text">30일 남음</span>
+								<p>
+									사용 기간 : 2024/08/07 ~ 2024/09/01 <span
+										class="coupon-status-text">30일 남음</span>
 								</p>
 							</div>
 							<div>
@@ -94,48 +102,9 @@
 						<div class="coupon-box">
 							<div>
 								<h2>호텔 30% 할인</h2>
-								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
-									<span class="coupon-status-text">30일 남음</span>
-								</p>
-							</div>
-							<div>
-								<p>50,000원 이상 결제 시 사용 가능</p>
-								<p>최대 20,000원 할인</p>
 								<p>
-									사용처 : 호텔 <span>|</span> <span class="readMore">자세히 보기 <i
-										class="fa-solid fa-chevron-right"></i></span>
-								</p>
-							</div>
-							<div class="coupon-btn">
-								<button type="button">사용하기</button>
-							</div>
-						</div>
-						
-						<div class="coupon-box">
-							<div>
-								<h2>호텔 30% 할인</h2>
-								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
-									<span class="coupon-status-text">30일 남음</span>
-								</p>
-							</div>
-							<div>
-								<p>50,000원 이상 결제 시 사용 가능</p>
-								<p>최대 20,000원 할인</p>
-								<p>
-									사용처 : 호텔 <span>|</span> <span class="readMore">자세히 보기 <i
-										class="fa-solid fa-chevron-right"></i></span>
-								</p>
-							</div>
-							<div class="coupon-btn">
-								<button type="button">사용하기</button>
-							</div>
-						</div>
-						
-						<div class="coupon-box">
-							<div>
-								<h2>호텔 30% 할인</h2>사용할 수 있는
-								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
-									<span class="coupon-status-text">30일 남음</span>
+									사용 기간 : 2024/08/07 ~ 2024/09/01 <span
+										class="coupon-status-text">30일 남음</span>
 								</p>
 							</div>
 							<div>
@@ -151,13 +120,53 @@
 							</div>
 						</div>
 
+						<div class="coupon-box">
+							<div>
+								<h2>호텔 30% 할인</h2>
+								<p>
+									사용 기간 : 2024/08/07 ~ 2024/09/01 <span
+										class="coupon-status-text">30일 남음</span>
+								</p>
+							</div>
+							<div>
+								<p>50,000원 이상 결제 시 사용 가능</p>
+								<p>최대 20,000원 할인</p>
+								<p>
+									사용처 : 호텔 <span>|</span> <span class="readMore">자세히 보기 <i
+										class="fa-solid fa-chevron-right"></i></span>
+								</p>
+							</div>
+							<div class="coupon-btn">
+								<button type="button">사용하기</button>
+							</div>
+						</div>
+
+						<div class="coupon-box">
+							<div>
+								<h2>호텔 30% 할인</h2>
+								사용할 수 있는
+								<p>
+									사용 기간 : 2024/08/07 ~ 2024/09/01 <span
+										class="coupon-status-text">30일 남음</span>
+								</p>
+							</div>
+							<div>
+								<p>50,000원 이상 결제 시 사용 가능</p>
+								<p>최대 20,000원 할인</p>
+								<p>
+									사용처 : 호텔 <span>|</span> <span class="readMore">자세히 보기 <i
+										class="fa-solid fa-chevron-right"></i></span>
+								</p>
+							</div>
+							<div class="coupon-btn">
+								<button type="button">사용하기</button>
+							</div>
+						</div>
 					</div>
-
-
 				</div>
 			</div>
-
 		</div>
 	</div>
+	<script src="/js/customer/customer_mypage_coupon.js"></script>
 </body>
 </html>

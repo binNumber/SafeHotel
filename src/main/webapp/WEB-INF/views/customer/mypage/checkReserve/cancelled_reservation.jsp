@@ -78,7 +78,7 @@
 								width="160px" height="160px">
 							<div class="reserve-text-container">
 								<div>
-									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
+									<p><a href="/mypage/checkReservation/reservationInfo?rsvtCode=${reservation. rsvtCode}">예약번호 : ${reservation.rsvtCode} | 예약 취소</a></p>
 									<h2>${reservation.acmName}</h2>
 								</div>
 								<h3>${reservation.roomName} · ${reservation.totalNight}박
@@ -91,13 +91,11 @@
 								</div>
 							</div>
 						</div>
-
 					</c:forEach>
-					
 				</div>
 			</div>
-
 		</div>
 	</div>
+	<script src="/js/customer/customer_mypage_reservation.js"></script>
 </body>
 </html>

@@ -53,10 +53,14 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/review">내가 쓴 리뷰 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i
+							class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 			<div class="pwcheck_content">
@@ -71,5 +75,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="/js/customer/customer_mypage_checkPw.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-//카테고리 사이드바 관련 스크립트
 document.addEventListener("DOMContentLoaded", function() {
 	// 사이드바 열기 버튼 클릭 이벤트
 	const iconBtn = document.getElementById("icon-btn");
@@ -73,8 +72,36 @@ function execDaumPostcode() {
 	}).open();
 }
 
-
 $(document).ready(function() {
+
+	// 주민등록번호 포맷팅 함수
+	const formatSSN = (value) => {
+		value = value.replace(/\D/g, ""); // 숫자 이외의 문자 제거
+		if (value.length > 6) {
+			value = value.slice(0, 6) + "-" + value.slice(6, 13);
+		}
+		return value;
+	};
+
+	// 주민등록번호 입력 시 포맷 적용
+	$('input[name="userRsdRegNum"]').on('input', function() {
+		let value = $(this).val();
+		value = formatSSN(value);
+		$(this).val(value);
+	}).on('keydown', function(event) {
+		if (event.key === "Backspace" || event.key === "Tab" || event.key === "ArrowLeft" || event.key === "ArrowRight") {
+			return;
+		}
+		if (!/\d/.test(event.key)) {
+			event.preventDefault();
+		}
+	}).on('input', function() {
+		// 주민등록번호는 최대 14자 (6+1+7)로 제한
+		let value = $(this).val().replace(/\D/g, "");
+		if (value.length > 13) {
+			$(this).val(formatSSN(value.slice(0, 13)));
+		}
+	});
 
 	// 핸드폰 번호 포맷팅 함수
 	const formatPhone = (value) => {
@@ -105,6 +132,17 @@ $(document).ready(function() {
 		}
 	});
 
+	// 이메일 검사
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	$('input[name="userEmail"]').on('input', function() {
+		const email = $(this).val();
+		if (!emailRegex.test(email)) {
+			$('#emailError').text('이메일 형식에 맞지 않습니다. 형식에 맞게 작성해주세요. ex)yeogigaja123@example.com');
+		} else {
+			$('#emailError').text('');
+		}
+	});
+
 	// 비밀번호 검사
 	const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
 	$('input[name="userPw"]').on('input', function() {
@@ -128,29 +166,39 @@ $(document).ready(function() {
 	});
 
 	// 실시간 오류 메시지 제거
-	$(' input[name="userNickname"], input[name="userPhoneNum"], input[name="userPostalCode"]').on('input', function() {
-		const inputText = $(this).attr('userNickname');
-		
-		if (inputText === 'userNickname') {
-			$('#nicknameMessage').text('');
-		} else if (inputText === 'userPhoneNum') {
+	$('input[name="userName"], input[name="userPhoneNum"], input[name="userRsdRegNum"], input[name="userPostalCode"], input[name="userNickname"]').on('input', function() {
+		const name = $(this).attr('name');
+		if (name === 'userName') {
+			$('#nameError').text('');
+		} else if (name === 'userPhoneNum') {
 			$('#phoneNumError').text('');
-		} else if (inputText === 'userPostalCode') {
+		} else if (name === 'userRsdRegNum') {
+			$('#regNumError').text('');
+		} else if (name === 'userPostalCode') {
 			$('#addressError').text('');
+		} else if (name === 'userNickname') {
+			$('#nicknameMessage').text('');
 		}
 	});
 
 	// 폼 제출 시 유효성 검사
-	$('#modifyForm').on('submit', function(event) {
+	$('#signupForm').on('submit', function(event) {
 		let isValid = true;
 
 		// 모든 오류 메시지 초기화
 		$('.error').text('');
-		
-		// 닉네임 검사
-		let userNickname = $('input[name="userNickname"]').val();
-		if (!userNickname) {
-			$('#nicknameError').text('닉네임을 입력해주세요.');
+
+		// 이름 검사
+		let userName = $('input[name="userName"]').val().trim();
+		if (!userName) {
+			$('#nameError').text('이름을 입력해주세요.');
+			isValid = false;
+		}
+
+		// 이메일 검사
+		let userEmail = $('input[name="userEmail"]').val();
+		if (!userEmail) {
+			$('#emailError').text('이메일을 입력해주세요.');
 			isValid = false;
 		}
 
@@ -175,11 +223,25 @@ $(document).ready(function() {
 			isValid = false;
 		}
 
+		// 주민번호 검사
+		let userRsdRegNum = $('input[name="userRsdRegNum"]').val();
+		if (!userRsdRegNum) {
+			$('#regNumError').text('주민번호를 입력해주세요.');
+			isValid = false;
+		}
+
 		// 주소 검사
 		let userPostalCode = $('input[name="userPostalCode"]').val();
 		let userAddr = $('input[name="userAddr"]').val();
 		if (!userPostalCode || !userAddr) {
 			$('#addressError').text('주소를 입력해주세요.');
+			isValid = false;
+		}
+
+		// 닉네임 검사
+		let userNickname = $('input[name="userNickname"]').val();
+		if (!userNickname) {
+			$('#nicknameError').text('닉네임을 입력해주세요.');
 			isValid = false;
 		}
 
@@ -196,16 +258,18 @@ $(document).ready(function() {
 
 	//닉네임 중복 클릭되었을 때
 	$('#btn_checkDupId').click(function() {
+
 		//input에 입력된 값들 가져오기
-		let userNickname = $('input[name="userNickname"]').val();
+		let userName = $('input[name="userName"]').val();
+		let userEmail = $('input[name="userEmail"]').val();
 		let userPw = $('input[name="userPw"]').val();
 		let userPwCHeck = $('input[name="userPwCheck"]').val();
 		let userPhoneNum = $('input[name="userPhoneNum"]').val();
+		let userRsdRegNum = $('input[name="userRsdRegNum"]').val();
 		let userPostalCode = $('input[name="userPostalCode"]').val();
 		let userAddr = $('input[name="userAddr"]').val();
 		let userAddrLine = $('input[name="userAddrLine"]').val();
-
-		console.log(userNickname);
+		let userNickname = $('input[name="userNickname"]').val();
 
 		if (!userNickname.trim()) { //값이 없을 경우
 			alert('닉네임을 입력해주세요.');
@@ -213,21 +277,28 @@ $(document).ready(function() {
 			return;
 		}
 
+		console.log(userName);
+		console.log(userEmail);
 		console.log(userPw);
 		console.log(userPwCHeck);
 		console.log(userPhoneNum);
+		console.log(userRsdRegNum);
 		console.log(userPostalCode);
 		console.log(userAddr);
 		console.log(userAddrLine);
+		console.log(userNickname);
 
 		let requestJsonData = {
-			'userNickname': userNickname,
+			'userName': userName,
+			'userEmail': userEmail,
 			'userPw': userPw,
 			'userPwCHeck': userPwCHeck,
 			'userPhoneNum': userPhoneNum,
+			'userRsdRegNum': userRsdRegNum,
 			'userPostalCode': userPostalCode,
 			'userAddr': userAddr,
-			'userAddrLine': userAddrLine
+			'userAddrLine': userAddrLine,
+			'userNickname': userNickname
 		}
 
 		console.log(requestJsonData);
@@ -237,7 +308,7 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:8080/mypage/isNicknameDuplicate",
+			url: "http://localhost:8080/usersignup/isNicknameDuplicate",
 			headers: {
 				"Content-type": "application/json;charset:UTF-8"
 			},

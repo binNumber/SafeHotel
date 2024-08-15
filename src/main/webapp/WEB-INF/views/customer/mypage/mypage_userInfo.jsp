@@ -9,6 +9,7 @@
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_userInfo.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -74,18 +75,22 @@
 							<h4>닉네임</h4>
 							<input type="text" name="userNickname" value="${user.userNickname}"
 									class="nickname">
-							<button type="button" class="check-btn" onclick="location.href='/usersignup/isNicknameAvailable'">중복확인</button>
-							<p id="nicknameMessage" class="display-none"></p>
+							<button type="button" class="check-btn" id="btn_checkDupId">중복확인</button>
+							<p id="nicknameMessage" class="errormsg"></p>
+							<p id="nicknameError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="pw modifyinfo">
 							<h4>비밀번호</h4>
 							<input type="password" name="userPw"
 								placeholder="8자 이상 비밀번호를 입력해주세요.">
+								<p id="pwError" class="errormsg color-red"></p>
 						</div>
 						<div class="pw modifyinfo">
 							<h4>비밀번호 확인</h4>
 							<input type="password" placeholder="위 비밀번호와 동일한 비밀번호 입력">
+							<p id="pwCheckError" class="errormsg color-red"></p>
+							<p id="phoneNumError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="phone_num modifyinfo">
@@ -117,6 +122,7 @@
 										</c:choose>
 									>
 							</div>
+							<p id="addressError" class="errormsg color-red"></p>
 						</div>
 
 						<button type="submit" class="btn-modify">수정하기</button>
@@ -133,6 +139,6 @@
 		</div>
 	</div>
 	
-	<script src="/js/customer/mypage_userInfo.js"></script>
+	<script src="/js/customer/customer_mypage_userInfo.js" async></script>
 </body>
 </html>

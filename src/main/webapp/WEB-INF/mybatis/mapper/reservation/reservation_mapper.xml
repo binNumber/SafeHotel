@@ -49,7 +49,7 @@
         	TO_CHAR(rv.rsvt_pament_date, 'YYYY/MM/DD HH24:MI') rsvt_pament_date, rv.rsvt_room_amount rsvt_room_amount,
         	rv.rsvt_discount rsvt_discount, rv.rsvt_payment_info rsvt_payment_info, rv.rsvt_payment_amount rsvt_payment_amount,
         	rv.user_code user_code, rv.rsvt_guest_name rsvt_guest_name, rv.rsvt_guest_tel rsvt_guest_tel,
-        	rv.rsvt_status rsvt_status, acm.acm_name acm_nmae, r.room_name || ' ' || r.room_type AS room_name,
+        	rv.rsvt_status rsvt_status, acm.acm_name acm_name, r.room_name || ' ' || r.room_type AS room_name,
         	img.acc_img_code img_code, img.acc_img_origin_name img_origin_name,
         	img.acc_img_save_name img_save_name, img.acc_img_extension img_extension, img.acc_img_url img_url
         FROM RESERVATION rv

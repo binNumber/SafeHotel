@@ -217,14 +217,20 @@ body {
 }
 
 #userinfo-container input {
-	margin-top: 0px;
-	margin-bottom: 20px;
 	width: 300px;
 	height: 50px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
 	padding: 0 15px;
 	font-size: 16px;
+}
+
+#postcode {
+	margin-bottom : 10px;
+}
+
+#modifyForm > div {
+	margin-top: 20px;
 }
 
 #userinfo-container h1 {
@@ -280,4 +286,26 @@ body {
 	font-weight: bold;
 	margin-left: 10px;
 	cursor: pointer;
+}
+
+#nicknameMessage {
+	margin-top : 5px;
+	font-weight : normal;
+}
+
+.errormsg {
+	margin-top : 5px;
+	font-weight : normal;
+	font-size : 15px;
+	text-align : left;
+}
+
+/* 유저 회원가입 기입 시 오류가 있는 경우 */
+.color-red {
+	color : red;
+}
+
+/* 유저 회원가입 기입 시 오류가 있는 경우 */
+.color-blue {
+	color : blue;
 }

@@ -168,7 +168,7 @@
 						<table>
 							<tr>
 								<th>예약 번호</th>
-								<th>${reservation.rsvtCode } <span><i class="fa-solid fa-copy"></i>
+								<th><a>${reservation.rsvtCode } <span><i class="fa-solid fa-copy"></i>
 										예약번호 복사</span>
 								</th>
 							</tr>
@@ -249,11 +249,25 @@
 
 					</div>
 
-					<div id="reserve-modify-btn">
-						<button type="button" id="modify-reservation-popup-btn">예약자 정보 수정하기</button>
-						<button type="button">예약 취소</button>
-					</div>
-
+					<c:choose>
+					<c:when test="${reservation.rsvtStatus == 1}">
+						<div class="reserve-modify-btn">
+							<button type="button" id="modify-reservation-popup-btn">예약자 정보 수정하기</button>
+							<button type="button" onclick="location.href='/mypage/checkReservation/cancel?rsvtCode=${reservation.rsvtCode}'">예약 취소</button>
+						</div>
+					</c:when>
+					<c:when test="${reservation.rsvtStatus == 3}">
+						<div class="reserve-modify-btn">
+							<button type="button">취소 내역</button>
+							<button type="button">다시 예약</button>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="reserve-modify-btn-complete">
+							<button type="button">다시 예약</button>
+						</div>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 

@@ -16,8 +16,6 @@ CREATE TABLE USER_INFO(
     PRIMARY KEY (user_code, user_email, user_rsd_reg_num)
 );
 
-
-
 SELECT * FROM USER_INFO;
 
 COMMIT;
@@ -143,6 +141,11 @@ WHERE rsvt_code = '20240813-00001';
 Drop table reservation;
 
 SELECT * FROM RESERVATION;
+
+UPDATE reservation
+SET rsvt_status = 1
+WHERE rsvt_code = '20240814-00005';
+
 
 commit;
 

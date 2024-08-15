@@ -150,14 +150,11 @@
 								<button type="button">사용하기</button>
 							</div>
 						</div>
-
 					</div>
-
-
 				</div>
 			</div>
-
 		</div>
 	</div>
+	<script src="/js/customer/customer_mypage_coupon.js"></script>
 </body>
 </html>

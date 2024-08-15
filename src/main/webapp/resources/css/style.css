@@ -873,6 +873,10 @@ background-color: #3480ff;
 	width: 20%;
 }
 
+.namecheck input {
+	margin-top : 10px;
+}
+
 .nickname {
 	width: 75%;
     height: 50px;
@@ -886,15 +890,17 @@ background-color: #3480ff;
 	margin-top: 10px;
     width: 100%;
     height: 50px;
-    margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid lightgray;
     padding: 0 15px;
     font-size: 16px;
 }
 
+#signupForm > div {
+	margin-bottom : 20px;
+}
+
 .nicknamesigninfo {
-	margin-top: 10px;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -913,6 +919,23 @@ background-color: #3480ff;
 
 .gender input{
 	margin: 10px 0;
+}
+
+.errormsg {
+	margin-top : 5px;
+	font-weight : normal;
+	font-size : 15px;
+	text-align : left;
+}
+
+/* 유저 회원가입 기입 시 오류가 있는 경우 */
+.color-red {
+	color : red !important;
+}
+
+/* 유저 회원가입 기입 시 오류가 있는 경우 */
+.color-blue {
+	color : blue !important;
 }
 
 /* -- 자바스크립트 class add/remove로 사용하기 위한 css -- */

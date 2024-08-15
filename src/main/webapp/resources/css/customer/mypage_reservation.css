@@ -282,6 +282,11 @@ body {
 	justify-content: space-between;
 }
 
+.reserve-text-container a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit;        /* 부모 요소의 색상 상속 */
+}
+
 .reserve-text-container p {
 	font-size: 15px;
 	font-weight: normal;
@@ -363,11 +368,11 @@ body {
 	margin-bottom: 10px;
 }
 
-#reserve-modify-btn {
+.reserve-modify-btn {
 	display: flex;
 }
 
-#reserve-modify-btn button {
+.reserve-modify-btn button {
 	width: 50%;
 	height: 50px;
 	background-color: #1273E4;
@@ -380,7 +385,20 @@ body {
 	margin-top: 20px;
 }
 
-#reserve-modify-btn button:first-child {
+.reserve-modify-btn-complete button {
+	width: 100%;
+	height: 50px;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.reserve-modify-btn button:first-child {
 	margin-right: 20px;
 }
 
@@ -488,6 +506,11 @@ body {
 
 .fa-regular.fa-image {
 	margin-right : 10px;
+}
+
+.acm-info-text a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit;        /* 부모 요소의 색상 상속 */
 }
 
 /* -- 리뷰 작성용 이미지 이벤트 css -- */

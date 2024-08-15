@@ -6,17 +6,25 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.app.dto.api.ApiResponse;
+import com.app.dto.api.ApiResponseHeader;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
+import com.app.dto.user.UserSignupDupCheckRequest;
 import com.app.service.user.UserService;
 
 
@@ -114,83 +122,87 @@ public class LoginController {
 
 	//회원가입 액션
 	@PostMapping("/usersignup")
-	public String userSingupAction(User user,
-			HttpSession session ,Model model) { //회원가입 정보 DB에 저장
+	public String userSingupAction(@Valid @ModelAttribute User user,
+			Model model, HttpSession session) { //회원가입 정보 DB에 저장
 
-//		boolean isNicknameAvailable = false;
-//		
-//		if(session.getAttribute("isNicknameAvailable") != null) {
-//			isNicknameAvailable = true;
-//		}
-//		
-//		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
-//
-//			user.setUserCode(userService.getNextUserCode());
-//
-//			int result = userService.saveUserInfo(user);
-//
-//			if(result > 0) { //유저 정보 저장 성공
-//
-//				//성공메세지 전달 후 로그인 페이지로 이동
-//				model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
-//				return "redirect:/userlogin";
-//
-//			} else { //유저 정보 저장 실패
-//
-//				//실패메세지 전달 후 로그인 페이지로 이동
-//				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
-//				return "customer/signup/usersignup";
-//			}
-//
-//		} else { //중복 확인이 되지 않았거나 닉네임이 중복
-//
-//			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
-//			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
-//
-//			return "customer/signup/usersignup";
-//		}
-		user.setUserCode(userService.getNextUserCode());
-
-		int result = userService.saveUserInfo(user);
-
-		if(result > 0) { //유저 정보 저장 성공
-
-			//성공메세지 전달 후 로그인 페이지로 이동
-			model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
-			return "redirect:/userlogin";
-
-		} else { //유저 정보 저장 실패
-
-			//실패메세지 전달 후 로그인 페이지로 이동
-			model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
-			return "customer/signup/usersignup";
+		boolean isNicknameAvailable = false;
+		
+		if(session.getAttribute("isNicknameAvailable") != null) {
+			isNicknameAvailable = (boolean)session.getAttribute("isNicknameAvailable");
 		}
 		
+		if(isNicknameAvailable) { //닉네임 사용가능 -> 회원가입 계속 진행
+
+			user.setUserCode(userService.getNextUserCode());
+
+			int result = userService.saveUserInfo(user);
+
+			if(result > 0) { //유저 정보 저장 성공
+				
+				//성공메세지 전달 후 로그인 페이지로 이동
+				model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
+				
+				//세션에서 isNicknameAvailable 값 삭제
+				session.removeAttribute("isNicknameAvailable");
+				
+				return "redirect:/signupMain";
+
+			} else { //유저 정보 저장 실패
+
+				//실패메세지 전달 후 로그인 페이지로 이동
+				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
+				return "customer/signup/usersignup";
+			}
+
+		} else { //중복 확인이 되지 않았거나 닉네임이 중복
+
+			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
+			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
+
+			return "customer/signup/usersignup";
+		}		
 	}
-	
 
 	//닉네임 중복확인
+	@ResponseBody
 	@RequestMapping("/usersignup/isNicknameDuplicate")
-	public String isNicknameDuplicateAction(@RequestParam String userNickname,
-			@RequestParam Map<String, String> formData,
-			HttpSession session, Model model) {
+	public ApiResponse<String> isNicknameDuplicateAction(@RequestBody UserSignupDupCheckRequest user,
+			HttpSession session) {
 		
-		//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
-		boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
+		ApiResponse<String> response = null;
+		ApiResponseHeader header = null;
+		
+		System.out.println(user.getUserNickname());
+		String userNickname = user.getUserNickname();
+		
+		if(userNickname != null || userNickname.trim().equals("")) {//닉네임 값이 비어있지 않을 때
+		
+			//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
+			boolean isNicknameDuplicate = userService.isNicknameDuplicate(userNickname);
 
-		if(isNicknameDuplicate != false) { //중복X사용가능
-			model.addAttribute("sucessMsg", "사용 가능한 닉네임입니다.");
+			response = new ApiResponse<String>();
+			header = new ApiResponseHeader();
+			response.setBody(user.getUserNickname());
 			
-		} else {
-			model.addAttribute("falseMsg", "사용할 수 없는 닉네임입니다. 다시 입력해주세요.");
+			if(isNicknameDuplicate == false) { //중복X사용O
+				header.setResultCode("200");
+				header.setResultMessage("사용 가능한 닉네임입니다.");
+				
+				//닉네임 사용 여부에 대한 세션 값 저장
+				session.setAttribute("isNicknameAvailable", true);
+			} else { //중복O사용X
+				header.setResultCode("400");
+				header.setResultMessage("사용할 수 없는 닉네임입니다. 다시 입력해주세요.");
+				
+				//닉네임 사용 여부에 대한 세션 값 저장
+				session.setAttribute("isNicknameAvailable", false);
+			}
+			
+			response.setHeader(header);
+			
 		}
-		
-		//입력된 모든 파라미터를 세션에 저장
-		session.setAttribute("isNicknameDuplicate", isNicknameDuplicate);
-		session.setAttribute("formData", formData);
-		
-		//result 값을 파라미터를 회원가입 페이지로 리디렉션
-		return "redirect:/usersignup?isNicknameDuplicate=" + isNicknameDuplicate;
+
+		return response;
 	}
 	
 	//회원탈퇴
