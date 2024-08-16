@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.app.dao.user.UserDAO;
 import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
+import com.app.dto.user.MypageSearchNickname;
+import com.app.dto.user.MypageUserInfoDupCheckRequest;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.user.UserService;
@@ -53,6 +55,20 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public boolean isNicknameDuplicate(MypageSearchNickname searchNickname) {
+		// TODO Auto-generated method stub
+
+		//해당 닉네임의 유저가 있는지 검색
+		User user = userDAO.findUserByDupCheck(searchNickname);
+
+		if(user != null) { //닉네임 중복O 사용X
+			return true;
+		} else { //닉네임 중복X 사용O
+			return false;
+		}
+	}
+
 	//다음 유저 번호 불러오기(유저코드 생성)
 	@Override
 	public int getNextUserCode() {
@@ -77,20 +93,31 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int updateUserInfo(User user) {
 		// TODO Auto-generated method stub
-		
+
 		int result = userDAO.updateUserInfo(user);
-		
+
 		return result;
 	}
 
+	//아이디 기반으로 유저 정보 확인
 	@Override
 	public User findUserById(String id) {
 		return userDAO.findUserById(id);
 	}
 
+	//유저 정보 수정
 	@Override
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
 		return userDAO.modifyUser(bsnsUserUpdateReq);
 	}
 
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)
+	@Override
+	public int updateUserStatusByUserCode(int userCode) {
+		// TODO Auto-generated method stub
+
+		int result = userDAO.updateUserStatusByUserCode(userCode);
+
+		return result;
+	}
 }

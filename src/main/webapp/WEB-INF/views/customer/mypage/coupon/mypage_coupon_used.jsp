@@ -10,10 +10,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet"
+<link href="/css/customer/mypage_coupon.css" rel="stylesheet"
 	type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -56,7 +56,7 @@
 					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a href="/mypage/coupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -65,8 +65,8 @@
 					<h1>받은 쿠폰 확인</h1>
 
 					<div class="coupon-container">
-						<div class="coupon-status">사용 가능</div>
-						<div class="coupon-status">사용 완료</div>
+						<div class="coupon-status" onclick="location.href='/mypage/useableCoupon'">사용 가능</div>
+						<div class="coupon-status status-select" onclick="location.href='/mypage/usedCoupon'">사용 완료</div>
 					</div>
 
 					<div class="couponbox-container">
@@ -133,7 +133,7 @@
 						
 						<div class="coupon-box">
 							<div>
-								<h2>호텔 30% 할인</h2>
+								<h2>호텔 30% 할인</h2>사용할 수 있는
 								<p>사용 기간 : 2024/08/07 ~ 2024/09/01
 									<span class="coupon-status-text">30일 남음</span>
 								</p>
@@ -150,15 +150,11 @@
 								<button type="button">사용하기</button>
 							</div>
 						</div>
-
 					</div>
-
-
 				</div>
 			</div>
-
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
+	<script src="/js/customer/customer_mypage_coupon.js"></script>
 </body>
 </html>

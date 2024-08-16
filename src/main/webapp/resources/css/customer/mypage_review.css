@@ -1,0 +1,656 @@
+@charset "UTF-8";
+
+/* ------- top 설정 ------- */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* a {
+	text-decoration: none;
+}
+
+body, html {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.nav-top {
+	display: flex;
+	justify-content: space-between;
+	height: 80px;
+	width: 90%;
+	margin: 0 auto;
+	align-items: center;
+	border-bottom: 1px solid lightgray;
+}
+
+.nav-top-left img {
+	width: 30px;
+	height: auto;
+}
+
+.nav-top-left {
+	width: 17%;
+}
+
+.nav-top-right {
+	width: 17%;
+}
+
+.hidenav {
+	position: fixed;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background-color: #fff;
+	overflow-x: hidden;
+	transition: 0.3s;
+	z-index: 25;
+}
+
+.hidenav.show {
+	left: 0;
+}
+
+.hidenavcontent {
+	margin-top: 100px;
+}
+
+.hidenavcontent ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hidenavcontent ul li {
+	padding: 8px 16px;
+}
+
+.hidenavcontent ul li a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: black;
+}
+
+.subcategories {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories.show {
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories li {
+	opacity: 0;
+}
+
+.category {
+	cursor: pointer;
+}
+
+.nav-top-right button {
+	width: 120px;
+	height: 50px;
+	background-color: transparent;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.nav-top-right button:hover {
+	background-color: lightgray;
+	border: 1px solid lightgray;
+	cursor: pointer;
+}
+
+.nav-top-center a {
+	font-family: 'SUIT-Regular';
+	font-weight: normal;
+	font-style: normal;
+}
+
+#success-login {
+	display: flex;
+}
+
+#mypage-btn {
+	width: 100px;
+	margin-right: 3px;
+}
+
+#logout-btn {
+	width: 80px;
+}
+
+/* ------- top 설정 ------- */
+
+
+/* -----mypage sidebar 설정-----*/
+.main {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: 30px auto;
+}
+
+.mypage-sidebar {
+	width: 350px;
+	font-size: 20px;
+	margin-right: 30px;
+}
+
+.mypage-sidebar ul {
+	list-style-type: none;
+	/*여기 배경이 투명해야 hover 정상 적용*/
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.mypage-sidebar li {
+	width: 100%;
+	height: 70px;
+	padding: 0 20px;
+	border: 1px solid lightgray;
+}
+
+.mypage-sidebar a {
+	height: 100%;
+	color: black;
+	text-decoration: none;
+	margin: auto 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mypage-sidebar li:first-child {
+	border-radius: 10px 10px 0 0;
+}
+
+/* 마지막 li 요소에서 border-bottom 제거 */
+.mypage-sidebar li:last-child {
+	border-radius: 0 0 10px 10px;
+}
+
+.mypage-sidebar li:hover {
+	cursor: pointer;
+	background-color: lightgray;
+	color: white;
+}
+
+/* -----mypage sidebar 설정-----*/
+
+
+/* -- review 페이지 css -- */
+.review_content {
+	width: 100%;
+	padding: 0 20px;
+}
+
+.review-container {
+	width: 100%;
+	height: 50px;
+	border-bottom: 2px solid lightgray;
+	margin: 20px 0;
+	display: flex;
+	font-size: 20px;
+	display: flex;
+}
+
+.review-box {
+	width: 100%;
+	/* height: 45vw; */
+	padding: 35px;
+	margin: 30px 0;
+	border-radius: 10px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-text-container {
+	width: 100%;
+	height: 100%;
+	
+	display : flex;
+	flex-direction : column;
+	justify-content : space-between;
+}
+
+.review-text-container h4 {
+	color: gray;
+	font-weight: normal;
+	margin-top: 4px;
+	margin-bottom: 10px;
+}
+
+.review-text-box {
+	margin: 5px 0;
+	font-size: 17px;
+	font-weight: normal;
+	overflow: hidden; /* 넘치는 부분을 숨김 */
+	transition: max-height 0.3s ease;
+	
+	margin : 20px 0;
+}
+
+.review-text-box.expanded {
+	max-height: none; /* 확장된 상태에서 높이 제한 없음 */
+}
+
+.more-text {
+	font-weight: bold;
+	font-size: 16px;
+	margin: 10px 0;
+	opacity: 80%;
+	cursor: pointer;
+}
+
+.review-btn button {
+	width: 120px;
+	height: 50px;
+	background-color: #EBEBEB;
+	border: 1px solid #EBEBEB;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.reply-box {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	
+	display : flex;
+}
+
+.reply-line {
+	width: 4vw;
+	height: 3vw;
+	border-left: 2px solid gray;
+	border-bottom: 2px solid gray;
+	margin: 0 20px;
+	margin-left: 40px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.reply-text-container {
+	width: 100%;
+	height: 150px;
+	padding: 30px;
+	background-color: #EBEBEB;
+	border-radius: 10px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	vertical-align: top;
+}
+
+.reply-text-container h3, .reply-text-container h4 {
+	display: inline-block;
+}
+
+.reply-text-container h4 {
+	font-weight: normal;
+}
+
+.reply-text-container p {
+	font-size: 17px;
+	font-weight: normal;
+}
+
+.reply-text-container div {
+	margin-bottom: 10px;
+}
+
+/* -- 리뷰 이미지 이벤트 미적용 css -- */
+.review-img-container {
+	width: 80%;
+	/* margin: 0 auto; */
+	position: relative;
+}
+
+.review-imgsection {
+	width: 100%;
+	/* margin: 0 auto; */
+	position: relative;
+}
+
+.review-img-sectionpage {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.review-img-box {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
+	width: calc((100% - 20px)* 2/2);
+}
+
+.review-img {
+	width: calc(( 100% - 20px)/2);
+	flex-shrink: 0;
+}
+
+.review-img img {
+	width: 100%;
+	border-radius: 10px;
+	height: auto;
+}
+
+/* --- 리뷰 이미지 이벤트 css ---- */
+.review-img-event-container {
+    position: relative; /* 버튼을 절대 위치로 배치하기 위해 필요 */
+    overflow: hidden; /* 슬라이드가 컨테이너를 넘어가지 않도록 설정 */
+}
+
+.review-eventsection {
+	width: calc(100% - 100px);
+	margin: 0 auto;
+	position: relative;
+}
+
+.review-sectionpage {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.review-img-slides {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
+	width: calc(( 100% - 20px)* 2/2);
+}
+
+.review-event.list {
+	width: calc(( 100% - 20px)/2);
+	flex-shrink: 0;
+}
+
+.review-event.list img {
+	width: 100%;
+	border-radius: 10px;
+	height: auto;
+}
+
+.review-btn_sectionpage {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 10;
+}
+
+.review-btn_sectionpage.prev {
+	left: -40px;
+	top: 50%;
+}
+
+.review-btn_sectionpage.next {
+	right: -40px;
+	top: 50%;
+}
+
+.review-btn_sectionpage button{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: #ddd;
+	font-size: 20px;
+	border: none;
+}
+
+/* -- 리뷰작성 팝업창 -- */
+#write-review-popup {
+	position: fixed; /* 화면에 고정 */
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000; /* 팝업이 다른 요소들 위에 보이도록 */
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#write-review-container {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center;
+}
+
+#write-review-box {
+	width: 90vw;
+	/* height: 70vw; */
+	border-radius: 10px;
+	background-color: white;
+	opacity: 100%;
+	padding: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#write-review-text-container {
+	width: 100%
+}
+
+#write-review-info h4 {
+	color: gray;
+	font-weight: normal;
+	margin-top: 4px;
+	margin-bottom: 10px;
+}
+
+#write-review-container-cancel {
+	width: 10px;
+	opacity: 1;
+}
+
+#icon-cancel {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#write-review-box h1 {
+	margin-bottom: 10px;
+}
+
+#write-review-box {
+	margin: auto 0;
+}
+
+#write-review-box hr {
+	opacity: 30%;
+	margin: 30px 0;
+}
+
+#wirte-review-form {
+	width: 100%;
+	height: 20%;
+}
+
+#reviewText {
+	all: unset;
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	overflow: hidden;
+	margin-top: 20px;
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+
+#reviewText-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-write {
+	width: 100%;
+	height: 50px;
+	border: 0px;
+	background-color: #1273E4;
+	border-radius: 10px;
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	background-color: #1273E4;
+	
+	margin : 15px 0;
+}
+
+.file-upload-container {
+	
+	width : 100%;
+}
+.file-upload-container button {
+	width : 170px;
+	height : 50px;
+	
+	border : 0px;
+	border : 1px solid #1273E4;
+	border-radius : 10px;
+	
+	text-align : center;
+	
+	background-color : white;
+
+	font-weight : bold;
+	font-size : 20px;
+
+	color : #1273E4;
+	
+	margin-right : 10px;
+}
+
+/* -- 리뷰 작성용 이미지 이벤트 css -- */
+.eventsection {
+	width: calc(100% - 100px);
+	margin: 0 auto;
+	position: relative;
+	/* margin-top: 30px; */
+}
+
+#review-picture-list {
+	margin-top: 20px;
+}
+
+#review-picture-list h3 {
+	margin-bottom: 10px;
+}
+
+.eventsection p {
+	margin-bottom: 20px;
+}
+
+.sectionpage {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.slides {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
+	width: calc(( 100% - 40px)* 3/3);
+}
+
+.event.list {
+	width: calc(( 100% - 40px)/3);
+	flex-shrink: 0;
+}
+
+.event.list img {
+	width: 100%;
+	border-radius: 10px;
+	height: auto;
+}
+
+.event.list button {
+	width: 100%;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	background-color: #888888;
+}
+
+.btn_sectionpage {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 10;
+}
+
+.btn_sectionpage.prev {
+	left: -30px;
+	top: 80px;
+}
+
+.btn_sectionpage.next {
+	right: -30px;
+	top: 80px;
+}
+
+.btn_sectionpage button {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: #ddd;
+	font-size: 20px;
+	border: none;
+}
+
+/* -----js용 css------ */
+.display-none {
+	display:none;
+}
+
+
+/* ---평점 관련 css--- */
+.color-gold {
+	color : gold;
+}

@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
+import com.app.dto.user.MypageSearchNickname;
+import com.app.dto.user.MypageUserInfoDupCheckRequest;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -15,6 +17,9 @@ public interface UserDAO {
 	
 	//닉네임 기반으로 유저 검색
 	public User findUserByNickname(String usernickname);
+	
+	//닉네임 기반으로 입력된 유저코드를 제외한 유저 검색
+	public User findUserByDupCheck(MypageSearchNickname searchNickname);
 	
 	//유저코드 기반으로 유저 검색
 	public User findUserByUserCode(int userCode);
@@ -28,9 +33,12 @@ public interface UserDAO {
 	//유저 회원정보 업데이트
 	public int updateUserInfo(User user);
 
+	//아이디 기반으로 유저 정보 확인
 	public User findUserById(String id);
 
+	//유저 정보 수정
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq);
 
-
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)
+	public int updateUserStatusByUserCode(int userCode);
 }

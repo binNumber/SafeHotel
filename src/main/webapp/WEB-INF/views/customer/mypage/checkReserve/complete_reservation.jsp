@@ -10,10 +10,77 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet"
+<link href="/css/customer/mypage_reservation.css" rel="stylesheet"
 	type="text/css">
 </head>
-<body onload="hideAllSections()">
+<body>
+	<div id="write-review-popup" class="display-none">
+		<div id="write-review-container">
+			<div id="write-review-box">
+
+				<h1>리뷰 작성</h1>
+
+				<div id="write-review-container-cancel">
+					<div id="icon-cancel">
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+				</div>
+
+				<div id="write-review-text-container">
+					<div id="write-review-info">
+
+						<div>
+							<h2 id="review-acm-name"></h2>
+							<h4>
+								<span class="star-rating-view"> <span class="star"
+									onclick="rating(1)" onmouseover="mouseoverStar(1)"
+									onmouseout="mouseoutStar(1)"> &#9733; </span> <span
+									class="star" onclick="rating(2)" onmouseover="mouseoverStar(2)"
+									onmouseout="mouseoutStar(2)"> &#9733; </span> <span
+									class="star" onclick="rating(3)" onmouseover="mouseoverStar(3)"
+									onmouseout="mouseoutStar(3)"> &#9733; </span> <span
+									class="star" onclick="rating(4)" onmouseover="mouseoverStar(4)"
+									onmouseout="mouseoutStar(4)"> &#9733; </span> <span
+									class="star" onclick="rating(5)" onmouseover="mouseoverStar(5)"
+									onmouseout="mouseoutStar(5)"> &#9733; </span>
+								</span>
+							</h4>
+						</div>
+
+						<div id="review-picture-list">
+							<div>
+								<h3>업로드할 이미지 목록</h3>
+							</div>
+
+							<div id="review-img-preview"></div>
+
+						</div>
+
+						<div id="wirte-review-form">
+							<form action="/mypage/savetReview" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="rsvtCode" id="rsvtCode">
+								<input type="hidden" name="userCode" id="userCode">
+								<input type="hidden" name="acmCode" id="acmCode">
+								<input type="hidden" name="roomCode" id="roomCode">
+								<input type="hidden" name="rating" id="rating">
+								<textarea id="reviewText" name="reviewText" placeholder="리뷰를 작성해주세요."></textarea>
+
+								<div class="file-upload-container">
+									<div class="file-upload-btn">
+										<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+									</div>
+									<input type="file" name="reviewImgFile" id="fileInput"
+										accept="image/*" multiple />
+								</div>
+								<button type="submit" class="btn-write">작성하기</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -42,7 +109,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -60,7 +127,7 @@
 							class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i
 							class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/coupon">쿠폰함 <i
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i
 							class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
@@ -73,7 +140,7 @@
 						<div class="reserve-status"
 							onclick="location.href='/mypage/checkReservation/confirmed'">예약
 							완료</div>
-						<div class="reserve-status"
+						<div class="reserve-status status-select"
 							onclick="location.href='/mypage/checkReservation/complete'">이용
 							완료</div>
 						<div class="reserve-status"
@@ -89,21 +156,25 @@
 								width="160px" height="160px">
 							<div class="reserve-text-container">
 								<div>
-									<p>예약번호 : ${reservation.rsvtCode} | 예약 완료</p>
-									<h2>${reservation.acmNmae}</h2>
+									<p><a href="/mypage/checkReservation/reservationInfo?rsvtCode=${reservation. rsvtCode}">예약번호 : ${reservation.rsvtCode} | 이용 완료</a></p>
+									<h2>${reservation.acmName}</h2>
 								</div>
-								<h3>${reservation.roomName} · ${reservation.totalNight}박
+								<h3>${reservation.roomName}·${reservation.totalNight}박
 									${reservation.totalDays}일</h3>
-								<p class="checkin-text">체크인 : ${reservation.checkInDate} | 체크아웃 :
-									${reservation.checkOutDate}</p>
+								<p class="checkin-text">체크인 : ${reservation.rsvtChekInDate}
+									| 체크아웃 : ${reservation.rsvtChekOutDate}</p>
 								<div class="reserve-btn">
-									<button type="button" onclick="location.href=''">리뷰 작성</button>
-									<button type="button" onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약 상세</button>
+									<c:if test="${reservation.rsvtReviewStatus == '0' }">
+										<button type="button"
+											onclick="writeReviewBtn('${reservation.rsvtCode }', ${reservation.acmCode },
+												'${reservation.acmName}', ${reservation.userCode }, ${reservation. roomCode})"
+											class="write-review-popup-btn">리뷰 작성</button>
+									</c:if>
+									<button type="button"
+										onclick="location.href='/mypage/checkReservation/reservationInfo?rsvtCode=${reservation.rsvtCode}'">예약
+										상세</button>
 									<button type="button" onclick="location.href=''">다시 예약</button>
 								</div>
-							</div>
-							<div class="moreItems">
-								<i class="fa-solid fa-ellipsis"></i>
 							</div>
 						</div>
 
@@ -114,6 +185,6 @@
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
+	<script src="/js/customer/customer_mypage_reservation.js"></script>
 </body>
 </html>

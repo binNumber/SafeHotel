@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ApiResponseHeader {
 	
-	String resultCode;		//00 03 99 
+	String resultCode;		//200 성공 400 실패
 	String resultMessage;
 }

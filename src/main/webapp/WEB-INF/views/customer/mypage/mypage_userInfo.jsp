@@ -6,15 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>유저 MY PAGE</title>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/customer_mypage.css" rel="stylesheet" type="text/css">
+<link href="/css/customer/mypage_userInfo.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body onload="hideAllSections()">
+<body>
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
 				<div class="nav-top-left">
-					<a href="#" id="icon-btn"><img src="../../img/icon1.png" /></a>
+					<a href="#" id="icon-btn"><img src="/img/icon1.png" /></a>
 					<div class="hidenav" id="sidebar">
 						<div class="hidenavcontent">
 							<button id="close-btn" class="close-btn">X</button>
@@ -38,7 +40,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -52,13 +54,13 @@
 					<li class="backgorundColor-gray"><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
 					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 			<div class="userinfo-content">
 				<div id="userinfo-container">
 					<h1>회원정보 확인 및 변경</h1>
-					<form action="/ModifyuserInfo" method="post" class="modifycontent" id="modifyForm">
+					<form action="/mypage/ModifyuserInfo" method="post" class="modifycontent" id="modifyForm">
 						<div class="email modifyinfo">
 							<h4>이메일</h4>
 							<input type="email" value="${user.userEmail}" disabled>
@@ -73,18 +75,22 @@
 							<h4>닉네임</h4>
 							<input type="text" name="userNickname" value="${user.userNickname}"
 									class="nickname">
-							<button type="button" class="check-btn" onclick="location.href='/usersignup/isNicknameAvailable'">중복확인</button>
-							<p id="nicknameMessage" class="display-none"></p>
+							<button type="button" class="check-btn" id="btn_checkDupId">중복확인</button>
+							<p id="nicknameMessage" class="errormsg"></p>
+							<p id="nicknameError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="pw modifyinfo">
 							<h4>비밀번호</h4>
 							<input type="password" name="userPw"
 								placeholder="8자 이상 비밀번호를 입력해주세요.">
+								<p id="pwError" class="errormsg color-red"></p>
 						</div>
 						<div class="pw modifyinfo">
 							<h4>비밀번호 확인</h4>
 							<input type="password" placeholder="위 비밀번호와 동일한 비밀번호 입력">
+							<p id="pwCheckError" class="errormsg color-red"></p>
+							<p id="phoneNumError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="phone_num modifyinfo">
@@ -116,6 +122,7 @@
 										</c:choose>
 									>
 							</div>
+							<p id="addressError" class="errormsg color-red"></p>
 						</div>
 
 						<button type="submit" class="btn-modify">수정하기</button>
@@ -126,15 +133,12 @@
 				<br/><br/>
 				
 				<div id="deleteUser">
-					<p>더 이상 이용을 원치 않으신가요?<a href="">회원 탈퇴 <i class="fa-solid fa-chevron-right"></i></a></p>
+					<p>더 이상 이용을 원치 않으신가요?<a href="/userDeactivation?userCode=${user.userCode }">회원 탈퇴 <i class="fa-solid fa-chevron-right"></i></a></p>
 				</div>
 			</div>
-			
-			
-			
-			
 		</div>
 	</div>
-	<script src="/js/customer_mypage.js"></script>
+	
+	<script src="/js/customer/customer_mypage_userInfo.js" async></script>
 </body>
 </html>

@@ -1,27 +1,47 @@
 package com.app.controller.customer;
 
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.IncorrectResultSetColumnCountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.app.dto.api.ApiResponse;
+import com.app.dto.api.ApiResponseHeader;
 import com.app.dto.reservation.Reservation;
+import com.app.dto.reservation.ReservationAmount;
+import com.app.dto.reservation.ReservationGuestInfo;
+import com.app.dto.review.Review;
+import com.app.dto.review.ReviewImg;
+import com.app.dto.review.WriteReviewForm;
 import com.app.dto.user.ModifyUser;
+import com.app.dto.user.MypageSearchNickname;
 import com.app.dto.user.User;
+import com.app.dto.user.UserSignupDupCheckRequest;
+import com.app.dto.user.MypageUserInfoDupCheckRequest;
 import com.app.service.reservation.ReservationService;
+import com.app.service.review.ReviewService;
 import com.app.service.user.UserService;
+import com.app.utiil.ImgFileManager;
 import com.app.utiil.LoginManager;
 
 @Controller
@@ -34,26 +54,13 @@ public class MypageController {
 	@Autowired
 	ReservationService reservationService;	//예약 서비스
 
+	@Autowired
+	ReviewService reviewService;	//리뷰 서비스
+
 	//user mypage
 	@GetMapping("/checkPw")
-	public String CheckPw(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session, Model model) {
+	public String CheckPw() {
 
-		//비밀번호 확인을 이미 완료한 경우
-		boolean isCheckPw = false;
-
-		if(session != null && session.getAttribute("isCheckPw") != null) {
-			isCheckPw = true;
-		}
-
-		if(isCheckPw) {	//isCheckPw가 true인 경우
-
-			//알림창 띄우고 유저 정보 확인 페이지로 이동
-			model.addAttribute("checkMsg", "비밀번호 확인이 이미 완료되었습니다.");
-			return "redirect:/mypage/userInfo";
-		}
-
-		//문제 없으면 비밀번호 확인 페이지로 이동
 		return "customer/mypage/mypage_pwcheck";
 	}
 
@@ -63,7 +70,7 @@ public class MypageController {
 	public String checkPwAction(@RequestParam String userPw,
 			HttpSession session) {
 
-		User user = (User)session.getAttribute("user");
+		User user = LoginManager.getUserBySession(session);
 
 		if(user.getUserPw().equals(userPw)) { //비밀번호 일치
 
@@ -92,54 +99,99 @@ public class MypageController {
 
 	//유저 정보 변경 액션
 	@PostMapping("/ModifyuserInfo")
-	public String userModifyAction(ModifyUser modifyUser,
-			HttpSession session, Model model,
-			HttpServletRequest request) {
+	public String userModifyAction(@Valid @ModelAttribute ModifyUser modifyUser,
+			HttpSession session, Model model) {
 
-		User user;
-
-		if(session.getAttribute("user") != null) {
-
-			//세션에서 유저정보 받기
-			user = (User)session.getAttribute("user");
-		} else {
-
-			//LoginManager에서 userCode 받아오기
-			int userCode = LoginManager.getUserCodeByCookie(request);
-
-			user = userService.findUserByUserCode(userCode);
+		boolean isNicknameAvailable = false;
+		
+		if(session.getAttribute("isNicknameAvailable") != null) {
+			isNicknameAvailable = (boolean)session.getAttribute("isNicknameAvailable");
 		}
-
-		//modifyUser 정보로 user 값 변경
-		if(modifyUser.getUserPw() != null && !modifyUser.getUserPw().trim().isEmpty()) {
-			//비밀번호는 입력 안 할 수 있음
-			//비밀번호 값이 없으면 기존 비밀번호 그대로
+		
+		if(isNicknameAvailable) { //닉네임 사용 가능 -> 회원가입 계속 진행
+			//세션에서 유저정보 받기(비밀번호를 변경하지 않는 경우를 상정해서 값을 받아옴)
+			User user = (User)session.getAttribute("user");
+			
+			//modifyUser 정보로 user 값 변경
 			user.setUserPw(modifyUser.getUserPw());
-		}
-		user.setUserNickname(modifyUser.getUserNickname());
-		user.setUserPhoneNum(modifyUser.getUserPhoneNum());
-		user.setUserAddr(modifyUser.getUserAddr());
+			user.setUserNickname(modifyUser.getUserNickname());
+			user.setUserPhoneNum(modifyUser.getUserPhoneNum());
+			user.setUserAddr(modifyUser.getUserAddr());
 
-		int result = userService.updateUserInfo(user);
+			int result = userService.updateUserInfo(user);
 
-		if(result > 0) {//저장 완료
+			if(result > 0) {//저장 완료
 
-			model.addAttribute("succesMsg", "정보 수정이 완료되었습니다.");
+				model.addAttribute("Msg", "정보 수정이 완료되었습니다.");
 
-		} else {//저장 실패
+			} else {//저장 실패
 
-			model.addAttribute("falseMsg", "회원 정보 수정에 실패했습니다. 다시 시도해 주세요.");
+				model.addAttribute("Msg", "회원 정보 수정에 실패했습니다. 다시 시도해 주세요.");
+			}
+		} else {
+				
+			model.addAttribute("Msg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
 		}
 
 		return "customer/mypage/mypage_userInfo";
 	}
+	
+	//닉네임 중복확인
+	@ResponseBody
+	@RequestMapping("/isNicknameDuplicate")
+	public ApiResponse<String> isNicknameDuplicateAction(@RequestBody MypageUserInfoDupCheckRequest dupCheckuser,
+			HttpSession session) {
+		
+		System.out.println(dupCheckuser.getUserNickname());
+		
+		ApiResponse<String> response = null;
+		ApiResponseHeader header = null;
+		
+		if(dupCheckuser.getUserNickname() != null || dupCheckuser.getUserNickname().trim().equals("")) {
+			
+			//유저코드를 받아오기 위해 세션에서 유저값 저장
+			User user = (User)session.getAttribute("user");
+			
+			//기존의 닉네임도 사용 가능하다고 표시하기 위한 것
+			MypageSearchNickname checkNickname = new MypageSearchNickname();
+			checkNickname.setNickname(dupCheckuser.getUserNickname());
+			checkNickname.setUserCode(user.getUserCode());
+			
+			//유저 닉네임이 사용 가능한지 여부 판단(false-중복X사용O / true-중복O/사용X)
+			boolean isNicknameDuplicate = userService.isNicknameDuplicate(checkNickname);
+
+			response = new ApiResponse<String>();
+			header = new ApiResponseHeader();
+			response.setBody(user.getUserNickname());
+			
+			if(isNicknameDuplicate == false) { //중복X사용O
+				header.setResultCode("200");
+				header.setResultMessage("사용 가능한 닉네임입니다.");
+				
+				//닉네임 사용 여부에 대한 세션 값 저장
+				session.setAttribute("isNicknameAvailable", true);
+			} else { //중복O사용X
+				header.setResultCode("400");
+				header.setResultMessage("사용할 수 없는 닉네임입니다. 다시 입력해주세요.");
+				
+				//닉네임 사용 여부에 대한 세션 값 저장
+				session.setAttribute("isNicknameAvailable", false);
+			}
+			
+			response.setHeader(header);
+
+		}
+
+		return response;
+	}
+
 
 	//숙소 예약 정보 확인 //예약된 숙소 리스트 확인
 	@GetMapping("/checkReservation/confirmed")
 	public String confiremdeReservation(HttpSession session, Model model) {
 
 		//세션에서 유저값 받아와서 저장
-		User user = (User)session.getAttribute("user");
+		User user = LoginManager.getUserBySession(session);
 
 		int userCode = user.getUserCode();
 
@@ -170,7 +222,7 @@ public class MypageController {
 	public String completeReservation(HttpSession session, Model model) {
 
 		//세션에서 유저값 받아와서 저장
-		User user = (User)session.getAttribute("user");
+		User user = LoginManager.getUserBySession(session);
 
 		int userCode = user.getUserCode();
 
@@ -201,7 +253,7 @@ public class MypageController {
 	public String mypageCheckReserve(HttpSession session, Model model) {
 
 		//세션에서 유저값 받아와서 저장
-		User user = (User)session.getAttribute("user");
+		User user = LoginManager.getUserBySession(session);
 
 		int userCode = user.getUserCode();
 
@@ -221,53 +273,206 @@ public class MypageController {
 			}
 		}
 
+		//예약코드 기반으로 
+
 		//예약 완료된 리스트만 정보 전달
 		model.addAttribute("cancelledList", cancelledList);
 
 		return "customer/mypage/checkReserve/cancelled_reservation";
 	}
 
+	//예약 취소
 	@RequestMapping("/checkReservation/cancel")
 	public String reserveCancellAction(@RequestParam String rsvtCode, Model model) {
-		
+
 		//예약 코드 기반으로 예약상태(rsvtStatus) 3으로 변경
 		int result = reservationService.updateRsvtStatusByRsvtCode(rsvtCode);
-		
+
 		if(result > 0) { //상태 변경 완료
-			model.addAttribute("successMsg", "예약이 정상적으로 취소되었습니다.");
-			
+			model.addAttribute("Msg", "예약이 정상적으로 취소되었습니다.");
+
 			//예약 취소 확인창으로 이동
 			return "redirect:/mypage/checkReservation/cancelled";
-			
+
 		} else { //상태변경 실패
 			model.addAttribute("예약 취소 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
-			
+
 			return "redirect:/mypage/checkReservation/complete";
 		}
 	}
-	
+
+	//예약 상세정보 확인
 	@GetMapping("/checkReservation/reservationInfo")
 	public String reservationInfo(@RequestParam String rsvtCode, Model model) {
-		
-//		Reservation reservation = reservationService.findResrvationByRsvtCode(rsvtCode);
-		
+
+		Reservation reservation = reservationService.findResrvationByRsvtCode(rsvtCode);
+
+		if(reservation != null) {
+			//int값의 숫자를 천단위로 끊어서 금액으로 표시(ex. 80,000)
+			NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+
+			//int 값으로 된 금액들을 String 형태로 변경해서 금액 DTO에 저장
+			ReservationAmount rsvtAmount = new ReservationAmount();
+			rsvtAmount.setRsvtRoomAmount(numberFormat.format(reservation.getRsvtRoomAmount()));	//객실금액
+			rsvtAmount.setRsvtPaymentAmount(numberFormat.format(reservation.getRsvtPaymentAmount()));	//총 금액
+
+			//할인금액
+			if(reservation.getRsvtDiscount() == 0) {
+				rsvtAmount.setRsvtDiscountAmount("0");
+			} else {
+
+				String discountAmount = ((int)(((reservation.getRsvtPaymentAmount()/reservation.getRsvtDiscount())/100.0) * 100)) + "";
+
+				rsvtAmount.setRsvtRoomAmount(discountAmount);
+			}
+
+			//할인금액 = 총 금액/할인금액
+
+			model.addAttribute("reservation", reservation);
+			model.addAttribute("rsvtAmount", rsvtAmount);
+		} else {
+			model.addAttribute("errorMsg", "예약 정보를 찾을 수 없습니다. 다시 한 번 확인해 주세요.");
+		}
+
+
+
 		return "customer/mypage/checkReserve/checkReserve_reservationInfo";
 	}
-	
-	//리뷰작성
+
+	//예약자 정보 변경
+	@PostMapping("/checkReservation/modifyGusetInfo")
+	public String modifyGuestInfo(ReservationGuestInfo guestInfo) {
+
+		//예약자 정보 변경
+		int result = reservationService.updateGuestInfo(guestInfo);
+
+		if(result >0) {
+			System.out.println("예약자 변경이 완료되었습니다.");
+		} else {
+			System.out.println("예약자 변경에 실패했습니다. 다시 시도해주세요.");
+		}
+
+		return "redirect:/mypage/checkReservation/reservationInfo?rsvtCode="+guestInfo.getRsvtCode();
+
+	}
+
+	//유저가 작성한 리뷰 리스트 확인
 	@GetMapping("/review")
 	public String mypageReview(HttpSession session, Model model) {
 
+		//세션에서 유저 값 받아와서 적용
+		User user = (User)session.getAttribute("user");
+
+		//유저 코드 기반으로 리뷰 리스트 불러오기
+		int userCode = user.getUserCode();
+
+		System.out.println(userCode);
+
+		List<Review> reviewList = reviewService.findReviewListByUserCode(userCode);
+
+		if(reviewList != null && !reviewList.isEmpty()) {
+
+			for(Review rv : reviewList) {
+
+				List<ReviewImg> rvImgList = reviewService.findReviewImgListByReviewCode(rv.getReviewCode());
+
+				rv.setReviewImgList(rvImgList);
+			}
+
+			model.addAttribute("reviewList", reviewList);
+		}
 
 		return "customer/mypage/mypage_review";
 	}
 
+	//작성한 리뷰 내용을 DB로 전달
+	@RequestMapping("/savetReview")
+	//@PostMapping("/savetReview")
+	public String saveReview(@ModelAttribute WriteReviewForm reviewForm, Model model) {
+
+		System.out.println(reviewForm.getUserCode());
+		//form으로 값을 보내는 건 가능한데, userCode 값을 제외한 모든 값을 받아오지 못함
+		System.out.println(reviewForm.getReviewText());
+		System.out.println(reviewForm.getRsvtCode());
+		System.out.println(reviewForm.getRating());
+
+		//form에서 받아온 리뷰 정보 저장
+		Review review = new Review();
+		int reviewCode = reviewService.getNextReviewCode();
+		review.setReviewCode(reviewCode);
+		review.setUserCode(reviewForm.getUserCode());
+		review.setRsvtCode(reviewForm.getRsvtCode());
+		review.setAcmCode(reviewForm.getAcmCode());
+		review.setRoomCode(reviewForm.getRoomCode());
+		review.setRating(reviewForm.getRating());
+		review.setReviewText(reviewForm.getReviewText());
+
+		System.out.println(review.getReviewCode());
+		System.out.println(review.getReviewText());
+		System.out.println(review.getRsvtCode());
+
+		//리뷰 이미지 저장
+		MultipartFile[] reviewImgArr = reviewForm.getReviewImgFile();
+		if(review != null && reviewImgArr != null) {
+
+			for(MultipartFile img : reviewImgArr) {
+				try {
+					//업로드한 파일 ImgFileManager를 통해 실제 폴더에 저장 + reviewImg 객체에 저장
+					ReviewImg reviewImg = ImgFileManager.createFileName(img, review);
+
+					//리뷰이미지 코드 가져오기
+					int reviewImgCode = reviewService.getNextReviewImgCode();
+					reviewImg.setReviewCode(reviewImgCode);
+
+					int imgresult = reviewService.saveReviewImg(reviewImg);
+
+					if(imgresult > 0) {
+						System.out.println(reviewImg.getReviewImgCode() + "이미지 저장 완료");
+					} else {
+						System.out.println(reviewImg.getReviewImgCode() + "이미지 저장 실패");
+					}
+
+				} catch (IllegalStateException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			//유저 리뷰 DB에 저장
+			int reviewInsert = reviewService.saveUserReview(review);
+
+			if(reviewInsert > 0) { //저장성공
+
+				//리뷰가 저장되어서 reservation의 리뷰 작성 status 상태 변경
+				int result = reservationService.updateRsvtReviewStatus(review.getRsvtCode());
+
+				if(result > 0) {
+					System.out.println("리뷰가 저장되었습니다.");
+					return "redirect:/mypage/review";
+				}
+			} else { //저장실패
+				System.out.println("리뷰 저장에 실패했습니다. 다시 시도해주세요.");
+			}
+		}
+		
+		return "redirect:/mypage/checkReservation/complete";
+
+	}
+
 	//쿠폰 확인
-	@GetMapping("/coupon")
-	public String mypageCoupon(HttpSession session, Model model) {
+	@GetMapping("/useableCoupon")
+	public String mypageUseableCoupon(HttpSession session, Model model) {
 
 
-		return "customer/mypage/mypage_coupon";
+		return "customer/mypage/coupon/mypage_coupon_useable";
+	}
+
+	//쿠폰 확인
+	@GetMapping("/usedCoupon")
+	public String mypageUseadCoupon(HttpSession session, Model model) {
+
+
+		return "customer/mypage/coupon/mypage_coupon_used";
 	}
 
 }

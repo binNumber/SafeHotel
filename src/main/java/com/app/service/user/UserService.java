@@ -3,6 +3,8 @@ package com.app.service.user;
 import javax.validation.Valid;
 
 import com.app.dto.api.BusinessUserUpdatdReq;
+import com.app.dto.user.MypageSearchNickname;
+import com.app.dto.user.MypageUserInfoDupCheckRequest;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -17,6 +19,7 @@ public interface UserService {
 	
 	//입력한 닉네임이 사용 가능한지 확인 (닉네임 중복 검색)
 	public boolean isNicknameDuplicate(String userNickname);
+	public boolean isNicknameDuplicate(MypageSearchNickname searchNickname);
 	
 	//다음 유저 번호 불러오기(유저코드 생성)
 	public int getNextUserCode();
@@ -27,7 +30,12 @@ public interface UserService {
 	//유저 회원정보 업데이트
 	public int updateUserInfo(User user);
 	
+	//아이디 기반으로 유저 정보 확인
 	public User findUserById(String id);
 
+	//유저 정보 수정
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq);
+	
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)
+	public int updateUserStatusByUserCode(int userCode);
 }

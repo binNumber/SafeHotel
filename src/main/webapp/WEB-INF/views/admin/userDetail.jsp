@@ -13,6 +13,7 @@
         <h3>관리 메뉴</h3>
         <ul>
             <li><a href="/adminpage/accommodationApproval">숙소 등록 승인</a></li>
+            <li><a href="/adminpage/accommodationList">숙소 리스트</a></li>
             <li><a href="/adminpage/userManagement">유저 관리</a></li>
             <li><a href="/adminpage/reviewReportManagement">리뷰 신고 관리</a></li>
             <li><a href="/adminpage/eventCouponManagement">이벤트/쿠폰 관리</a></li>
@@ -30,6 +31,8 @@
             <p>유저 닉네임: <input type="text" name="userNickname" value="${user.userNickname}" /></p>
             <p>유저 전화번호: <input type="text" name="userPhoneNum" value="${user.userPhoneNum}" /></p>
             <p>유저 주소: <input type="text" name="userAddr" value="${user.userAddr}" /></p>
+            <p>상세 주소: <input type="text" name="userAddrLine" value="${user.userAddrLine}" /></p>
+            <p>우편 번호: <input type="text" name="userPostalCode" value="${user.userPostalCode}" /></p>
             <p>가입 날짜: <strong>${user.userRegDt}</strong></p>
             <p>회원 상태: <strong>${user.userStatus}</strong></p>
             <button type="submit" class="btn btn-primary">수정</button>

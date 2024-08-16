@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="review_mapper">
+
+	<!-- 유저코드 기반으로 리뷰 리스트 불러오기 -->
+	<select id="findReviewListByUserCode" parameterType="int" resultType="Review">
+		SELECT ur.review_code review_code, ur.rsvt_code rsvt_code, ur.user_code user_code, ur.acm_code acm_code,
+        	ur.room_code room_code, ur.rating rating, ur.review_text review_text,
+        	TO_CHAR(ur.review_date, 'YYYY/MM/DD HH:MI') review_date, ur.reply_exists reply_exists,
+        	acm.acm_name acm_name, r.room_name || ' ' || r.room_type room_name
+		FROM user_review ur
+		INNER JOIN accommodation acm
+		ON ur.acm_code = acm.acm_code
+		INNER JOIN room r
+		ON ur.room_code = r.room_code
+		WHERE user_code = #{userCode}
+		AND report_status != 2
+		ORDER BY review_date DESC
+	</select>
+	
+	<!-- 리뷰코드 기반으로 리뷰 이미지 불러오기 -->
+	<select id="findReviewImgListByReviewCode" parameterType="int" resultType="ReviewImg">
+		SELECT * FROM review_img
+		WHERE review_code = #{reviewCode}
+	</select>
+	
+	<!-- 예약코드 기반으로 리뷰 이미지 불러오기 -->
+	<select id="findReviewImgListByRsvtCode" parameterType="String" resultType="ReviewImg">
+		SELECT * FROM review_img
+		WHERE rsvt_code = #{rsvtCode}
+	</select>
+	
+	<!-- 다음 리뷰 코드 불러오기 -->
+	<select id="getNextReviewCode" resultType="int">
+		SELECT NVL(MAX(review_code), 0)+1 new_review_code FROM user_review
+	</select>
+	
+	<!-- 다음 리뷰 이미지 코드 불러오기 -->
+	<select id="getNextReviewImgCode" resultType="int">
+		SELECT NVL(MAX(review_img_code), 0)+1 new_review_img_code FROM review_img;
+	</select>
+	
+	<!-- 유저 리뷰 DB에 insert -->
+	<insert id="saveUserReview" parameterType="Review">
+		INSERT INTO user_review
+		VALUES (#{reviewCode}, #{rsvtCode}, #{userCode}, #{acmCode}, #{roomCode},
+				#{rating}, #{reviewText}, SYSDATE, '0', '0', '')
+	</insert>
+	
+	<!-- 리뷰 이미지 정보 DB에 insert -->
+	<insert id="saveReviewImg" parameterType="ReviewImg">
+		INSERT INTO review_img
+		VALUES (#{reviewImgCode}, #{reviewCode}, #{reviewImgOriginName}, #{reviewImgSaveName},
+			#{reviewImgExtension}, #{reviewImgUrl})
+	</insert>
+	
+</mapper>

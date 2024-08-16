@@ -4,11 +4,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
+<!-- 	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@192.168.0.53:1521:orcl" />
 		<property name="username" value="scott3" />
 		<property name="password" value="tiger3" />
+	</bean> -->
+	
+	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
 	</bean>
 
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">

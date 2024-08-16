@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.app.dao.user.UserDAO;
 import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
+import com.app.dto.user.MypageSearchNickname;
+import com.app.dto.user.MypageUserInfoDupCheckRequest;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 
@@ -34,6 +36,16 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		
 		User user = sqlSessionTemplate.selectOne("user_mapper.findUserByNickname", userNickname);
+		
+		return user;
+	}
+	
+	//닉네임 기반으로 입력된 유저코드를 제외한 유저 검색
+	@Override
+	public User findUserByDupCheck(MypageSearchNickname searchNickname) {
+		// TODO Auto-generated method stub
+
+		User user = sqlSessionTemplate.selectOne("user_mapper.findUserByDupCheck", searchNickname);
 		
 		return user;
 	}
@@ -79,13 +91,25 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 
+	//아이디 기반으로 유저 정보 확인
 	@Override
 	public User findUserById(String id) {
 		return sqlSessionTemplate.selectOne("user_mapper.findUserById", id);
 	}
 
+	//유저 정보 수정
 	@Override
 	public int modifyUser(@Valid BusinessUserUpdatdReq bsnsUserUpdateReq) {
 		return sqlSessionTemplate.update("user_mapper.modifyUser", bsnsUserUpdateReq);
+	}
+
+	//유저코드 기반으로 유저 회원상태 변경(회원탈퇴)	
+	@Override
+	public int updateUserStatusByUserCode(int userCode) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.updateUserStatusByUserCode", userCode);
+		
+		return result;
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.reservation.ReservationDAO;
 import com.app.dto.reservation.Reservation;
+import com.app.dto.reservation.ReservationGuestInfo;
 import com.app.service.reservation.ReservationService;
 
 @Service
@@ -24,6 +25,16 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return reserveList;
 	}
+	
+	//예약코드 기반으로 예약정보 불러오기
+	@Override
+	public Reservation findResrvationByRsvtCode(String rsvtCode) {
+		// TODO Auto-generated method stub
+		
+		Reservation reservation = reservationDAO.findResrvationByRsvtCode(rsvtCode);
+		
+		return reservation;
+	}
 
 	//예약코드 기반으로 예약 정보 확인 후 예약상태 예약취소로 변경
 	@Override
@@ -35,4 +46,24 @@ public class ReservationServiceImpl implements ReservationService {
 		return result;
 	}
 
+	
+	//예약자 정보 변경
+	@Override
+	public int updateGuestInfo(ReservationGuestInfo guestInfo) {
+		// TODO Auto-generated method stub
+		
+		int result = reservationDAO.updateGuestInfo(guestInfo);
+		
+		return result;
+	}
+
+	//예약코드 기반으로 리뷰 작성 여부 상태를 작성 완료로 변경
+	@Override
+	public int updateRsvtReviewStatus(String rsvtCode) {
+		// TODO Auto-generated method stub
+		
+		int result = reservationDAO.updateRsvtReviewStatus(rsvtCode);
+		
+		return result;
+	}
 }

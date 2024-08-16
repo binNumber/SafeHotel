@@ -13,6 +13,7 @@
         <h3>관리 메뉴</h3>
         <ul>
             <li><a href="/adminpage/accommodationApproval">숙소 등록 승인</a></li>
+            <li><a href="/adminpage/accommodationList">숙소 리스트</a></li>
             <li><a href="/adminpage/userManagement">유저 관리</a></li>
             <li><a href="/adminpage/reviewReportManagement">리뷰 신고 관리</a></li>
             <li><a href="/adminpage/eventCouponManagement">이벤트/쿠폰 관리</a></li>

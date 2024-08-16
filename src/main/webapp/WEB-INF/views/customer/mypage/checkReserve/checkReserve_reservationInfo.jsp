@@ -10,10 +10,11 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="/css/customer_mypage.css" rel="stylesheet" type="text/css">
+<link href="/css/customer/mypage_reservation.css" rel="stylesheet"
+	type="text/css">
 </head>
-<body onload="hideAllSections()">
-	<div id="modify-reservation-popup">
+<body>
+	<div id="modify-reservation-popup" class="display-none">
 		<div id="modify-reservation-container">
 			<div id="modify-reservation-box">
 
@@ -29,17 +30,17 @@
 					<h2>숙소 정보</h2>
 
 					<div id="modify-reservation-acmInfo">
-						<h3>어반스테이 속초등대해변</h3>
+						<h3>${reservation.acmName }</h3>
 
 						<div id="modify-reserve-info">
 							<table>
 								<tr>
 									<th>일정</th>
-									<th>2024/08/09 ~ 2024/08/10 | 1박</th>
+									<th>${reservation.rsvtChekInDate} ~ ${reservation.rsvtChekOutDate}| ${reservation.totalNight }박 ${reservation.totalDays }</th>
 								</tr>
 								<tr>
 									<th>객실 정보</th>
-									<th>New Fusion Family(고급어메니티)</th>
+									<th>${reservation.roomName}</th>
 								</tr>
 							</table>
 						</div>
@@ -51,18 +52,17 @@
 					<h2>예약자 정보</h2>
 
 					<div id="reservation-modify-form">
-						<form action="" method="post">
-							<input type="hidden" name="rsvtCode" value="">
+						<form action="/mypage/checkReservation/modifyGusetInfo" method="post">
+							<input type="hidden" name="rsvtCode" value="${reservation.rsvtCode }">
 
 							<div id="reservation-modify-gustName">
 								<h3>예약자 이름</h3>
-								<input type="text" name="guestName" value="게스트 이름">
+								<input type="text" name="guestName" value="${reservation.rsvtGuestName }">
 							</div>
 
 							<div id="reservation-modify-gusttel">
 								<h3>예약자 번호</h3>
-								<input type="text" name="guestTel" value="게스트 번호"
-									class="nickname">
+								<input type="text" name="guestTel" value="${reservation.rsvtGuestTel }">
 							</div>
 
 							<button type="submit" class="btn-modify">수정하기</button>
@@ -103,7 +103,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/main">여기가자</a>
+					<a href="/">여기가자</a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -114,15 +114,10 @@
 		<div class="main">
 			<div class="mypage-sidebar">
 				<ul>
-					<li><a href="/mypage/userInfo">회원정보 변경<i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li class="backgorundColor-gray"><a
-						href="/mypage/checkReservation/confirmed">예약 내역 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/review">내가 쓴 리뷰 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
-					<li><a href="/mypage/coupon">쿠폰함 <i
-							class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/userInfo">회원정보 변경<i class="fa-solid fa-chevron-right"></i></a></li>
+					<li class="backgorundColor-gray"><a href="/mypage/checkReservation/confirmed">예약 내역 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/review">내가 쓴 리뷰 <i class="fa-solid fa-chevron-right"></i></a></li>
+					<li><a href="/mypage/useableCoupon">쿠폰함 <i class="fa-solid fa-chevron-right"></i></a></li>
 				</ul>
 			</div>
 
@@ -139,11 +134,11 @@
 
 
 					<div id="acm_info">
-						<img src="/img/accomodation_img/10 어반스테이 속초등대해변/대표사진.jpg"
+						<img src="/img/${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
 							width="180px" height="180px">
 						<div class="acm-info-text">
 							<h2>
-								<a href="">어반스테이 속초등대해변</a>
+								<a href="">${reservation.acmName }</a>
 							</h2>
 							<h3>
 								<i class="fa-solid fa-copy"></i> 주소 복사
@@ -157,11 +152,11 @@
 						<table>
 							<tr>
 								<th>일정</th>
-								<th>2024/08/09 ~ 2024/08/10 | 1박</th>
+								<th>${reservation.rsvtChekInDate } ~ ${reservation.rsvtChekOutDate }| ${reservation.totalNight }박 ${reservation.totalDays }일</th>
 							</tr>
 							<tr>
 								<th>객실 정보</th>
-								<th>New Fusion Family(고급어메니티)</th>
+								<th>${reservation.roomName }</th>
 							</tr>
 						</table>
 					</div>
@@ -173,17 +168,17 @@
 						<table>
 							<tr>
 								<th>예약 번호</th>
-								<th>20240809-00001 <span><i class="fa-solid fa-copy"></i>
+								<th><a>${reservation.rsvtCode } <span><i class="fa-solid fa-copy"></i>
 										예약번호 복사</span>
 								</th>
 							</tr>
 							<tr>
 								<th>예약자 이름</th>
-								<th>우희선</th>
+								<th>${reservation.rsvtGuestName }</th>
 							</tr>
 							<tr>
 								<th>예약자 번호</th>
-								<th>010-5472-4721</th>
+								<th>${reservation.rsvtGuestTel }</th>
 							</tr>
 						</table>
 					</div>
@@ -197,11 +192,11 @@
 								<tbody id="payment-info">
 									<tr>
 										<th>결제 일시</th>
-										<th>2024/07/20</th>
+										<th>${reservation.rsvtPamentDate }</th>
 									</tr>
 									<tr>
 										<th>결제 수단</th>
-										<th>신용/체크카드</th>
+										<th>${reservation.rsvtPaymentInfo }</th>
 									</tr>
 								</tbody>
 
@@ -221,15 +216,11 @@
 								<tbody id="amount-info">
 									<tr>
 										<th>객실 가격(1박)</th>
-										<th>88,000원</th>
+										<th>${rsvtAmount.rsvtRoomAmount }원</th>
 									</tr>
 									<tr>
-										<th>적용 쿠폰</th>
-										<th>0원</th>
-									</tr>
-									<tr>
-										<th>사용 포인트</th>
-										<th>0원</th>
+										<th>할인 금액</th>
+										<th>${rsvtAmount.rsvtDiscountAmount}원</th>
 									</tr>
 								</tbody>
 
@@ -249,7 +240,7 @@
 								<tbody id="total-amount-info">
 									<tr>
 										<th>총 결제 금액</th>
-										<th>88,000원</th>
+										<th>${rsvtAmount.rsvtPaymentAmount }</th>
 									</tr>
 								</tbody>
 
@@ -258,16 +249,30 @@
 
 					</div>
 
-					<div id="reserve-modify-btn">
-						<button type="button">예약 정보 수정하기</button>
-						<button type="button">예약 취소</button>
-					</div>
-
+					<c:choose>
+					<c:when test="${reservation.rsvtStatus == 1}">
+						<div class="reserve-modify-btn">
+							<button type="button" id="modify-reservation-popup-btn">예약자 정보 수정하기</button>
+							<button type="button" onclick="location.href='/mypage/checkReservation/cancel?rsvtCode=${reservation.rsvtCode}'">예약 취소</button>
+						</div>
+					</c:when>
+					<c:when test="${reservation.rsvtStatus == 3}">
+						<div class="reserve-modify-btn">
+							<button type="button">취소 내역</button>
+							<button type="button">다시 예약</button>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="reserve-modify-btn-complete">
+							<button type="button">다시 예약</button>
+						</div>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 
 		</div>
 	</div>
-	<script src="/js/myPageUser.js"></script>
+	<script src="/js/customer/customer_modifyReservation.js"></script>
 </body>
 </html>
