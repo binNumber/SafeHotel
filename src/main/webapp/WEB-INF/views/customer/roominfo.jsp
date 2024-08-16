@@ -175,7 +175,7 @@
 								</div>
 								<div class="listmain-remainder">
 									<h3>가격</h3>
-									<button>예약하기</button>
+									<button onclick="location.href='/reservationpage'">예약하기</button>
 								</div>
 							</div>
 							<div class="listsection-roominfo">
@@ -453,7 +453,8 @@
 					</h4>
 				</div>
 			</div>
-			<script src="js/script.js"></script>
 		</div>
+		<script src="js/script.js"></script>
+	</div>
 </body>
 </html>
