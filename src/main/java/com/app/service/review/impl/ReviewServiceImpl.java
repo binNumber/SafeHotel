@@ -85,4 +85,14 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
+	//리뷰 삭제
+	@Override
+	public int deleteReview(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = reviewDAO.deleteReview(reviewCode);
+		
+		return result;
+	}
+
 }

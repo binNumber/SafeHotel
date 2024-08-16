@@ -58,4 +58,10 @@
 			#{reviewImgExtension}, #{reviewImgUrl})
 	</insert>
 	
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM user_review
+		WHERE review_code = #{reviewCode};
+	</delete>
+	
 </mapper>

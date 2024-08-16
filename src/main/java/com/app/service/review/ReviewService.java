@@ -27,4 +27,7 @@ public interface ReviewService {
 	
 	//리뷰 이미지 DB에 저장
 	public int saveReviewImg(ReviewImg reviewImg);
+	
+	//리뷰 코드 기반으로 해당 리뷰 삭제
+	public int deleteReview(int reviewCode);
 }

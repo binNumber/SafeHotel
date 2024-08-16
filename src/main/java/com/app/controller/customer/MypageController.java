@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.dto.api.ApiResponse;
 import com.app.dto.api.ApiResponseHeader;
@@ -68,7 +69,7 @@ public class MypageController {
 	//비밀번호 체크 액션
 	@PostMapping("/checkPw")
 	public String checkPwAction(@RequestParam String userPw,
-			HttpSession session) {
+			HttpSession session, RedirectAttributes redirect) {
 
 		User user = LoginManager.getUserBySession(session);
 
@@ -76,14 +77,15 @@ public class MypageController {
 
 			//세션에 비밀번호 확인에 대한 true로 저장
 			session.setAttribute("isCheckPw", "OK");
-
-			//비밀번호 일치했다는 메세지 전달
+			
 			return "redirect:/mypage/userInfo";
 
 		} else { //비밀번호 불일치
 
 			//비밀번호가 일치하지 않는다는 경고창 띄운 후 체크페이지로 이동
-			return "customer/mypage/mypage_pwcheck";
+			redirect.addFlashAttribute("message", "비밀번호가 맞지 않습니다. 다시 확인해주세요.");
+			
+			return "redirect:/mypage/checkPw";
 		}
 	}
 
@@ -100,13 +102,16 @@ public class MypageController {
 	//유저 정보 변경 액션
 	@PostMapping("/ModifyuserInfo")
 	public String userModifyAction(@Valid @ModelAttribute ModifyUser modifyUser,
-			HttpSession session, Model model) {
+			HttpSession session, Model model, RedirectAttributes redirect) {
 
 		boolean isNicknameAvailable = false;
 		
 		if(session.getAttribute("isNicknameAvailable") != null) {
 			isNicknameAvailable = (boolean)session.getAttribute("isNicknameAvailable");
 		}
+		
+		//addFlashAttribute로 보낼 메세지
+		String msg = null;
 		
 		if(isNicknameAvailable) { //닉네임 사용 가능 -> 회원가입 계속 진행
 			//세션에서 유저정보 받기(비밀번호를 변경하지 않는 경우를 상정해서 값을 받아옴)
@@ -119,21 +124,24 @@ public class MypageController {
 			user.setUserAddr(modifyUser.getUserAddr());
 
 			int result = userService.updateUserInfo(user);
-
+			
+			
 			if(result > 0) {//저장 완료
 
-				model.addAttribute("Msg", "정보 수정이 완료되었습니다.");
+				msg = "정보 수정이 완료되었습니다.";
 
 			} else {//저장 실패
 
-				model.addAttribute("Msg", "회원 정보 수정에 실패했습니다. 다시 시도해 주세요.");
+				msg = "회원 정보 수정에 실패했습니다. 다시 시도해 주세요.";
 			}
 		} else {
 				
-			model.addAttribute("Msg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
+			msg = "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.";
 		}
+		
+		redirect.addFlashAttribute("msg", msg);
 
-		return "customer/mypage/mypage_userInfo";
+		return "redirect:/mypage/userInfo";
 	}
 	
 	//닉네임 중복확인
@@ -283,19 +291,22 @@ public class MypageController {
 
 	//예약 취소
 	@RequestMapping("/checkReservation/cancel")
-	public String reserveCancellAction(@RequestParam String rsvtCode, Model model) {
+	public String reserveCancellAction(@RequestParam String rsvtCode,
+			RedirectAttributes redirect) {
 
 		//예약 코드 기반으로 예약상태(rsvtStatus) 3으로 변경
 		int result = reservationService.updateRsvtStatusByRsvtCode(rsvtCode);
 
 		if(result > 0) { //상태 변경 완료
-			model.addAttribute("Msg", "예약이 정상적으로 취소되었습니다.");
+			
+			redirect.addFlashAttribute("msg", "예약이 정상적으로 취소되었습니다.");
 
 			//예약 취소 확인창으로 이동
 			return "redirect:/mypage/checkReservation/cancelled";
 
 		} else { //상태변경 실패
-			model.addAttribute("예약 취소 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+			
+			redirect.addFlashAttribute("msg", "예약 취소 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
 
 			return "redirect:/mypage/checkReservation/complete";
 		}
@@ -303,7 +314,8 @@ public class MypageController {
 
 	//예약 상세정보 확인
 	@GetMapping("/checkReservation/reservationInfo")
-	public String reservationInfo(@RequestParam String rsvtCode, Model model) {
+	public String reservationInfo(@RequestParam String rsvtCode, Model model,
+			RedirectAttributes redirect) {
 
 		Reservation reservation = reservationService.findResrvationByRsvtCode(rsvtCode);
 
@@ -330,26 +342,29 @@ public class MypageController {
 
 			model.addAttribute("reservation", reservation);
 			model.addAttribute("rsvtAmount", rsvtAmount);
+			
+			return "customer/mypage/checkReserve/checkReserve_reservationInfo";
 		} else {
-			model.addAttribute("errorMsg", "예약 정보를 찾을 수 없습니다. 다시 한 번 확인해 주세요.");
+			
+			redirect.addFlashAttribute("msg", "예약 정보를 찾을 수 없습니다. 다시 한 번 확인해 주세요.");
+			
+			return "redirect:/mypage/checkReservation/confirmed";
 		}
-
-
-
-		return "customer/mypage/checkReserve/checkReserve_reservationInfo";
+		
 	}
 
 	//예약자 정보 변경
 	@PostMapping("/checkReservation/modifyGusetInfo")
-	public String modifyGuestInfo(ReservationGuestInfo guestInfo) {
+	public String modifyGuestInfo(ReservationGuestInfo guestInfo,
+			RedirectAttributes redirect) {
 
 		//예약자 정보 변경
 		int result = reservationService.updateGuestInfo(guestInfo);
 
 		if(result >0) {
-			System.out.println("예약자 변경이 완료되었습니다.");
+			redirect.addFlashAttribute("msg", "예약자 변경이 완료되었습니다.");
 		} else {
-			System.out.println("예약자 변경에 실패했습니다. 다시 시도해주세요.");
+			redirect.addFlashAttribute("msg", "예약자 변경에 실패했습니다. 다시 시도해주세요.");
 		}
 
 		return "redirect:/mypage/checkReservation/reservationInfo?rsvtCode="+guestInfo.getRsvtCode();
@@ -455,14 +470,35 @@ public class MypageController {
 			}
 		}
 		
+		String rsvtCode = review.getRsvtCode();
+		
+		//예약코드 기반으로 해당 예약의 유저댓글작성 상태 변경
+		int rsvtReviewstatusResult = reservationService.updateRsvtReviewStatus(rsvtCode);
+		
 		return "redirect:/mypage/checkReservation/complete";
 
+	}
+	
+	//리뷰삭제
+	@GetMapping("/removeReview")
+	public String removeReview(@RequestParam int reviewCode,
+			RedirectAttributes redirect) {
+		
+		//리뷰 삭제
+		int result = reviewService.deleteReview(reviewCode);
+		
+		if(result > 0) {//삭제 성공
+			redirect.addFlashAttribute("msg", "리뷰가 성공적으로 삭제되었습니다.");
+		} else {//삭제 실패
+			redirect.addFlashAttribute("msg", "리뷰 삭제에 실패했습니다. 다시 시도해 주세요.");
+		}
+		
+		return "redirect:/mypage/reivew";
 	}
 
 	//쿠폰 확인
 	@GetMapping("/useableCoupon")
 	public String mypageUseableCoupon(HttpSession session, Model model) {
-
 
 		return "customer/mypage/coupon/mypage_coupon_useable";
 	}

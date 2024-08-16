@@ -13,6 +13,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_review.css" rel="stylesheet"
 	type="text/css">
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div id="write-review-popup" class="display-none">
@@ -277,9 +278,8 @@
 									더보기<i class="fa-solid fa-chevron-down"></i>
 								</div>
 								<div class="review-btn">
-									<button type="button" class="write-review-popup-btn">리뷰
-										수정</button>
-									<button type="button">리뷰 삭제</button>
+									<button type="button" class="write-review-popup-btn">리뷰 수정</button>
+									<button type="button" onclick="location.href='/mypage/removeReview?reviewCode=${review.reviewCode}'">리뷰 삭제</button>
 								</div>
 							</div>
 						</div>

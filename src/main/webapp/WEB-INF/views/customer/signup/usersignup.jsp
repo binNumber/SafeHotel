@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/style.css" />
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">

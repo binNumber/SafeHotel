@@ -12,6 +12,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_coupon.css" rel="stylesheet"
 	type="text/css">
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">

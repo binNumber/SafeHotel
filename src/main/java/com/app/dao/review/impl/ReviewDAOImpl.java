@@ -84,6 +84,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		return result;
 	}
+
+	//리뷰 삭제
+	@Override
+	public int deleteReview(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("review_mapper.deleteReview", reviewCode);
+		
+		return result;
+	}
 	
 	
 
