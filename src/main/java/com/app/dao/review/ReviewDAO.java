@@ -2,6 +2,7 @@ package com.app.dao.review;
 
 import java.util.List;
 
+import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
 
@@ -27,4 +28,10 @@ public interface ReviewDAO {
 	
 	//리뷰 이미지 DB에 저장
 	public int saveReviewImg(ReviewImg reviewImg);
+	
+	//리뷰 코드 기반으로 리뷰 검색
+	public Review findReviewByReviewCode(int reviewCode);
+	
+	//리뷰 수정
+	public int modifyReivew(ModifyReviewCondition modifyReview);
 }

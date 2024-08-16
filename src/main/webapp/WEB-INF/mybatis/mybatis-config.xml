@@ -18,6 +18,7 @@
 		
 		<typeAlias type="com.app.dto.review.Review" alias="Review"/>
 		<typeAlias type="com.app.dto.review.ReviewImg" alias="ReviewImg"/>
+		<typeAlias type="com.app.dto.review.ModifyReviewCondition" alias="ModifyReviewCondition"/>
 		
 		<typeAlias type="com.app.dto.business.Business" alias="Business"/>
 		<typeAlias type="com.app.dto.api.BusinessUserUpdatdReq" alias="BusinessUserUpdatdReq"/>

@@ -41,7 +41,7 @@
 	
 	<!-- 다음 리뷰 이미지 코드 불러오기 -->
 	<select id="getNextReviewImgCode" resultType="int">
-		SELECT NVL(MAX(review_img_code), 0)+1 new_review_img_code FROM review_img;
+		SELECT NVL(MAX(review_img_code), 0)+1 new_review_img_code FROM review_img
 	</select>
 	
 	<!-- 유저 리뷰 DB에 insert -->
@@ -58,4 +58,17 @@
 			#{reviewImgExtension}, #{reviewImgUrl})
 	</insert>
 	
+	<!-- 리뷰 코드 기반으로 리뷰 찾기 -->
+	<select id="findReviewByReviewCode" parameterType="int" resultType="Review">
+		SELECT * FROM user_review
+		WHERE review_code = #{reviewCode}
+		AND report_status = '0'
+	</select>
+	
+	<!-- 리뷰 수정 -->
+	<update id="modifyReivew" parameterType="ModifyReviewCondition">
+		UPDATE user_review
+		SET review_text = #{reviewText}
+		WHERE review_code = #{reviewCode}
+	</update>
 </mapper>

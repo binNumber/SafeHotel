@@ -12,11 +12,12 @@ import com.app.dto.review.ReviewImg;
 
 public class ImgFileManager {
 	
-	//파일 저장할 폴더 위치 - 각 resource img 위치로 변경해야 함(저장 루트가 다를 거라 각자 변경해야 함)
-	private static final String FILE_DIRECTORY_PATH = "D:/whs-workspace/safeHotel-project/SafeHotel/src/main/webapp/resources/img";
+	//파일 저장할 폴더 위치
+	private static final String FILE_DIRECTORY_PATH = "d:/fileStorage/image/";
+	
 	
 	//리뷰 이미지 저장 및 ReviewImg에 정보 저장
-	public static ReviewImg createFileName(MultipartFile imgFile, Review review) throws IllegalStateException, IOException {
+	public static ReviewImg saveFile(MultipartFile imgFile, Review review) throws IllegalStateException, IOException {
 
 		ReviewImg reviewImg = new ReviewImg();
 		
@@ -25,10 +26,10 @@ public class ImgFileManager {
 		reviewImg.setReviewImgSaveName(createSaveName());
 		reviewImg.setReviewImgExtension(extractExtension(reviewImg.getReviewImgOriginName()));
 		//리뷰코드 저장 url		ex)	/review_img/1/20240814-00003
-		reviewImg.setReviewImgUrl("/review_img/" + review.getUserCode() + "/" + review.getReviewCode());
+		reviewImg.setReviewImgUrl(FILE_DIRECTORY_PATH + "review_img/" + review.getUserCode() + "/" + review.getRsvtCode());
 		
 		//실제 파일 저장 ex) D:/whs-workspace/safeHotel-project/SafeHotel/src/main/webapp/resources/img/review_img/1/20240814-00003
-		imgFile.transferTo(new File(FILE_DIRECTORY_PATH + reviewImg.getReviewImgUrl()));
+		imgFile.transferTo(new File(reviewImg.getReviewImgUrl() + "/" + reviewImg.getReviewImgSaveName() + reviewImg.getReviewImgExtension()));
 		
 		return reviewImg;
 	}

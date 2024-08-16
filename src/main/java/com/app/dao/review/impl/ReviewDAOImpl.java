@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.dao.review.ReviewDAO;
+import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
 
@@ -81,6 +82,25 @@ public class ReviewDAOImpl implements ReviewDAO {
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.insert("review_mapper.saveReviewImg", reviewImg);
+		
+		return result;
+	}
+
+	@Override
+	public Review findReviewByReviewCode(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		Review review = sqlSessionTemplate.selectOne("review_mapper.findReviewByReviewCode", reviewCode);
+		
+		return review;
+	}
+
+	//리뷰 수정
+	@Override
+	public int modifyReivew(ModifyReviewCondition modifyReview) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("review_mapper.modifyReivew", modifyReview);
 		
 		return result;
 	}

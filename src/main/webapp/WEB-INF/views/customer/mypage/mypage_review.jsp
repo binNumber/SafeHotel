@@ -13,6 +13,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_review.css" rel="stylesheet"
 	type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div id="write-review-popup" class="display-none">
@@ -31,102 +32,52 @@
 					<div id="write-review-info">
 
 						<div>
-							<h2>${review.acmName }</h2>
+							<h2 id="acm_name"></h2>
 							<h4>
-								<c:choose>
-									<c:when test="${review.rating == 5}">
-										<span> <span class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-										<span class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-										<span class="color-gold">&#9733;</span> </span>
-										| 작성날짜 : ${review.reviewDate}
-    								</c:when>
-									<c:when test="${review.rating == 4}">
-										<span> <span class="color-gold">&#9733;</span> <span
-											class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-											<span class="color-gold">&#9733;</span> <span>&#9734;</span>
-										</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-									<c:when test="${review.rating == 3}">
-										<span> <span class="color-gold">&#9733;</span> <span
-											class="color-gold">&#9733;</span> <span class="color-gold">&#9733;</span>
-											<span>&#9734;</span> <span>&#9734;</span>
-										</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-									<c:when test="${review.rating == 2}">
-										<span> <span class="color-gold">&#9733;</span> <span
-											class="color-gold">&#9733;</span> <span>&#9734;</span> <span>&#9734;</span>
-											<span>&#9734;</span>
-										</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-									<c:when test="${review.rating == 1}">
-										<span> <span class="color-gold">&#9733;</span> <span>&#9734;</span>
-											<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
-										</span> | 작성날짜 : ${review.reviewDate}
-    										</c:when>
-									<c:otherwise>
-										<span> <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>
-											<span>&#9734;</span> <span>&#9734;</span>
-										</span> | 작성날짜 : ${review.reviewDate}
-    										</c:otherwise>
-								</c:choose>
+								<span id="reviewRating"></span> | 작성날짜 : <span id="reviewDate"></span>
 							</h4>
 						</div>
 					</div>
 
 					<div id="review-picture-list">
+
 						<div>
 							<h3>리뷰 이미지 목록</h3>
 						</div>
 
-						<c:choose>
-							<c:when test="${fn:length(review.reviewImgList) > 2}">
-								<div class="eventsection">
-							<div class="btn_sectionpage prev">
-								<button class="prev">&lt;</button>
-							</div>
-							<div class="sectionpage">
-								<div class="slides">
-									<c:forEach var="img" items="${review.reviewImgList }">
-										<div class="event list">
-											<img src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
-											<button type="button" onclick="location.href=''">사진 삭제</button>
-										</div>
-									</c:forEach>
-								</div>
-							</div>
-							<div class="btn_sectionpage next">
-								<button class="next">&gt;</button>
-							</div>
+						<div id="review-img"></div>
+
+
+
+						<div>
+							<h3>업로드할 이미지 목록</h3>
 						</div>
-							</c:when>
-						
-						</c:choose>
+
+						<div id="review-img-preview"></div>
+
 					</div>
 
 				</div>
 
 				<div id="wirte-review-form">
-					<form action="" method="post">
-						<textarea id="reviewText" name="reviewText">${review.reviewText}</textarea>
-						<input type="hidden" name="reviewCode" id="reviewCode" value="${review.reviewCode }">
-						<button type="submit" class="btn-write">작성하기</button>
-					</form>
+					<form action="/mypage/modifyReview" method="post">
+						<textarea id="reviewText" name="reviewText"></textarea>
+						<input type="hidden" name="reviewCode" id="reviewCode">
 
-					<form action="" method="post" class="file-upload-container">
-						<button type="submit">
-							<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
-						</button>
-						<input type="file" name="fileInput" id="fileInput" accept="image/*" multiple />
-						<input type="hidden" name="reviewCode">
-						<input type="hidden" name="reviewImgOriginName" id="reviewImgOriginName">
-						<input type="hidden" name="reviewImgExtension" id="reviewImgExtension">
-						<input type="hidden" name="reviewImgUrl">
+						<div class="file-upload-container">
+							<div class="file-upload-btn">
+								<i class="fa-regular fa-image"></i> <span>사진 업로드</span>
+							</div>
+							<input type="file" name="reviewImgFile" id="fileInput"
+								accept="image/*" multiple />
+						</div>
+						<button type="submit" class="btn-write">작성하기</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="container">
 		<div class="header">
 			<div class="nav-top">
@@ -241,7 +192,7 @@
 														<c:forEach var="img" items="${review.reviewImgList }">
 															<div class="review-event list">
 																<img
-																	src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
+																	src="${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
 															</div>
 														</c:forEach>
 													</div>
@@ -262,7 +213,7 @@
 														<c:forEach var="img" items="${review.reviewImgList }">
 															<div class="review-img">
 																<img
-																	src="/img/${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
+																	src="${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
 															</div>
 														</c:forEach>
 													</div>
@@ -277,8 +228,8 @@
 									더보기<i class="fa-solid fa-chevron-down"></i>
 								</div>
 								<div class="review-btn">
-									<button type="button" class="write-review-popup-btn">리뷰
-										수정</button>
+									<button type="button" class="write-review-popup-btn"
+										data-review-code="${review.reviewCode}">리뷰 수정</button>
 									<button type="button">리뷰 삭제</button>
 								</div>
 							</div>

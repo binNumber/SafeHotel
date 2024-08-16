@@ -74,7 +74,7 @@
 
 						<div class="reserve-box">
 							<img
-								src="/img/${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
+								src="${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
 								width="160px" height="160px">
 							<div class="reserve-text-container">
 								<div>

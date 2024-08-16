@@ -273,6 +273,10 @@ body {
 	cursor: pointer;
 }
 
+.review-btn {
+	display : flex;
+}
+
 .review-btn button {
 	width: 120px;
 	height: 50px;
@@ -281,6 +285,8 @@ body {
 	border-radius: 10px;
 	cursor: pointer;
 	font-weight: bold;
+	
+	margin-right : 10px;
 }
 
 .reply-box {
@@ -561,87 +567,93 @@ body {
 }
 
 /* -- 리뷰 작성용 이미지 이벤트 css -- */
-.eventsection {
-	width: calc(100% - 100px);
-	margin: 0 auto;
-	position: relative;
-	/* margin-top: 30px; */
+#review-img-preview {
+	width : 100%;
+	height : auto;
+	overflow :auto;
 }
 
-#review-picture-list {
-	margin-top: 20px;
+#review-img {
+	width : 100%;
+	height : 250px;
+	overflow :auto;
+	display:flex;
+	white-space: nowrap; /* 내부 요소들이 가로로 나열됩니다 */
+	
+	margin-bottom : 10px;
 }
 
-#review-picture-list h3 {
-	margin-bottom: 10px;
+.review.preview-image {
+	display : flex;
+	flex-direction : column;
 }
 
-.eventsection p {
-	margin-bottom: 20px;
+.preview-image {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px;
+    
+    border-radius : 10px;
 }
 
-.sectionpage {
-	display: flex;
-	position: relative;
-	overflow: hidden;
+.preview-image img {
+	max-width: 200px;
+    max-height: 200px;
+    
+    border-radius : 10px;
+}
+
+.file-upload-container {
+	
+	width : 100%;
+	
+	display : flex;
+	align-items : center;
+	
+	margin-top : 10px;
+}
+
+.delete-img {
+	width : 200px;
+	height : auto;
+	
+	padding : 10px 0;
+	
+	border-radius : 10px;
+	border : 0px;
+	
+	font-size : 15px;
+	font-weight : bold;
+	
+	margin-top : 5px;
+}
+
+.file-upload-btn {
+	width : 150px;
+	height : 30px;
+	
+	border : 0px;
+	border : 1px solid #1273E4;
+	border-radius : 10px;
+	
+	text-align : center;
+	
+	background-color : white;
+
+	font-weight : bold;
+	font-size : 17px;
+
+	color : #1273E4;
+	
+	margin-right : 10px;
+	
+	display : flex;
+	justify-content : center;
 	align-items: center;
-	justify-content: space-around;
-	width: 100%;
-	margin: 0 auto;
 }
 
-.slides {
-	display: flex;
-	transition: transform 0.5s ease-in-out;
-	gap: 20px;
-	width: calc(( 100% - 40px)* 3/3);
-}
-
-.event.list {
-	width: calc(( 100% - 40px)/3);
-	flex-shrink: 0;
-}
-
-.event.list img {
-	width: 100%;
-	border-radius: 10px;
-	height: auto;
-}
-
-.event.list button {
-	width: 100%;
-	height: 30px;
-	border-radius: 10px;
-	border: none;
-	color: white;
-	background-color: #888888;
-}
-
-.btn_sectionpage {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	z-index: 10;
-}
-
-.btn_sectionpage.prev {
-	left: -30px;
-	top: 80px;
-}
-
-.btn_sectionpage.next {
-	right: -30px;
-	top: 80px;
-}
-
-.btn_sectionpage button {
-	border-radius: 50%;
-	width: 30px;
-	height: 30px;
-	background-color: #ddd;
-	font-size: 20px;
-	border: none;
+.fa-regular.fa-image {
+	margin-right : 10px;
 }
 
 /* -----js용 css------ */

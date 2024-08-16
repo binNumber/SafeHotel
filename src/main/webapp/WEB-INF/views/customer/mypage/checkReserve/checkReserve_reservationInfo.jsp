@@ -134,7 +134,7 @@
 
 
 					<div id="acm_info">
-						<img src="/img/${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
+						<img src="${reservation.imgUrl}/${reservation.imgSaveName}${reservation.imgExtension}"
 							width="180px" height="180px">
 						<div class="acm-info-text">
 							<h2>
