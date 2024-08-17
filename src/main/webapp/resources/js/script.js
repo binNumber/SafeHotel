@@ -1,10 +1,10 @@
 //addFlashAttribute로 msg를 보낸 경우 alert창으로 출력하기
 window.onload = function() {
-	
-    var msg = /*[[${msg}]]*/ '';
-    if (msg) {
-        alert(msg);
-    }
+
+	var msg = /*[[${msg}]]*/ '';
+	if (msg) {
+		alert(msg);
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -617,18 +617,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //예약페이지 버튼 클릭 이벤트
 function changeStyle(element) {
-            // 모든 버튼의 'active' 클래스를 제거
-            var buttons = document.querySelectorAll('.left-usermethod-btn button');
-            buttons.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
+	// 모든 버튼의 'active' 클래스를 제거
+	var buttons = document.querySelectorAll('.left-usermethod-btn button');
+	buttons.forEach(function(btn) {
+		btn.classList.remove('active');
+	});
 
-            // 클릭된 버튼에 'active' 클래스 추가
-            element.classList.add('active');
-			}
+	// 클릭된 버튼에 'active' 클래스 추가
+	element.classList.add('active');
+}
 
 
-			
+
 //검색창 달력 라이브러리
 $(document).ready(function() {
 	// Date Range Picker 초기화
@@ -671,24 +671,24 @@ $(document).ready(function() {
 
 //예약페이지 전화번호 포맷
 function formatPhoneNumber(input) {
-    // 입력된 값에서 숫자만 추출
-    let numbers = input.value.replace(/\D/g, '');
+	// 입력된 값에서 숫자만 추출
+	let numbers = input.value.replace(/\D/g, '');
 
-    // 글자 수를 11자리로 제한
-    if (numbers.length > 11) {
-        numbers = numbers.slice(0, 11);
-    }
+	// 글자 수를 11자리로 제한
+	if (numbers.length > 11) {
+		numbers = numbers.slice(0, 11);
+	}
 
-    // 010-1234-5678 형식으로 변환
-    let formattedNumber = numbers.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+	// 010-1234-5678 형식으로 변환
+	let formattedNumber = numbers.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
 
-    // input 필드에 포맷된 번호를 반영
-    input.value = formattedNumber;
+	// input 필드에 포맷된 번호를 반영
+	input.value = formattedNumber;
 }
 
 // 숫자 이외의 입력 방지
-document.getElementById('phoneInput').addEventListener('input', function (e) {
-    // 숫자만 허용
-    this.value = this.value.replace(/\D/g, '');
-    formatPhoneNumber(this);
+document.getElementById('phoneInput').addEventListener('input', function(e) {
+	// 숫자만 허용
+	this.value = this.value.replace(/\D/g, '');
+	formatPhoneNumber(this);
 });

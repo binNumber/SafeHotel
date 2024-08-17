@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+    "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin_mapper">
+	<select id="findAcmByAcmCode" parameterType="int" resulyType="Accommodation">
+		SELECT acm_code, acm_type, acm_type_name, acm_name, bsns_code, acm_tel,
+        		acm_addr, TO_CHAR(acm_reg_dt, 'YYYY/MM/DD') acm_reg_dt, acm_status, acm_reg_site
+		FROM ACCOMMODATION
+		WHERE acm_code = #{acmCode}
+	</select>
+	
+	<select id="findAcmDetailByAcmCode" parameterType="int" resulyType="AccommodationDetails">
+		SELECT * FROM ACCOMMODATION_DETAILS
+		WHERE acm_code = #{acmCode}
+	</select>
+	
+	<select id="findAcmImgListByAcmCode" parameterType="int" resultType="AccommodationImg">
+		SELECT * FROM accommodation_img
+		WHERE acm_code = #{acmCode}
+	</select>
+</mapper>

@@ -22,6 +22,12 @@
 		<typeAlias type="com.app.dto.business.Business" alias="Business"/>
 		<typeAlias type="com.app.dto.api.BusinessUserUpdatdReq" alias="BusinessUserUpdatdReq"/>
 		
+		<typeAlias type="com.app.dto.admin.Accommodation" alias="Accommodation"/>
+		<typeAlias type="com.app.dto.admin.AccommodationDetails" alias="AccommodationDetails"/>
+		<typeAlias type="com.app.dto.admin.AccommodationImg" alias="AccommodationImg"/>
+		
+		<typeAlias type="com.app.dto.room.Room" alias="Room"/>
+		<typeAlias type="com.app.dto.room.SearchRoomCondition" alias="SearchRoomCondition"/>
 	</typeAliases>
 							
 </configuration>							
