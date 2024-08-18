@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC 
-    "-//mybatis.org//DTD Mapper 3.0//EN" 
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="admin_mapper">
-	<select id="findAcmByAcmCode" parameterType="int" resulyType="Accommodation">
+<mapper namespace="acm_mapper">
+	<select id="findAcmByAcmCode" parameterType="int" resultType="Acm">
 		SELECT acm_code, acm_type, acm_type_name, acm_name, bsns_code, acm_tel,
         		acm_addr, TO_CHAR(acm_reg_dt, 'YYYY/MM/DD') acm_reg_dt, acm_status, acm_reg_site
 		FROM ACCOMMODATION
 		WHERE acm_code = #{acmCode}
 	</select>
 	
-	<select id="findAcmDetailByAcmCode" parameterType="int" resulyType="AccommodationDetails">
+	<select id="findAcmDetailByAcmCode" parameterType="int" resultType="AccommodationDetails">
 		SELECT * FROM ACCOMMODATION_DETAILS
 		WHERE acm_code = #{acmCode}
 	</select>
@@ -19,5 +19,11 @@
 	<select id="findAcmImgListByAcmCode" parameterType="int" resultType="AccommodationImg">
 		SELECT * FROM accommodation_img
 		WHERE acm_code = #{acmCode}
+	</select>
+	
+	<select id="findAcmRepImgbyAcmCode" parameterType="int" resultType="AccommodationImg">
+		SELECT * FROM accommodation_img
+		WHERE acm_code = #{acmCode}
+		AND acc_img_origin_name Like '%대표%'
 	</select>
 </mapper>

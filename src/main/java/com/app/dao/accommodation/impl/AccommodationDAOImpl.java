@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.dao.accommodation.AccommodationDAO;
-import com.app.dto.admin.Accommodation;
+import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
 
@@ -19,10 +19,10 @@ public class AccommodationDAOImpl implements AccommodationDAO {
 	
 	// 업소코드 기반으로 업소 불러오기
 	@Override
-	public Accommodation findAcmByAcmCode(int acmCode) {
+	public Acm findAcmByAcmCode(int acmCode) {
 		// TODO Auto-generated method stub
 		
-		Accommodation acm = sqlSessionTemplate.selectOne("acm_mapper.findAcmByAcmCode", acmCode);
+		Acm acm = sqlSessionTemplate.selectOne("acm_mapper.findAcmByAcmCode", acmCode);
 		
 		return acm;
 	}
@@ -45,6 +45,16 @@ public class AccommodationDAOImpl implements AccommodationDAO {
 		List<AccommodationImg> acmImgList = sqlSessionTemplate.selectList("acm_mapper.findAcmImgListByAcmCode", acmCode);
 		
 		return acmImgList;
+	}
+
+	//업소코드 기반 업소 대표 사진 불러오기
+	@Override
+	public AccommodationImg findAcmRepImgbyAcmCode(int acmCode) {
+		// TODO Auto-generated method stub
+		
+		AccommodationImg acmRepImg = sqlSessionTemplate.selectOne("acm_mapper.findAcmRepImgbyAcmCode", acmCode);
+		
+		return acmRepImg;
 	}
 
 }

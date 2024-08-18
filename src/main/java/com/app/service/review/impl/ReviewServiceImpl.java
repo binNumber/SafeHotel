@@ -95,4 +95,14 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
+	//업소코드 기반으로 리뷰 리스트 불러오기
+	@Override
+	public List<Review> findReviewListByAcmCode(int acmCode) {
+		// TODO Auto-generated method stub
+		
+		List<Review> reviewList = reviewDAO.findReviewListByAcmCode(acmCode);
+		
+		return reviewList;
+	}
+
 }

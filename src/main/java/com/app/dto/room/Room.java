@@ -1,5 +1,9 @@
 package com.app.dto.room;
 
+import java.util.List;
+
+import com.app.dto.admin.AccommodationImg;
+
 import lombok.Data;
 
 @Data
@@ -23,4 +27,10 @@ public class Room {
 	String roomAmenities;	//객실 편의시설
 	String roomStatus;	//객실 운영 상태 0:운영X 1:운영
 	
+	List<AccommodationImg> roomImgList;	//객실 이미지
+	
+	AccommodationImg roomRepImg;	//대표이미지
+	
+	int roomAmount;	//객실 금액
+	String roomAmountStr; //금액을 1,000단위로 끊어서 표시하기 위한 변수
 }

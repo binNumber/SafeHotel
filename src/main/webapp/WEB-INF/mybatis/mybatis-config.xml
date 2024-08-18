@@ -26,8 +26,11 @@
 		<typeAlias type="com.app.dto.admin.AccommodationDetails" alias="AccommodationDetails"/>
 		<typeAlias type="com.app.dto.admin.AccommodationImg" alias="AccommodationImg"/>
 		
+		<typeAlias type="com.app.dto.Accommodation.Acm" alias="Acm"/>
+		
 		<typeAlias type="com.app.dto.room.Room" alias="Room"/>
 		<typeAlias type="com.app.dto.room.SearchRoomCondition" alias="SearchRoomCondition"/>
+		
 	</typeAliases>
 							
 </configuration>							

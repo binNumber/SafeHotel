@@ -41,6 +41,7 @@
 	</beans:bean>
 
 	<resources location="/resources/" mapping="/**"></resources>
+	<resources location="file:///D:/fileStorage/" mapping="/fileStorage/**" />
 
 	<interceptors>
 		

@@ -1402,7 +1402,30 @@ background-color: #3480ff;
 	margin-bottom: 30px;
 }
 
+.info-section-title>div {
+	display : flex;
+	align-items : center;
+}
+
+.info-section-title p {
+	font-weight : normal;
+	color : gray;
+	line-height : 1.7;
+	margin: 0 10px;
+	
+	text-align : center;
+}
+
+.info-section-title p:first-child {
+	align-self: flex-start; /* 상단에 맞추기 */
+}
+
+.info-section-title p:last-child {
+	align-self: flex-end; /* 하단에 맞추기 */
+}
+
 .infosection-bottom ul{
+	list-style: none;
 	padding-left: 20px;
     margin-top: 10px;
     color: #9d9d9d;
@@ -1410,6 +1433,11 @@ background-color: #3480ff;
 
 .infosection-bottom ul li {
     margin: 3px 0;
+}
+
+.infosection-bottom li {
+	font-weight : normal;
+	line-height: 1.7;
 }
 
 .infosection-bottom h3 {
@@ -1682,4 +1710,27 @@ background-color: #3480ff;
 	display: flex;
     gap: 30px;
     align-items: flex-start;
+}
+
+/* -- 작성된 리뷰가 없을 경우의 css -- */
+.no-review {
+	color : gray;
+	margin-top : 20px;
+	font-weight : normal;
+}
+
+/* -- 숙소 소개시 큰따옴표에 적용할 폰트 -- */
+.nanum-myeongjo-regular {
+	font-family: "Nanum Myeongjo", serif;
+	font-size : 50px;
+	font-weight: 400;
+	font-style: normal;
+	color : gray;
+	font-style: italic;
+}
+
+.roominfo-top-position {
+	margin-top : 10px;
+	font-weight : normal;
+	font-size : 17px;
 }

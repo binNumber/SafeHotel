@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.accommodation.AccommodationDAO;
-import com.app.dto.admin.Accommodation;
+import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
 import com.app.service.accommodation.AccommodationService;
@@ -17,10 +17,11 @@ public class AccommodationServiceImpl implements AccommodationService {
 	@Autowired
 	AccommodationDAO acmDAO;
 	
+	//업소코드 기반으로 업소 불러오기
 	@Override
-	public Accommodation findAcmByAcmCode(int acmCode) {
+	public Acm findAcmByAcmCode(int acmCode) {
 		// TODO Auto-generated method stub
-		Accommodation acm = acmDAO.findAcmByAcmCode(acmCode);
+		Acm acm = acmDAO.findAcmByAcmCode(acmCode);
 		
 		return acm;
 	}
@@ -43,6 +44,16 @@ public class AccommodationServiceImpl implements AccommodationService {
 		List<AccommodationImg> acmImgList = acmDAO.findAcmImgListByAcmCode(acmCode);
 		
 		return acmImgList;
+	}
+
+	//업소코드 기반 업소 대표 사진 불러오기
+	@Override
+	public AccommodationImg findAcmRepImgbyAcmCode(int acmCode) {
+		// TODO Auto-generated method stub
+		
+		AccommodationImg acmRepImg = acmDAO.findAcmRepImgbyAcmCode(acmCode);
+		
+		return acmRepImg;
 	}
 
 }

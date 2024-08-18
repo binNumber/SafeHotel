@@ -692,3 +692,29 @@ document.getElementById('phoneInput').addEventListener('input', function(e) {
 	this.value = this.value.replace(/\D/g, '');
 	formatPhoneNumber(this);
 });
+
+//객실 상세정보 페이지 -> 예약 페이지로 폼 넘기는 액션
+$(document).ready(function() {
+
+	$('.reserve-btn').on('click', function() {
+
+		//room 정보 추출
+		var roomCode = $(this).data('room-code');
+		var roomName = $(this).data('room-name');
+		var roomType = $(this).data('room-type');
+		var checkInTime = $(this).data('check-in-time');
+		var checkOutTime = $(this).data('check-out-time');
+		var roomAmount = $(this).data('room-amount');
+
+		// 숨겨진 입력 필드에 값 설정
+		$('input[name="roomCode"]').val(roomCode);
+		$('input[name="roomName"]').val(roomName);
+		$('input[name="roomType"]').val(roomType);
+		$('input[name="rsvtChekInTime"]').val(checkInTime);
+		$('input[name="rsvtChekOutTime"]').val(checkOutTime);
+		$('input[name="rsvtRoomAmount"]').val(roomAmount);
+
+		// 폼 제출
+		$('#reservationForm').submit();
+	});
+});

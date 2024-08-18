@@ -3,30 +3,32 @@
 	"-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="room_mapper">
 
-<mapper namespace="review_mapper">
-
-	<!--  기반으로 리뷰 리스트 불러오기 -->
-	<select id="findRoomListBySearchRoomCondtion" parameterType="SearchRoomCondition" resultType="Room">
+	<!-- 기반으로 리뷰 리스트 불러오기 -->
+ 	<select id="findRoomListBySearchRoomCondtion" parameterType="SearchRoomCondition" resultType="Room">
 		SELECT r.room_code room_code, r.acm_code acm_code, r.room_name room_name,
-			r.room_type room_type, r.total_rooms total_rooms,
-			r.total_rooms - COALESCE(reserved_rooms.reserved_count, 0) AS available_rooms,
-			r.check_in_time check_in_time, r.check_out_time check_out_time,
-			r.room_capacity room_capacity, r.room_max_capacity room_max_capacity,
-			r.room_weekday_price room_weekday_price,
-			r.room_weekend_price room_weekend_price,
-			r.peak_season_weekday_price peak_season_weekday_price,
-			r.peak_season_weekend_price peak_season_weekend_price,
-			r.room_info room_info, r.room_amenities room_amenities, r.room_status room_status
+				r.room_type room_type, r.total_rooms total_rooms,
+				<!-- r.total_rooms - COALESCE(reserved_rooms.reserved_count, 0) AS available_rooms, -->
+				TO_CHAR(r.check_in_time, 'HH24:MI') check_in_time,
+				TO_CHAR(r.check_out_time,'HH24:MI') check_out_time,
+				r.room_capacity room_capacity, r.room_max_capacity room_max_capacity,
+				r.room_weekday_price room_weekday_price,
+				r.room_weekend_price room_weekend_price,
+				NVL(r.peak_season_weekday_price, 0) peak_season_weekday_price,
+				NVL(r.peak_season_weekend_price, 0) peak_season_weekend_price,
+				r.room_info room_info, r.room_amenities room_amenities, r.room_status room_status
 		FROM ROOM r
-		LEFT JOIN ( SELECT room_code, COUNT(*) AS reserved_count
-					FROM RESERVATION
-					WHERE rsvt_chek_in_date < TO_DATE(#{checkInDate}, 'YYYY/MM/DD')
-					AND rsvt_chek_out_date > TO_DATE(#{checkOutDate}, 'YYYY/MM/DD')
-					GROUP BY room_code) reserved_rooms
-		ON r.room_code = reserved_rooms.room_code
+		<!--LEFT JOIN (SELECT rsvt.room_code, COUNT(*) AS reserved_count
+					FROM RESERVATION rsvt
+					WHERE rsvt.rsvt_chek_in_date < TO_DATE(#{checkInDate}, 'YYYY/MM/DD')
+					AND rsvt.rsvt_chek_out_date > TO_DATE(#{}, 'YYYY/MM/DD')
+					GROUP BY rsvt.room_code) reserved_rooms
+		ON r.room_code = reserved_rooms.room_code-->
 		WHERE r.acm_code = #{acmCode}
-		AND r.room_max_capacity <= #{personnel};
+		<!-- AND r.room_max_capacity <= #{personnel} -->
+		ORDER BY room_code
 	</select>
-	
+	<!-- The content of elements must consist of well-formed character data or markup. 오류 발생해서 주석처리함 -->
+
 </mapper>
