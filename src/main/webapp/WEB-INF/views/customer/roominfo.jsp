@@ -203,16 +203,16 @@
 					<div class="roominfo-top">
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
+							
 						</div>
 					</div>
 				</div>
 				<div class="roominfo-top-position">
 					<p>주소 : ${acm.acmAddr }</p>
-
+					<input type="hidden" id="acmAddrInput" value="${acm.acmAddr }">
+					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
-				<div class="roominfo-top-map">
-					<p>지도
-				</div>
+				<div class="roominfo-top-map"> </div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -597,7 +597,9 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>
+		<!-- <script src="js/kakaoMapApi.js"></script> -->
 	</div>
 </body>
 </html>
