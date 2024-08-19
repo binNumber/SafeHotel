@@ -103,4 +103,9 @@
 		AND rv.report_status != '2'
 	</select>
 	
+	<select id="" parameterType="int" resultType="BusinessReply">
+		SELECT * FROM business_reply
+		WHERE review_code = #{reviewCode}
+	</select>
+	
 </mapper>

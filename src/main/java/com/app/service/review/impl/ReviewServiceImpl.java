@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.review.ReviewDAO;
+import com.app.dto.review.BusinessReply;
 import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -134,6 +135,16 @@ public class ReviewServiceImpl implements ReviewService {
 		int result = reviewDAO.deleteReview(reviewCode);
 		
 		return result;
+	}
+
+	//리뷰코드 기반으로 비즈니스 리플 불러오기
+	@Override
+	public BusinessReply findReplyByReviewCode(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		BusinessReply reply = reviewDAO.findReplyByReviewCode(reviewCode);
+		
+		return reply;
 	}
 
 }

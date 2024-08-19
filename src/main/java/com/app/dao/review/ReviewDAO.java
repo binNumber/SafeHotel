@@ -2,6 +2,7 @@ package com.app.dao.review;
 
 import java.util.List;
 
+import com.app.dto.review.BusinessReply;
 import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -43,4 +44,7 @@ public interface ReviewDAO {
 
 	//업소코드 기반으로 리뷰 리스트 불러오기
 	public List<Review> findReviewListByAcmCode(int acmCode);
+	
+	//리뷰코드 기반으로 비즈니스 리플 불러오기
+	public BusinessReply findReplyByReviewCode(int reviewCode);
 }

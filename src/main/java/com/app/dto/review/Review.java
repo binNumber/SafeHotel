@@ -27,4 +27,6 @@ public class Review {
     List<ReviewImg> reviewImgList;	//리뷰이미지 리스트
     
     String userNickName;	//리뷰 작성한 유저 닉네임
+
+    BusinessReply reply;	//답글
 }

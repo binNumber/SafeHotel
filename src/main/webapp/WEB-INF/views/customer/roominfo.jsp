@@ -131,14 +131,28 @@
 
 						<div class="subphoto">
 							<div class="photosection">
-								<div class="photo2"><img src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}" alt="사진2" class="thumbnail"></div>
-								<div class="photo3"><img src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}" alt="사진3" class="thumbnail"></div>
+								<div class="photo2">
+									<img
+										src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}"
+										alt="사진2" class="thumbnail">
+								</div>
+								<div class="photo3">
+									<img
+										src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}"
+										alt="사진3" class="thumbnail">
+								</div>
 							</div>
 
 							<div class="photosection">
-								<div class="photo4"><img src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}" alt="사진4" class="thumbnail"></div>
+								<div class="photo4">
+									<img
+										src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}"
+										alt="사진4" class="thumbnail">
+								</div>
 								<div class="photo5">
-									<img src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}" alt="사진5" class="thumbnail">
+									<img
+										src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}"
+										alt="사진5" class="thumbnail">
 									<!-- 모달 버튼 -->
 									<div class="btn-photo">
 										<button id="openModalBtn">사진 모두보기</button>
@@ -218,7 +232,6 @@
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
 				<div class="roominfo-top-map"></div>
-				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -227,43 +240,45 @@
 						<h1>객실 선택</h1>
 					</div>
 					<c:forEach var="room" items="${roomList}">
-						<div class="content-roominfo-listsection">
-							<div class="listsection-photo">
-								<img
-									src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
-								<button>더보기</button>
+						<c:if test="${room.availableRooms > 0 }">
+							<div class="content-roominfo-listsection">
+								<div class="listsection-photo">
+									<img
+										src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
+									<button>더보기</button>
+								</div>
+								<div class="listsection-main">
+									<div class="listmain-title">
+										<h1>${room.roomName }<span> </span> ${room.roomType }
+										</h1>
+									</div>
+									<div class="listmain-content">
+										<div class="listmain-time">
+											<h5>입실시간 : ${room.checkInTime}</h5>
+											<h5>퇴실시간 : ${room.checkOutTime }</h5>
+										</div>
+										<div class="listmain-remainder">
+											<h3>금액 : ${room.roomAmountStr } 원</h3>
+											<button type="button" class="reserve-btn"
+												data-room-code="${room.roomCode}"
+												data-room-name="${room.roomName}"
+												data-room-type="${room.roomType}"
+												data-check-in-time="${room.checkInTime}"
+												data-check-out-time="${room.checkOutTime}"
+												data-room-amount="${room.roomAmount}">예약하기</button>
+										</div>
+									</div>
+									<div class="listsection-roominfo">
+										<div class="listsection-roominfo-text">
+											<h5>객실정보</h5>
+											<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
+
+											<h6>남은객실: ${room.availableRooms }</h6>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="listsection-main">
-								<div class="listmain-title">
-									<h1>${room.roomName }<span> </span> ${room.roomType }
-									</h1>
-								</div>
-								<div class="listmain-content">
-									<div class="listmain-time">
-										<h5>입실시간 : ${room.checkInTime}</h5>
-										<h5>퇴실시간 : ${room.checkOutTime }</h5>
-									</div>
-									<div class="listmain-remainder">
-										<h3>금액 : ${room.roomAmountStr } 원</h3>
-										<button type="button" class="reserve-btn"
-											data-room-code="${room.roomCode}"
-											data-room-name="${room.roomName}"
-											data-room-type="${room.roomType}"
-											data-check-in-time="${room.checkInTime}"
-											data-check-out-time="${room.checkOutTime}"
-											data-room-amount="${room.roomAmount}">예약하기</button>
-									</div>
-								</div>
-								<div class="listsection-roominfo">
-									<div class="listsection-roominfo-text">
-										<h5>객실정보</h5>
-										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
-										
-										<h6>남은객실: ?</h6>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 				<div class="sectionline"></div>
