@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>사업자 내 정보 조회</title>
+<title>사업장 관리</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="css/business/businessCommon.css">
+	crossorigin="anonymous"/>
+<link rel="stylesheet" href="css/business/businessCommon.css"/>
 <link rel="stylesheet" href="css/business/businessNavbar.css" />
 <link rel="stylesheet" href="css/business/businessSidebar.css" />
 <link rel="stylesheet" href="css/business/businessMyPage.css">
@@ -28,11 +28,11 @@
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> 유저 프로필 </a>
+							data-bs-toggle="dropdown" aria-expanded="false"> ${user.userNickname} </a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="/businessMyPage">내
 										정보</a></li>
-								<li><a class="dropdown-item" href="#">로그아웃</a></li>
+								<li><a class="dropdown-item" href="/businessLogout">로그아웃</a></li>
 							</ul></li>
 					</ul>
 				</div>
@@ -115,78 +115,35 @@
 			</div>
 
 			<!-- 본문 -->
-			<form>
-				<div class="container_main shadow-lg rounded">
-
-					<div
-						class="d-flex flex-row justify-content-around px-4 py-4 mt-1 mb-1 w-100">
-						<div
-							class="fw-bold fs-4 d-flex justify-content-center align-items-start w-25">사업장 관리</div>
-						<div class="d-flex flex-column w-75 py-5">
-							<div
-								class="d-flex flex-row align-items-center justify-content-evenly w-100">
-								<div class="w-25">
-									<p class="w-30 h-25 text-start">숙소 타입</p>
-								</div>
-								<div class="w-50">
-									<select class="form-select" id="select_acmType"
-										aria-label="Default select example">
-										<option disabled hidden="true" selected>숙소 타입을
-											설정해주세요.</option>
-										<option value="HOT">호텔</option>
-										<option value="MOT">모텔</option>
-										<option value="PEN">펜션</option>
-										<option value="RES">리조트</option>
-										<option value="CAM">캠핑</option>
-										<option value="GTH">게스트하우스</option>
-										<option value="VIL">홈/빌라</option>
-									</select>
-								</div>
-							</div>
-							<div
-								class="d-flex flex-row align-items-center justify-content-evenly w-100">
-								<div class="w-25">
-									<p class="w-30 h-25 text-start">숙소명</p>
-								</div>
-								<div class="w-50">
-									<input type="text" id="input_acmName" class="w-40 h-35"
-										readonly>
-								</div>
-							</div>
-							<div
-								class="d-flex flex-row align-items-center justify-content-evenly w-100">
-								<div class="w-25">
-									<p class="w-30 h-25 text-start">사업자 번호</p>
-								</div>
-								<div class="w-50">
-									<input type="text" id="input_acmPhone" class="w-40 h-35"
-										readonly>
-								</div>
-							</div>
-							<div
-								class="d-flex flex-row align-items-center justify-content-evenly w-100">
-								<div class="w-25">
-									<p class="w-30 h-25 text-start">숙소 전화번호</p>
-								</div>
-								<div class="w-50">
-									<input type="text" id="input_acmName" class="w-40 h-35"
-										readonly>
-								</div>
-							</div>
-							<div class="row w-100 justify-content-center px-4">
-								<button type="submit"
-									class="float-right mt-4 w-25 btn  btn-outline-secondary">확인</button>
-							</div>
-
+			<div class="container_main shadow-lg rounded flex-column justify-content-start align-items-start px-5 py-5">
+				<span class="px-5 fs-4 h-auto">사업장 관리</span>
+				<div class="d-flex flex-row justify-content-start flex-wrap px-4 py-4 mt-1 mb-1 w-100">
+					<div class="d-flex flex-column w-100">
+						<div class="d-flex flex-column align-items-center justify-content-evenly w-100">
+							<ul class="list-group list-group-horizontal w-100">
+								<li class="list-group-item w-25">사업자 번호</li>
+								<li class="list-group-item w-50">업소명</li>
+								<li class="list-group-item w-25">업소 타입</li>
+								<li class="list-group-item w-25">업소 등록일</li>
+							</ul>
+							<c:forEach var="accm" items="${accmList}">
+								<a href="/businessManagement/AcmDetail/${accm.acmCode}" class="text-decoration-none w-100"> 
+									<ul class="list-group list-group-horizontal w-100">
+										<li class="list-group-item w-25">${accm.bsnsCode}</li>
+										<li class="list-group-item w-50">${accm.acmName}</li>
+										<li class="list-group-item w-25">${accm.acmType}</li>
+										<li class="list-group-item w-25">${accm.acmRegDt}</li>
+									</ul>
+								</a>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
-			</form>
-
+			</div>
 		</div>
 	</div>
 
-	<script src="js/business/businessMyPage.js"></script>
+<!-- 	<script src="js/business/businessMyPage.js"></script> -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

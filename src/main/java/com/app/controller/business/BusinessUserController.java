@@ -52,6 +52,7 @@ public class BusinessUserController {
 		return "business/user/businessMyPage";
 	}
 	
+	// 사업자 정보 수정
 	@ResponseBody
 	@PutMapping("/modifyBusiness/{userCode}")
 	public ApiResponse<String> modifyUser(HttpSession session, @PathVariable int userCode, @Valid @RequestBody BusinessUserUpdatdReq bsnsUserUpdateReq) {
@@ -94,13 +95,15 @@ public class BusinessUserController {
 		//User 검색
 		User user = userService.findUserByUserSearchCondition(userSearchCondition);
 
+		System.out.println(user);
+		
 		if(user == null) {
 			return "business/user/businesslogin";
 		}
 		
 		//세션에 user 데이터 추가
 		LoginManager.setSessionLogin(user.getUserEmail(), session);
-
+		
 		return "redirect:/businessMain";
 	}
 	
@@ -118,4 +121,13 @@ public class BusinessUserController {
 	public String businesssignup() {
 		return "business/user/businesssignuppage";
 	}
+	
+	// 사업자 로그아웃
+	@GetMapping("/businessLogout")
+	public String businessLogout(HttpSession session) {
+		session.invalidate();
+		return "main";
+	}
+	
+	
 }
