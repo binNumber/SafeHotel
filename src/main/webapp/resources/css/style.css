@@ -1074,22 +1074,25 @@ body {
 	display: flex;
 	gap: 8px;
 	margin-bottom: 50px;
+	justify-content: space-evenly;
 }
 
 .subphoto {
 	display: flex;
 	width: 50%;
 	flex-direction: column;
-	height: 400px;
 	gap: 8px;
 }
 
 .mainphoto {
-	border: 1px solid black;
-	width: 50%;
-	height: 400px;
-	padding: 10px;
-	border-radius: 20px;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.mainphoto img {
+    height: auto;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .photosection {
@@ -1100,37 +1103,49 @@ body {
 
 .photo2, .photo3, .photo4 {
 	width: 50%;
-	border: 1px solid black;
-	padding: 10px;
-	border-radius: 20px;
+	height: 75px;
+}
+
+.photo2 img, .photo3 img, .photo4 img {
+	height: auto;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .photo5 {
 	width: 50%;
-	border: 1px solid black;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    position: relative;
+}
+
+.photo5 img {
+	height: auto;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .btn-photo {
 	display: flex;
 	justify-content: flex-end;
+	position: absolute;
+	bottom: 10px;
+    right: 10px;
 }
 
 .btn-photo button {
 	border-radius: 10px;
-	width: 120px;
-	height: 40px;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-	font-family: 'SUIT-Regular';
-	font-weight: bold;
-	font-style: normal;
+    width: 80px;
+    height: 30px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 12px;
 }
 
 .roominfo-top-map {
@@ -1158,31 +1173,33 @@ body {
 }
 
 .listsection-photo {
-	border: 1px solid;
-	width: 35%;
-	height: 100%;
-	padding: 20px;
 	border-radius: 20px;
-	margin-right: 50px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+    margin-right: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.listsection-photo img{
+	border-radius: 10px;
+    height: 100%;
 }
 
 .listsection-photo button {
 	width: 40px;
-	height: 30px;
-	background-color: #636363;
-	border: none;
-	padding: 5px;
-	font-size: 11px;
-	border-radius: 10px;
-	color: #fff;
-	font-family: 'SUIT-Regular';
-	font-style: normal;
-	align-content: right;
-	align-self: self-end;
-	cursor: pointer;
+    height: 30px;
+    background-color: #636363;
+    border: none;
+    font-size: 11px;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'SUIT-Regular';
+    font-style: normal;
+    align-content: right;
+    align-self: self-end;
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .listsection-main {
@@ -1225,10 +1242,12 @@ body {
 	border-radius: 10px;
 	padding: 20px 30px;
 	margin: 25px 0;
+	gap: 15px;
+	align-items: center;
 }
 
 .listsection-roominfo-text h6 {
-	margin-right: 20px;
+	margin-left: 100px;
 }
 
 .review-section-main {
@@ -1459,17 +1478,23 @@ body {
 
 /*상세페이지 사진 모두보기*/
 /* 모달 기본 스타일 */
+
+.thumbnail-container-wrapper {
+    overflow-x: auto; /* 가로 스크롤 활성화 */
+    white-space: nowrap; /* 썸네일이 한 줄로 나열되도록 설정 */
+    padding-bottom: 10px; /* 스크롤바와 썸네일 간의 간격 조절 */
+    width: 90%;
+}
 .modal {
-	display: none;
-	position: fixed;
-	z-index: 1000;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-header {
@@ -1478,16 +1503,16 @@ body {
 	margin-top: 10px;
 }
 
-.modal-content {
+.modal-content-roominfo {
 	background-color: #fefefe;
-	margin: 5% auto;
+	margin: 2% auto;
 	padding: 20px;
 	border: 1px solid #888;
 	width: 90%;
-	/* max-width: 1000px; */
 	position: relative;
 	border-radius: 10px;
-	height: 720px;
+	height: 800px;
+	overflow: hidden;
 }
 
 .close {
@@ -1574,11 +1599,13 @@ body {
 }
 
 .thumbnail-container {
-	display: flex;
-	gap: 10px;
+	display: inline-block;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 .gallery-thumbnail {
+	display: inline-block;
 	width: 100px;
 	height: 70px;
 	object-fit: cover;
@@ -1586,10 +1613,27 @@ body {
 	border-radius: 10px;
 	cursor: pointer;
 	transition: border-color 0.3s;
+	max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+}
+
+.thumbnail-container-wrapper::-webkit-scrollbar {
+    height: 8px; /* 가로 스크롤바 높이 설정 */
+}
+
+.thumbnail-container-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888; /* 스크롤바 색상 설정 */
+    border-radius: 10px; /* 스크롤바 모서리를 둥글게 */
+}
+
+.thumbnail-container-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤바 트랙 색상 설정 */
+    border-radius: 10px; /* 트랙 모서리 둥글게 */
 }
 
 .gallery-thumbnail:hover, .gallery-thumbnail.active {
-	border-color: #1273E4; /* 원하는 색상으로 변경 가능 */
+	border: 2px solid blue;
 }
 
 .modal-roomlist {
@@ -1625,7 +1669,8 @@ body {
     gap: 10px;
     margin: 20px auto;
     width: 95%;
-    margin-top : 100px;
+    margin: 0 auto;
+    margin-top: 100px;
 }
 
 .reservation-section-left {

@@ -555,65 +555,92 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //상세정보 창 사진 모두보기버튼
 document.addEventListener("DOMContentLoaded", function() {
-	const openModalBtn = document.getElementById("openModalBtn");
-	const closeModalBtn = document.getElementById("closeModalBtn");
-	const modal = document.getElementById("photoModal");
-	const largeImage = document.getElementById("largeImage");
-	const thumbnails = document.querySelectorAll(".gallery-thumbnail");
-	const prevBtn = document.querySelector(".gallery-prev");
-	const nextBtn = document.querySelector(".gallery-next");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const modal = document.getElementById("photoModal");
+    const largeImage = document.getElementById("largeImage");
+    const thumbnails = document.querySelectorAll(".gallery-thumbnail");
+    const prevBtn = document.querySelector(".gallery-prev");
+    const nextBtn = document.querySelector(".gallery-next");
 
-	let currentIndex = 0;
+    let currentIndex = 0;
 
-	openModalBtn.addEventListener("click", function() {
-		modal.style.display = "block";
-	});
+    openModalBtn.addEventListener("click", function() {
+        modal.style.display = "block";
+        // 모달창을 열 때 첫 번째 이미지를 표시
+        currentIndex = 0;
+        updateLargeImage();
+    });
 
-	closeModalBtn.addEventListener("click", function() {
-		modal.style.display = "none";
-	});
+    closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
 
-	window.addEventListener("click", function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	});
+    window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
 
-	thumbnails.forEach(function(thumbnail, index) {
-		thumbnail.addEventListener("click", function() {
-			const largeSrc = this.getAttribute("data-large-src");
-			largeImage.setAttribute("src", largeSrc);
-			currentIndex = index;
+    thumbnails.forEach(function(thumbnail, index) {
+        thumbnail.addEventListener("click", function() {
+            const largeSrc = this.getAttribute("data-large-src");
+            largeImage.setAttribute("src", largeSrc);
+            currentIndex = index;
 
-			thumbnails.forEach(function(thumb) {
-				thumb.classList.remove("active");
-			});
+            updateActiveThumbnail();
+            scrollToActiveThumbnail(); // 썸네일 클릭 시 스크롤 이동
+        });
+    });
 
-			this.classList.add("active");
-		});
-	});
+    prevBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+        updateLargeImage();
+    });
 
-	prevBtn.addEventListener("click", function() {
-		currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
-		updateLargeImage();
-	});
+    nextBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+        updateLargeImage();
+    });
 
-	nextBtn.addEventListener("click", function() {
-		currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
-		updateLargeImage();
-	});
+    function updateLargeImage() {
+        const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
+        largeImage.setAttribute("src", largeSrc);
 
-	function updateLargeImage() {
-		const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
-		largeImage.setAttribute("src", largeSrc);
+        updateActiveThumbnail();
+        scrollToActiveThumbnail();
+    }
 
-		thumbnails.forEach(function(thumb) {
-			thumb.classList.remove("active");
-		});
+    function updateActiveThumbnail() {
+        // 모든 썸네일에서 'active' 클래스를 제거합니다.
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.classList.remove("active");
+        });
 
-		thumbnails[currentIndex].classList.add("active");
+        // 현재 썸네일에 'active' 클래스를 추가합니다.
+        thumbnails[currentIndex].classList.add("active");
+    }
+
+	function scrollToActiveThumbnail() {
+	    const thumbnailContainer = document.querySelector(".thumbnail-container-wrapper");
+	    const activeThumbnail = thumbnails[currentIndex];
+
+	    // 활성화된 썸네일이 컨테이너의 중앙에 오도록 스크롤 위치를 계산
+	    const offsetLeft = activeThumbnail.offsetLeft - (thumbnailContainer.offsetWidth / 2) + (activeThumbnail.offsetWidth / 2);
+
+	    thumbnailContainer.scrollLeft = offsetLeft;
 	}
+
+    // 모달이 열리면 첫 번째 이미지를 기본 활성화된 이미지로 설정합니다.
+    openModalBtn.addEventListener("click", function() {
+        currentIndex = 0;
+        updateLargeImage();
+    });
 });
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // 방문 방법 버튼들을 모두 선택
