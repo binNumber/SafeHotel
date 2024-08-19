@@ -101,5 +101,20 @@ public class RoomAmountManager {
 		
 		return day;
 	}
+	
+	public static int totalDate(String checkInDateStr, String checkOutDateStr) {
+		
+		int totalDate = 0;
+		
+		Date checkInDate = getDateByString(checkInDateStr);
+		Date checkOutDate = getDateByString(checkOutDateStr);
+		
+		if(checkInDate != null && checkOutDate != null) {
+			long differenceInMillis = checkOutDate.getTime() - checkInDate.getTime();
+			totalDate = (int)(differenceInMillis / (1000 * 60 * 60  * 24));
+		}
+		
+		return totalDate;
+	}
 
 }

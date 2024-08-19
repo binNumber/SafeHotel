@@ -335,12 +335,11 @@ public class MypageController {
 				rsvtAmount.setRsvtDiscountAmount("0");
 			} else {
 
+				//할인금액 = 총 금액/할인금액
 				String discountAmount = ((int)(((reservation.getRsvtPaymentAmount()/reservation.getRsvtDiscount())/100.0) * 100)) + "";
 
 				rsvtAmount.setRsvtRoomAmount(discountAmount);
 			}
-
-			//할인금액 = 총 금액/할인금액
 
 			model.addAttribute("reservation", reservation);
 			model.addAttribute("rsvtAmount", rsvtAmount);

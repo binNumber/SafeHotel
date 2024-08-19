@@ -29,6 +29,7 @@ public class Reservation {
 	
 	//룸 테이블에서 가져온 정보
 	String roomName;	//객실 이름
+	String roomType;	//객실 타입
 	
 	//숙소 이미지 정보
 	int imgCode;	//숙소 이미지 코드
@@ -36,4 +37,8 @@ public class Reservation {
     String imgSaveName;		//저장명
     String imgExtension;	//확장명
     String imgUrl;	//이미지 저장 위치
+    
+    //폼으로 전달받을 정보
+	String rsvtChekInTime;	//체크인 시간
+    String rsvtChekOutTime;	//체크아웃 시간
 }

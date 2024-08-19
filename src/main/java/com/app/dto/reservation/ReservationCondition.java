@@ -10,10 +10,12 @@ public class ReservationCondition {
 	String acmName;	//업소이름
 	int roomCode;	//객실코드
 	String roomName;	//객실이름
+	String roomType;	//객실타입
 	String rsvtChekInDate;	//체크인 날짜
 	String rsvtChekInTime;	//체크인 시간
 	String rsvtChekOutDate;	//체크아웃 날짜
 	String rsvtChekOutTime;	//체크아웃 시간
+	int totalDate;	//예약기간 몇일
 	int rsvtRoomAmount;	//객실 금액
 	int user_code;	//유저코드
 	
