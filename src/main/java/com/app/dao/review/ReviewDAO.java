@@ -34,4 +34,10 @@ public interface ReviewDAO {
 	
 	//리뷰 수정
 	public int modifyReivew(ModifyReviewCondition modifyReview);
+	
+	//리뷰 삭제
+	public int deleteReview(int reviewCode);
+	
+	//업소코드 기반으로 리뷰 리스트 불러오기
+	public List<Review> findReviewListByAcmCode(int acmCode);
 }

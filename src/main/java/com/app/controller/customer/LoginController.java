@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.app.dto.api.ApiResponse;
 import com.app.dto.api.ApiResponseHeader;
@@ -42,22 +43,19 @@ public class LoginController {
 
 	}
 
-
 	//유저 로그인 페이지로 이동
 	@GetMapping("/userlogin")
 	public String userLogin() {
-		//userCode 쿠키값이 있거나 user session 값이 있으면 알림창 띄우고 main 페이지로 이동
 
 		return "customer/signup/userlogin";
-
-
 	}
 
 	//유저 로그인 액션
 	@PostMapping("/userlogin")
 	public String userLoginAction(UserSearchCondition userSearchCondition,
 			@RequestParam(value = "checkRememberUser", defaultValue = "false") boolean checkRememberUser,
-			HttpServletResponse response, HttpSession session, HttpServletRequest request) {
+			HttpServletResponse response, HttpSession session, HttpServletRequest request,
+			RedirectAttributes redirect) {
 
 		//login 페이지에서 받아온 값을 바탕으로 user 검색
 		User user = userService.findUserByUserSearchCondition(userSearchCondition);
@@ -83,7 +81,9 @@ public class LoginController {
 		} else { //일치하는 유저가 없음
 
 			//경고창 띄우기
-			return "customer/signup/userlogin";
+			redirect.addFlashAttribute("msg", "입력한 아이디나 비밀번호가 맞지 않습니다. 다시 확인해 주세요.");
+			
+			return "redirect:/userlogin";
 		}
 	}
 
@@ -123,7 +123,7 @@ public class LoginController {
 	//회원가입 액션
 	@PostMapping("/usersignup")
 	public String userSingupAction(@Valid @ModelAttribute User user,
-			Model model, HttpSession session) { //회원가입 정보 DB에 저장
+			HttpSession session, RedirectAttributes redirect) { //회원가입 정보 DB에 저장
 
 		boolean isNicknameAvailable = false;
 		
@@ -140,7 +140,7 @@ public class LoginController {
 			if(result > 0) { //유저 정보 저장 성공
 				
 				//성공메세지 전달 후 로그인 페이지로 이동
-				model.addAttribute("successMsg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
+				redirect.addFlashAttribute("msg", "회원가입이 완료되었습니다! 로그인 후 서비스를 이용해주세요.");
 				
 				//세션에서 isNicknameAvailable 값 삭제
 				session.removeAttribute("isNicknameAvailable");
@@ -148,16 +148,16 @@ public class LoginController {
 				return "redirect:/signupMain";
 
 			} else { //유저 정보 저장 실패
-
+				
 				//실패메세지 전달 후 로그인 페이지로 이동
-				model.addAttribute("falseMsg", "회원가입 실패. 다시 시도해주세요.");
+				redirect.addFlashAttribute("msg", "회원가입에 실패했습니다. 다시 시도해주세요.");
 				return "customer/signup/usersignup";
 			}
 
 		} else { //중복 확인이 되지 않았거나 닉네임이 중복
 
 			//메세지 전달 후 회원가입 페이지로 다시 돌아가기
-			model.addAttribute("dupMsg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
+			redirect.addFlashAttribute("msg", "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.");
 
 			return "customer/signup/usersignup";
 		}		
@@ -208,13 +208,15 @@ public class LoginController {
 	//회원탈퇴
 	@GetMapping("/userDeactivation")
 	public String userDeactivation(int userCode,
-			HttpSession session, HttpServletResponse response) {
+			HttpSession session, HttpServletResponse response,
+			RedirectAttributes redirect) {
 		
 		//유저코드 기반으로 회원상태 정보 변경
 		int result = userService.updateUserStatusByUserCode(userCode);
 		
 		if(result > 0) {
-			System.out.println("회원탈퇴 성공");
+			
+			redirect.addFlashAttribute("msg", "회원탈퇴에 성공했습니다.");
 			
 			//세션 값 모두 삭제
 			session.invalidate();
@@ -228,7 +230,8 @@ public class LoginController {
 			//로그아웃 후 main 페이지로 이동
 			return "redirect:/";
 		} else {
-			System.out.println("회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요.");
+			
+			redirect.addFlashAttribute("msg", "회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요.");
 			
 			return "redirect:/mypage/userInfo";
 		}

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_userInfo.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -88,7 +89,7 @@
 						</div>
 						<div class="pw modifyinfo">
 							<h4>비밀번호 확인</h4>
-							<input type="password" placeholder="위 비밀번호와 동일한 비밀번호 입력">
+							<input type="password" name="userPwCheck" placeholder="위 비밀번호와 동일한 비밀번호 입력">
 							<p id="pwCheckError" class="errormsg color-red"></p>
 							<p id="phoneNumError" class="errormsg color-red"></p>
 						</div>

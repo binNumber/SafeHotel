@@ -71,4 +71,29 @@
 		SET review_text = #{reviewText}
 		WHERE review_code = #{reviewCode}
 	</update>
+	<!-- 리뷰 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM user_review
+		WHERE review_code = #{reviewCode};
+	</delete>
+	
+	<!-- 업소코드 기반으로 리뷰 리스트 검색 -->
+	<select id="findReviewListByAcmCode" parameterType="int" resultType="Review">
+		SELECT rv.review_code review_code, rv.rsvt_code rsvt_code, rv.user_code user_code,
+				rv.acm_code acm_code, rv.room_code room_code, rv.rating rating,
+				rv.review_text review_text, TO_CHAR(rv.review_date, 'YYYY/MM/DD HH24:MI') review_date,
+				rv.reply_exists reply_exists, rv.report_status report_status,
+				rv.report_reason report_reason, us.user_nickname user_nickname,
+				acm.acm_name acm_name, r.room_name || ' ' || r.room_type room_name
+		FROM user_review rv
+		INNER JOIN user_info us
+		ON rv.user_code = us.user_code
+		INNER JOIN accommodation acm
+		ON rv.acm_code = acm.acm_code
+		INNER JOIN room r
+		ON rv.room_code = r.room_code
+		WHERE rv.acm_code = #{acmCode}
+		AND rv.report_status != '2'
+	</select>
+	
 </mapper>

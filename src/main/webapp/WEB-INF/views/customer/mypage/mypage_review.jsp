@@ -13,6 +13,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_review.css" rel="stylesheet"
 	type="text/css">
+<script src="/js/customer/alertMsg.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>

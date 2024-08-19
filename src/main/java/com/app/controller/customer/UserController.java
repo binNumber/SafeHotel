@@ -38,4 +38,9 @@ public class UserController {
 	public String roominfo() {
 		return "customer/roominfo";
 	}
+	
+	@GetMapping("/reservationpage")
+	public String reservationpage() {
+		return "customer/reservationpage";
+	}
 }

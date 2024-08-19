@@ -105,6 +105,27 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return result;
 	}
 	
+
+	//리뷰 삭제
+	@Override
+	public int deleteReview(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("review_mapper.deleteReview", reviewCode);
+		
+		return result;
+	}
+
+	//업소코드 기반으로 리뷰 리스트 불러오기
+	@Override
+	public List<Review> findReviewListByAcmCode(int acmCode) {
+		// TODO Auto-generated method stub
+		
+		List<Review> reviewList = sqlSessionTemplate.selectList("review_mapper.findReviewListByAcmCode", acmCode);
+		
+		return reviewList;
+	}
+	
 	
 
 }

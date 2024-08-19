@@ -12,6 +12,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="/css/customer/mypage_checkPw.css" rel="stylesheet"
 	type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/customer/checkPwMsg.js"></script>
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">

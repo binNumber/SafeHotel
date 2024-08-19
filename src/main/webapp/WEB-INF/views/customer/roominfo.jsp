@@ -7,7 +7,15 @@
 <meta charset="UTF-8" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="css/style.css" />
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&family=Nanum+Myeongjo&family=Noto+Serif+KR:wght@200..900&display=swap"
+	rel="stylesheet">
 </head>
 <body>
 	<div class="container-roominfo">
@@ -53,6 +61,54 @@
 			</div>
 		</div>
 
+		<div class="content">
+			<div class="content-top-search">
+				<div class="search-main">
+					<div class="input-search">
+						<img src='img/magnifier.png' /> <input id="search_term"
+							name="search_term" type="text" placeholder="여행지나 숙소를 검색해보세요.">
+						<div class="hide search-best" id="search_best">
+							<div class="search-best-history">
+								<h3>최근 검색어</h3>
+							</div>
+							<p>검색한 단어1</p>
+							<p>검색한 단어2</p>
+						</div>
+					</div>
+
+					<div class="btn-date">
+						<button id="btn_date">
+							<img src='img/calendar.png' /> <span> 08.15 목 - 08.16 금
+								(1박 2일) </span>
+						</button>
+					</div>
+
+					<div class="btn-people">
+						<button id="btn_people">
+							<img src='img/human.png' /> <span> 인원 2 </span>
+						</button>
+
+						<div class="hide people-picker" id="people_picker">
+							<p>인원</p>
+							<div class="people-controls">
+								<button class="decrease">-</button>
+								<span class="people-count">2</span>
+								<button class="increase">+</button>
+							</div>
+							<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
+						</div>
+					</div>
+
+					<div class="btn-searchright">
+						<button onclick="location.href='/listpage'">
+							<span><img> 검색 </span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="sticky-nav" id="sticky-nav">
 			<ul>
 				<li><a href="#section1">개요</a></li>
@@ -66,7 +122,10 @@
 			<div id="section1">
 				<div class="content-info">
 					<div class="content-mainphoto">
-						<div class="mainphoto">사진1</div>
+						<div class="mainphoto">
+							<img
+								src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}">
+						</div>
 
 						<div class="subphoto">
 							<div class="photosection">
@@ -88,7 +147,7 @@
 										<div class="modal-content">
 											<span class="close" id="closeModalBtn">&times;</span>
 											<div class="modal-header">
-												<h2>숙소명</h2>
+												<h2>${acm.acmName }</h2>
 												<div class="modal-roomlist">
 													<div class="modal-roomlist-room1">
 														<button>
@@ -112,18 +171,19 @@
 													<!-- 큰 이미지가 표시될 영역 -->
 													<div class="large-image-container">
 														<button class="gallery-prev">&lt;</button>
-														<img id="largeImage" src="img/test1.jpg"
+														<img id="e"
+															src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}"
 															class="large-image">
 														<button class="gallery-next">&gt;</button>
 													</div>
 													<!-- 썸네일 이미지들이 표시될 영역 -->
 													<div class="thumbnail-container">
-														<img src="img/test1.jpg" class="gallery-thumbnail"
-															data-large-src="img/test1.jpg"> <img
-															src="img/test2.jpg" class="gallery-thumbnail"
-															data-large-src="img/test2.jpg"> <img
-															src="img/test2.jpg" class="gallery-thumbnail"
-															data-large-src="img/test2.jpg">
+														<c:forEach var="acmImg" items="${acmImgList}">
+															<img
+																src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}"
+																class="gallery-thumbnail"
+																data-large-src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}">
+														</c:forEach>
 														<!-- 필요에 따라 썸네일 이미지를 추가 -->
 													</div>
 												</div>
@@ -139,19 +199,20 @@
 				<div class="sectionline"></div>
 			</div>
 			<div id="section2">
-				<div class=content-roominfo-main>
+				<div class="content-roominfo-main">
 					<div class="roominfo-top">
 						<div class="roominfo-title">
-							<h1>숙소명</h1>
+							<h1>${acm.acmName }</h1>
+							
 						</div>
 					</div>
 				</div>
 				<div class="roominfo-top-position">
-					<h3>숙소주소</h3>
+					<p>주소 : ${acm.acmAddr }</p>
+					<input type="hidden" id="acmAddrInput" value="${acm.acmAddr }">
+					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
-				<div class="roominfo-top-map">
-					<p>지도
-				</div>
+				<div class="roominfo-top-map"> </div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -159,155 +220,215 @@
 					<div>
 						<h1>객실 선택</h1>
 					</div>
-					<div class=content-roominfo-listsection>
-						<div class="listsection-photo">
-							<p>객실 대표사진</p>
-							<button>더보기</button>
+					<c:forEach var="room" items="${roomList}">
+						<div class="content-roominfo-listsection">
+							<div class="listsection-photo">
+								<img
+									src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
+								<button>더보기</button>
+							</div>
+							<div class="listsection-main">
+								<div class="listmain-title">
+									<h1>${room.roomName }<span> </span> ${room.roomType }</h1>
+								</div>
+								<div class="listmain-content">
+									<div class="listmain-time">
+										<h5>입실시간 : ${room.checkInTime}</h5>
+										<h5>퇴실시간 : ${room.checkOutTime }</h5>
+									</div>
+									<div class="listmain-remainder">
+										<h3>금액 : ${room.roomAmountStr } 원</h3>
+										<button type="button" class="reserve-btn"
+											data-room-code="${room.roomCode}"
+											data-room-name="${room.roomName}"
+											data-room-type="${room.roomType}"
+											data-check-in-time="${room.checkInTime}"
+											data-check-out-time="${room.checkOutTime}"
+											data-room-amount="${room.roomAmount}">예약하기</button>
+									</div>
+								</div>
+								<div class="listsection-roominfo">
+									<div class="listsection-roominfo-text">
+										<h5>객실정보</h5>
+										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="listsection-main">
-							<div class="listmain-title">
-								<h1>객실명</h1>
-							</div>
-							<div class="listmain-content">
-								<div class="listmain-time">
-									<h6>입실시간</h6>
-									<h6>퇴실시간</h6>
-								</div>
-								<div class="listmain-remainder">
-									<h3>가격</h3>
-									<button>예약하기</button>
-								</div>
-							</div>
-							<div class="listsection-roominfo">
-								<div class="listsection-roominfo-text">
-									<h6>객실정보</h6>
-									<h6>기준2인/최대2인</h6>
-								</div>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section4">
-				<div class="content-roominfo-info">
-					<div class="info-section">
-						<div class="info-section-title">
-							<h1>숙소 소개</h1>
-							<h5>숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소
-								소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개 숙소 소개
-								숙소 소개</h5>
+
+				<c:if test="${acmDetail.acmDtlIntroduction != null }">
+					<div class="content-roominfo-info">
+						<div class="info-section">
+							<div class="info-section-title">
+								<h1>숙소 소개</h1>
+								<div>
+									<p class="nanum-myeongjo-regular">“</p>
+									<p>${acmDetail.acmDtlIntroduction }</p>
+									<p class="nanum-myeongjo-regular">”</p>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:if>
 				<div class="sectionline"></div>
 				<div class="content-roominfo-text">
 					<div class="info-sectiontext">
 						<div class="info-section-text">
 							<h1>숙소 이용 정보</h1>
 
-							<div class="notice infosection-bottom">
-								<h3>공지사항</h3>
-								<ul>
-									<li><p>공지사항1</p></li>
-									<li><p>공지사항2</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlNotice != null}">
+								<div class="notice infosection-bottom">
+									<h3>공지사항</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlNotice}" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>기본정보</h3>
-								<ul>
-									<li><p>체크인: / 체크아웃:</p></li>
-									<li><p>22시 이후 체크인 시 호텔 프론트 문의</p></li>
-									<li><p>얼리체크인, 레이트 체크아웃 시 1시간당 2만원 현장 결제 (별도 문의)</p></li>
-									<li><p>무료 Wi-Fi</p></li>
-									<li><p>전 객실 금연</p></li>
-									<li><p>Bath Amenity (치약, 칫솔 제외)</p></li>
-									<li><p>주차 가능 (무료)</p></li>
-									<li><p>반려동물 입장불가</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlInfo != null }">
+								<div class="notice infosection-bottom">
+									<h3>기본정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlInfo }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>인원 추가 정보</h3>
-								<ul>
-									<li><p>기준 인원 외 추가 시, 1인 10,000원 (14세 이상~성인), 5,000원
-											(48개월 이상~13세), 48개월 미만 무료</p></li>
-									<li><p>침구 추가 : 1채당 20,000원</p></li>
-									<li><p>영유아 인원수 포함 / 최대 인원 초과 불가</p></li>
-									<li><p>현장 결제</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlUsageGuide != null}">
+								<div class="notice infosection-bottom">
+									<h3>숙소 이용안내</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlUsageGuide}"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>투숙객 혜택</h3>
-								<ul>
-									<li><p>야외 온천 수영장 객실별 투숙 기준인원 무료 이용</p></li>
-									<li><p>피트니스, 골프연습장 이용 무료</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlAddPersonnel != null}">
+								<div class="notice infosection-bottom">
+									<h3>인원 추가 정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlAddPersonnel }"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>부대시설 정보</h3>
-								<ul>
-									<li><p>부대시설 운영시간은 현장 상황에 따라 변경될 수 있습니다</p></li>
-									<li><p>모든 부대시설은 체크인 전 및 체크아웃 후에는 이용이 불가합니다</p></li>
-									<li><p>웰컴존 지하1층 - 체스터책방, 치유인(온천사우나), 로비</p></li>
-									<li><p>A동 1층 : 노마드오피스, 키즈락, AV룸, 야외놀이</p></li>
-									<li><p>B동 1층 : 요리공작소, 멀티룸, 희희낙락</p></li>
-									<li><p>C동 1층 : 골프연습장, 피트니스</p></li>
-									<li><p>A/B/C동 옥상 : 루프탑</p></li>
-									<li><p>매월 4월~10월 운영</p></li>
-									<li><p>[온천수영장 / 노천탕]</p></li>
-									<li><p>동절기 휴장기간 : 매년 11월 1일~3월 31일</p></li>
-									<li><p>[치유인(온천사우나)]</p></li>
-									<li><p>중앙광장 지하 1층 / 07:00~21:00 (입장마감 1시간 전까지)</p></li>
-									<li><p>매월 첫 번째 화요일 휴장</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlRoomInfo != null}">
+								<div class="notice infosection-bottom">
+									<h3>객실 정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlRoomInfo }"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>조식 정보</h3>
-								<ul>
-									<li><p>요리공작소 / B동 1층 / 07:00~10:00 (입장 마감 09:00)</p></li>
-									<li><p>현장 결제 / 사전 예약 (선착순 마감)</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlFacilities != null }">
+								<div class="notice infosection-bottom">
+									<h3>부대시설 정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlFacilities }"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>취소 및 환불 규정</h3>
-								<ul>
-									<li><p>[일~금요일 및 비수기]</p></li>
-									<li><p>체크인일 기준 3일 전 : 100% 환불</p></li>
-									<li><p>체크인일 기준 2일 전 : 70% 환불</p></li>
-									<li><p>체크인일 기준 1일 전~당일 및 No-show : 환불 불가</p></li>
-									<li><p>[토요일 및 성수기]</p></li>
-									<li><p>체크인일 기준 6일 전 : 100% 환불</p></li>
-									<li><p>체크인일 기준 5~4일 전 : 50% 환불</p></li>
-									<li><p>체크인일 기준 3일 전~당일 및 No-show : 환불 불가</p></li>
-									<li><p>※ 2024년 성수기 날짜 : 7월 22일~8월 10일</p></li>
-									<li><p>취소, 환불 시 수수료가 발생할 수 있습니다</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlParking != null}">
+								<div class="notice infosection-bottom">
+									<h3>주차장 안내</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlParking }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
-							<div class="notice infosection-bottom">
-								<h3>확인사항 및 기타</h3>
-								<ul>
-									<li><p>그린 캠페인에 동참하고자 객실 정비 서비스 (침구류 교체 포함)는 3박부터 무료로
-											제공되며, 별도 요청 시에는 요금이 부과되니 프론트로 문의 바랍니다</p></li>
-									<li><p>외부 배달음식은 규정 상 로비에서 수령을 해 주시기 바랍니다</p></li>
-									<li><p>취사는 쾌적한 객실 환경을 위하여, B동 1층의 요리 공작소를 이용하여 주시기
-											바랍니다 (객실 내 별도의 조리기구는 비치되어 있지 않습니다)</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-									<li><p>메세지1</p></li>
-								</ul>
-							</div>
+							<c:if test="${acmDetail.acmDtlTransport != null}">
+								<div class="notice infosection-bottom">
+									<h3>대중교통 정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlTransport }"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
+
+							<c:if test="${acmDetail.acmDtlBenefit != null }">
+								<div class="notice infosection-bottom">
+									<h3>투숙객 혜택</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlBenefit }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
+
+							<c:if test="${acmDetail.acmDtlSurroundingInfo != null }">
+								<div class="notice infosection-bottom">
+									<h3>주변 정보</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlSurroundingInfo }"
+													escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
+
+							<c:if test="${acmDetail.acmDtlGuide != null }">
+								<div class="notice infosection-bottom">
+									<h3>추가 안내사항</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlGuide }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
+
+							<c:if test="${acmDetail.acmDtlPolicy != null }">
+								<div class="notice infosection-bottom">
+									<h3>취소 및 환불 규정</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlPolicy }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
+
+							<c:if test="${acmDetail.acmDtlEtc }">
+								<div class="notice infosection-bottom">
+									<h3>확인사항 및 기타</h3>
+									<ul>
+										<li><p>
+												<c:out value="${acmDetail.acmDtlEtc }" escapeXml="false" />
+											</p></li>
+									</ul>
+								</div>
+							</c:if>
 
 						</div>
 					</div>
@@ -320,72 +441,94 @@
 					<div class="review-section">
 						<div class="review-section-title">
 							<h1>리뷰</h1>
-							<h3>평점 x.x점</h3>
+							<c:if test="${reviewCount != 0}">
+								<h3>평점 ${reviewRatingAverageStr }점(${reviewCount}개)</h3>
+							</c:if>
 						</div>
-						<div class="review-section-main">
-							<div class="review-section-left">
-								<div class="review-section-left-userinfo">
-									<div class="userinfo-nickname">
-										<p>닉네임</p>
-									</div>
-									<div class="userinfo-review">
-										<h5>리뷰</h5>
-										<h5>·</h5>
-										<h5>사진</h5>
-									</div>
-								</div>
-							</div>
-							<div class="review-section-right">
-								<div class="review-right-score">
-									<p>(0/5)</p>
-									<p>리뷰 남긴 날짜</p>
-								</div>
-								<div class="review-right-photo">
 
-									<div class="btn_reviewpage prev">
-										<button class="prev">&lt;</button>
-									</div>
-									<div class="reviewsection-slides">
-										<div class="reviewsection-photo">사용자가 등록한 리뷰사진1</div>
-										<div class="reviewsection-photo">사용자가 등록한 리뷰사진2</div>
-										<div class="reviewsection-photo">사용자가 등록한 리뷰사진3</div>
-										<div class="reviewsection-photo">사용자가 등록한 리뷰사진4</div>
-									</div>
-									<div class="btn_reviewpage next">
-										<button class="next">&gt;</button>
-									</div>
-								</div>
+						<c:choose>
+							<c:when test="${reviewList != null }">
+								<c:forEach var="review" items="${reviewList}">
+									<div class="review-section-main">
+										<div class="review-section-left">
+											<div class="review-section-left-userinfo">
+												<div class="userinfo-nickname">
+													<p>${review.userNickname }</p>
+												</div>
+												<div class="userinfo-review">
+													<h5>리뷰</h5>
+													<h5>·</h5>
+													<h5>사진</h5>
+												</div>
+											</div>
+										</div>
+										<div class="review-section-right">
+											<div class="review-right-score">
+												<p>(0/5)</p>
+												<p>${review.reviewDate }</p>
+											</div>
+											<div class="review-right-photo">
 
-								<div class="reviewsection-roominfo">
-									<h4>이용한 객실명</h4>
-								</div>
+												<div class="btn_reviewpage prev">
+													<button class="prev">&lt;</button>
+												</div>
+												<div class="reviewsection-slides">
+													<c:forEach var="reviewImg" items="${review.reviewImgList }">
+														<div class="reviewsection-photo">
+															<img
+																src="${reviewImg.reviewImgUrl }/${reviewImg.reviewImgSaveName}${reviewImg.reviewImgExtension}">
+														</div>
+													</c:forEach>
+												</div>
+												<div class="btn_reviewpage next">
+													<button class="next">&gt;</button>
+												</div>
+											</div>
 
-								<div class="reviewsection-msg">
-									<p class="review-message" id="review-text">리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에
-										들어갑니다. 리뷰 메세지가 여기에 들어갑니다. 리뷰 메세지가 여기에 들어갑니다.</p>
-									<button class="toggle-button" id="toggle-button"
-										style="display: none;">더 보기 ▾</button>
-								</div>
+											<div class="reviewsection-roominfo">
+												<h4></h4>
+											</div>
 
-								<div class="reviewsection-adminmsg">
-									<div class="adminmsg-date">
-										<h4>업체명/</h4>
-										<h5>답글남긴 날짜,시간</h5>
+											<div class="reviewsection-msg">
+												<p class="review-message" id="review-text">${review.reviewText }</p>
+												<button class="toggle-button" id="toggle-button"
+													style="display: none;">더 보기 ▾</button>
+											</div>
+
+											<div class="reviewsection-adminmsg">
+												<div class="adminmsg-date">
+													<h4>업체명/</h4>
+													<h5>답글남긴 날짜,시간</h5>
+												</div>
+												<div class="adminmsg-msg">
+													<h5>업체가 남긴 답글</h5>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="adminmsg-msg">
-										<h5>업체가 남긴 답글</h5>
-									</div>
-								</div>
-							</div>
-						</div>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<h3 class="no-review">등록된 리뷰가 없습니다.</h3>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 					<div class="sectionline"></div>
 				</div>
+
+				<!--  폼 안보내짐 -->
+				<form id="reservationForm" action="/roominfo2" method="post">
+					<input type="hidden" name="acmCode" value="${acm.acmCode }">
+					<input type="hidden" name="rsvtChekInDate" value="${searchRoom.checkInDate }">
+					<input type="hidden" name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+					<input type="hidden" name="roomCode">
+					<input type="hidden" name="roomName">
+					<input type="hidden" name="roomType">
+					<input type="hidden" name="rsvtChekInTime">
+					<input type="hidden" name="rsvtChekOutTime">
+					<input type="hidden" name="rsvtRoomAmount">
+				</form>
 			</div>
 			<div class="footer">
 				<div class="footer-top">
@@ -453,7 +596,10 @@
 					</h4>
 				</div>
 			</div>
-			<script src="js/script.js"></script>
 		</div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
+		<script src="js/script.js"></script>
+		<!-- <script src="js/kakaoMapApi.js"></script> -->
+	</div>
 </body>
 </html>

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>userSignUpPage</title>
 <link rel="stylesheet" href="css/style.css" />
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">

@@ -28,7 +28,7 @@ public class CheckPwInterceptor implements HandlerInterceptor {
 		
 		//비밀번호 확인이 안되어있을 경우
 		if(result == false) {
-			
+			session.setAttribute("error", "비밀번호 확인이 필요합니다.");
 			response.sendRedirect("/mypage/checkPw");
 		}
 		

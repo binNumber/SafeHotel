@@ -25,4 +25,6 @@ public class Review {
     String roomName;	//객실 이름
     
     List<ReviewImg> reviewImgList;	//리뷰이미지 리스트
+    
+    String userNickName;	//리뷰 작성한 유저 닉네임
 }

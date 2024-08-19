@@ -14,7 +14,7 @@ public interface ReviewService {
 	//리뷰코드 기반으로 이미지 리스트 불러오기
 	public List<ReviewImg> findReviewImgListByReviewCode(int reviewCode);
 
-	//예약코드 기반으로 이미지 리스트 불러오기
+	//예약코드 기반으로 리뷰 이미지 리스트 불러오기
 	public List<ReviewImg> findReviewImgListByRsvtCode(String rsvtCode);
 	
 	//다음 리뷰 코드 불러오기(리뷰코드 생성)
@@ -34,4 +34,10 @@ public interface ReviewService {
 	
 	//리뷰 수정
 	public int modifyReivew(ModifyReviewCondition modifyReview);
+	
+	//리뷰 코드 기반으로 해당 리뷰 삭제
+	public int deleteReview(int reviewCode);
+	
+	//업소코드 기반으로 리뷰 리스트 불러오기
+	public List<Review> findReviewListByAcmCode(int acmCode);
 }
