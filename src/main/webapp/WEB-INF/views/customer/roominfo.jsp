@@ -77,10 +77,12 @@
 					</div>
 
 					<div class="btn-date">
-						<button id="btn_date">
-							<img src='img/calendar.png' /> <span> 08.15 목 - 08.16 금
-								(1박 2일) </span>
-						</button>
+						<div class="btn-date-checkin">
+							<input type="date">
+						</div>
+						<div class="btn-date-checkout">
+							<input type="date">
+						</div>
 					</div>
 
 					<div class="btn-people">
@@ -204,6 +206,7 @@
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
 
+
 						</div>
 					</div>
 				</div>
@@ -213,6 +216,7 @@
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
 				<div class="roominfo-top-map"></div>
+				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -221,43 +225,41 @@
 						<h1>객실 선택</h1>
 					</div>
 					<c:forEach var="room" items="${roomList}">
-						<c:if test="${room.availableRooms > 0 }">
-							<div class="content-roominfo-listsection">
-								<div class="listsection-photo">
-									<img
-										src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
-									<button>더보기</button>
+						<div class="content-roominfo-listsection">
+							<div class="listsection-photo">
+								<img
+									src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
+								<button>더보기</button>
+							</div>
+							<div class="listsection-main">
+								<div class="listmain-title">
+									<h1>${room.roomName }<span> </span> ${room.roomType }
+									</h1>
 								</div>
-								<div class="listsection-main">
-									<div class="listmain-title">
-										<h1>${room.roomName }<span> </span> ${room.roomType }
-										</h1>
+								<div class="listmain-content">
+									<div class="listmain-time">
+										<h5>입실시간 : ${room.checkInTime}</h5>
+										<h5>퇴실시간 : ${room.checkOutTime }</h5>
 									</div>
-									<div class="listmain-content">
-										<div class="listmain-time">
-											<h5>입실시간 : ${room.checkInTime}</h5>
-											<h5>퇴실시간 : ${room.checkOutTime }</h5>
-										</div>
-										<div class="listmain-remainder">
-											<h3>금액 : ${room.roomAmountStr } 원</h3>
-											<button type="button" class="reserve-btn"
-												data-room-code="${room.roomCode}"
-												data-room-name="${room.roomName}"
-												data-room-type="${room.roomType}"
-												data-check-in-time="${room.checkInTime}"
-												data-check-out-time="${room.checkOutTime}"
-												data-room-amount="${room.roomAmount}">예약하기</button>
-										</div>
+									<div class="listmain-remainder">
+										<h3>금액 : ${room.roomAmountStr } 원</h3>
+										<button type="button" class="reserve-btn"
+											data-room-code="${room.roomCode}"
+											data-room-name="${room.roomName}"
+											data-room-type="${room.roomType}"
+											data-check-in-time="${room.checkInTime}"
+											data-check-out-time="${room.checkOutTime}"
+											data-room-amount="${room.roomAmount}">예약하기</button>
 									</div>
-									<div class="listsection-roominfo">
-										<div class="listsection-roominfo-text">
-											<h5>객실정보</h5>
-											<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
-										</div>
+								</div>
+								<div class="listsection-roominfo">
+									<div class="listsection-roominfo-text">
+										<h5>객실정보</h5>
+										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
 									</div>
 								</div>
 							</div>
-						</c:if>
+						</div>
 					</c:forEach>
 				</div>
 				<div class="sectionline"></div>
@@ -601,6 +603,8 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>

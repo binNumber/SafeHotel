@@ -89,9 +89,12 @@
 									</div>
 
 									<div class="btn-date">
-										<button id="btn_date">
-											<img src='img/calendar.png' /> <span></span>
-										</button>
+										<div class="btn-date-checkin">
+											<input type="date">
+										</div>
+										<div class="btn-date-checkout">
+											<input type="date">
+										</div>
 									</div>
 
 									<div class="btn-people">
@@ -238,7 +241,9 @@
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<script src="js/kakaoMapApi.js"></script>
 		<script src="js/script.js"></script>
+
 	</div>
 </body>
 </html>

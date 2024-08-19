@@ -615,19 +615,149 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
-//예약페이지 버튼 클릭 이벤트
-function changeStyle(element) {
-	// 모든 버튼의 'active' 클래스를 제거
-	var buttons = document.querySelectorAll('.left-usermethod-btn button');
-	buttons.forEach(function(btn) {
-		btn.classList.remove('active');
-	});
+document.addEventListener('DOMContentLoaded', function() {
+    // 방문 방법 버튼들을 모두 선택
+    var visitMethodButtons = document.querySelectorAll('.left-usermethod-btn button');
 
-	// 클릭된 버튼에 'active' 클래스 추가
-	element.classList.add('active');
-}
+    // 각 버튼에 클릭 이벤트 리스너를 추가
+    visitMethodButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // 모든 버튼의 기존 스타일을 초기화
+            visitMethodButtons.forEach(function(btn) {
+                btn.style.backgroundColor = '#fff';
+                btn.style.border = '1px solid lightgray';
+                btn.style.color = '#000'; // 텍스트 색상 초기화
+            });
+
+            // 클릭된 버튼의 스타일 변경
+            this.style.backgroundColor = '#f2f8ff';
+            this.style.border = '1px solid #b7d5f6';
+            this.style.color = '#1273e5'; // 선택된 버튼의 텍스트 색상 변경
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById('openModal');
+    var closeBtn = document.getElementById('closeModal');
+    var requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+    var body = document.body;
+
+    // 모달 열기
+    btn.addEventListener('click', function(event) {
+        // 모든 필수 체크박스가 체크되어 있는지 확인
+        var allChecked = Array.from(requiredConsents).every(function(checkbox) {
+            return checkbox.checked;
+        });
+
+        if (allChecked) {
+            modal.style.display = 'block'; // 모든 필수 항목이 체크된 경우 모달 열기
+            body.style.overflow = 'hidden'; // 배경의 스크롤을 없앰
+        } else {
+            event.preventDefault(); // 기본 동작 막기
+        }
+    });
+
+    // 모달 닫기 버튼 클릭 시 모달 닫기
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        body.style.overflow = 'auto'; // 배경의 스크롤을 다시 활성화
+    });
+});
 
 
+//결제창 
+document.addEventListener("DOMContentLoaded", function() {
+    var toggleArea = document.getElementById('toggleArea');
+    var arrowIcon = document.getElementById('arrowIcon');
+    var refundDetails = document.getElementById('refundDetails');
+
+    toggleArea.addEventListener('click', function() {
+        // refundDetails의 표시 상태에 따라 toggle
+        if (refundDetails.style.display === "none" || refundDetails.style.display === "") {
+            refundDetails.style.display = "block";
+            arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
+        } else {
+            refundDetails.style.display = "none";
+            arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
+        }
+    });
+});
+
+//예약하기 페이지 버튼
+document.addEventListener('DOMContentLoaded', function() {
+    const allConsentButton = document.getElementById('allConsentButton');
+    const allConsentCheckbox = document.getElementById('allConsent');
+    const consentList = document.getElementById('consentList');
+    const arrowIcon = document.getElementById('arrowIcon');
+    const individualConsents = document.querySelectorAll('.individual-consent');
+    const btnConsent = document.querySelector('.btn-consent button');
+
+    allConsentButton.addEventListener('click', function() {
+        consentList.classList.toggle('open');
+        arrowIcon.classList.toggle('open');
+
+        if (consentList.classList.contains('open')) {
+            arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
+        } else {
+            arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
+        }
+    });
+
+    allConsentCheckbox.addEventListener('click', function(e) {
+        e.stopPropagation(); // 부모 요소로의 클릭 이벤트 전파를 막음
+        const isChecked = this.checked;
+        individualConsents.forEach(function(checkbox) {
+            checkbox.checked = isChecked;
+        });
+    });
+
+    individualConsents.forEach(function(checkbox) {
+        checkbox.addEventListener('click', function() {
+            const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+            const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
+                return checkbox.checked;
+            });
+
+            if (!allRequiredChecked) {
+                allConsentCheckbox.checked = false;
+            }
+        });
+    });
+
+    btnConsent.addEventListener('click', function(e) {
+        const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+        const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
+            return checkbox.checked;
+        });
+
+        if (!allRequiredChecked) {
+            e.preventDefault(); // 버튼의 기본 동작을 막음 (예: 폼 제출 방지)
+            alert('필수 항목에 모두 동의해주세요.');
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 결제 수단 버튼들을 모두 선택
+    var payButtons = document.querySelectorAll('.pay button');
+
+    // 각 버튼에 클릭 이벤트 리스너를 추가
+    payButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // 모든 버튼의 기존 스타일을 초기화
+            payButtons.forEach(function(btn) {
+                btn.style.backgroundColor = '#fff';
+                btn.style.border = '1.5px solid #ebebeb';
+            });
+
+            // 클릭된 버튼의 스타일 변경
+            this.style.backgroundColor = '#f2f8ff';
+            this.style.border = '1.5px solid #b7d5f6';
+        });
+    });
+});
 
 //검색창 달력 라이브러리
 $(document).ready(function() {
@@ -692,29 +822,3 @@ document.getElementById('phoneInput').addEventListener('input', function(e) {
 	this.value = this.value.replace(/\D/g, '');
 	formatPhoneNumber(this);
 });
-
-//객실 상세정보 페이지 -> 예약 페이지로 폼 넘기는 액션
-/*$(document).ready(function() {
-
-	$('.reserve-btn').on('click', function() {
-
-		//room 정보 추출
-		var roomCode = $(this).data('room-code');
-		var roomName = $(this).data('room-name');
-		var roomType = $(this).data('room-type');
-		var checkInTime = $(this).data('check-in-time');
-		var checkOutTime = $(this).data('check-out-time');
-		var roomAmount = $(this).data('room-amount');
-
-		// 숨겨진 입력 필드에 값 설정
-		$('input[name="roomCode"]').val(roomCode);
-		$('input[name="roomName"]').val(roomName);
-		$('input[name="roomType"]').val(roomType);
-		$('input[name="rsvtChekInTime"]').val(checkInTime);
-		$('input[name="rsvtChekOutTime"]').val(checkOutTime);
-		$('input[name="rsvtRoomAmount"]').val(roomAmount);
-
-		// 폼 제출
-		$('#reservationForm').submit();
-	});
-});*/
