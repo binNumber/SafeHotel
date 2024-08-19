@@ -22,6 +22,7 @@
 		
 		<typeAlias type="com.app.dto.business.Business" alias="Business"/>
 		<typeAlias type="com.app.dto.api.BusinessUserUpdatdReq" alias="BusinessUserUpdatdReq"/>
+		<typeAlias type="com.app.dto.business.Accommodation" alias="Accommodation"></typeAlias>
 		
 		<typeAlias type="com.app.dto.admin.Accommodation" alias="Accommodation"/>
 		<typeAlias type="com.app.dto.admin.AccommodationDetails" alias="AccommodationDetails"/>

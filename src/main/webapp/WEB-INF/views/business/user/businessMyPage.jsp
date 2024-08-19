@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>사업자 내 정보 조회</title>
+<title>비즈니스 유저 정보 관리</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -32,7 +32,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="/businessMyPage">내
 										정보</a></li>
-								<li><a class="dropdown-item" href="#">로그아웃</a></li>
+								<li><a class="dropdown-item" href="/businessLogout">로그아웃</a></li>
 							</ul></li>
 					</ul>
 				</div>
