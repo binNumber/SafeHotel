@@ -208,6 +208,7 @@
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
 
+
 						</div>
 					</div>
 				</div>
@@ -216,6 +217,7 @@
 					<input type="hidden" id="acmAddrInput" value="${acm.acmAddr }">
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
+				<div class="roominfo-top-map"></div>
 				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
@@ -526,6 +528,7 @@
 				<!--  폼 안보내짐 -->
 				<form id="reservationForm" action="/roominfo2" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
+					<input type="hidden" name="acmName" value="${acm.acmName }">
 					<input type="hidden" name="rsvtChekInDate"
 						value="${searchRoom.checkInDate }"> <input type="hidden"
 						name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
@@ -605,8 +608,11 @@
 		</div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>
 		<script src="js/kakaoMapApi.js"></script>
+		<script src="js/customer/reservation_form_action.js"></script>
 	</div>
 </body>
 </html>

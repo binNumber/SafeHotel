@@ -21,4 +21,7 @@ public interface ReservationService {
 	
 	//예약코드 기반으로 리뷰 작성 여부 상태를 작성 완료로 변경
 	public int updateRsvtReviewStatus(String rsvtCode);
+	
+	//예약 DB에 저장
+	public int saveReservation(Reservation reservation);
 }

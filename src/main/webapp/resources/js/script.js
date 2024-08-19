@@ -1,4 +1,3 @@
-
 //addFlashAttribute로 msg를 보낸 경우 alert창으로 출력하기
 window.onload = function() {
 
@@ -850,58 +849,3 @@ document.getElementById('phoneInput').addEventListener('input', function(e) {
 	this.value = this.value.replace(/\D/g, '');
 	formatPhoneNumber(this);
 });
-
-//객실 상세정보 페이지 -> 예약 페이지로 폼 넘기는 액션
-/*$(document).ready(function() {
-
-	$('.reserve-btn').on('click', function() {
-
-		//room 정보 추출
-		var roomCode = $(this).data('room-code');
-		var roomName = $(this).data('room-name');
-		var roomType = $(this).data('room-type');
-		var checkInTime = $(this).data('check-in-time');
-		var checkOutTime = $(this).data('check-out-time');
-		var roomAmount = $(this).data('room-amount');
-
-		// 숨겨진 입력 필드에 값 설정
-		$('input[name="roomCode"]').val(roomCode);
-		$('input[name="roomName"]').val(roomName);
-		$('input[name="roomType"]').val(roomType);
-		$('input[name="rsvtChekInTime"]').val(checkInTime);
-		$('input[name="rsvtChekOutTime"]').val(checkOutTime);
-		$('input[name="rsvtRoomAmount"]').val(roomAmount);
-
-		// 폼 제출
-		$('#reservationForm').submit();
-	});
-});*/
-document.addEventListener('DOMContentLoaded', function() {
-	// 모든 .reserve-btn 버튼을 선택
-	var reserveButtons = document.querySelectorAll('.reserve-btn');
-
-	reserveButtons.forEach(function(button) {
-		button.addEventListener('click', function() {
-			// room 정보 추출
-			var roomCode = this.getAttribute('data-room-code');
-			var roomName = this.getAttribute('data-room-name');
-			var roomType = this.getAttribute('data-room-type');
-			var checkInTime = this.getAttribute('data-check-in-time');
-			var checkOutTime = this.getAttribute('data-check-out-time');
-			var roomAmount = this.getAttribute('data-room-amount');
-
-			// 숨겨진 입력 필드에 값 설정
-			document.querySelector('input[name="roomCode"]').value = roomCode;
-			document.querySelector('input[name="roomName"]').value = roomName;
-			document.querySelector('input[name="roomType"]').value = roomType;
-			document.querySelector('input[name="rsvtChekInTime"]').value = checkInTime;
-			document.querySelector('input[name="rsvtChekOutTime"]').value = checkOutTime;
-			document.querySelector('input[name="rsvtRoomAmount"]').value = roomAmount;
-
-			// 폼 제출
-			document.getElementById('reservationForm').submit();
-		});
-	});
-});
-
-

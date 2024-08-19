@@ -19,5 +19,5 @@ public class WriteReviewForm {
 	String reviewText;	//리뷰 내용
 	
 	//리뷰 이미지 관련
-	MultipartFile[] reviewImgFile; //저장할 이미지 파일
+	List<MultipartFile> reviewImgFile; //저장할 이미지 파일
 }

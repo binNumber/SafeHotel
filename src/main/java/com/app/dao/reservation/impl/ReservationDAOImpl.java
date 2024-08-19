@@ -64,4 +64,14 @@ public class ReservationDAOImpl implements ReservationDAO {
 		
 		return result;
 	}
+
+	//예약 DB에 저장
+	@Override
+	public int saveReservation(Reservation reservation) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("reservation_mapper.saveReservation", reservation);
+		
+		return result;
+	}
 }

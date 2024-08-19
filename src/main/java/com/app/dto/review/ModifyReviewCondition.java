@@ -1,5 +1,9 @@
 package com.app.dto.review;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -9,4 +13,6 @@ public class ModifyReviewCondition {
 	
 	int reviewCode;	//리뷰코드
 	String reviewText; //리뷰 텍스트
+	
+	List<MultipartFile> reviewImgFile;
 }

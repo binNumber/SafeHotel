@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.review.ReviewDAO;
+import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
 import com.app.service.review.ReviewService;
@@ -85,6 +86,26 @@ public class ReviewServiceImpl implements ReviewService {
 		return result;
 	}
 
+	//리뷰 코드 기반으로 리뷰 검색
+	@Override
+	public Review findReviewByReviewCode(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		Review review = reviewDAO.findReviewByReviewCode(reviewCode);
+		
+		return review;
+	}
+
+	//리뷰 수정
+	@Override
+	public int modifyReivew(ModifyReviewCondition modifyReview) {
+		// TODO Auto-generated method stub
+		
+		int result = reviewDAO.modifyReivew(modifyReview);
+		
+		return result;
+	}
+
 	//리뷰 삭제
 	@Override
 	public int deleteReview(int reviewCode) {
@@ -103,6 +124,16 @@ public class ReviewServiceImpl implements ReviewService {
 		List<Review> reviewList = reviewDAO.findReviewListByAcmCode(acmCode);
 		
 		return reviewList;
+	}
+
+	//리뷰 코드 기반으로 리뷰 이미지 삭제
+	@Override
+	public int deleteReviewImg(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = reviewDAO.deleteReview(reviewCode);
+		
+		return result;
 	}
 
 }

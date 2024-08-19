@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
+import com.app.dto.reservation.Reservation;
 import com.app.dto.reservation.ReservationCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -24,6 +25,7 @@ import com.app.dto.room.Room;
 import com.app.dto.room.SearchRoomCondition;
 import com.app.dto.user.User;
 import com.app.service.accommodation.AccommodationService;
+import com.app.service.reservation.ReservationService;
 import com.app.service.review.ReviewService;
 import com.app.service.room.RoomService;
 import com.app.utiil.RoomAmountManager;
@@ -39,6 +41,9 @@ public class AccommodationInfoController {
 	
 	@Autowired
 	ReviewService reviewService;
+	
+	@Autowired
+	ReservationService reservationService;
 	
 	//나중에 코드만 복붙할 예정
 	@GetMapping("/roominfo2")
@@ -120,7 +125,7 @@ public class AccommodationInfoController {
 		if(acmImgList != null) {
 			
 			model.addAttribute("acmImgList", acmImgList);
-
+			
 		}
 		
 		//업소코드, 체크인 날짜, 체크아웃 날짜, 인원수 기반으로 객실 정보 불러오기
@@ -133,6 +138,12 @@ public class AccommodationInfoController {
 				
 				r.setRoomAmount(RoomAmountManager.determinePrice(searchRoom, r));
 				r.setRoomAmountStr(RoomAmountManager.getRoomAmount(searchRoom, r));
+				
+				System.out.println("이용가능한 룸 개수");
+				System.out.println(r.getRoomName());
+				System.out.println(r.getAvailableRooms());
+				System.out.println(r.getCheckInTime());
+				System.out.println(r.getCheckOutTime());
 								
 				List<AccommodationImg> roomImgList = null;
 				for(AccommodationImg acmImg : acmImgList) {
@@ -194,10 +205,18 @@ public class AccommodationInfoController {
 	public String roomInfoAction(ReservationCondition reservationCondition,
 			HttpSession session) {
 		
+		System.out.println("예약 폼 확인");
+		System.out.println(reservationCondition.getAcmCode());
+		System.out.println(reservationCondition.getAcmName());
+		System.out.println(reservationCondition.getRsvtChekInDate());
+		System.out.println(reservationCondition.getRsvtChekOutDate());
+		System.out.println(reservationCondition.getRoomCode());
+		System.out.println(reservationCondition.getRoomName());
+		
 		//로그인 페이지로 이동할 수도 있어서 세션으로 값 보내기
 		session.setAttribute("reservationCondition", reservationCondition);
 		
-		if(session.getAttribute("user") != null) {
+		if(session.getAttribute("user") == null) {
 			return "redirect:/signupMain";
 		}
 		
@@ -216,11 +235,24 @@ public class AccommodationInfoController {
 	
 	//예약페이지 액션
 	@PostMapping("/reservationpage2")
-	public String reservationAction() {
+	public String reservationAction(Reservation reservation,
+			HttpSession session) {
 		
 		//예약 완료되면 예약을 확인하겠냐고 물어보고 예약 상세페이지로 이동
+		int result = reservationService.saveReservation(reservation);
 		
-		return "";
+		if(result > 0) {
+			System.out.println("예약 성공");
+			
+			session.setAttribute("isCheckPw", "OK");
+			
+			return "redirect:/mypage/checkReservation/confirmed";
+			
+		} else {
+			System.out.println("예약 실패");
+		}
+		
+		return "redirect:/reservationpage2";
 	}
 	
 }
