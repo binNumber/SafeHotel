@@ -18,13 +18,13 @@
 	font-family: 'SUIT-Regular';
 	font-weight: bold;
 	color: inherit;
-    text-decoration: none;
+	text-decoration: none;
 }
 
 * a:hover {
-            color: inherit; /* 마우스를 올렸을 때도 색상이 변하지 않도록 설정 */
-            text-decoration: none; /* 마우스를 올렸을 때도 밑줄이 생기지 않도록 설정 */
-        }
+	color: inherit; /* 마우스를 올렸을 때도 색상이 변하지 않도록 설정 */
+	text-decoration: none; /* 마우스를 올렸을 때도 밑줄이 생기지 않도록 설정 */
+}
 
 body, html {
 	width: 100%;
@@ -148,12 +148,12 @@ body {
 
 /* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
 #success-login {
-	display:flex;
+	display: flex;
 }
 
 #mypage-btn {
 	width: 100px;
-	margin-right : 3px;
+	margin-right: 3px;
 }
 
 #logout-btn {
@@ -161,7 +161,6 @@ body {
 }
 
 /* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
-
 .main_content {
 	margin: 0 auto;
 	padding-top: 100px;
@@ -229,7 +228,8 @@ body {
 .search-top {
 	margin-top: 50px;
 	color: #fff;
-    font-size: 40px;
+	font-size: 40px;
+	margin-bottom: 100px;
 }
 
 .search-best {
@@ -247,74 +247,73 @@ body {
 	min-height: 200px;
 }
 
-.people-picker h6{
+.people-picker h6 {
 	color: #474747;
-    font-weight: 600;
-    font-size: 11px;
+	font-weight: 600;
+	font-size: 11px;
+	padding: 10px;
 }
 
 .search-best p, .people-picker p {
-    margin: 10px;
+	margin: 10px;
 }
 
 .show {
-    display: block !important;
+	display: block !important;
 }
 
-
 .people-picker {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid lightgray;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    z-index: 10;
-    display: none;
-    margin-top: 5px;
-    height: 120px;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid lightgray;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	z-index: 10;
+	display: none;
+	margin-top: 5px;
+	height: 140px;
 }
 
 .people-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px;
 }
 
 .people-controls button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background-color: #f5f5f5;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid #ccc;
+	background-color: #f5f5f5;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 
 .people-controls .people-count {
-    font-size: 20px;
-    margin: 0 10px;
+	font-size: 20px;
+	margin: 0 10px;
 }
 
 .btn-date, .btn-people {
-    position: relative;
+	position: relative;
 }
 
 .search-main {
 	display: flex;
-    justify-content: space-around;
-    width: 90%;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 10px;
-    align-items: center;
-    margin-top: 100px;
+	justify-content: space-around;
+	width: 90%;
+	height: 100px;
+	background-color: #fff;
+	border-radius: 10px;
+	align-items: center;
 }
 
 .backimg {
@@ -328,14 +327,14 @@ body {
 }
 
 .input-search input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    background-color: #f5f5f5;
-    padding-left: 50px;
-    font-family: 'SUIT-Regular';
+	width: 100%;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+	background-color: #f5f5f5;
+	padding-left: 50px;
+	font-family: 'SUIT-Regular';
 	font-weight: bold;
 	font-style: normal;
 }
@@ -346,8 +345,28 @@ body {
 
 .btn-date {
 	width: 30%;
+	border-radius: 10px;
+	height: 45px;
+	display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-date-checkin, .btn-date-checkout {
+	width: 49%;
+}
+
+.btn-date input {
+    width: 100%;
+    height: 44px;
     border-radius: 10px;
-    height: 45px;
+    border: none;
+    background-color: #F5F5F5;
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
+    color: #717171;
+    padding-left: 10px;
 }
 
 .btn-date img {
@@ -357,24 +376,24 @@ body {
 .btn-date button {
 	display: flex;
 	width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    background-color: #F5F5F5;
-    font-size: 15px;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	font-size: 15px;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
 }
 
 .btn-people {
 	width: 20%;
-    border-radius: 10px;
-    height: 45px;
-    align-content: center;
+	border-radius: 10px;
+	height: 45px;
+	align-content: center;
 }
 
 .btn-people img {
@@ -384,35 +403,35 @@ body {
 #btn_people {
 	display: flex;
 	width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    background-color: #F5F5F5;
-    font-size: 15px;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	font-size: 15px;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
 }
 
 .btn-searchright {
 	width: 10%;
-    border-radius: 10px;
-    height: 45px;
-    align-content: center;
+	border-radius: 10px;
+	height: 45px;
+	align-content: center;
 }
 
 .btn-searchright button {
 	width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    background-color: #1273E4;
-    font-size: 15px;
-    cursor: pointer;
-    color: #fff
+	height: 100%;
+	border: none;
+	border-radius: 10px;
+	background-color: #1273E4;
+	font-size: 15px;
+	cursor: pointer;
+	color: #fff
 }
 
 .btn-searchright button:hover {
@@ -421,13 +440,13 @@ body {
 
 .input-search {
 	display: flex;
-    border-radius: 10px;
-    width: 35%;
-    background-color: #F5F5F5;
-    border-radius: 10px;
-    height: 45px;
-    align-items: center;
-    position: relative;
+	border-radius: 10px;
+	width: 35%;
+	background-color: #F5F5F5;
+	border-radius: 10px;
+	height: 45px;
+	align-items: center;
+	position: relative;
 }
 
 .input-search img {
@@ -440,9 +459,9 @@ body {
 }
 
 .input-search input:focus, #btn_date:focus, #btn_people:focus {
-    border: 2px solid black;
-    background-color: #fff;
-    outline: none; /* 기본 포커스 스타일 제거 */
+	border: 2px solid black;
+	background-color: #fff;
+	outline: none; /* 기본 포커스 스타일 제거 */
 }
 
 .hidesearch.show {
@@ -451,9 +470,9 @@ body {
 
 .searchcontent {
 	display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
 }
 
 .eventsection {
@@ -509,7 +528,7 @@ body {
 
 .btn_sectionpage.next {
 	right: -30px;
-	top: 100px;     
+	top: 100px;
 }
 
 .btn_sectionpage button {
@@ -635,15 +654,14 @@ body {
 }
 
 /*---------------userlogin페이지---------------*/
-
 .login input {
 	width: 100%;
-    height: 50px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 0 15px;
-    font-size: 16px;
+	height: 50px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	padding: 0 15px;
+	font-size: 16px;
 }
 
 .login h4 {
@@ -653,18 +671,18 @@ body {
 
 .login {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 }
 
-.btn-login button{
+.btn-login button {
 	width: 100%;
-    height: 40px;
-    margin: 20px 0px;
-    border: none;
-    background-color: #0060ff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+	height: 40px;
+	margin: 20px 0px;
+	border: none;
+	background-color: #0060ff;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 .btn-login button:hover {
@@ -673,45 +691,45 @@ body {
 
 .loginfunction {
 	display: flex;
-    justify-content: space-between;
-    font-size: 12px;
+	justify-content: space-between;
+	font-size: 12px;
 }
 
-.loginfunction a{
+.loginfunction a {
 	color: black;
 }
 
 .logincheckbox {
 	display: flex;
-    align-items: center;
+	align-items: center;
 }
 
-.loginsignup h5{
+.loginsignup h5 {
 	margin-bottom: 10px;
 }
 
 /*-------------------------유저회원가입페이지--------------------------*/
 .accept-all {
 	display: flex;
-    align-items: center;
-    background-color: #e7e7e7;
-    width: 100%;
-    height: 40px;
-    padding: 0 15px;
-    margin-top: 15px;
+	align-items: center;
+	background-color: #e7e7e7;
+	width: 100%;
+	height: 40px;
+	padding: 0 15px;
+	margin-top: 15px;
 }
 
-.accept-all label{
+.accept-all label {
 	display: flex;
-    align-items: center;
-    cursor: pointer;
+	align-items: center;
+	cursor: pointer;
 }
 
 .accepttext {
 	font-size: 10px;
-    color: #838383;
-    font-weight: 200;
-    margin-left: 10px;
+	color: #838383;
+	font-weight: 200;
+	margin-left: 10px;
 }
 
 .accept-all input {
@@ -720,56 +738,56 @@ body {
 
 .acceptitem {
 	display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .accept {
 	font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 15px 15px;
+	font-weight: 600;
+	cursor: pointer;
+	padding: 15px 15px;
 }
 
-.accept label{
+.accept label {
 	cursor: pointer;
 }
 
 .btn-signup {
 	width: 100%;
-    height: 40px;
-    margin: 20px 0px;
-    border: none;
-    background-color: #0060ff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+	height: 40px;
+	margin: 20px 0px;
+	border: none;
+	background-color: #0060ff;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 .btn-signup:hover {
-background-color: #3480ff;
+	background-color: #3480ff;
 }
 
 #next-btn {
 	width: 100%;
-    height: 40px;
-    margin: 20px 0px;
-    border: none;
-    background-color: #0060ff;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
+	height: 40px;
+	margin: 20px 0px;
+	border: none;
+	background-color: #0060ff;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 #next-btn:hover {
-background-color: #3480ff;
+	background-color: #3480ff;
 }
 
 /*---------------------유저회원가입 2번째 페이지-----------------------*/
 .signupcontent {
 	display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .signupcontent button {
@@ -778,16 +796,16 @@ background-color: #3480ff;
 
 .signinfo {
 	display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
 }
 
 .business_rsd_reg_num_signinfo {
 	width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .regnumfile {
@@ -796,26 +814,26 @@ background-color: #3480ff;
 
 .regnumtext {
 	margin-top: 10px;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 0 15px;
-    font-size: 16px;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	padding: 0 15px;
+	font-size: 16px;
 }
 
 .addresssigninfo {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: flex-start;
 }
 
 .addressbox {
 	display: flex;
-    width: 100%;
-    justify-content: space-between;
+	width: 100%;
+	justify-content: space-between;
 }
 
 .addressbox input {
@@ -825,8 +843,8 @@ background-color: #3480ff;
 .addressbox button {
 	width: 30%;
 	margin: 10px 0px;
-    border: 1px solid lightgray;
-    height: 25px;
+	border: 1px solid lightgray;
+	height: 25px;
 }
 
 .addresstitle {
@@ -835,38 +853,38 @@ background-color: #3480ff;
 
 .namecheck button {
 	margin: 10px 0px;
-    border: 1px solid lightgray;
-    width: 50%;
-    height: 25px;
+	border: 1px solid lightgray;
+	width: 50%;
+	height: 25px;
 }
 
-.addresssigninfo input{
+.addresssigninfo input {
 	width: 49%;
 	height: 50px;
-    padding: 0 15px;
-    font-size: 16px;
-    border: 1px solid lightgray;
-        border-radius: 5px;
+	padding: 0 15px;
+	font-size: 16px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
 }
 
 .addressinput {
 	display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
+	justify-content: space-between;
+	width: 100%;
+	margin: 10px 0;
 }
 
 .gendersigninfo {
 	display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .namecheck {
 	display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
 }
 
 .namecheck button {
@@ -874,83 +892,83 @@ background-color: #3480ff;
 }
 
 .namecheck input {
-	margin-top : 10px;
+	margin-top: 10px;
 }
 
 .nickname {
 	width: 75%;
-    height: 50px;
-    padding: 0 15px;
-    font-size: 16px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+	height: 50px;
+	padding: 0 15px;
+	font-size: 16px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
 }
 
 .signinfo input {
 	margin-top: 10px;
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 0 15px;
-    font-size: 16px;
+	width: 100%;
+	height: 50px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	padding: 0 15px;
+	font-size: 16px;
 }
 
-#signupForm > div {
-	margin-bottom : 20px;
+#signupForm>div {
+	margin-bottom: 20px;
 }
 
 .nicknamesigninfo {
-    width: 100%;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+	width: 100%;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	font-size: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .namecheck button {
 	width: 20%;
-    margin: 10px 0px;
-    border: 1px solid lightgray;
-    height: 25px;
+	margin: 10px 0px;
+	border: 1px solid lightgray;
+	height: 25px;
 }
 
-.gender input{
+.gender input {
 	margin: 10px 0;
 }
 
 .errormsg {
-	margin-top : 5px;
-	font-weight : normal;
-	font-size : 15px;
-	text-align : left;
+	margin-top: 5px;
+	font-weight: normal;
+	font-size: 15px;
+	text-align: left;
 }
 
 /* 유저 회원가입 기입 시 오류가 있는 경우 */
 .color-red {
-	color : red !important;
+	color: red !important;
 }
 
 /* 유저 회원가입 기입 시 오류가 있는 경우 */
 .color-blue {
-	color : blue !important;
+	color: blue !important;
 }
 
 /* -- 자바스크립트 class add/remove로 사용하기 위한 css -- */
 .display-none {
-	display : none;
+	display: none;
 }
 /*---------------------------------------리스트페이지-----------------------------------------*/
-
 .content-top-text {
 	margin-top: 50px;
 }
 
 .content-top-search {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
+	margin-top: 100px;
 }
 
 .content-top, .content-main {
@@ -960,32 +978,32 @@ background-color: #3480ff;
 
 .roomlist {
 	display: flex;
-    flex-direction: column;
-    margin-bottom: 65px;
+	flex-direction: column;
+	margin-bottom: 65px;
 }
 
 .roomthumbnail {
 	padding: 30px;
-    display: flex;
-    border-radius: 20px;
-    margin-top: 50px;
-    padding-bottom: 65px;
-    background-color: #F5F7FA;
+	display: flex;
+	border-radius: 20px;
+	margin-top: 50px;
+	padding-bottom: 65px;
+	background-color: #F5F7FA;
 }
 
 .roomphoto {
 	width: 80%;
-    height: 400px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-right: 25px;
+	height: 400px;
+	border: 1px solid black;
+	border-radius: 10px;
+	margin-right: 25px;
 }
 
 .roominfo {
 	width: 100%;
 	display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .roominfo-price {
@@ -995,64 +1013,61 @@ background-color: #3480ff;
 }
 
 .roominfo-price h5 {
-    color: #999999;
-    text-decoration-line: line-through;
+	color: #999999;
+	text-decoration-line: line-through;
 }
 
 /*-------------------------상세페이지----------------------------*/
-
-
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: white;
-    border-bottom: 1px solid lightgray;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: white;
+	border-bottom: 1px solid lightgray;
 }
 
 .container-roominfo {
-    padding-top: 160px;
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 .sticky-nav {
-    position: fixed;
-    top: 80px;
-    width: 100%;
-    z-index: 999;
-    background-color: white;
-    display: flex;
-    padding: 30px 300px;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease-in-out;
-    border-bottom: 1px solid lightgray;
+	position: fixed;
+	top: 80px;
+	width: 100%;
+	z-index: 999;
+	background-color: white;
+	display: flex;
+	padding: 30px 300px;
+	transform: translateY(-100%);
+	transition: transform 0.3s ease-in-out;
+	border-bottom: 1px solid lightgray;
 }
 
 .sticky-nav.show {
-    transform: translateY(0);
+	transform: translateY(0);
 }
 
 .sticky-nav ul {
-    list-style: none;
-    display: flex;
-    /* gap: 20px; */
-    justify-content: space-around;
+	list-style: none;
+	display: flex;
+	/* gap: 20px; */
+	justify-content: space-around;
 }
 
 .sticky-nav ul li a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
 }
 
 .sticky-nav ul li.active a {
-    border-bottom: 2px solid blue !important;
+	border-bottom: 2px solid blue !important;
 }
 
 #section1, #section2, #section3, #section4, #section5 {
 	width: 85%;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 .content-mainphoto {
@@ -1063,10 +1078,10 @@ background-color: #3480ff;
 
 .subphoto {
 	display: flex;
-    width: 50%;
-    flex-direction: column;
-    height: 400px;
-	gap: 8px;    
+	width: 50%;
+	flex-direction: column;
+	height: 400px;
+	gap: 8px;
 }
 
 .mainphoto {
@@ -1078,9 +1093,9 @@ background-color: #3480ff;
 }
 
 .photosection {
-    display: flex;
-    height: 50%;
-    gap: 8px;
+	display: flex;
+	height: 50%;
+	gap: 8px;
 }
 
 .photo2, .photo3, .photo4 {
@@ -1095,80 +1110,79 @@ background-color: #3480ff;
 	border: 1px solid black;
 	padding: 10px;
 	display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 20px;
+	flex-direction: column;
+	justify-content: space-between;
+	border-radius: 20px;
 }
 
 .btn-photo {
 	display: flex;
-    justify-content: flex-end;
+	justify-content: flex-end;
 }
 
-
 .btn-photo button {
-    border-radius: 10px;
-    width: 120px;
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+	border-radius: 10px;
+	width: 120px;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
+	font-weight: bold;
+	font-style: normal;
 }
 
 .roominfo-top-map {
 	margin: 20px 0;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    width: 100%;
-    height: 500px;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	width: 100%;
+	height: 500px;
 }
 
 .sectionline {
 	width: 100%;
-    height: 2px;
-    background-color: #a7a7a7;
-    margin: 50px 0;
+	height: 2px;
+	background-color: #a7a7a7;
+	margin: 50px 0;
 }
 
 .content-roominfo-listsection {
 	margin: 50px 0;
-    background-color: #F5F7FA;
-    height: 300px;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
+	background-color: #F5F7FA;
+	height: 300px;
+	padding: 20px;
+	border-radius: 20px;
+	display: flex;
 }
 
 .listsection-photo {
 	border: 1px solid;
-    width: 35%;
-    height: 100%;
-    padding: 20px;
-    border-radius: 20px;
-    margin-right: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	width: 35%;
+	height: 100%;
+	padding: 20px;
+	border-radius: 20px;
+	margin-right: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .listsection-photo button {
-    width: 40px;
-    height: 30px;
-    background-color: #636363;
-    border: none;
-    padding: 5px;
-    font-size: 11px;
-    border-radius: 10px;
-    color: #fff;
-    font-family: 'SUIT-Regular';
-    font-style: normal;
-    align-content: right;
-    align-self: self-end;
-    cursor: pointer;
+	width: 40px;
+	height: 30px;
+	background-color: #636363;
+	border: none;
+	padding: 5px;
+	font-size: 11px;
+	border-radius: 10px;
+	color: #fff;
+	font-family: 'SUIT-Regular';
+	font-style: normal;
+	align-content: right;
+	align-self: self-end;
+	cursor: pointer;
 }
 
 .listsection-main {
@@ -1177,27 +1191,27 @@ background-color: #3480ff;
 
 .listmain-content {
 	display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 10px 30px;
-    margin: 25px 0;
+	justify-content: space-between;
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 10px 30px;
+	margin: 25px 0;
 }
 
 .listmain-remainder {
 	text-align: right;
 }
 
-.listmain-remainder button{
+.listmain-remainder button {
 	background-color: #1273E4;
-    border: none;
-    padding: 15px;
-    font-size: 15px;
-    border-radius: 10px;
-    color: #fff;
-    font-family: 'SUIT-Regular';
-    font-style: normal;
-    cursor: pointer;
+	border: none;
+	padding: 15px;
+	font-size: 15px;
+	border-radius: 10px;
+	color: #fff;
+	font-family: 'SUIT-Regular';
+	font-style: normal;
+	cursor: pointer;
 }
 
 .listsection-roominfo {
@@ -1206,11 +1220,11 @@ background-color: #3480ff;
 
 .listsection-roominfo-text {
 	display: flex;
-    justify-content: flex-start;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px 30px;
-    margin: 25px 0;
+	justify-content: flex-start;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 20px 30px;
+	margin: 25px 0;
 }
 
 .listsection-roominfo-text h6 {
@@ -1219,9 +1233,9 @@ background-color: #3480ff;
 
 .review-section-main {
 	display: flex;
-    border-bottom: 1px solid #a7a7a7;
-    padding-bottom: 40px;
-    margin-top: 40px;
+	border-bottom: 1px solid #a7a7a7;
+	padding-bottom: 40px;
+	margin-top: 40px;
 }
 
 .review-section-title {
@@ -1244,78 +1258,78 @@ background-color: #3480ff;
 .review-section-right {
 	padding: 0 30px;
 	border-left: 1px solid #a7a7a7;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
 }
 /*리뷰섹션 사용자등록 리뷰사진*/
 .review-right-photo {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 0;
+	display: flex;
+	align-items: center;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	padding: 20px 0;
 }
 
 .review-right-photo:hover .btn_reviewpage {
-    opacity: 1;
-    visibility: visible;
+	opacity: 1;
+	visibility: visible;
 }
 
 .reviewsection-slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    gap: 20px;
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	gap: 20px;
 }
 
 .reviewsection-photo {
-    flex-shrink: 0;
-    width: calc(100% / 3 - 20px); /* 슬라이드 하나의 너비 (3개의 슬라이드가 동시에 보이도록 설정) */
-    height: 200px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	flex-shrink: 0;
+	width: calc(100%/ 3 - 20px); /* 슬라이드 하나의 너비 (3개의 슬라이드가 동시에 보이도록 설정) */
+	height: 200px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .reviewsection-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .btn_reviewpage {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(133, 133, 133, 0.7);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0; /* 기본 상태에서 투명하게 설정 */
-    visibility: hidden; /* 기본 상태에서 보이지 않도록 설정 */
-    transition: opacity 0.3s ease-in-out;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(133, 133, 133, 0.7);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 1;
+	opacity: 0; /* 기본 상태에서 투명하게 설정 */
+	visibility: hidden; /* 기본 상태에서 보이지 않도록 설정 */
+	transition: opacity 0.3s ease-in-out;
 }
 
 .btn_reviewpage.prev {
-    left: 10px;
+	left: 10px;
 }
 
 .btn_reviewpage.next {
-    right: 10px;
+	right: 10px;
 }
 
 .btn_reviewpage button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
 }
 
 .reviewsection-roominfo h5 {
@@ -1323,45 +1337,45 @@ background-color: #3480ff;
 }
 
 .reviewsection-msg {
-    position: relative;
-    max-width: 100%;
+	position: relative;
+	max-width: 100%;
 }
 
 .review-message {
-    margin: 0;
-    padding: 5px 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* 표시할 최대 줄 수 */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    mask-image: linear-gradient(180deg, black 60%, transparent 100%);
+	margin: 0;
+	padding: 5px 0;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* 표시할 최대 줄 수 */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	mask-image: linear-gradient(180deg, black 60%, transparent 100%);
 }
 
 .review-message.expanded {
-    -webkit-line-clamp: unset; /* 확장 시 제한을 풀어줌 */
-    overflow: visible;
-    mask-image: none;
+	-webkit-line-clamp: unset; /* 확장 시 제한을 풀어줌 */
+	overflow: visible;
+	mask-image: none;
 }
 
 .toggle-button {
-    background: none;
-    border: none;
-    color: #656565;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 0;
-    margin: 10px 0 0;
-    font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
+	background: none;
+	border: none;
+	color: #656565;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 0;
+	margin: 10px 0 0;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
 }
 
 .reviewsection-adminmsg {
 	margin-top: 20px;
 	background-color: #a3a3a3;
-    border-radius: 10px;
-    padding: 10px;
+	border-radius: 10px;
+	padding: 10px;
 }
 
 .adminmsg-msg {
@@ -1383,9 +1397,9 @@ background-color: #3480ff;
 	justify-content: space-between;
 }
 
-.footer-top h5{
+.footer-top h5 {
 	color: #707070;
-	margin-top: 10px;	
+	margin-top: 10px;
 }
 
 .footer-mid {
@@ -1394,26 +1408,25 @@ background-color: #3480ff;
 
 .footer-bottom {
 	display: flex;
-    gap: 30px;
-    color: #707070;
+	gap: 30px;
+	color: #707070;
 }
 
-.info-section-title h1, .info-section-text h1{
+.info-section-title h1, .info-section-text h1 {
 	margin-bottom: 30px;
 }
 
 .info-section-title>div {
-	display : flex;
-	align-items : center;
+	display: flex;
+	align-items: center;
 }
 
 .info-section-title p {
-	font-weight : normal;
-	color : gray;
-	line-height : 1.7;
+	font-weight: normal;
+	color: gray;
+	line-height: 1.7;
 	margin: 0 10px;
-	
-	text-align : center;
+	text-align: center;
 }
 
 .info-section-title p:first-child {
@@ -1424,19 +1437,19 @@ background-color: #3480ff;
 	align-self: flex-end; /* 하단에 맞추기 */
 }
 
-.infosection-bottom ul{
+.infosection-bottom ul {
 	list-style: none;
 	padding-left: 20px;
-    margin-top: 10px;
-    color: #9d9d9d;
+	margin-top: 10px;
+	color: #9d9d9d;
 }
 
 .infosection-bottom ul li {
-    margin: 3px 0;
+	margin: 3px 0;
 }
 
 .infosection-bottom li {
-	font-weight : normal;
+	font-weight: normal;
 	line-height: 1.7;
 }
 
@@ -1447,158 +1460,154 @@ background-color: #3480ff;
 /*상세페이지 사진 모두보기*/
 /* 모달 기본 스타일 */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-header {
 	text-align: center;
-    margin-bottom: 30px;
-    margin-top: 10px;
+	margin-bottom: 30px;
+	margin-top: 10px;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%;
-    /* max-width: 1000px; */
-    position: relative;
-    border-radius: 10px;
-    height: 720px;
+	background-color: #fefefe;
+	margin: 5% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 90%;
+	/* max-width: 1000px; */
+	position: relative;
+	border-radius: 10px;
+	height: 720px;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 /* 갤러리 슬라이드 */
 /* 모달 스타일 */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
 }
-
-
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    cursor: pointer;
+.close:hover, .close:focus {
+	color: black;
+	cursor: pointer;
 }
 
 .gallery-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .large-image-container {
-    position: relative;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	position: relative;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .large-image {
-    width: 90%;
-    height: auto;
-    max-height: 500px;
-    border-radius: 10px;
+	width: 90%;
+	height: auto;
+	max-height: 500px;
+	border-radius: 10px;
 }
 
 .gallery-prev, .gallery-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 20px;
-    width: 45px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 50%;
+	font-size: 20px;
+	width: 45px;
 }
 
 /* 버튼을 사진 밖에 위치시키기 위해 left와 right 값을 조정 */
 .gallery-prev {
-    left: -50px; /* 사진 밖으로 버튼을 이동 */
+	left: -50px; /* 사진 밖으로 버튼을 이동 */
 }
 
 .gallery-next {
-    right: -50px; /* 사진 밖으로 버튼을 이동 */
+	right: -50px; /* 사진 밖으로 버튼을 이동 */
 }
 
 .thumbnail-container {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .gallery-thumbnail {
-    width: 100px;
-    height: 70px;
-    object-fit: cover;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: border-color 0.3s;
+	width: 100px;
+	height: 70px;
+	object-fit: cover;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: border-color 0.3s;
 }
 
 .gallery-thumbnail:hover, .gallery-thumbnail.active {
-    border-color: #1273E4; /* 원하는 색상으로 변경 가능 */
+	border-color: #1273E4; /* 원하는 색상으로 변경 가능 */
 }
 
 .modal-roomlist {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+	margin-top: 20px;
 }
 
 .modal-roomlist-room1 button {
-    padding: 0 10px;
-    border-radius: 10px;
-    background: transparent;
-    font-family: 'SUIT-Regular';
-    font-style: normal;
-    font-size: 15px;
-    cursor: pointer;
+	padding: 0 10px;
+	border-radius: 10px;
+	background: transparent;
+	font-family: 'SUIT-Regular';
+	font-style: normal;
+	font-size: 15px;
+	cursor: pointer;
 }
 
 .modal-roomlist-room1:active {
@@ -1607,8 +1616,7 @@ background-color: #3480ff;
 }
 
 .reservation-section {
-	width: 95%;
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 .reservation-section-top {
@@ -1616,6 +1624,8 @@ background-color: #3480ff;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .reservation-section-left {
@@ -1630,17 +1640,17 @@ background-color: #3480ff;
 	margin-bottom: 30px;
 }
 
-.left-username input, .left-userphone input{
+.left-username input, .left-userphone input {
 	margin: 5px 0;
-    width: 50%;
-    height: 40px;
-    padding: 20px;
-    font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
-    background-color: #F5F5F5;
-    border: none;
-    border-radius: 10px;
+	width: 50%;
+	height: 40px;
+	padding: 20px;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+	background-color: #F5F5F5;
+	border: none;
+	border-radius: 10px;
 }
 
 .left-usermethod {
@@ -1651,86 +1661,366 @@ background-color: #3480ff;
 	display: flex;
 }
 
-.active {
-	background-color: #F2F8FF;
-	color: #1273E5;
-	border: 1px solid #B7D5F6 !important;
-}
-
 .left-usermethod-btn button {
 	cursor: pointer;
-    margin: 5px 0;
-    padding: 10px;
-    width: 24%;
-    height: 50px;
-    margin-right: 15px;
-    border-radius: 10px;
-    border: 1px solid lightgray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    font-family: 'SUIT-Regular';
-    font-weight: bold;
-    font-style: normal;
+	margin: 5px 0;
+	padding: 10px;
+	width: 24%;
+	height: 50px;
+	margin-right: 15px;
+	border-radius: 10px;
+	border: 1px solid lightgray;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
 }
 
 .reservation-section-mid {
 	display: flex;
+    width: 95%;
+    margin: 30px auto;
+    justify-content: space-evenly;
 }
 
 .reservation-section-right {
 	width: 30%;
-    margin: 0 auto;
+	min-width: 300px;
 }
 
 .right-top {
 	border: 1px solid lightgray;
-    padding: 10px;
-    border-radius: 10px;
-    height: 300px;
+	padding: 15px 20px;
+	border-radius: 10px;
+	height: 300px;
 }
 
 .right-top-photo {
-    margin: 0 auto;
-    border: 1px solid lightgray;
-    height: 150px;
-    margin: 10px 0;
-    border-radius: 10px;
+	margin: 0 auto;
+	border: 1px solid lightgray;
+	height: 150px;
+	margin: 10px 0;
+	border-radius: 10px;
 }
 
-.right-top-title{
+.right-top-title {
 	display: flex;
-    gap: 30px;
-    align-items: flex-start;
+	gap: 30px;
+	align-items: flex-start;
 }
 
 .right-top-date {
 	margin-top: 20px;
 	display: flex;
-    gap: 30px;
-    align-items: flex-start;
+	gap: 30px;
+	align-items: flex-start;
 }
 
 /* -- 작성된 리뷰가 없을 경우의 css -- */
 .no-review {
-	color : gray;
-	margin-top : 20px;
-	font-weight : normal;
+	color: gray;
+	margin-top: 20px;
+	font-weight: normal;
 }
 
 /* -- 숙소 소개시 큰따옴표에 적용할 폰트 -- */
 .nanum-myeongjo-regular {
 	font-family: "Nanum Myeongjo", serif;
-	font-size : 50px;
+	font-size: 50px;
 	font-weight: 400;
 	font-style: normal;
-	color : gray;
+	color: gray;
 	font-style: italic;
 }
 
 .roominfo-top-position {
-	margin-top : 10px;
-	font-weight : normal;
-	font-size : 17px;
+	margin-top: 10px;
+	font-weight: normal;
+	font-size: 17px;
+}
+
+.right-bottom {
+	border: 1px solid lightgray;
+	margin-top: 30px;
+	border-radius: 10px;
+	padding: 15px 20px;
+	min-width: 300px;
+}
+
+.right-bottom-top {
+	margin-bottom: 10px;
+}
+
+.right-bottom-mid {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 15px;
+}
+
+.right-bottom-price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+/*--------------------------------------------*/
+.right-bottom-consent {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.right-bottom-consent img {
+	width: 12px;
+	height: 12px;
+	transition: transform 0.3s ease;
+}
+
+.individual-consent {
+	margin-left: 12px;
+}
+
+.right-bottom-consent.open img {
+	transform: rotate(180deg);
+}
+
+.consent-details {
+	display: none;
+	margin-top: 10px;
+}
+
+.consent-details.open {
+	display: block;
+	font-size: 15px;
+	font-weight: 600;
+	color: #6d6d6d;
+}
+
+.consent-checkbox {
+	display: flex;
+	align-items: center;
+}
+
+.consent-checkbox input {
+	margin-right: 10px;
+}
+
+.btn-consent button {
+	width: 100%;
+	background: #1273e4;
+	border-radius: 10px;
+	height: 48px;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+	font-size: 16px;
+	border: none;
+	margin: 5px 0;
+}
+
+.btn-consent button:hover {
+	background-color: #156ed5;
+}
+
+.consent-checkbox label {
+	margin: 5px 0;
+	font-size: 13px;
+}
+
+.pay button {
+	width: 120px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1.5px solid #ebebeb;
+	background-color: #fff;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+	cursor: pointer;
+}
+
+.left-pay-type {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+}
+
+.payimg {
+	height: 45px;
+}
+
+.payimg img {
+	width: auto;
+	height: 45px;
+}
+
+.left-pay-type1 {
+	display: flex;
+	gap: 20px;
+}
+
+.left-pay-title {
+	margin-bottom: 20px;
+}
+
+.modalpay {
+	display: none; /* 기본적으로 모달을 숨김 */
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.5); /* 배경을 어둡게 */
+}
+
+.modal-content {
+	background-color: #fff;
+	margin: 10% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 400px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	max-height: 80vh; /* 모달의 최대 높이를 설정 */
+	overflow-y: auto; /* 모달 내부에만 스크롤을 적용 */
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-title {
+	margin-bottom: 20px;
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 30px;
+}
+
+.modal-info p {
+	margin: 10px 0;
+	margin-bottom: 20px;
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 30px;
+}
+
+.modal-date table tr th {
+	width: 80px;
+	display: flex;
+	color: #999;
+	font-size: 14px;
+}
+
+.modal-date table tr {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.modal-date {
+	margin-bottom: 20px;
+	border-bottom: 1px solid lightgray;
+	padding-bottom: 30px;
+}
+
+.modal-bottom ul li {
+	margin: 16px 0;
+	font-size: 14px;
+	color: #999;
+}
+
+.modal-bottom span {
+	color: #1273e4;
+	font-size: 12px;
+}
+
+.modal-bottom-refund {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	width: 144px;
+	cursor: pointer;
+}
+
+.refund-details {
+	display: block;
+	padding: 20px 40px;
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar {
+	width: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+	background-color: #888;
+	border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px;
+}
+
+.modal-cancle {
+	margin-top: 20px;
+	width: 49%;
+	height: 50px;
+	border: none;
+	border-radius: 10px;
+	background-color: #ebebeb;
+	cursor: pointer;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.patment {
+	margin-top: 20px;
+	width: 49%;
+	height: 50px;
+	border: none;
+	border-radius: 10px;
+	background-color: #1273e4;
+	cursor: pointer;
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.modal-cancle:hover {
+	background-color: #d1d1d1;
+}
+
+.patment:hover {
+	background-color: #0862cb;
+}
+
+.left-pay {
+	height: 350px;
 }

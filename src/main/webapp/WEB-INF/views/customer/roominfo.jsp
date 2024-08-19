@@ -77,10 +77,12 @@
 					</div>
 
 					<div class="btn-date">
-						<button id="btn_date">
-							<img src='img/calendar.png' /> <span> 08.15 목 - 08.16 금
-								(1박 2일) </span>
-						</button>
+						<div class="btn-date-checkin">
+							<input type="date">
+						</div>
+						<div class="btn-date-checkout">
+							<input type="date">
+						</div>
 					</div>
 
 					<div class="btn-people">
@@ -203,7 +205,7 @@
 					<div class="roominfo-top">
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
-							
+
 						</div>
 					</div>
 				</div>
@@ -212,7 +214,7 @@
 					<input type="hidden" id="acmAddrInput" value="${acm.acmAddr }">
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
-				<div class="roominfo-top-map"> </div>
+				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -229,7 +231,8 @@
 							</div>
 							<div class="listsection-main">
 								<div class="listmain-title">
-									<h1>${room.roomName }<span> </span> ${room.roomType }</h1>
+									<h1>${room.roomName }<span> </span> ${room.roomType }
+									</h1>
 								</div>
 								<div class="listmain-content">
 									<div class="listmain-time">
@@ -520,14 +523,14 @@
 				<!--  폼 안보내짐 -->
 				<form id="reservationForm" action="/roominfo2" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
-					<input type="hidden" name="rsvtChekInDate" value="${searchRoom.checkInDate }">
-					<input type="hidden" name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
-					<input type="hidden" name="roomCode">
-					<input type="hidden" name="roomName">
-					<input type="hidden" name="roomType">
-					<input type="hidden" name="rsvtChekInTime">
-					<input type="hidden" name="rsvtChekOutTime">
-					<input type="hidden" name="rsvtRoomAmount">
+					<input type="hidden" name="rsvtChekInDate"
+						value="${searchRoom.checkInDate }"> <input type="hidden"
+						name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+					<input type="hidden" name="roomCode"> <input type="hidden"
+						name="roomName"> <input type="hidden" name="roomType">
+					<input type="hidden" name="rsvtChekInTime"> <input
+						type="hidden" name="rsvtChekOutTime"> <input type="hidden"
+						name="rsvtRoomAmount">
 				</form>
 			</div>
 			<div class="footer">
@@ -597,7 +600,8 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>
 		<!-- <script src="js/kakaoMapApi.js"></script> -->
 	</div>
