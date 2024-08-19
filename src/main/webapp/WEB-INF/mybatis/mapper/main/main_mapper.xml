@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main_mapper">
+
+	<!-- acm_code 목록을 가져오는 쿼리 -->
+	<select id="getAccommodationCodes" resultType="String">
+		SELECT DISTINCT acm_code
+		FROM ACCOMMODATION
+		WHERE acm_name LIKE #{searchText} OR acm_addr LIKE #{searchText}
+	</select>
+
+	<!-- acm_code로 숙소 정보를 가져오는 쿼리 -->
+	<select id="getAccommodationInfo"
+		resultMap="accommodationInfoResultMap">
+		SELECT acm_code, acm_name, acm_addr
+		FROM ACCOMMODATION
+		WHERE acm_code = #{acmCode}
+	</select>
+
+	<!-- acm_code로 이미지 정보를 가져오는 쿼리 -->
+	<select id="getAccommodationImages"
+		resultMap="accommodationImageResultMap">
+		SELECT acc_img_url, acc_img_save_name, acc_img_extension
+		FROM accommodation_img
+		WHERE acm_code = #{acmCode}
+	</select>
+	
+	<select id="">
+	
+	</select>
+
+	<!-- 숙소 정보 매핑 -->
+	<resultMap id="accommodationInfoResultMap"
+		type="com.app.dto.main.ReceiveData">
+		<result property="acmCode" column="acm_code" />
+		<result property="acmName" column="acm_name" />
+		<result property="acmAddr" column="acm_addr" />
+	</resultMap>
+
+	<!-- 이미지 정보 매핑 -->
+	<resultMap id="accommodationImageResultMap"
+		type="com.app.dto.main.ReceiveData">
+		<result property="accImgUrl" column="acc_img_url" />
+		<result property="accImgSaveName" column="acc_img_save_name" />
+		<result property="accImgExtension" column="acc_img_extension" />
+	</resultMap>
+
+</mapper>
