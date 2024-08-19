@@ -131,14 +131,14 @@
 
 						<div class="subphoto">
 							<div class="photosection">
-								<div class="photo2">사진2</div>
-								<div class="photo3">사진3</div>
+								<div class="photo2"><img src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}" alt="사진2" class="thumbnail"></div>
+								<div class="photo3"><img src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}" alt="사진3" class="thumbnail"></div>
 							</div>
 
 							<div class="photosection">
-								<div class="photo4">사진4</div>
+								<div class="photo4"><img src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}" alt="사진4" class="thumbnail"></div>
 								<div class="photo5">
-									사진5
+									<img src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}" alt="사진5" class="thumbnail">
 									<!-- 모달 버튼 -->
 									<div class="btn-photo">
 										<button id="openModalBtn">사진 모두보기</button>
@@ -146,7 +146,7 @@
 
 									<!-- 모달 창 -->
 									<div id="photoModal" class="modal">
-										<div class="modal-content">
+										<div class="modal-content-roominfo">
 											<span class="close" id="closeModalBtn">&times;</span>
 											<div class="modal-header">
 												<h2>${acm.acmName }</h2>
@@ -173,20 +173,22 @@
 													<!-- 큰 이미지가 표시될 영역 -->
 													<div class="large-image-container">
 														<button class="gallery-prev">&lt;</button>
-														<img id="e"
+														<img id="largeImage"
 															src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}"
 															class="large-image">
 														<button class="gallery-next">&gt;</button>
 													</div>
 													<!-- 썸네일 이미지들이 표시될 영역 -->
-													<div class="thumbnail-container">
-														<c:forEach var="acmImg" items="${acmImgList}">
-															<img
-																src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}"
-																class="gallery-thumbnail"
-																data-large-src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}">
-														</c:forEach>
-														<!-- 필요에 따라 썸네일 이미지를 추가 -->
+													<div class="thumbnail-container-wrapper">
+														<div class="thumbnail-container">
+															<c:forEach var="acmImg" items="${acmImgList}">
+																<img
+																	src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}"
+																	class="gallery-thumbnail"
+																	data-large-src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}">
+															</c:forEach>
+															<!-- 필요에 따라 썸네일 이미지를 추가 -->
+														</div>
 													</div>
 												</div>
 											</div>
@@ -254,6 +256,8 @@
 									<div class="listsection-roominfo-text">
 										<h5>객실정보</h5>
 										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
+										
+										<h6>남은객실: ?</h6>
 									</div>
 								</div>
 							</div>
@@ -467,7 +471,6 @@
 										</div>
 										<div class="review-section-right">
 											<div class="review-right-score">
-												<p>(0/5)</p>
 												<p>${review.reviewDate }</p>
 											</div>
 											<div class="review-right-photo">
@@ -603,7 +606,7 @@
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>
-		<!-- <script src="js/kakaoMapApi.js"></script> -->
+		<script src="js/kakaoMapApi.js"></script>
 	</div>
 </body>
 </html>
