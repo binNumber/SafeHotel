@@ -71,10 +71,17 @@
 		SET review_text = #{reviewText}
 		WHERE review_code = #{reviewCode}
 	</update>
+	
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="int">
 		DELETE FROM user_review
-		WHERE review_code = #{reviewCode};
+		WHERE review_code = #{reviewCode}
+	</delete>
+	
+	<!-- 리뷰 이미지 삭제 -->
+	<delete id="deleteReviewImg" parameterType="int">
+		DELETE FROM review_img
+		WHERE review_code = #{reviewCode}
 	</delete>
 	
 	<!-- 업소코드 기반으로 리뷰 리스트 검색 -->

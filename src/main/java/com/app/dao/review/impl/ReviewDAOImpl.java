@@ -125,6 +125,15 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		return reviewList;
 	}
+
+	@Override
+	public int deleteReviewImg(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("review_mapper.deleteReviewImg", reviewCode);
+		
+		return result;
+	}
 	
 	
 

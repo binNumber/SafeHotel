@@ -83,11 +83,4 @@
 			user_addr = #{userAddr} 
 			WHERE user_code = #{userCode}
 	</update>
-	
-	<!-- 사용자 회원탈퇴 기능 -->
-	<update id="updateUserStatusByUserCode" parameterType="int">
-		UPDATE user_info
-		SET user_status = '0'
-		WHERE user_code = #{userCode}
-	</update>
 </mapper>

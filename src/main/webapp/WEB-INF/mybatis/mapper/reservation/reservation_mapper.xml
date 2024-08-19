@@ -84,4 +84,17 @@
 		WHERE rsvt_code = #{rsvtCode}
 	</update>
 	
+	<insert id="" parameterType="Reservation">
+		INSERT INTO reservation
+		VALUES (TO_CHAR(SYSDATE, 'YYYYMMDD')||'-'||LPAD(rsvt_code_sq.NEXTVAL, 5, '0'),
+			#{acmCode}, #{roomCode}, TO_DATE(#{rsvtChekInDate}, 'YYYYMMDD HH24:MI'),
+			TO_DATE(#{rsvtChekOutDate}, 'YYYYMMDD HH24:MI'), SYSDATE,
+			#{rsvtRoomAmount}, #{rsvtDiscount}, #{rsvtPaymentInfo},
+			#{rsvtPaymentAmount}, #{userCode}, #{rsvtGuestName}, #{rsvtGuestTel}, 0, 0)
+	</insert>
+	
+	<select id="getRsvtCode()" resultType="String">
+	
+	</select>
+	
 </mapper>

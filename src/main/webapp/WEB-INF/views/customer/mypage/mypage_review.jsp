@@ -61,7 +61,7 @@
 				</div>
 
 				<div id="wirte-review-form">
-					<form action="/mypage/modifyReview" method="post">
+					<form action="/mypage/modifyReview" method="post" enctype="multipart/form-data">
 						<textarea id="reviewText" name="reviewText"></textarea>
 						<input type="hidden" name="reviewCode" id="reviewCode">
 
@@ -72,7 +72,7 @@
 							<input type="file" name="reviewImgFile" id="fileInput"
 								accept="image/*" multiple />
 						</div>
-						<button type="submit" class="btn-write">작성하기</button>
+						<button type="submit" class="btn-write">수정하기</button>
 					</form>
 				</div>
 			</div>
@@ -231,7 +231,7 @@
 								<div class="review-btn">
 									<button type="button" class="write-review-popup-btn"
 										data-review-code="${review.reviewCode}">리뷰 수정</button>
-									<button type="button">리뷰 삭제</button>
+									<button type="button" onclick="location.href='/mypage/removeReview?reviewCode=${review.reviewCode}'">리뷰 삭제</button>
 								</div>
 							</div>
 						</div>

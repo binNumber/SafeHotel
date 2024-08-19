@@ -126,4 +126,14 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewList;
 	}
 
+	//리뷰 코드 기반으로 리뷰 이미지 삭제
+	@Override
+	public int deleteReviewImg(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		int result = reviewDAO.deleteReview(reviewCode);
+		
+		return result;
+	}
+
 }
