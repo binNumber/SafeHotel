@@ -146,6 +146,11 @@ body {
 	font-style: normal;
 }
 
+.nav-top-center img {
+	height: 30px;
+	width: auto;
+}
+
 /* ------- 로그인 시 mypage/loout 버튼이 생성되어서 추가한 css ------- */
 #success-login {
 	display: flex;

@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right">
 					<button onclick="location.href='/signupMain'">로그인/회원가입</button>
