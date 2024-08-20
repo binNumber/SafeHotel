@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
@@ -246,7 +246,7 @@
 							</div>
 							<div class="modal-info">
 								<h3>${reservation.acmName }</h3>
-								<p>${reservation.roomName }${reservation.roomType } •
+								<p>${reservation.roomName }${reservation.roomType }•
 									${reservation.totalNight }박</p>
 							</div>
 							<div class="modal-date">
@@ -386,8 +386,9 @@
 					</h4>
 				</div>
 			</div>
-			<script src="js/script.js"></script>
-			<script src="js/customer/reservation_payment_form_action.js"></script>
 		</div>
+		<script src="js/script.js"></script>
+		<script src="js/customer/reservation_payment_form_action.js"></script>
+	</div>
 </body>
 </html>
