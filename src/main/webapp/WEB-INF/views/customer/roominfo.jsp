@@ -482,7 +482,7 @@
 						</div>
 
 						<c:choose>
-							<c:when test="${reviewList != null }">
+							<c:when test="${reviewList != null && !reviewList.isEmpty()}">
 								<c:forEach var="review" items="${reviewList}">
 									<div class="review-section-main">
 										<div class="review-section-left">
