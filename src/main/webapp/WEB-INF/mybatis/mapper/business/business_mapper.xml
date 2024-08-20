@@ -11,13 +11,13 @@
 		WHERE user_code = #{userCode}
 	</select>
 	
-	<insert id="saveAccommodation" parameterType="Accommodation">
+	<insert id="saveAccommodation" parameterType="businessAccommodation">
 		INSERT INTO ACCOMMODATION
 		VALUES(accm_seq.NEXTVAL, #{acmType}, #{acmTypeName}, #{acmName}, #{bsnsCode}, 
 		#{acmTel}, #{acmAddr}, #{acmRegDt}, #{acmStatus})
 	</insert>
 	
-	<select id="findAccmListByUserCode" parameterType="int" resultType="Accommodation">
+	<select id="findAccmListByUserCode" parameterType="int" resultType="businessAccommodation">
 		SELECT * FROM ACCOMMODATION 
 		WHERE bsns_code = (select bsns_code from business where user_code = #{userCode})
 	</select>
