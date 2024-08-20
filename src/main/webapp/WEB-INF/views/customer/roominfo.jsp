@@ -239,47 +239,58 @@
 					<div>
 						<h1>객실 선택</h1>
 					</div>
-					<c:forEach var="room" items="${roomList}">
-						<c:if test="${room.availableRooms > 0 }">
-							<div class="content-roominfo-listsection">
-								<div class="listsection-photo">
-									<img
-										src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
-									<button>더보기</button>
-								</div>
-								<div class="listsection-main">
-									<div class="listmain-title">
-										<h1>${room.roomName }<span> </span> ${room.roomType }
-										</h1>
-									</div>
-									<div class="listmain-content">
-										<div class="listmain-time">
-											<h5>입실시간 : ${room.checkInTime}</h5>
-											<h5>퇴실시간 : ${room.checkOutTime }</h5>
+					<c:choose>
+						<c:when test="${availableRoom != 0 }">
+							<c:forEach var="room" items="${roomList}">
+								<c:if test="${room.availableRooms > 0 }">
+									<div class="content-roominfo-listsection">
+										<div class="listsection-photo">
+											<img
+												src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
+											<button>더보기</button>
 										</div>
-										<div class="listmain-remainder">
-											<h3>금액 : ${room.roomAmountStr } 원</h3>
-											<button type="button" class="reserve-btn"
-												data-room-code="${room.roomCode}"
-												data-room-name="${room.roomName}"
-												data-room-type="${room.roomType}"
-												data-check-in-time="${room.checkInTime}"
-												data-check-out-time="${room.checkOutTime}"
-												data-room-amount="${room.roomAmount}">예약하기</button>
-										</div>
-									</div>
-									<div class="listsection-roominfo">
-										<div class="listsection-roominfo-text">
-											<h5>객실정보</h5>
-											<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
+										<div class="listsection-main">
+											<div class="listmain-title">
+												<h1>${room.roomName }<span> </span> ${room.roomType }
+												</h1>
+											</div>
+											<div class="listmain-content">
+												<div class="listmain-time">
+													<h5>입실시간 : ${room.checkInTime}</h5>
+													<h5>퇴실시간 : ${room.checkOutTime }</h5>
+												</div>
+												<div class="listmain-remainder">
+													<h3>금액 : ${room.roomAmountStr } 원</h3>
+													<button type="button" class="reserve-btn"
+														data-room-code="${room.roomCode}"
+														data-room-name="${room.roomName}"
+														data-room-type="${room.roomType}"
+														data-check-in-time="${room.checkInTime}"
+														data-check-out-time="${room.checkOutTime}"
+														data-room-amount="${room.roomAmount}">예약하기</button>
+												</div>
+											</div>
+											<div class="listsection-roominfo">
+												<div class="listsection-roominfo-text">
+													<h5>객실정보</h5>
+													<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
 
-											<h6>남은객실: ${room.availableRooms }</h6>
+													<h6>남은객실: ${room.availableRooms }</h6>
+												</div>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</c:if>
-					</c:forEach>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+						<div>
+							<h3>이용할 수 있는 숙소가 없습니다. 다른 날짜를 선택해주세요.</h3>
+						</div>
+						</c:otherwise>
+
+					</c:choose>
+
 				</div>
 				<div class="sectionline"></div>
 			</div>
