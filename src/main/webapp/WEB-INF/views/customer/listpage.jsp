@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="/css/style.css" />
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -19,7 +19,7 @@
 		<div class="header">
 			<div class="nav-top">
 				<div class="nav-top-left">
-					<a href="#" id="icon-btn"><img src="img/icon1.png" /></a>
+					<a href="#" id="icon-btn"><img src="/img/icon1.png" /></a>
 					<div class="hidenav" id="sidebar">
 						<div class="hidenavcontent">
 							<button id="close-btn" class="close-btn">X</button>
@@ -60,10 +60,16 @@
 
 		<div class="content">
 			<div class="content-top-search">
+				<form id="searchForm" action="/search/listpage" method="get">
+					<input type="hidden" name="searchText" id="formSearchText">
+					<input type="hidden" name="checkIn" id="formCheckIn"> <input
+						type="hidden" name="checkOut" id="formCheckOut"> <input
+						type="hidden" name="people" id="formPeople">
+				</form>
 				<div class="search-main">
 					<div class="input-search">
-						<img src='img/magnifier.png' /> <input id="search_term"
-							name="search_term" type="text" placeholder="여행지나 숙소를 검색해보세요.">
+						<img src='/img/magnifier.png' /> <input id="search_term"
+							name="search_term" type="text" placeholder="${search.searchText}">
 						<div class="hide search-best" id="search_best">
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
@@ -75,23 +81,25 @@
 
 					<div class="btn-date">
 						<div class="btn-date-checkin">
-							<input type="date">
+							<input type="date" value="${search.checkIn}" id="checkInDate">
 						</div>
 						<div class="btn-date-checkout">
-							<input type="date">
+							<input type="date" value="${search.checkOut}" id="checkOutDate">
 						</div>
 					</div>
 
 					<div class="btn-people">
 						<button id="btn_people">
-							<img src='img/human.png' /> <span> 인원 2 </span>
+							<img src='/img/human.png' /> <span id="peopleNum"> 인원
+								${search.people} </span>
 						</button>
 
 						<div class="hide people-picker" id="people_picker">
 							<p>인원</p>
 							<div class="people-controls">
 								<button class="decrease">-</button>
-								<span class="people-count">2</span>
+								<span class="people-count" id="peopleCount"
+									data-initial-count="${search.people}"> 2 </span>
 								<button class="increase">+</button>
 							</div>
 							<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
@@ -99,7 +107,7 @@
 					</div>
 
 					<div class="btn-searchright">
-						<button onclick="location.href='/listpage'">
+						<button onclick="submitSearchForm()">
 							<span><img> 검색 </span>
 						</button>
 					</div>
@@ -107,39 +115,41 @@
 			</div>
 			<div class="content-top">
 				<div class="content-top-text">
-					<h2>'(검색어)'숙소 (개수)개</h2>
+					<h2>'(${search.searchText})'숙소  ${accommodationCount}개</h2>
 				</div>
 			</div>
 			<div class="content-main">
 				<div class="content-main-roomlist">
-					<div class="roomlist">
-						<div class="roomthumbnail">
-							<div class="roomphoto">
-								<p>
-									<a href="roominfo">숙소 대표사진</a>
-								</p>
-							</div>
-							<div class="roominfo">
-								<div class="roominfo-title">
-									<h2>
-										<a href="roominfo">숙소명</a>
-									</h2>
-									<h5>
-										<a href="roominfo">()시</a>
-									</h5>
+					<c:forEach var="accommodation" items="${accommodations}">
+						<div class="roomlist">
+							<div class="roomthumbnail">
+								<div class="roomphoto">
+									<a href="roominfo"> <img
+										src="${accommodation.fullImageUrl}" alt="숙소 대표사진" />
+									</a>
 								</div>
-								<div class="roominfo-price">
-									<h5>
-										<a href="roominfo">(쿠폰사용전금액)원</a>
-									</h5>
-									<h3>
-										<a href="roominfo">(쿠폰적용금액)원</a>
-									</h3>
+								<div class="roominfo">
+									<div class="roominfo-title">
+										<h2>
+											<a href="roominfo">${accommodation.acmName}</a>
+										</h2>
+										<h5>
+											<a href="roominfo">${accommodation.acmAddr}</a>
+										</h5>
+									</div>
+									<div class="roominfo-price">
+										<h5>
+											<a href="roominfo">(쿠폰사용전금액)원</a>
+										</h5>
+										<h3>
+											<a href="roominfo">(쿠폰적용금액)원</a>
+										</h3>
+									</div>
 								</div>
 							</div>
+							<div class="sectionline"></div>
 						</div>
-						<div class="sectionline"></div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -147,19 +157,16 @@
 		<div class="footer">
 			<div class="footer-top">
 				<div class="footer-top-service">
-
 					<div class="footer-top-call">
 						<h4>고객센터</h4>
 						<h5>오전9시 - 오후9시</h5>
 					</div>
-
 					<div class="company footer-top">
 						<h4>회사</h4>
 						<h5>
 							<a>회사소개</a>
 						</h5>
 					</div>
-
 					<div class="info footer-top">
 						<h4>서비스</h4>
 						<h5>
@@ -169,7 +176,6 @@
 							<a>자주 묻는 질문</a>
 						</h5>
 					</div>
-
 					<div class="bouns footer-top">
 						<h4>혜택</h4>
 						<h5>
@@ -182,8 +188,6 @@
 							<a>선착순 이벤트</a>
 						</h5>
 					</div>
-
-
 				</div>
 			</div>
 			<div class="footer-mid">
@@ -210,10 +214,28 @@
 				</h4>
 			</div>
 		</div>
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-		<script src="js/script.js"></script>
-	</div>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				// 기본 인원수 설정
+				const peopleCount = document
+						.querySelector('#people_picker .people-count');
+				const peopleNum = document.getElementById('peopleNum');
 
+				let initialCount = '${search.people}';
+				if (!initialCount || isNaN(initialCount)) {
+					initialCount = 2; // 기본값으로 2명 설정
+				}
+
+				peopleCount.textContent = initialCount;
+				peopleNum.textContent = `인원 ${initialCount}`;
+
+			});
+		</script>
+		<script src="/js/script.js"></script>
+		<script src="/js/search/search.js"></script>
+	</div>
 </body>
 </html>
