@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.app.dto.admin.Accommodation;
+import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.api.BusinessUserUpdatdReq;
 import com.app.dto.business.Business;
 import com.app.dto.user.User;
+import com.app.service.accommodation.AccommodationService;
 import com.app.service.business.BusinessService;
 import com.app.service.user.UserService;
 import com.app.utiil.LoginManager;
@@ -32,6 +34,10 @@ public class BusinessController {
 	@Autowired	
 	BusinessService businessService;
 
+	@Autowired
+	AccommodationService accommodationService;
+	
+	
 	// 사업자 메인
 	@GetMapping("/businessMain")
 	public String businessMain(HttpSession session, Model model) {
@@ -78,8 +84,6 @@ public class BusinessController {
 		String id = LoginManager.getLoginUserId(session);
 		User user = userService.findUserById(id);
 		
-		System.out.println(user.getUserCode());
-		
 		accm.setAcmRegDt(Date.valueOf(LocalDate.now()));
 		accm.setAcmStatus("1");
 		
@@ -125,9 +129,12 @@ public class BusinessController {
 		User user = userService.findUserById(id);
 		
 		Business business = businessService.findBusinessByUserCode(user.getUserCode());
+		AccommodationDetails acmDetails = accommodationService.findAcmDetailByAcmCode(acmCode);
 		
+		System.out.println(acmDetails);
 		model.addAttribute("business", business);
 		model.addAttribute("user", user);
+		model.addAttribute("acmDetails", acmDetails);
 		
 		return "business/lodging/businessAcmDetail";
 	}

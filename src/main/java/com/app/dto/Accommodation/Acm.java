@@ -16,6 +16,5 @@ public class Acm {
 	String acmAddr;
 	String acmRegDt;
 	String acmStatus;
-	int acmRegSite;
 
 }

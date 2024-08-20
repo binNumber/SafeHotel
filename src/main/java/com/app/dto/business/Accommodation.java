@@ -18,4 +18,5 @@ public class Accommodation {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date acmRegDt;
 	String acmStatus;
+	int acmRegSite;
 }

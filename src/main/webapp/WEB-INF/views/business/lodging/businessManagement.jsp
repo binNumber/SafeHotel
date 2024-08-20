@@ -125,6 +125,7 @@
 								<li class="list-group-item w-50">업소명</li>
 								<li class="list-group-item w-25">업소 타입</li>
 								<li class="list-group-item w-25">업소 등록일</li>
+								<li class="list-group-item w-25">관리자 승인 여부</li>
 							</ul>
 							<c:forEach var="accm" items="${accmList}">
 								<a href="/businessManagement/AcmDetail/${accm.acmCode}" class="text-decoration-none w-100"> 
@@ -133,6 +134,17 @@
 										<li class="list-group-item w-50">${accm.acmName}</li>
 										<li class="list-group-item w-25">${accm.acmType}</li>
 										<li class="list-group-item w-25">${accm.acmRegDt}</li>
+										<c:choose>
+											<c:when test="${accm.acmRegSite == 2}">
+												<li class="list-group-item w-25">거절</li>
+											</c:when>											
+											<c:when test="${accm.acmRegSite == 1}">
+												<li class="list-group-item w-25">승인</li>
+											</c:when>
+											<c:when test="${accm.acmRegSite == 0}">
+												<li class="list-group-item w-25">대기</li>
+											</c:when>											
+										</c:choose>
 									</ul>
 								</a>
 							</c:forEach>

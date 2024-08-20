@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/business/businessCommon.css"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/business/businessNavbar.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/business/businessSidebar.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/business/businessMyPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/business/businessAcmDetail.css">
 </head>
 <body>
 	<div class="container container_backSize">
@@ -116,22 +116,29 @@
 				<div class="d-flex flex-row justify-content-start flex-wrap px-4 py-4 mt-1 mb-1 w-100">
 					<div class="d-flex flex-column w-100">
 						<div class="d-flex flex-column align-items-center justify-content-evenly w-100">
-							<ul class="list-group list-group-horizontal w-100">
-								<li class="list-group-item w-25">사업자 번호</li>
-								<li class="list-group-item w-50">업소명</li>
-								<li class="list-group-item w-25">업소 타입</li>
-								<li class="list-group-item w-25">업소 등록일</li>
-							</ul>
-<%-- 							<a href="/businessManagement/AcmDetail/${accm.acmCode}" class="text-decoration-none w-100">  --%>
-<%-- 								<c:forEach var="accm" items="${accmList}"> --%>
-<!-- 									<ul class="list-group list-group-horizontal w-100"> -->
-<%-- 										<li class="list-group-item w-25">${accm.bsnsCode}</li> --%>
-<%-- 										<li class="list-group-item w-50">${accm.acmName}</li> --%>
-<%-- 										<li class="list-group-item w-25">${accm.acmType}</li> --%>
-<%-- 										<li class="list-group-item w-25">${accm.acmRegDt}</li> --%>
-<!-- 									</ul> -->
-<%-- 								</c:forEach> --%>
-<!-- 							</a> -->
+							<form class="w-100">
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlIntro" class="form-label w-25">숙소 소개</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlIntro" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlIntro()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlIntro" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlIntro('${acmDetails.acmDtlIntroduction}')" value="변경" />
+											
+										</div>
+									</div>
+									<textarea class="form-control w-90 " id="input_acmDtlIntro" rows="3" readonly>${acmDetails.acmDtlIntroduction}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlNotice" class="form-label w-25">공지 사항</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlNotice" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlNotice()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlNotice" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlNotice('${acmDetails.acmDtlNotice}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlNotice" rows="3" readonly>${acmDetails.acmDtlNotice}</textarea>
+								</div>								
+							</form>
 						</div>
 					</div>
 				</div>
@@ -139,7 +146,7 @@
 		</div>
 	</div>
 
-	<script src="js/business/businessMyPage.js"></script>
+	<script src="${pageContext.request.contextPath}/js/business/businessAcmDetail.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>

@@ -14,7 +14,7 @@
 	<insert id="saveAccommodation" parameterType="businessAccommodation">
 		INSERT INTO ACCOMMODATION
 		VALUES(accm_seq.NEXTVAL, #{acmType}, #{acmTypeName}, #{acmName}, #{bsnsCode}, 
-		#{acmTel}, #{acmAddr}, #{acmRegDt}, #{acmStatus})
+		#{acmTel}, #{acmAddr}, #{acmRegDt}, #{acmStatus}, #{acmRegSite})
 	</insert>
 	
 	<select id="findAccmListByUserCode" parameterType="int" resultType="businessAccommodation">

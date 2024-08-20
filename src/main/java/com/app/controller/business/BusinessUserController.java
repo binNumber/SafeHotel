@@ -98,7 +98,7 @@ public class BusinessUserController {
 		System.out.println(user);
 		
 		if(user == null) {
-			return "business/user/businesslogin";
+			return "business/user/businessLogin";
 		}
 		
 		//세션에 user 데이터 추가

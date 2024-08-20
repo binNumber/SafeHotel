@@ -16,4 +16,5 @@ public class Accommodation {
 	String acmAddr;
 	Date acmRegDt;
 	String acmStatus;
+	int acm_reg_site;
 }
