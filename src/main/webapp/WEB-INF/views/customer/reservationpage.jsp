@@ -299,23 +299,24 @@
 					</div>
 				</div>
 
-				<form action="/reservationpage2" method="post" id="reservationFrom">
+				<form action="/reservationpage" method="post" id="reservationFrom">
 					<input type="hidden" name="acmCode" value="${reservation.acmCode }">
-					<input type="hidden" name="roomCode"
-						value="${reservation.roomCode }"> <input type="hidden"
-						name="rsvtChekInDate"
+					<input type="hidden" name="acmCode" value="${reservation.acmName }">
+					<input type="hidden" name="roomCode" value="${reservation.roomCode }">
+					<input type="hidden" name="roomName"
+						value="${reservation.roomName } ${reservation.roomType}">
+					<input type="hidden" name="rsvtChekInDate"
 						value="${reservation.rsvtChekInDate } ${reservation.rsvtChekInTime }">
 					<input type="hidden" name="rsvtChekOutDate"
 						value="${reservation.rsvtChekOutDate } ${reservation.rsvtChekOutTime }">
 					<input type="hidden" name="rsvtRoomAmount"
-						value="${reservation.rsvtRoomAmount }"> <input
-						type="hidden" name="rsvtDiscount"
-						value="${reservation.rsvtDiscount }"> <input type="hidden"
-						name="rsvtPaymentInfo"> <input type="hidden"
-						name="rsvtPaymentAmount" value="${reservation.rsvtPaymentAmount }">
+						value="${reservation.rsvtRoomAmount }">
+					<input type="hidden" name="rsvtDiscount" value="${reservation.rsvtDiscount }">
+					<input type="hidden" name="rsvtPaymentInfo">
+					<input type="hidden" name="rsvtPaymentAmount" value="${reservation.rsvtPaymentAmount }">
 					<input type="hidden" name="userCode" value="${user.userCode }">
-					<input type="hidden" name="rsvtGuestName"> <input
-						type="hidden" name="rsvtGuestTel">
+					<input type="hidden" name="rsvtGuestName">
+					<input type="hidden" name="rsvtGuestTel">
 				</form>
 
 			</div>

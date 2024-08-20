@@ -73,26 +73,26 @@
 						<div class="reservation-content-maind-mid-left">
 							<div class="reservation-content-main-mid-photo">
 								<img
-									src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}">
+									src="${acmImg.accImgUrl }/${acmImg.accImgSaveName}${acmImg.accImgExtension}">
 							</div>
 						</div>
 						<div class="reservation-content-maind-mid-right">
 							<div class="reservation-content-main-mid-roomtitle">
-								<h2>유저가 예약한 숙소명</h2>
+								<h2>${acm.acmName}</h2>
 							</div>
 
 							<div class="reservation-content-main-mid-roomttitle">
-								<h3>유저가 예약한 숙소의 객실명</h3>
+								<h3>${reservation.roomName } ${reservation.roomType }</h3>
 							</div>
 							<div class="reservation-content-main-mid-date">
 								<div class="reservation-content-main-mid-roominfo">
 									<h4>체크인 시간</h4>
-									<h5>xx.xx(x)</h5>
+									<h5>${reservation.rsvtChekInDate }</h5>
 								</div>
 
 								<div class="reservation-content-main-mid-roominfo">
 									<h4>체크아웃 시간</h4>
-									<h5>xx.xx(x)</h5>
+									<h5>${reservation.rsvtChekOutDate }</h5>
 								</div>
 							</div>
 						</div>
@@ -100,8 +100,8 @@
 					</div>
 					<div class="reservation-content-main-bottom">
 						<div class="btn-view-details">
-							<button class="btn-details">예약 상세보기</button>
-							<button class="btn-home">홈으로</button>
+							<button class="btn-details" onclick="location.href='/mypage/checkReservation/confirmed'">예약 상세보기</button>
+							<button class="btn-home" onclick="location.href='/'">메인으로</button>
 						</div>
 					</div>
 				</div>

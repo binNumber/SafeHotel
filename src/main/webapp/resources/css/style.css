@@ -2121,9 +2121,13 @@ body {
 
 .reservation-content-main-mid-photo {
 	width: 100%;
-    border: 1px solid black;
+}
+
+.reservation-content-main-mid-photo img{
+	width: 100%;
+	border: none;
+	border-radius: 10px;
     height: 140px;
-    border-radius: 10px;
 }
 
 .reservation-content-main-mid-roominfo {
@@ -2176,4 +2180,9 @@ body {
 
 .btn-home:hover {
 	background-color: #cfcfcf;
+}
+
+.content-roominfo-list h3 {
+	margin-top : 20px;
+	color : gray;
 }
