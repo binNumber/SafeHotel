@@ -13,11 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
 import com.app.dto.reservation.Reservation;
+import com.app.dto.reservation.ReservationAmount;
 import com.app.dto.reservation.ReservationCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -107,9 +109,6 @@ public class AccommodationInfoController {
 			if(acmDetail.getAcmDtlEtc() != null)
 				acmDetail.setAcmDtlEtc(acmDetail.getAcmDtlEtc().replace("%%", "<br>"));
 			
-			System.out.println(acmDetail.getAcmCode());
-			System.out.println(acmDetail.getAcmDtlPolicy());
-			
 			model.addAttribute("acmDetail", acmDetail);
 		}
 		
@@ -138,12 +137,6 @@ public class AccommodationInfoController {
 				
 				r.setRoomAmount(RoomAmountManager.determinePrice(searchRoom, r));
 				r.setRoomAmountStr(RoomAmountManager.getRoomAmount(searchRoom, r));
-				
-				System.out.println("이용가능한 룸 개수");
-				System.out.println(r.getRoomName());
-				System.out.println(r.getAvailableRooms());
-				System.out.println(r.getCheckInTime());
-				System.out.println(r.getCheckOutTime());
 								
 				List<AccommodationImg> roomImgList = null;
 				for(AccommodationImg acmImg : acmImgList) {
@@ -188,12 +181,12 @@ public class AccommodationInfoController {
 			}
 		}
 		
-		if(reviewCount != 0 && reviewTotalRating != 0) {
+		if(reviewCount != 0 && reviewTotalRating != 0) { //평점
 			double doreviewRatingAverage = (double)reviewTotalRating/reviewCount;
 			reviewRatingAverageStr = Double.toString(doreviewRatingAverage);
 		}
 		
-		model.addAttribute("reviewLisy", reviewList);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("reviewRatingAverageStr", reviewRatingAverageStr);
 		
@@ -202,19 +195,48 @@ public class AccommodationInfoController {
 	
 	//상세페이지에서 정보를 받아 예약페이지로 넘김
 	@PostMapping("/roominfo2")
-	public String roomInfoAction(ReservationCondition reservationCondition,
+	public String roomInfoAction(Reservation reservation,
 			HttpSession session) {
 		
-		System.out.println("예약 폼 확인");
-		System.out.println(reservationCondition.getAcmCode());
-		System.out.println(reservationCondition.getAcmName());
-		System.out.println(reservationCondition.getRsvtChekInDate());
-		System.out.println(reservationCondition.getRsvtChekOutDate());
-		System.out.println(reservationCondition.getRoomCode());
-		System.out.println(reservationCondition.getRoomName());
-		
-		//로그인 페이지로 이동할 수도 있어서 세션으로 값 보내기
-		session.setAttribute("reservationCondition", reservationCondition);
+		if(reservation != null) {
+			//몇일 계산(객실금액*총 금액 계산용)
+			int totalDate = RoomAmountManager.totalDate(reservation.getRsvtChekInDate(), reservation.getRsvtChekOutDate());
+			reservation.setTotalNight(totalDate);
+			
+			//int값의 숫자를 천단위로 끊어서 금액으로 표시(ex. 80,000)
+			NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+
+			//int 값으로 된 금액들을 String 형태로 변경해서 금액 DTO에 저장
+			ReservationAmount rsvtAmount = new ReservationAmount();
+			rsvtAmount.setRsvtRoomAmount(numberFormat.format(reservation.getRsvtRoomAmount()));	//객실금액
+
+			//할인금액 = 총 금액/할인금액
+			int discount = 0;
+			
+			//할인금액
+			if(reservation.getRsvtDiscount() == 0) {
+				
+				//할인율 0일 때의 금액도 0
+				rsvtAmount.setRsvtDiscountAmount("0");
+				
+			} else {
+				
+				discount = (int)(((reservation.getRsvtPaymentAmount()/reservation.getRsvtDiscount())/100.0) * 100);
+				
+				String discountAmount = numberFormat.format(discount);
+
+				rsvtAmount.setRsvtRoomAmount(discountAmount);
+			}
+			
+			int paymentAmount = (int)((reservation.getRsvtRoomAmount() * reservation.getTotalNight()) - discount);
+			
+			reservation.setRsvtPaymentAmount(paymentAmount);
+			
+			rsvtAmount.setRsvtPaymentAmount(numberFormat.format(paymentAmount));
+			
+			session.setAttribute("reservation", reservation);
+			session.setAttribute("rsvtAmount", rsvtAmount);
+		}
 		
 		if(session.getAttribute("user") == null) {
 			return "redirect:/signupMain";
@@ -225,12 +247,33 @@ public class AccommodationInfoController {
 	
 	//예약 페이지
 	@GetMapping("/reservationpage2")
-	public String reservationpage(HttpSession session) {
+	public String reservationpage(HttpSession session, Model model) {
 		
-		//세션에 유저정보 + reservationCondition 값 받아오기
-		//(jsp 파일에서 자체적으로 가져오기)
+		Reservation reservation = null;
+		
+		if(session.getAttribute("reservation") != null) {
+			
+			//세션에서 reservationCondition 정보 불러오기
+			reservation = (Reservation)session.getAttribute("reservation");
+			
+			int acmCode = reservation.getAcmCode();
+			
+			//숙소 사진정보 불러오기
+			AccommodationImg acmImg = acmService.findAcmRepImgbyAcmCode(reservation.getAcmCode());
+
+			model.addAttribute("acmImg", acmImg);
+		}
 		
 		return "customer/reservationpage";
+	}
+	
+	@PostMapping("/test")
+	public String testAction(Reservation reservation,
+			Model model) {
+		
+		model.addAttribute("reservation", reservation);
+		
+		return "customer/fromvuew";
 	}
 	
 	//예약페이지 액션
@@ -250,9 +293,9 @@ public class AccommodationInfoController {
 			
 		} else {
 			System.out.println("예약 실패");
+			
+			return "redirect:/reservationpage2";
 		}
-		
-		return "redirect:/reservationpage2";
 	}
 	
 }

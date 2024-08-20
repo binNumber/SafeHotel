@@ -22,8 +22,8 @@
 		FROM ROOM r
 		LEFT JOIN (SELECT rsvt.room_code, COUNT(*) AS reserved_count
 		FROM  RESERVATION rsvt
-		WHERE rsvt.rsvt_chek_in_date <= TO_DATE('2024/08/31', 'YYYY/MM/DD')
-		AND rsvt.rsvt_chek_out_date >= TO_DATE('2024/08/30', 'YYYY/MM/DD')
+		WHERE rsvt.rsvt_chek_in_date <= TO_DATE(#{checkOutDate}, 'YYYY/MM/DD')
+		AND rsvt.rsvt_chek_out_date >= TO_DATE(#{checkInDate}, 'YYYY/MM/DD')
 		GROUP BY rsvt.room_code) reserved_rooms
 		ON r.room_code = reserved_rooms.room_code
 		WHERE r.acm_code = #{acmCode}
@@ -31,6 +31,9 @@
 		ORDER BY room_code
 		]]>
 	</select>
-	<!-- The content of elements must consist of well-formed character data or markup. 오류 발생해서 주석처리함 -->
-
+	
+	<select id="findRoomListByAcmCode" parameterType="int" resultType="Room">
+		SELECT * FROM room
+		WHERE acm_code = #{acmCode}
+	</select>
 </mapper>

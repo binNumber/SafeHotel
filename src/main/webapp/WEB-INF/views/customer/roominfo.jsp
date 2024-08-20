@@ -46,11 +46,11 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
-						<button onclick="location.href='/usersign'">로그인/회원가입</button>
+						<button onclick="location.href='/signupMain'">로그인/회원가입</button>
 					</c:if>
 
 					<c:if test="${not empty user}">
@@ -131,14 +131,28 @@
 
 						<div class="subphoto">
 							<div class="photosection">
-								<div class="photo2">사진2</div>
-								<div class="photo3">사진3</div>
+								<div class="photo2">
+									<img
+										src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}"
+										alt="사진2" class="thumbnail">
+								</div>
+								<div class="photo3">
+									<img
+										src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}"
+										alt="사진3" class="thumbnail">
+								</div>
 							</div>
 
 							<div class="photosection">
-								<div class="photo4">사진4</div>
+								<div class="photo4">
+									<img
+										src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}"
+										alt="사진4" class="thumbnail">
+								</div>
 								<div class="photo5">
-									사진5
+									<img
+										src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}"
+										alt="사진5" class="thumbnail">
 									<!-- 모달 버튼 -->
 									<div class="btn-photo">
 										<button id="openModalBtn">사진 모두보기</button>
@@ -146,7 +160,7 @@
 
 									<!-- 모달 창 -->
 									<div id="photoModal" class="modal">
-										<div class="modal-content">
+										<div class="modal-content-roominfo">
 											<span class="close" id="closeModalBtn">&times;</span>
 											<div class="modal-header">
 												<h2>${acm.acmName }</h2>
@@ -173,20 +187,22 @@
 													<!-- 큰 이미지가 표시될 영역 -->
 													<div class="large-image-container">
 														<button class="gallery-prev">&lt;</button>
-														<img id="e"
+														<img id="largeImage"
 															src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}"
 															class="large-image">
 														<button class="gallery-next">&gt;</button>
 													</div>
 													<!-- 썸네일 이미지들이 표시될 영역 -->
-													<div class="thumbnail-container">
-														<c:forEach var="acmImg" items="${acmImgList}">
-															<img
-																src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}"
-																class="gallery-thumbnail"
-																data-large-src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}">
-														</c:forEach>
-														<!-- 필요에 따라 썸네일 이미지를 추가 -->
+													<div class="thumbnail-container-wrapper">
+														<div class="thumbnail-container">
+															<c:forEach var="acmImg" items="${acmImgList}">
+																<img
+																	src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}"
+																	class="gallery-thumbnail"
+																	data-large-src="${acmImg.accImgUrl }/${acmImg.accImgSaveName }${acmImg.accImgExtension}">
+															</c:forEach>
+															<!-- 필요에 따라 썸네일 이미지를 추가 -->
+														</div>
 													</div>
 												</div>
 											</div>
@@ -216,7 +232,6 @@
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
 				<div class="roominfo-top-map"></div>
-				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -224,43 +239,58 @@
 					<div>
 						<h1>객실 선택</h1>
 					</div>
-					<c:forEach var="room" items="${roomList}">
-						<div class="content-roominfo-listsection">
-							<div class="listsection-photo">
-								<img
-									src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
-								<button>더보기</button>
-							</div>
-							<div class="listsection-main">
-								<div class="listmain-title">
-									<h1>${room.roomName }<span> </span> ${room.roomType }
-									</h1>
-								</div>
-								<div class="listmain-content">
-									<div class="listmain-time">
-										<h5>입실시간 : ${room.checkInTime}</h5>
-										<h5>퇴실시간 : ${room.checkOutTime }</h5>
+					<c:choose>
+						<c:when test="${availableRoom != 0 }">
+							<c:forEach var="room" items="${roomList}">
+								<c:if test="${room.availableRooms > 0 }">
+									<div class="content-roominfo-listsection">
+										<div class="listsection-photo">
+											<img
+												src="${room.roomRepImg.accImgUrl}/${room.roomRepImg.accImgSaveName}${room.roomRepImg.accImgExtension}">
+											<button>더보기</button>
+										</div>
+										<div class="listsection-main">
+											<div class="listmain-title">
+												<h1>${room.roomName }<span> </span> ${room.roomType }
+												</h1>
+											</div>
+											<div class="listmain-content">
+												<div class="listmain-time">
+													<h5>입실시간 : ${room.checkInTime}</h5>
+													<h5>퇴실시간 : ${room.checkOutTime }</h5>
+												</div>
+												<div class="listmain-remainder">
+													<h3>금액 : ${room.roomAmountStr } 원</h3>
+													<button type="button" class="reserve-btn"
+														data-room-code="${room.roomCode}"
+														data-room-name="${room.roomName}"
+														data-room-type="${room.roomType}"
+														data-check-in-time="${room.checkInTime}"
+														data-check-out-time="${room.checkOutTime}"
+														data-room-amount="${room.roomAmount}">예약하기</button>
+												</div>
+											</div>
+											<div class="listsection-roominfo">
+												<div class="listsection-roominfo-text">
+													<h5>객실정보</h5>
+													<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
+
+													<h6>남은객실: ${room.availableRooms }</h6>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="listmain-remainder">
-										<h3>금액 : ${room.roomAmountStr } 원</h3>
-										<button type="button" class="reserve-btn"
-											data-room-code="${room.roomCode}"
-											data-room-name="${room.roomName}"
-											data-room-type="${room.roomType}"
-											data-check-in-time="${room.checkInTime}"
-											data-check-out-time="${room.checkOutTime}"
-											data-room-amount="${room.roomAmount}">예약하기</button>
-									</div>
-								</div>
-								<div class="listsection-roominfo">
-									<div class="listsection-roominfo-text">
-										<h5>객실정보</h5>
-										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
-									</div>
-								</div>
-							</div>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+						<div>
+							<h3>이용할 수 있는 숙소가 없습니다. 다른 날짜를 선택해주세요.</h3>
 						</div>
-					</c:forEach>
+						</c:otherwise>
+
+					</c:choose>
+
 				</div>
 				<div class="sectionline"></div>
 			</div>
@@ -469,7 +499,6 @@
 										</div>
 										<div class="review-section-right">
 											<div class="review-right-score">
-												<p>(0/5)</p>
 												<p>${review.reviewDate }</p>
 											</div>
 											<div class="review-right-photo">

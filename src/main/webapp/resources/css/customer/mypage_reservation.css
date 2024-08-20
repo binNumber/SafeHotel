@@ -783,3 +783,8 @@ body {
 .color-gold {
 	color : gold;
 }
+
+.nav-top-center img {
+	height: 30px;
+	width: auto;
+}

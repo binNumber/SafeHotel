@@ -107,7 +107,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<button id="mypage-btn" onclick="location.href='/mypage/checkPw'">${user.userNickname}</button>
@@ -240,12 +240,12 @@
 								<div class="reply-line"></div>
 								<div class="reply-text-container">
 									<div>
-										<h3>아바니호텔 사장님 답변</h3>
+										<h3>${review.acmName } 사장님 답변</h3>
 										<h3>|</h3>
 										<h4>작성날짜 : 2024/08/10</h4>
 
 									</div>
-									<p>어쩌구저쩌구님 안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상
+									<p>안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상
 										노력하겠습니다^^</p>
 									<div class="more-text display-none">
 										더보기<i class="fa-solid fa-chevron-down"></i>

@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
@@ -66,7 +66,15 @@
 					</h1>
 				</div>
 				<div class="search">
-					<button class="btn-search">🔍 지역이나 숙소를 검색해보세요</button>
+					<!-- 검색 폼 추가 -->
+					<form id="searchForm" action="/search/listpage" method="get">
+						<input type="hidden" name="searchText" id="formSearchText">
+						<input type="hidden" name="checkIn" id="formCheckIn"> 
+						<input type="hidden" name="checkOut" id="formCheckOut"> 
+						<input type="hidden" name="people" id="formPeople">
+					</form>
+					<button class="btn-search">🔍
+						지역이나 숙소를 검색해보세요</button>
 					<div class="hidesearch" id="searchbar">
 						<div class="backimg"></div>
 						<div class="hidesearchcontent">
@@ -90,31 +98,32 @@
 
 									<div class="btn-date">
 										<div class="btn-date-checkin">
-											<input type="date">
+											<input type="date" id="checkInDate">
 										</div>
 										<div class="btn-date-checkout">
-											<input type="date">
+											<input type="date" id="checkOutDate">
 										</div>
 									</div>
 
 									<div class="btn-people">
 										<button id="btn_people">
-											<img src='img/human.png' /> <span> 인원 2 </span>
+											<img src='img/human.png' /> <span id="peopleNum"> 인원
+												2 </span>
 										</button>
 										<div class="hide people-picker" id="people_picker">
 											<p>인원</p>
 											<div class="people-controls">
-												<button class="decrease">-</button>
-												<span class="people-count">2</span>
-												<button class="increase">+</button>
+												<button class="decrease" onclick="decreasePeople()">-</button>
+												<span class="people-count" id="peopleCount">2</span>
+												<button class="increase" onclick="increasePeople()">+</button>
 											</div>
 											<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
 										</div>
 									</div>
 
 									<div class="btn-searchright">
-										<button onclick="location.href='/listpage'">
-											<span><img> 검색 </span>
+										<button type="button" onclick="submitSearchForm()">
+											<span> 검색 </span>
 										</button>
 									</div>
 								</div>
@@ -124,6 +133,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<div class="eventsection">
 			<div>
@@ -243,6 +253,7 @@
 			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 		<script src="js/kakaoMapApi.js"></script>
 		<script src="js/script.js"></script>
+		<script src="js/search/search.js"></script>
 
 	</div>
 </body>

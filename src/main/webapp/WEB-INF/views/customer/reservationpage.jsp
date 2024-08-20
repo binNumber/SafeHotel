@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="nav-top-center">
-					<a href="/">여기가자</a>
+					<a href="/"><img src="/logo/가로로고 복사3.png"></a>
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
@@ -56,28 +56,28 @@
 		<div class="reservation-section">
 			<div class="reservation-section-top">
 				<a><img src="img/arrow.png" /></a>
-				<h2>예약 확인 및 결제</h2>
+				<h1>예약 확인 및 결제</h1>
 			</div>
 			<div class="reservation-section-mid">
 				<div class="reservation-section-left">
 					<div class="left-userinfo">
-						<p>예약자 정보</p>
+						<h2>예약자 정보</h2>
 					</div>
 
 					<div class="left-username">
-						<h5>예약자 이름</h5>
-						<input type="text" placeholder="홍길동">
+						<h4>예약자 이름</h4>
+						<input type="text" id="nameInput" value="${user.userName }">
 					</div>
 
 					<div class="left-userphone">
-						<h5>휴대폰 번호</h5>
-						<input type="text" id="phoneInput" placeholder="010-1234-5678"
+						<h4>휴대폰 번호</h4>
+						<input type="text" id="phoneInput" value="${user.userPhoneNum }"
 							maxlength="13" oninput="formatPhoneNumber(this)">
-						<h5>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</h5>
+						<!-- <h5>개인 정보 보호를 위해 안심번호로 숙소에 전송됩니다.</h5> -->
 					</div>
 
 					<div class="left-usermethod">
-						<h5>방문 방법</h5>
+						<h4>방문 방법</h4>
 						<div class="left-usermethod-btn">
 							<button>
 								<img src="img/walk.png" />
@@ -99,7 +99,7 @@
 						<div class="left-pay-type">
 							<div class="left-pay-type1">
 								<div class="kakaopay pay">
-									<button>
+									<button id="kakaopay">
 										<div class="payimg">
 											<img src="img/kakopay.png">
 										</div>
@@ -107,7 +107,7 @@
 								</div>
 
 								<div class="toss pay">
-									<button>
+									<button id="toss">
 										<div class="payimg">
 											<img src="img/tosspay.png">
 										</div>
@@ -115,7 +115,7 @@
 								</div>
 
 								<div class="naverpay pay">
-									<button>
+									<button id="naverpay">
 										<div class="payimg">
 											<img src="img/naverpay.png">
 										</div>
@@ -123,7 +123,7 @@
 								</div>
 
 								<div class="payco pay">
-									<button>
+									<button id="payco">
 										<div class="payimg">
 											<img src="img/payco.png">
 										</div>
@@ -133,19 +133,19 @@
 
 							<div class="left-pay-type1">
 								<div class="credit pay">
-									<button>
+									<button id="credit">
 										<p>신용/체크카드 결제</p>
 									</button>
 								</div>
 
 								<div class="phone pay">
-									<button>
+									<button id="phone">
 										<p>휴대폰 결제</p>
 									</button>
 								</div>
 
 								<div class="bank pay">
-									<button>
+									<button id="back">
 										<p>무통장 입금</p>
 									</button>
 								</div>
@@ -157,25 +157,27 @@
 				<div class="reservation-section-right">
 					<div class="right-top">
 						<div class="right-top-title">
-							<p>숙소명</p>
+							<p>${reservationCondition.acmName }</p>
 						</div>
 
-						<div class="right-top-photo">
-							<p>유저가 선택한 객실의 대표사진</p>
-						</div>
+						<img
+							src="${acmImg.accImgUrl }/${acmImg.accImgSaveName}${acmImg.accImgExtension}"
+							class="right-top-photo">
 
 						<div class="right-top-info">
 							<div class="right-top-title">
-								<h4>객실</h4>
+								<h3>객실</h3>
 								<div class="right-top-title">
-									<h5>유저가 선택한 객실명</h5>
+									<h4>${reservation.roomName }${reservation.roomType }</h4>
 								</div>
 							</div>
 							<div class="right-top-date">
-								<h4>일정</h4>
+								<h3>일정</h3>
 								<div class="right-top-date-detail">
-									<h5>xx.xx (x) xx:xx ~</h5>
-									<h5>xx.xx (x) xx:xx (x박)</h5>
+									<h4>${reservation.rsvtChekInDate }
+										${reservation.rsvtChekInTime} ~</h4>
+									<h4>${reservation.rsvtChekOutDate }
+										${reservation.rsvtChekOutTime} (${reservation.totalNight }박)</h4>
 								</div>
 							</div>
 						</div>
@@ -184,16 +186,21 @@
 
 					<div class="right-bottom">
 						<div class="right-bottom-top">
-							<p>결제 정보</p>
+							<h2>결제 정보</h2>
 						</div>
 						<div class="right-bottom-mid">
-							<h5>객실 가격(x박)</h5>
-							<h5>xx,xxx원</h5>
+							<h4>객실 가격(1박)</h4>
+							<h4>${rsvtAmount.rsvtRoomAmount}원</h4>
+						</div>
+
+						<div class="right-bottom-mid">
+							<h4>할인 금액</h4>
+							<h4>${rsvtAmount.rsvtDiscountAmount}원</h4>
 						</div>
 
 						<div class="right-bottom-price">
-							<p>총 결제 금액</p>
-							<h2>xx,xxx원</h2>
+							<h4>총 결제 금액</h4>
+							<h2>${rsvtAmount.rsvtPaymentAmount }원</h2>
 						</div>
 
 						<div class="right-bottom-consent" id="allConsentButton">
@@ -227,7 +234,8 @@
 							</div>
 						</div>
 						<div class="btn-consent">
-							<button id="openModal">xx,xxx원 결제하기</button>
+							<button id="openModal">${rsvtAmount.rsvtPaymentAmount }원
+								결제하기</button>
 						</div>
 					</div>
 					<div id="myModal" class="modalpay">
@@ -237,18 +245,21 @@
 								<h2>예약내역 확인</h2>
 							</div>
 							<div class="modal-info">
-								<h3>예약한 숙소명</h3>
-								<p>선택한 객실명 • x박</p>
+								<h3>${reservation.acmName }</h3>
+								<p>${reservation.roomName }${reservation.roomType }•
+									${reservation.totalNight }박</p>
 							</div>
 							<div class="modal-date">
 								<table>
 									<tr>
 										<th>체크인</th>
-										<td>xx.xx (x) xx:xx</td>
+										<td>${reservation.rsvtChekInDate }
+											${reservation.rsvtChekInTime}</td>
 									</tr>
 									<tr>
 										<th>체크아웃</th>
-										<td>xx.xx (x) xx:xx</td>
+										<td>${reservation.rsvtChekOutDate }
+											${reservation.rsvtChekOutTime}</td>
 									</tr>
 								</table>
 							</div>
@@ -287,6 +298,26 @@
 						</div>
 					</div>
 				</div>
+
+				<form action="/reservationpage" method="post" id="reservationFrom">
+					<input type="hidden" name="acmCode" value="${reservation.acmCode }">
+					<input type="hidden" name="acmCode" value="${reservation.acmName }">
+					<input type="hidden" name="roomCode" value="${reservation.roomCode }">
+					<input type="hidden" name="roomName"
+						value="${reservation.roomName } ${reservation.roomType}">
+					<input type="hidden" name="rsvtChekInDate"
+						value="${reservation.rsvtChekInDate } ${reservation.rsvtChekInTime }">
+					<input type="hidden" name="rsvtChekOutDate"
+						value="${reservation.rsvtChekOutDate } ${reservation.rsvtChekOutTime }">
+					<input type="hidden" name="rsvtRoomAmount"
+						value="${reservation.rsvtRoomAmount }">
+					<input type="hidden" name="rsvtDiscount" value="${reservation.rsvtDiscount }">
+					<input type="hidden" name="rsvtPaymentInfo">
+					<input type="hidden" name="rsvtPaymentAmount" value="${reservation.rsvtPaymentAmount }">
+					<input type="hidden" name="userCode" value="${user.userCode }">
+					<input type="hidden" name="rsvtGuestName">
+					<input type="hidden" name="rsvtGuestTel">
+				</form>
 
 			</div>
 
@@ -356,7 +387,9 @@
 					</h4>
 				</div>
 			</div>
-			<script src="js/script.js"></script>
 		</div>
+		<script src="js/script.js"></script>
+		<script src="js/customer/reservation_payment_form_action.js"></script>
+	</div>
 </body>
 </html>

@@ -370,67 +370,77 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /*---------------------------main페이지-------------------------*/
 document.addEventListener("DOMContentLoaded", function() {
-	// 기본 인원수 설정
-	const peopleCount = document.querySelector('#people_picker .people-count');
-	peopleCount.textContent = '2';
-	updatePeopleButton();
+    // 기본 인원수 설정
+    const peopleCount = document.querySelector('#people_picker .people-count');
+    const initialCount = parseInt(peopleCount?.getAttribute('data-initial-count')) || 2;
+    if (peopleCount) {
+        peopleCount.textContent = initialCount;
+        updatePeopleButton();
+    }
 
-	// .input-search input 클릭 이벤트
-	document.querySelector('.input-search input').addEventListener('click', function(event) {
-		closeAllHiddenSections();
-		document.getElementById('search_best').classList.toggle('show');
-		event.stopPropagation();
-	});
+    // .input-search input 클릭 이벤트
+    const searchInput = document.querySelector('.input-search input');
+    if (searchInput) {
+        searchInput.addEventListener('click', function(event) {
+            closeAllHiddenSections();
+            document.getElementById('search_best')?.classList.toggle('show');
+            event.stopPropagation();
+        });
+    }
 
+    // #btn_people 클릭 이벤트
+    const btnPeople = document.querySelector('#btn_people');
+    if (btnPeople) {
+        btnPeople.addEventListener('click', function(event) {
+            closeAllHiddenSections();
+            document.getElementById('people_picker')?.classList.toggle('show');
+            event.stopPropagation();
+        });
+    }
 
-	// #btn_people 클릭 이벤트
-	document.querySelector('#btn_people').addEventListener('click', function(event) {
-		closeAllHiddenSections();
-		document.getElementById('people_picker').classList.toggle('show');
-		event.stopPropagation();
-	});
+    // 다른 곳 클릭 시 숨겨진 요소 닫기
+    document.addEventListener('click', function(event) {
+        closeAllHiddenSections();
+    });
 
-	// 다른 곳 클릭 시 숨겨진 요소 닫기
-	document.addEventListener('click', function(event) {
-		closeAllHiddenSections();
-	});
+    // 요소 내부 클릭 시 숨겨진 요소 닫히지 않게 하기
+    document.getElementById('search_best')?.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
 
-	// 요소 내부 클릭 시 숨겨진 요소 닫히지 않게 하기
-	document.querySelector('#search_best').addEventListener('click', function(event) {
-		event.stopPropagation();
-	});
+    document.getElementById('people_picker')?.addEventListener('click', function(event) {
+        event.stopPropagation();
+    });
 
-	document.querySelector('#people_picker').addEventListener('click', function(event) {
-		event.stopPropagation();
-	});
+    // 인원 수 조절 버튼 이벤트
+    const decreaseButton = document.querySelector('#people_picker .decrease');
+    const increaseButton = document.querySelector('#people_picker .increase');
 
-	// 인원 수 조절 버튼 이벤트
-	const decreaseButton = document.querySelector('#people_picker .decrease');
-	const increaseButton = document.querySelector('#people_picker .increase');
+    decreaseButton?.addEventListener('click', function() {
+        let count = parseInt(peopleCount.textContent);
+        if (count > 1) {
+            peopleCount.textContent = count - 1;
+            updatePeopleButton();
+        }
+    });
 
-	decreaseButton.addEventListener('click', function() {
-		let count = parseInt(peopleCount.textContent);
-		if (count > 1) {
-			peopleCount.textContent = count - 1;
-			updatePeopleButton();
-		}
-	});
+    increaseButton?.addEventListener('click', function() {
+        let count = parseInt(peopleCount.textContent);
+        peopleCount.textContent = count + 1;
+        updatePeopleButton();
+    });
 
-	increaseButton.addEventListener('click', function() {
-		let count = parseInt(peopleCount.textContent);
-		peopleCount.textContent = count + 1;
-		updatePeopleButton();
-	});
+    function updatePeopleButton() {
+        const btnPeopleSpan = document.querySelector('#btn_people span');
+        if (btnPeopleSpan) {
+            btnPeopleSpan.textContent = `인원 ${peopleCount.textContent}`;
+        }
+    }
 
-	function updatePeopleButton() {
-		const btnPeopleSpan = document.querySelector('#btn_people span');
-		btnPeopleSpan.textContent = `인원 ${peopleCount.textContent}`;
-	}
-
-	function closeAllHiddenSections() {
-		document.getElementById('search_best').classList.remove('show');
-		document.getElementById('people_picker').classList.remove('show');
-	}
+    function closeAllHiddenSections() {
+        document.getElementById('search_best')?.classList.remove('show');
+        document.getElementById('people_picker')?.classList.remove('show');
+    }
 });
 
 //상세페이지 stiky nav bar
@@ -555,65 +565,92 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //상세정보 창 사진 모두보기버튼
 document.addEventListener("DOMContentLoaded", function() {
-	const openModalBtn = document.getElementById("openModalBtn");
-	const closeModalBtn = document.getElementById("closeModalBtn");
-	const modal = document.getElementById("photoModal");
-	const largeImage = document.getElementById("largeImage");
-	const thumbnails = document.querySelectorAll(".gallery-thumbnail");
-	const prevBtn = document.querySelector(".gallery-prev");
-	const nextBtn = document.querySelector(".gallery-next");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const modal = document.getElementById("photoModal");
+    const largeImage = document.getElementById("largeImage");
+    const thumbnails = document.querySelectorAll(".gallery-thumbnail");
+    const prevBtn = document.querySelector(".gallery-prev");
+    const nextBtn = document.querySelector(".gallery-next");
 
-	let currentIndex = 0;
+    let currentIndex = 0;
 
-	openModalBtn.addEventListener("click", function() {
-		modal.style.display = "block";
-	});
+    openModalBtn.addEventListener("click", function() {
+        modal.style.display = "block";
+        // 모달창을 열 때 첫 번째 이미지를 표시
+        currentIndex = 0;
+        updateLargeImage();
+    });
 
-	closeModalBtn.addEventListener("click", function() {
-		modal.style.display = "none";
-	});
+    closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
 
-	window.addEventListener("click", function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	});
+    window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
 
-	thumbnails.forEach(function(thumbnail, index) {
-		thumbnail.addEventListener("click", function() {
-			const largeSrc = this.getAttribute("data-large-src");
-			largeImage.setAttribute("src", largeSrc);
-			currentIndex = index;
+    thumbnails.forEach(function(thumbnail, index) {
+        thumbnail.addEventListener("click", function() {
+            const largeSrc = this.getAttribute("data-large-src");
+            largeImage.setAttribute("src", largeSrc);
+            currentIndex = index;
 
-			thumbnails.forEach(function(thumb) {
-				thumb.classList.remove("active");
-			});
+            updateActiveThumbnail();
+            scrollToActiveThumbnail(); // 썸네일 클릭 시 스크롤 이동
+        });
+    });
 
-			this.classList.add("active");
-		});
-	});
+    prevBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+        updateLargeImage();
+    });
 
-	prevBtn.addEventListener("click", function() {
-		currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
-		updateLargeImage();
-	});
+    nextBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+        updateLargeImage();
+    });
 
-	nextBtn.addEventListener("click", function() {
-		currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
-		updateLargeImage();
-	});
+    function updateLargeImage() {
+        const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
+        largeImage.setAttribute("src", largeSrc);
 
-	function updateLargeImage() {
-		const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
-		largeImage.setAttribute("src", largeSrc);
+        updateActiveThumbnail();
+        scrollToActiveThumbnail();
+    }
 
-		thumbnails.forEach(function(thumb) {
-			thumb.classList.remove("active");
-		});
+    function updateActiveThumbnail() {
+        // 모든 썸네일에서 'active' 클래스를 제거합니다.
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.classList.remove("active");
+        });
 
-		thumbnails[currentIndex].classList.add("active");
+        // 현재 썸네일에 'active' 클래스를 추가합니다.
+        thumbnails[currentIndex].classList.add("active");
+    }
+
+	function scrollToActiveThumbnail() {
+	    const thumbnailContainer = document.querySelector(".thumbnail-container-wrapper");
+	    const activeThumbnail = thumbnails[currentIndex];
+
+	    // 활성화된 썸네일이 컨테이너의 중앙에 오도록 스크롤 위치를 계산
+	    const offsetLeft = activeThumbnail.offsetLeft - (thumbnailContainer.offsetWidth / 2) + (activeThumbnail.offsetWidth / 2);
+
+	    thumbnailContainer.scrollLeft = offsetLeft;
 	}
+
+    // 모달이 열리면 첫 번째 이미지를 기본 활성화된 이미지로 설정합니다.
+    openModalBtn.addEventListener("click", function() {
+        currentIndex = 0;
+        updateLargeImage();
+    });
 });
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // 방문 방법 버튼들을 모두 선택

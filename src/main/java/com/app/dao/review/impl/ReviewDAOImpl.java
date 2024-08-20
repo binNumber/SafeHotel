@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.app.dao.review.ReviewDAO;
+import com.app.dto.review.BusinessReply;
 import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -133,6 +134,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 		int result = sqlSessionTemplate.delete("review_mapper.deleteReviewImg", reviewCode);
 		
 		return result;
+	}
+
+	//리뷰코드 기반으로 비즈니스 리플 불러오기
+	@Override
+	public BusinessReply findReplyByReviewCode(int reviewCode) {
+		// TODO Auto-generated method stub
+		
+		BusinessReply reply = sqlSessionTemplate.selectOne("review_mapper.findReplyByReviewCode", reviewCode);
+		
+		return reply;
 	}
 	
 	

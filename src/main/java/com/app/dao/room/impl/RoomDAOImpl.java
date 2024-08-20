@@ -26,4 +26,14 @@ public class RoomDAOImpl implements RoomDAO {
 		return roomList;
 	}
 
+	//업소코드 기반으로 객실 리스트 불러오기
+	@Override
+	public List<Room> findRoomListByAcmCode(int acmCode) {
+		// TODO Auto-generated method stub
+		
+		List<Room> roomList = sqlSessionTemplate.selectList("room_mapper.findRoomListByAcmCode", acmCode);
+		
+		return roomList;
+	}
+
 }
