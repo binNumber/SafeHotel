@@ -124,7 +124,10 @@
 						<div class="roomlist">
 							<div class="roomthumbnail">
 								<div class="roomphoto">
-									<a href="roominfo"> <img
+									<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+											&checkInDate=${searchRoom.checkInDate}
+											&checkOutDate=${searchRoom.checkOutDate}
+											&personnel=${searchRoom.personnel}"> <img
 										src="${accommodation.fullImageUrl}" alt="숙소 대표사진" />
 									</a>
 								</div>
@@ -138,12 +141,15 @@
 										</h5>
 									</div>
 									<div class="roominfo-price">
-										<h5>
-											<a href="roominfo">(쿠폰사용전금액)원</a>
-										</h5>
-										<h3>
-											<a href="roominfo">(쿠폰적용금액)원</a>
-										</h3>
+										<%-- <h5>
+											<a href="roominfo">${accommodation.usageAmountStr}원</a>
+										</h5> --%>
+										<h2 class="roominfo-btn">
+											<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+											&checkInDate=${searchRoom.checkInDate}
+											&checkOutDate=${searchRoom.checkOutDate}
+											&personnel=${searchRoom.personnel}">${accommodation.usageAmountStr}원</a>
+										</h2>
 									</div>
 								</div>
 							</div>

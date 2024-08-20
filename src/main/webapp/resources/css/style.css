@@ -1030,6 +1030,10 @@ body {
 	flex-direction: column;
 }
 
+.roominfo-price h2 {
+	cursor: pointer;
+}
+
 .roominfo-price h5 {
 	color: #999999;
 	text-decoration-line: line-through;
@@ -2204,3 +2208,5 @@ body {
 	margin-top : 20px;
 	color : gray;
 }
+
+

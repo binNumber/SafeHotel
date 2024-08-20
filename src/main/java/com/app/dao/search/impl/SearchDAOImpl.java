@@ -1,6 +1,8 @@
 package com.app.dao.search.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -38,10 +40,31 @@ public class SearchDAOImpl implements SearchDAO {
 				accommodationInfo.setAccImgSaveName(image.getAccImgSaveName());
 				accommodationInfo.setAccImgExtension(image.getAccImgExtension());
 			}
+			// 주중/주말에 따른 최저 가격 가져오기
+			int minPrice;
+			if (isWeekend(accommodationInfo.getCheckIn())) { // 주말인지 판단하는 메서드
+				minPrice = sqlSessionTemplate.selectOne(Namespace + ".getWeekendMinPrice", acmCode);
+			} else {
+				minPrice = sqlSessionTemplate.selectOne(Namespace + ".getWeekdayMinPrice", acmCode);
+			}
+			accommodationInfo.setMinPrice(minPrice);
 			result.add(accommodationInfo);
 		}
 
 		return result;
+	}
+
+	private boolean isWeekend(Date date) { // Date 타입의 파라미터 사용
+		// Date 객체를 이용해 요일 판단 (토요일이나 일요일이면 주말로 처리)
+		// Date 값 확인
+		if (date == null) {
+			return false; // 또는 기본 값을 반환할 수 있음
+		}
+		System.out.println("Date to check: " + date);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+		return (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY);
 	}
 
 }

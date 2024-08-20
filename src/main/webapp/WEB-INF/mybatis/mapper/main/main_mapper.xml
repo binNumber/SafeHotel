@@ -7,9 +7,11 @@
 
 	<!-- acm_code 목록을 가져오는 쿼리 -->
 	<select id="getAccommodationCodes" resultType="String">
-		SELECT DISTINCT acm_code
+		SELECT DISTINCT
+		acm_code
 		FROM ACCOMMODATION
-		WHERE acm_name LIKE #{searchText} OR acm_addr LIKE #{searchText}
+		WHERE acm_name LIKE #{searchText} OR
+		acm_addr LIKE #{searchText}
 	</select>
 
 	<!-- acm_code로 숙소 정보를 가져오는 쿼리 -->
@@ -17,7 +19,8 @@
 		resultMap="accommodationInfoResultMap">
 		SELECT acm_code, acm_name, acm_addr
 		FROM ACCOMMODATION
-		WHERE acm_code = #{acmCode}
+		WHERE
+		acm_code = #{acmCode}
 	</select>
 
 	<!-- acm_code로 이미지 정보를 가져오는 쿼리 -->
@@ -27,10 +30,20 @@
 		FROM accommodation_img
 		WHERE acm_code = #{acmCode}
 	</select>
-	
-	<select id="">
-	
+
+	<select id="getWeekdayMinPrice" resultType="int">
+		SELECT
+		MIN(room_weekday_price)
+		FROM room
+		WHERE acm_code = #{acmCode}
 	</select>
+
+	<select id="getWeekendMinPrice" resultType="int">
+		SELECT MIN(room_weekend_price)
+		FROM room
+		WHERE acm_code = #{acmCode}
+	</select>
+
 
 	<!-- 숙소 정보 매핑 -->
 	<resultMap id="accommodationInfoResultMap"

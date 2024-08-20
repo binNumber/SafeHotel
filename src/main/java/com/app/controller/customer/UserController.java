@@ -69,16 +69,8 @@ public class UserController {
 	}
 
 	@GetMapping("/roominfo")
-	public String roominfo(// SearchRoomCondition searchRoom,
+	public String roominfo(SearchRoomCondition searchRoom,
 			Model model) {
-
-		SearchRoomCondition searchRoom = new SearchRoomCondition();
-
-		// 임의 값 설정
-		searchRoom.setAcmCode(18);
-		searchRoom.setCheckInDate("2024/08/30");
-		searchRoom.setCheckOutDate("2024/08/31");
-		searchRoom.setPersonnel(3);
 
 		model.addAttribute("searchRoom", searchRoom);
 

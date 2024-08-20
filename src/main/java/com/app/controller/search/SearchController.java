@@ -40,13 +40,22 @@ public class SearchController {
 		searchRoom.setCheckOutDate(checkOutStr);
 		searchRoom.setPersonnel(people);
 		
+		model.addAttribute("searchRoom", searchRoom);
+
+		// 로그 출력으로 Date 값 확인
+		System.out.println("Check-in Date: " + checkIn);
+		System.out.println("Check-out Date: " + checkOut);
+
 		// 검색 텍스트를 기반으로 데이터 가져오기
 		List<ReceiveData> accommodations = searchService.searchAccommodations(searchText);
 		
 		for(ReceiveData rd : accommodations) {
+			// 검색 결과의 각 객체에 checkIn 값을 설정
+			rd.setCheckIn(checkIn);
 			
 			//업소코드
 			int acmCode = Integer.parseInt(rd.getAcmCode());
+			rd.setAcmCodeInt(acmCode);
 			
 			List<Room> roomList = roomService.findRoomListByAcmCode(acmCode);
 			
@@ -66,7 +75,7 @@ public class SearchController {
 			rd.setUsageAmount(usageAmount);
 			
 			NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
-			rd.setUsageAmountStr(numberFormat.format(usageAmount));
+			rd.setUsageAmountStr(numberFormat.format(rd.getMinPrice()));
 		}
 
 		// 모델에 데이터 추가
