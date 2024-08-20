@@ -1667,7 +1667,7 @@ body {
 	display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin: 20px auto;
     width: 95%;
     margin: 0 auto;
     margin-top: 100px;
@@ -1696,6 +1696,7 @@ body {
 	background-color: #F5F5F5;
 	border: none;
 	border-radius: 10px;
+	font-size:17px;
 }
 
 .left-usermethod {
@@ -1747,14 +1748,15 @@ body {
 	margin: 0 auto;
 	border: 1px solid lightgray;
 	height: 150px;
+	width : 100%;
 	margin: 10px 0;
 	border-radius: 10px;
 }
 
 .right-top-title {
 	display: flex;
+	align-items : center;
 	gap: 30px;
-	align-items: flex-start;
 }
 
 .right-top-date {
@@ -1791,7 +1793,7 @@ body {
 	border: 1px solid lightgray;
 	margin-top: 30px;
 	border-radius: 10px;
-	padding: 15px 20px;
+	padding: 20px;
 	min-width: 300px;
 }
 
@@ -1821,8 +1823,8 @@ body {
 	padding: 10px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
-	margin-bottom: 10px;
-	margin-top: 5px;
+	margin-bottom: 12px;
+	margin-top: 15px;
 }
 
 .right-bottom-consent img {
@@ -1936,10 +1938,10 @@ body {
 .modal-content {
 	background-color: #fff;
 	margin: 10% auto;
-	padding: 20px;
+	padding: 40px;
 	border: 1px solid #888;
 	width: 80%;
-	max-width: 400px;
+	max-width: 500px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	border-radius: 8px;
 	max-height: 80vh; /* 모달의 최대 높이를 설정 */
@@ -1990,6 +1992,10 @@ body {
 	margin-bottom: 20px;
 	border-bottom: 1px solid lightgray;
 	padding-bottom: 30px;
+}
+
+.modal-bottom ul{
+	list-style: none; /* 기본 불릿 제거 */
 }
 
 .modal-bottom ul li {
@@ -2043,6 +2049,7 @@ body {
 	font-family: 'SUIT-Regular';
 	font-weight: bold;
 	font-style: normal;
+	font-size:17px;
 }
 
 .patment {
@@ -2056,6 +2063,8 @@ body {
 	font-family: 'SUIT-Regular';
 	font-weight: bold;
 	font-style: normal;
+	color : white;
+	font-size : 17px;
 }
 
 .modal-cancle:hover {

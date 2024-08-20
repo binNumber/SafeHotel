@@ -32,6 +32,7 @@ import com.app.dto.api.ApiResponseHeader;
 import com.app.dto.reservation.Reservation;
 import com.app.dto.reservation.ReservationAmount;
 import com.app.dto.reservation.ReservationGuestInfo;
+import com.app.dto.review.BusinessReply;
 import com.app.dto.review.ModifyReviewCondition;
 import com.app.dto.review.Review;
 import com.app.dto.review.ReviewImg;
@@ -335,12 +336,11 @@ public class MypageController {
 				rsvtAmount.setRsvtDiscountAmount("0");
 			} else {
 
+				//할인금액 = 총 금액/할인금액
 				String discountAmount = ((int)(((reservation.getRsvtPaymentAmount()/reservation.getRsvtDiscount())/100.0) * 100)) + "";
 
 				rsvtAmount.setRsvtRoomAmount(discountAmount);
 			}
-
-			//할인금액 = 총 금액/할인금액
 
 			model.addAttribute("reservation", reservation);
 			model.addAttribute("rsvtAmount", rsvtAmount);
@@ -389,9 +389,15 @@ public class MypageController {
 
 			for(Review rv : reviewList) {
 
+				//리뷰 이미지 추가
 				List<ReviewImg> rvImgList = reviewService.findReviewImgListByReviewCode(rv.getReviewCode());
-
 				rv.setReviewImgList(rvImgList);
+				
+				//리플 추가
+				int reviewCode = rv.getReviewCode();
+				BusinessReply reply = reviewService.findReplyByReviewCode(reviewCode);
+				
+				rv.setReply(reply);
 			}
 
 			model.addAttribute("reviewList", reviewList);
