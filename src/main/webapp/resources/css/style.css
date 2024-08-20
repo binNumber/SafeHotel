@@ -565,10 +565,6 @@ body {
 	background-color: #717171;
 }
 
-.footer {
-	margin-top: 50px;
-}
-
 /* --------------- signmain 페이지 css 설정 --------------- */
 .signmain {
 	display: flex;
@@ -1414,6 +1410,7 @@ body {
 .footer {
 	padding: 50px;
 	background-color: #e7e7e7;
+	margin-top: 200px;
 }
 
 .footer-top-service {
