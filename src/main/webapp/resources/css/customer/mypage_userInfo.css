@@ -309,3 +309,8 @@ body {
 .color-blue {
 	color : blue;
 }
+
+.nav-top-center img {
+	height: 30px;
+	width: auto;
+}

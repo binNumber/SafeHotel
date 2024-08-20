@@ -246,3 +246,8 @@ body {
 	border: 1px solid lightgray;
 	cursor: pointer;
 }
+
+.nav-top-center img {
+	height: 30px;
+	width: auto;
+}

@@ -63,8 +63,13 @@ public class MypageController {
 
 	//user mypage
 	@GetMapping("/checkPw")
-	public String CheckPw() {
-
+	public String CheckPw(HttpSession session) {
+		
+		if(session.getAttribute("isCheckPw") != null) {
+			
+			return "redirect:/mypage/userInfo";
+		}
+		
 		return "customer/mypage/mypage_pwcheck";
 	}
 

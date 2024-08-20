@@ -20,6 +20,7 @@ SELECT * FROM USER_INFO;
 
 COMMIT;
 
+SELECT * FROM reservation;
 
 --사업자 정보 테이블
 CREATE TABLE BUSINESS (
