@@ -43,4 +43,9 @@ public class UserController {
 	public String reservationpage() {
 		return "customer/reservationpage";
 	}
+	
+	@GetMapping("/reservationComplete")
+	public String reservationComplete() {
+		return "customer/reservationComplete";
+	}
 }

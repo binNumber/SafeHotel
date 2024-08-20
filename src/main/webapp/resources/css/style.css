@@ -1051,7 +1051,7 @@ body {
 .sticky-nav ul {
 	list-style: none;
 	display: flex;
-	/* gap: 20px; */
+	gap: 20px;
 	justify-content: space-around;
 }
 
@@ -2068,4 +2068,103 @@ body {
 
 .left-pay {
 	height: 350px;
+}
+
+.reservation-content {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 150px;
+}
+
+.reservation-content-top {
+	text-align: center;
+}
+
+.reservation-content-main {
+	background-color: #e7e7e7;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.reservation-content-main-top {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.reservation-content-main-mid {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 30px;
+}
+
+.reservation-content-maind-mid-left {
+	width: 30%;
+}
+
+.reservation-content-maind-mid-right {
+	width: 60%;
+}
+
+.reservation-content-main-mid-photo {
+	width: 100%;
+    border: 1px solid black;
+    height: 140px;
+    border-radius: 10px;
+}
+
+.reservation-content-main-mid-roominfo {
+	display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.reservation-content-main-mid-roomttitle h3{
+	margin: 10px 0;
+}
+
+.reservation-content-main-mid-roominfo h4 {
+	width: 100px;
+}
+
+.reservation-content-main-mid-roominfo h5 {
+	color: #8f8f8f
+}
+
+.btn-view-details {
+	display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+}
+
+.btn-view-details button {
+    width: 49%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'SUIT-Regular';
+    font-weight: bold;
+    font-style: normal;
+}
+
+.btn-details {
+	cursor: pointer;
+	background-color: #1273E4;
+}
+
+.btn-details:hover {
+	background-color: #0f68cf;
+}
+
+.btn-home {
+	cursor: pointer;
+	background-color: #fff;
+}
+
+.btn-home:hover {
+	background-color: #cfcfcf;
 }

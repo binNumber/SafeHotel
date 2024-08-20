@@ -131,14 +131,28 @@
 
 						<div class="subphoto">
 							<div class="photosection">
-								<div class="photo2"><img src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}" alt="사진2" class="thumbnail"></div>
-								<div class="photo3"><img src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}" alt="사진3" class="thumbnail"></div>
+								<div class="photo2">
+									<img
+										src="${acmImgList[1].accImgUrl }/${acmImgList[1].accImgSaveName}${acmImgList[1].accImgExtension}"
+										alt="사진2" class="thumbnail">
+								</div>
+								<div class="photo3">
+									<img
+										src="${acmImgList[2].accImgUrl }/${acmImgList[2].accImgSaveName}${acmImgList[2].accImgExtension}"
+										alt="사진3" class="thumbnail">
+								</div>
 							</div>
 
 							<div class="photosection">
-								<div class="photo4"><img src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}" alt="사진4" class="thumbnail"></div>
+								<div class="photo4">
+									<img
+										src="${acmImgList[3].accImgUrl }/${acmImgList[3].accImgSaveName}${acmImgList[3].accImgExtension}"
+										alt="사진4" class="thumbnail">
+								</div>
 								<div class="photo5">
-									<img src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}" alt="사진5" class="thumbnail">
+									<img
+										src="${acmImgList[4].accImgUrl }/${acmImgList[4].accImgSaveName}${acmImgList[4].accImgExtension}"
+										alt="사진5" class="thumbnail">
 									<!-- 모달 버튼 -->
 									<div class="btn-photo">
 										<button id="openModalBtn">사진 모두보기</button>
@@ -218,7 +232,6 @@
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
 				<div class="roominfo-top-map"></div>
-				<div class="roominfo-top-map"></div>
 				<div class="sectionline"></div>
 			</div>
 			<div id="section3">
@@ -258,7 +271,7 @@
 									<div class="listsection-roominfo-text">
 										<h5>객실정보</h5>
 										<h5>기준${room.roomCapacity }인/최대${room.roomMaxCapacity }인</h5>
-										
+
 										<h6>남은객실: ?</h6>
 									</div>
 								</div>

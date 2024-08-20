@@ -15,7 +15,7 @@
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 </head>
 <body>
-	<div class="container-list">
+	<div class="container">
 		<div class="header">
 			<div class="nav-top">
 				<div class="nav-top-left">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="nav-top-right" id="success-login">
 					<c:if test="${empty user}">
-						<button onclick="location.href='/usersign'">로그인/회원가입</button>
+						<button onclick="location.href='/signupMain'">로그인/회원가입</button>
 					</c:if>
 
 					<c:if test="${not empty user}">
@@ -58,90 +58,55 @@
 			</div>
 		</div>
 
-		<div class="content">
-			<div class="content-top-search">
-				<div class="search-main">
-					<div class="input-search">
-						<img src='img/magnifier.png' /> <input id="search_term"
-							name="search_term" type="text" placeholder="여행지나 숙소를 검색해보세요.">
-						<div class="hide search-best" id="search_best">
-							<div class="search-best-history">
-								<h3>최근 검색어</h3>
-							</div>
-							<p>검색한 단어1</p>
-							<p>검색한 단어2</p>
-						</div>
-					</div>
-
-					<div class="btn-date">
-						<div class="btn-date-checkin">
-							<input type="date">
-						</div>
-						<div class="btn-date-checkout">
-							<input type="date">
-						</div>
-					</div>
-
-					<div class="btn-people">
-						<button id="btn_people">
-							<img src='img/human.png' /> <span> 인원 2 </span>
-						</button>
-
-						<div class="hide people-picker" id="people_picker">
-							<p>인원</p>
-							<div class="people-controls">
-								<button class="decrease">-</button>
-								<span class="people-count">2</span>
-								<button class="increase">+</button>
-							</div>
-							<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
-						</div>
-					</div>
-
-					<div class="btn-searchright">
-						<button onclick="location.href='/listpage'">
-							<span><img> 검색 </span>
-						</button>
-					</div>
+		<div class="reservation-content">
+			<div class="reservation-content-main">
+				<div class="reservation-content-top">
+					<h1>예약이 완료되었습니다.</h1>
 				</div>
-			</div>
-			<div class="content-top">
-				<div class="content-top-text">
-					<h2>'(검색어)'숙소 (개수)개</h2>
-				</div>
-			</div>
-			<div class="content-main">
-				<div class="content-main-roomlist">
-					<div class="roomlist">
-						<div class="roomthumbnail">
-							<div class="roomphoto">
-								<p>
-									<a href="roominfo">숙소 대표사진</a>
-								</p>
+
+				<div class="reservation-main-content">
+					<div class="reservation-content-main-top">
+						<p>예약하신 숙소를 확인해주세요.</p>
+					</div>
+
+					<div class="reservation-content-main-mid">
+						<div class="reservation-content-maind-mid-left">
+							<div class="reservation-content-main-mid-photo">
+								<img
+									src="${acmRepImg.accImgUrl }/${acmRepImg.accImgSaveName}${acmRepImg.accImgExtension}">
 							</div>
-							<div class="roominfo">
-								<div class="roominfo-title">
-									<h2>
-										<a href="roominfo">숙소명</a>
-									</h2>
-									<h5>
-										<a href="roominfo">()시</a>
-									</h5>
+						</div>
+						<div class="reservation-content-maind-mid-right">
+							<div class="reservation-content-main-mid-roomtitle">
+								<h2>유저가 예약한 숙소명</h2>
+							</div>
+
+							<div class="reservation-content-main-mid-roomttitle">
+								<h3>유저가 예약한 숙소의 객실명</h3>
+							</div>
+							<div class="reservation-content-main-mid-date">
+								<div class="reservation-content-main-mid-roominfo">
+									<h4>체크인 시간</h4>
+									<h5>xx.xx(x)</h5>
 								</div>
-								<div class="roominfo-price">
-									<h5>
-										<a href="roominfo">(쿠폰사용전금액)원</a>
-									</h5>
-									<h3>
-										<a href="roominfo">(쿠폰적용금액)원</a>
-									</h3>
+
+								<div class="reservation-content-main-mid-roominfo">
+									<h4>체크아웃 시간</h4>
+									<h5>xx.xx(x)</h5>
 								</div>
 							</div>
 						</div>
-						<div class="sectionline"></div>
+
+					</div>
+					<div class="reservation-content-main-bottom">
+						<div class="btn-view-details">
+							<button class="btn-details">예약 상세보기</button>
+							<button class="btn-home">홈으로</button>
+						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 
 		<div class="footer">
@@ -210,10 +175,11 @@
 				</h4>
 			</div>
 		</div>
+
 		<script
 			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+		<script src="js/kakaoMapApi.js"></script>
 		<script src="js/script.js"></script>
 	</div>
-
 </body>
 </html>
