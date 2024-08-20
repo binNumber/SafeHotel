@@ -139,10 +139,10 @@
 									</div>
 									<div class="roominfo-price">
 										<h5>
-											<a href="roominfo">(쿠폰사용전금액)원</a>
+											<a href="roominfo">${accommodation.minPrice}원</a>
 										</h5>
 										<h3>
-											<a href="roominfo">(쿠폰적용금액)원</a>
+											<a href="roominfo">${accommodation.minPrice}원</a>
 										</h3>
 									</div>
 								</div>

@@ -23,8 +23,17 @@ public class SearchController {
 	public String search(@RequestParam String searchText, @RequestParam Date checkIn, @RequestParam Date checkOut,
 			@RequestParam int people, Model model) {
 
+		// 로그 출력으로 Date 값 확인
+		System.out.println("Check-in Date: " + checkIn);
+		System.out.println("Check-out Date: " + checkOut);
+
 		// 검색 텍스트를 기반으로 데이터 가져오기
 		List<ReceiveData> accommodations = searchService.searchAccommodations(searchText);
+
+		// 검색 결과의 각 객체에 checkIn 값을 설정
+		for (ReceiveData accommodation : accommodations) {
+			accommodation.setCheckIn(checkIn);
+		}
 
 		// 모델에 데이터 추가
 		model.addAttribute("search", new SearchText(searchText, checkIn, checkOut, people));
