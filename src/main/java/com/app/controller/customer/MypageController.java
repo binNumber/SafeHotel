@@ -63,8 +63,13 @@ public class MypageController {
 
 	//user mypage
 	@GetMapping("/checkPw")
-	public String CheckPw() {
-
+	public String CheckPw(HttpSession session) {
+		
+		if(session.getAttribute("isCheckPw") != null) {
+			
+			return "redirect:/mypage/userInfo";
+		}
+		
 		return "customer/mypage/mypage_pwcheck";
 	}
 
@@ -80,14 +85,14 @@ public class MypageController {
 
 			//세션에 비밀번호 확인에 대한 true로 저장
 			session.setAttribute("isCheckPw", "OK");
-			
+
 			return "redirect:/mypage/userInfo";
 
 		} else { //비밀번호 불일치
 
 			//비밀번호가 일치하지 않는다는 경고창 띄운 후 체크페이지로 이동
 			redirect.addFlashAttribute("message", "비밀번호가 맞지 않습니다. 다시 확인해주세요.");
-			
+
 			return "redirect:/mypage/checkPw";
 		}
 	}
@@ -112,10 +117,10 @@ public class MypageController {
 		if(session.getAttribute("isNicknameAvailable") != null) {
 			isNicknameAvailable = (boolean)session.getAttribute("isNicknameAvailable");
 		}
-		
+
 		//addFlashAttribute로 보낼 메세지
 		String msg = null;
-		
+
 		if(isNicknameAvailable) { //닉네임 사용 가능 -> 회원가입 계속 진행
 			//세션에서 유저정보 받기(비밀번호를 변경하지 않는 경우를 상정해서 값을 받아옴)
 			User user = (User)session.getAttribute("user");
@@ -127,8 +132,8 @@ public class MypageController {
 			user.setUserAddr(modifyUser.getUserAddr());
 
 			int result = userService.updateUserInfo(user);
-			
-			
+
+
 			if(result > 0) {//저장 완료
 
 				msg = "정보 수정이 완료되었습니다.";
@@ -138,10 +143,10 @@ public class MypageController {
 				msg = "회원 정보 수정에 실패했습니다. 다시 시도해 주세요.";
 			}
 		} else {
-				
+
 			msg = "닉네임 중복 확인이 필요합니다. 중복 확인 후 다시 시도해주세요.";
 		}
-		
+
 		redirect.addFlashAttribute("msg", msg);
 
 		return "redirect:/mypage/userInfo";
@@ -301,14 +306,14 @@ public class MypageController {
 		int result = reservationService.updateRsvtStatusByRsvtCode(rsvtCode);
 
 		if(result > 0) { //상태 변경 완료
-			
+
 			redirect.addFlashAttribute("msg", "예약이 정상적으로 취소되었습니다.");
 
 			//예약 취소 확인창으로 이동
 			return "redirect:/mypage/checkReservation/cancelled";
 
 		} else { //상태변경 실패
-			
+
 			redirect.addFlashAttribute("msg", "예약 취소 처리 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
 
 			return "redirect:/mypage/checkReservation/complete";
@@ -344,15 +349,15 @@ public class MypageController {
 
 			model.addAttribute("reservation", reservation);
 			model.addAttribute("rsvtAmount", rsvtAmount);
-			
+
 			return "customer/mypage/checkReserve/checkReserve_reservationInfo";
 		} else {
-			
+
 			redirect.addFlashAttribute("msg", "예약 정보를 찾을 수 없습니다. 다시 한 번 확인해 주세요.");
-			
+
 			return "redirect:/mypage/checkReservation/confirmed";
 		}
-		
+
 	}
 
 	//예약자 정보 변경
@@ -392,11 +397,11 @@ public class MypageController {
 				//리뷰 이미지 추가
 				List<ReviewImg> rvImgList = reviewService.findReviewImgListByReviewCode(rv.getReviewCode());
 				rv.setReviewImgList(rvImgList);
-				
+
 				//리플 추가
 				int reviewCode = rv.getReviewCode();
 				BusinessReply reply = reviewService.findReplyByReviewCode(reviewCode);
-				
+
 				rv.setReply(reply);
 			}
 
@@ -432,18 +437,9 @@ public class MypageController {
 
 	}
 
-	//작성한 리뷰 내용을 DB로 전달
 	@RequestMapping("/savetReview")
-	//@PostMapping("/savetReview")
 	public String saveReview(WriteReviewForm reviewForm, Model model) {
 
-		//		System.out.println(reviewForm.getUserCode());
-		//		//form으로 값을 보내는 건 가능한데, userCode 값을 제외한 모든 값을 받아오지 못함
-		//		System.out.println(reviewForm.getReviewText());
-		//		System.out.println(reviewForm.getRsvtCode());
-		//		System.out.println(reviewForm.getRating());
-
-		//form에서 받아온 리뷰 정보 저장
 		Review review = new Review();
 		int reviewCode = reviewService.getNextReviewCode();
 		review.setReviewCode(reviewCode);
@@ -454,10 +450,6 @@ public class MypageController {
 		review.setRating(reviewForm.getRating());
 		review.setReviewText(reviewForm.getReviewText());
 
-		//		System.out.println(review.getReviewCode());
-		//		System.out.println(review.getReviewText());
-		//		System.out.println(review.getRsvtCode());
-		
 		int reviewResult = 0;
 		int imgresult = 0;
 
@@ -511,16 +503,16 @@ public class MypageController {
 				System.out.println("리뷰 저장 실패");
 			}
 		}
-		
+
 		if(reviewResult > 0 && imgresult > 0) {//리뷰&리뷰이미지 모두 저장 완료
-			
+
 			int reservationUpdate = reservationService.updateRsvtReviewStatus(review.getRsvtCode());
-			
+
 			if(reservationUpdate > 0) {
 				System.out.println("예약의 리뷰작성 여부 변경 완료");
 			} 
 		}
-		
+
 		return "redirect:/mypage/checkReservation/complete";
 
 	}
@@ -537,24 +529,24 @@ public class MypageController {
 			Review review = reviewService.findReviewByReviewCode(modifyReview.getReviewCode());
 
 			if(modifyReview.getReviewImgFile() != null) {
-				
+
 				//리뷰 이미지 저장
 				List<MultipartFile> inputImgList = modifyReview.getReviewImgFile();
-				
+
 				//결과 전달
 				/* String alertMsg = null; */
-				
+
 				for(MultipartFile img : inputImgList) {
-					
+
 					try {
-					
+
 						ReviewImg reviewImg = ImgFileManager.saveFile(img, review);
-						
+
 						int reviewImgCode = reviewService.getNextReviewImgCode();
 						reviewImg.setReviewCode(reviewImgCode);
-						
+
 						int imgResult = reviewService.saveReviewImg(reviewImg);
-						
+
 						if(imgResult > 0) {
 							System.out.println("이미지 저장 성공");
 							/* alertMsg = "리뷰를 성공적으로 수정했습니다."; */
@@ -562,7 +554,7 @@ public class MypageController {
 							System.out.println("이미지 저장 실패");
 							/* alertMsg = "리뷰를 수정하지 못했습니다. 다시 시도해주세요."; */
 						}
-					
+
 					} catch (IllegalStateException | IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -570,46 +562,46 @@ public class MypageController {
 				}
 
 			}
-			
+
 			/* redirectAttributes.addFlashAttribute("alertMsg", alertMsg); */
 		}
 
 		return "redirect:/mypage/review";
 	}
-	
+
 	//리뷰삭제
 	@GetMapping("/removeReview")
 	public String removeReview(@RequestParam int reviewCode) {
-		
+
 		System.out.println(reviewCode);
-		
+
 		//리뷰 이미지 삭제를 위한 reivew 불러오기
 		Review review = reviewService.findReviewByReviewCode(reviewCode);
 		List<ReviewImg> reviewImgList = reviewService.findReviewImgListByReviewCode(reviewCode);
-		
+
 		boolean isImgFileRemove = false;
-		
+
 		for(ReviewImg rvimg : reviewImgList) {
-			
+
 			isImgFileRemove = ImgFileManager.removeFile(review, rvimg);
-			
+
 		}
-		
+
 		if(isImgFileRemove) {
 			//리뷰 삭제
 			int result = reviewService.deleteReview(reviewCode);
-			
+
 			//리뷰 이미지 삭제
 			int imgResult = reviewService.deleteReviewImg(reviewCode);
-			
+
 			if(result > 0 && imgResult > 0) {//삭제 성공
 				System.out.println("리뷰 삭제 완료");
-				
+
 			} else {//삭제 실패
 				System.out.println("리뷰 삭제 실패");
 			}
 		}		
-		
+
 		return "redirect:/mypage/review";
 	}
 

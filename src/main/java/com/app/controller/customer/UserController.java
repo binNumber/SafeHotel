@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.Accommodation.Acm;
@@ -68,16 +69,8 @@ public class UserController {
 	}
 
 	@GetMapping("/roominfo")
-	public String roominfo(// SearchRoomCondition searchRoom,
+	public String roominfo(SearchRoomCondition searchRoom,
 			Model model) {
-
-		SearchRoomCondition searchRoom = new SearchRoomCondition();
-
-		// 임의 값 설정
-		searchRoom.setAcmCode(18);
-		searchRoom.setCheckInDate("2024/08/30");
-		searchRoom.setCheckOutDate("2024/08/31");
-		searchRoom.setPersonnel(3);
 
 		model.addAttribute("searchRoom", searchRoom);
 
@@ -147,14 +140,17 @@ public class UserController {
 		// 업소코드, 체크인 날짜, 체크아웃 날짜, 인원수 기반으로 객실 정보 불러오기
 		List<Room> roomList = roomService.findRoomListBySearchRoomCondtion(searchRoom);
 		// mapper에서 쿼리문 작성 후 적용만 하면 됨
+		
+		int availableRoom = 0;
 
 		if (roomList != null) {
 
 			for (Room r : roomList) {
-
+				//룸 가격 정보 저장
 				r.setRoomAmount(RoomAmountManager.determinePrice(searchRoom, r));
 				r.setRoomAmountStr(RoomAmountManager.getRoomAmount(searchRoom, r));
 
+				//룸이미지 저장
 				List<AccommodationImg> roomImgList = null;
 				for (AccommodationImg acmImg : acmImgList) {
 					if (r.getRoomCode() == acmImg.getRoomCode()) {
@@ -171,10 +167,19 @@ public class UserController {
 					r.setRoomImgList(roomImgList);
 					r.setRoomRepImg(r.getRoomImgList().get(0));
 				}
+				
+				if(r.getAvailableRooms() > 0) {
+					availableRoom++;
+				}
 			}
+		}
+		
+		if(availableRoom == 0) {
+			System.out.println("null임");
 		}
 
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("availableRoom", availableRoom);
 
 		// 업소 코드 기반으로 리뷰 불러오기
 		List<Review> reviewList = reviewService.findReviewListByAcmCode(acmCode);
@@ -274,7 +279,7 @@ public class UserController {
 			int acmCode = reservation.getAcmCode();
 
 			// 숙소 사진정보 불러오기
-			AccommodationImg acmImg = acmService.findAcmRepImgbyAcmCode(reservation.getAcmCode());
+			AccommodationImg acmImg = acmService.findAcmRepImgbyAcmCode(acmCode);
 
 			model.addAttribute("acmImg", acmImg);
 		}
@@ -292,9 +297,10 @@ public class UserController {
 		if (result > 0) {
 			System.out.println("예약 성공");
 
-			session.setAttribute("isCheckPw", "OK");
-
-			return "redirect:/mypage/checkReservation/confirmed";
+			//reservation 업데이트
+			session.setAttribute("reservation", reservation);
+			
+			return "redirect:/completeReservation";
 
 		} else {
 			System.out.println("예약 실패");
@@ -302,5 +308,24 @@ public class UserController {
 			return "redirect:/reservationpage";
 		}
 	}
+	
+	@RequestMapping("/completeReservation")
+	public String completeReservation(HttpSession session, Model model) {
+		
+		if(session.getAttribute("reservation") != null) {
+			Reservation reservation = (Reservation)session.getAttribute("reservation");
+			
+			//업소코드로 대표이미지&업소정보 불러오기
+			int acmCode = reservation.getAcmCode();
 
+			AccommodationImg acmImg = acmService.findAcmRepImgbyAcmCode(acmCode);
+			model.addAttribute("acmImg", acmImg);
+			
+			//업소정보 불러오기
+			Acm acm = acmService.findAcmByAcmCode(acmCode);
+			model.addAttribute("acm", acm);
+		}
+		
+		return "customer/reservationComplete";
+	}
 }

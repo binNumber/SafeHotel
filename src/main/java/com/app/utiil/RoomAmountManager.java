@@ -64,7 +64,7 @@ public class RoomAmountManager {
 		
 		Date date = null;
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
 			

@@ -966,6 +966,10 @@ body {
 	margin-top: 50px;
 }
 
+.content-top-text h2 {
+	margin-bottom : 50px;
+}
+
 .content-top-search {
 	display: flex;
 	justify-content: center;
@@ -980,24 +984,33 @@ body {
 .roomlist {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 65px;
+	/* margin-bottom: 65px; */
 }
 
 .roomthumbnail {
 	padding: 30px;
 	display: flex;
 	border-radius: 20px;
-	margin-top: 50px;
+	/* margin-top: 50px; */
 	padding-bottom: 65px;
 	background-color: #F5F7FA;
 }
 
 .roomphoto {
 	width: 80%;
-	height: 400px;
-	border: 1px solid black;
-	border-radius: 10px;
+	height: 300px;
+	/* border: 1px solid black; */
 	margin-right: 25px;
+	
+	display : flex;
+	align-items : center;
+}
+
+.roomphoto img{
+	width: 100%;
+	border-radius: 10px;
+	
+	margin : auto 0;
 }
 
 .roominfo {
@@ -1011,6 +1024,10 @@ body {
 	display: flex;
 	align-items: flex-end;
 	flex-direction: column;
+}
+
+.roominfo-price h2 {
+	cursor: pointer;
 }
 
 .roominfo-price h5 {
@@ -2123,9 +2140,13 @@ body {
 
 .reservation-content-main-mid-photo {
 	width: 100%;
-    border: 1px solid black;
+}
+
+.reservation-content-main-mid-photo img{
+	width: 100%;
+	border: none;
+	border-radius: 10px;
     height: 140px;
-    border-radius: 10px;
 }
 
 .reservation-content-main-mid-roominfo {
@@ -2179,3 +2200,10 @@ body {
 .btn-home:hover {
 	background-color: #cfcfcf;
 }
+
+.content-roominfo-list h3 {
+	margin-top : 20px;
+	color : gray;
+}
+
+
