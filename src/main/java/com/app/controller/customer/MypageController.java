@@ -483,7 +483,6 @@ public class MypageController {
 						System.out.println(reviewImg.getReviewImgUrl());
 
 						if(reviewImg != null) {
-
 							imgresult = reviewService.saveReviewImg(reviewImg);
 
 							if(imgresult > 0) {

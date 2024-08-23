@@ -160,6 +160,62 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // 기본 체크인 및 체크아웃 날짜 설정
+    const checkInDateInput = document.getElementById('checkInDate');
+    const checkOutDateInput = document.getElementById('checkOutDate');
+    
+    const today = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    
+    checkInDateInput.value = today.toISOString().split('T')[0]; // 오늘 날짜를 yyyy-mm-dd 형식으로 설정
+    checkOutDateInput.value = tomorrow.toISOString().split('T')[0]; // 내일 날짜를 yyyy-mm-dd 형식으로 설정
+
+    // 로컬 스토리지에서 검색어 가져오기
+    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    const searchBestHistoryDiv = document.querySelector('.search-best-history');
+    updateSearchHistory(searchHistory, searchBestHistoryDiv);
+
+    // 검색어 입력 이벤트 처리
+    const searchInput = document.getElementById('search_term');
+    const searchButton = document.querySelector('.btn-searchright button');
+
+    const addSearchTermToHistory = () => {
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm !== '') {
+            searchHistory.unshift(searchTerm); // 최근 검색어가 위로 오도록 맨 앞에 추가
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+            updateSearchHistory(searchHistory, searchBestHistoryDiv);
+            searchInput.value = ''; // 입력창 초기화
+        }
+    };
+
+    searchInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            searchButton.click(); // 엔터키 입력 시 검색 버튼 클릭 트리거
+        }
+    });
+
+    searchButton.addEventListener('click', function() {
+        addSearchTermToHistory();
+    });
+});
+
+// 검색어 히스토리 업데이트 함수
+function updateSearchHistory(history, container) {
+    const historyItems = container.querySelectorAll('p');
+    historyItems.forEach(item => item.remove()); // 기존 항목 제거
+
+    history.slice(0, 5).forEach(term => { // 최근 5개의 검색어만 표시
+        const p = document.createElement('p');
+        p.textContent = term;
+        container.appendChild(p);
+    });
+}
+
+
 //체크박스 클릭 관련
 document.addEventListener("DOMContentLoaded", function() {
 	const nextButton = document.getElementById("next-btn");

@@ -1,11 +1,3 @@
-/*//flash Attributes로 받아온 메시지 띄우기
-var alertMsg = "${fn:escapeXml(alertMsg)}";
-if(alertMsg && alertMsg.trim() !== "") { //alert 메시지가 있을 경우 띄우기
-	alert(alertMsg);
-	
-	//이거 개멍청구리 코드야!
-}*/
-
 //카테고리 사이드바 관련 스크립트
 document.addEventListener("DOMContentLoaded", function() {
 	// 사이드바 열기 버튼 클릭 이벤트
@@ -71,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //mypage-review 리뷰 이미지 슬라이드 스크립트
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
 	// 슬라이드 쇼 관련 변수 및 함수 설정
 	let currentSlide = 0;
 	const slides = document.querySelectorAll(".review-img-slides .review-event.list");
@@ -116,67 +108,79 @@ document.addEventListener("DOMContentLoaded", function() {
 		prevButton.addEventListener("click", prevSlide);
 	}
 });
+*/
+
+//이미지 슬라이드 슬릭
+$(document).ready(function() {
+	$('.img-slide').slick({
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 3,
+		arrows: true
+	});
+});
+
 
 //mypage-review 리뷰 수정 팝업 열고 닫는 스크립트
 $(document).ready(function() {
-	
+
 	$('.write-review-popup-btn').click(function() {
 		console.log('버튼 눌림');
-		
+
 		var reviewCode = $(this).data('review-code');
 		console.log(reviewCode);
-		
+
 		$.ajax({
 			url: '/mypage/mypage/review',
 			type: 'POST',
-			contentType:'application/json',
-			data: JSON.stringify({reviewCode:reviewCode}),
-			success:function(review) {
+			contentType: 'application/json',
+			data: JSON.stringify({ reviewCode: reviewCode }),
+			success: function(review) {
 				$('#acm_name').text(review.acmName);
 				$('#reviewText').val(review.reviewText);
 				$('input[name="reviewCode"]').val(review.reviewCode);
 				$('#reviewDate').text(review.reviewDate);
-				
+
 				var starsHtml = '';
-				for(var i=0; i<5; i++) {
-					if(i<review.rating) {
+				for (var i = 0; i < 5; i++) {
+					if (i < review.rating) {
 						starsHtml += '<span class="color-gold">&#9733;</span>';
 					} else {
 						starsHtml += '<span>&#9733;</span>';
 					}
 				}
 				$('#reviewRating').html(starsHtml);
-				
+
 				var imgSlide = $('#review-img');
 				imgSlide.empty();
-				
+
 				review.reviewImgList.forEach(function(img) {
 					var imgHtml = '<div class="review preview-image">' +
-								'<img src="' + img.reviewImgUrl + '/' +
-								img.reviewImgSaveName + img.reviewImgExtension + '" />' +
-								'<button type="button" class="delete-img">사진 삭제 </button>' +
-								'</div>';
+						'<img src="' + img.reviewImgUrl + '/' +
+						img.reviewImgSaveName + img.reviewImgExtension + '" />' +
+						'<button type="button" class="delete-img">사진 삭제 </button>' +
+						'</div>';
 					imgSlide.append(imgHtml);
 				});
-				
+
 				$('#write-review-popup').removeClass('display-none');
 			},
-			error:function(xhr, status, error) {
+			error: function(xhr, status, error) {
 				console.error('AJAX Error: ', {
-                    status: status,
-                    error: error,
-                    responseText: xhr.responseText
-                });
+					status: status,
+					error: error,
+					responseText: xhr.responseText
+				});
 			}
 		});
 
 	});
-	
+
 	//리뷰 수정 팝업 닫기
-	$('#icon-cancel').click(function(){
+	$('#icon-cancel').click(function() {
 		$('#write-review-popup').addClass('display-none');
 	});
-	
+
 });
 
 //mypage-review 리뷰 수정 팝업 이미지 슬라이드 스크립트
@@ -237,7 +241,7 @@ function handleFileSelect(event) {
 		const previewContainer = document.getElementById('review-img-preview');
 
 		if (previewContainer) {
-			
+
 			previewContainer.style.height = '200px';
 
 			previewContainer.innerHTML = '';

@@ -65,36 +65,43 @@
 			<div class="content-top-search">
 				<div class="search-main">
 					<div class="input-search">
-						<img src='img/magnifier.png' /> <input id="search_term"
-							name="search_term" type="text" placeholder="여행지나 숙소를 검색해보세요.">
+						<img src='/img/magnifier.png' /> <input id="search_term"
+							name="search_term" type="text" placeholder="${searchRoom.searchText}">
 						<div class="hide search-best" id="search_best">
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
 							</div>
-							<p>검색한 단어1</p>
-							<p>검색한 단어2</p>
 						</div>
 					</div>
 
 					<div class="btn-date">
 						<div class="btn-date-checkin">
-							<input type="date">
+<<<<<<< HEAD
+							<input type="date" value="${searchRoom.checkInDate}" id="checkInDate">
 						</div>
 						<div class="btn-date-checkout">
-							<input type="date">
+							<input type="date" value="${searchRoom.checkOutDate}" id="checkOutDate">
+=======
+							<input type="date" value="${search.checkIn}" id="checkInDate">
+						</div>
+						<div class="btn-date-checkout">
+							<input type="date" value="${search.checkOut}" id="checkOutDate">
+>>>>>>> 2b25406a9bb24ae7848e7e6fe218dfc0a8f710fd
 						</div>
 					</div>
 
 					<div class="btn-people">
 						<button id="btn_people">
-							<img src='img/human.png' /> <span> 인원 2 </span>
+							<img src='/img/human.png' /> <span id="peopleNum"> 인원
+								${searchRoom.personnel} </span>
 						</button>
 
 						<div class="hide people-picker" id="people_picker">
 							<p>인원</p>
 							<div class="people-controls">
 								<button class="decrease">-</button>
-								<span class="people-count">2</span>
+								<span class="people-count" id="peopleCount"
+									data-initial-count="${searchRoom.personnel}"> 2 </span>
 								<button class="increase">+</button>
 							</div>
 							<h6>유아 및 아동도 인원수에 포함해주세요.</h6>
@@ -102,7 +109,11 @@
 					</div>
 
 					<div class="btn-searchright">
-						<button onclick="location.href='/listpage'">
+<<<<<<< HEAD
+						<button onclick="submitSearchForm()">
+=======
+						<button>
+>>>>>>> 2b25406a9bb24ae7848e7e6fe218dfc0a8f710fd
 							<span><img> 검색 </span>
 						</button>
 					</div>
@@ -166,18 +177,8 @@
 												<h2>${acm.acmName }</h2>
 												<div class="modal-roomlist">
 													<div class="modal-roomlist-room1">
-														<button>
+														<button class="room-select-btn">
 															<p>객실명</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명2</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명3</p>
 														</button>
 													</div>
 												</div>
@@ -221,8 +222,6 @@
 					<div class="roominfo-top">
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
-
-
 						</div>
 					</div>
 				</div>
@@ -284,9 +283,9 @@
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
-						<div>
-							<h3>이용할 수 있는 숙소가 없습니다. 다른 날짜를 선택해주세요.</h3>
-						</div>
+							<div>
+								<h3>이용할 수 있는 숙소가 없습니다. 다른 날짜를 선택해주세요.</h3>
+							</div>
 						</c:otherwise>
 
 					</c:choose>
@@ -488,7 +487,7 @@
 										<div class="review-section-left">
 											<div class="review-section-left-userinfo">
 												<div class="userinfo-nickname">
-													<p>${review.userNickname }</p>
+													<%-- <p>${review.userNickname }</p> --%>
 												</div>
 												<div class="userinfo-review">
 													<h5>리뷰</h5>
@@ -552,16 +551,16 @@
 				</div>
 
 				<!--  폼 안보내짐 -->
-				<form id="reservationForm" action="/roominfo2" method="post">
+				<form id="reservationForm" action="/roominfo" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
 					<input type="hidden" name="acmName" value="${acm.acmName }">
-					<input type="hidden" name="rsvtChekInDate"
+					<input type="hidden" name="rsvtCheckInDate"
 						value="${searchRoom.checkInDate }"> <input type="hidden"
-						name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+						name="rsvtCheckOutDate" value="${searchRoom.checkOutDate }">
 					<input type="hidden" name="roomCode"> <input type="hidden"
 						name="roomName"> <input type="hidden" name="roomType">
-					<input type="hidden" name="rsvtChekInTime"> <input
-						type="hidden" name="rsvtChekOutTime"> <input type="hidden"
+					<input type="hidden" name="rsvtCheckInTime"> <input
+						type="hidden" name="rsvtCheckOutTime"> <input type="hidden"
 						name="rsvtRoomAmount">
 				</form>
 			</div>
@@ -634,9 +633,8 @@
 		</div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>
+		<script src="/js/search/search.js"></script>
 		<script src="js/kakaoMapApi.js"></script>
 		<script src="js/customer/reservation_form_action.js"></script>
 	</div>

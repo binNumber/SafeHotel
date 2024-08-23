@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,28 +54,44 @@
 						회원가입</span>
 				</div>
 				<div class="loginbox">
-					<form action="/usersignup" method="post" class="signupcontent" id="signupForm">
+					<form action="/usersignup" method="post" class="signupcontent"
+						id="signupForm">
 						<div class="name signinfo">
 							<h4>이름</h4>
-							<input type="text" name="userName" id="userName" placeholder="이름을 입력해주세요.">
+							<input type="text" name="userName" id="userName"
+								placeholder="이름을 입력해주세요.">
 							<p id="nameError" class="errormsg color-red"></p>
 						</div>
 
-						<div class="email signinfo">
-							<h4>이메일</h4>
-							<input type="email" name="userEmail" id="userEmail" placeholder="yeogigaja123@example.com">
-							<p id="emailError" class="errormsg color-red"></p>
-						</div>
+						<c:choose>
+							<c:when test="${email == null && empty email }">
+								<div class="email signinfo">
+									<h4>이메일</h4>
+									<input type="email" name="userEmail" id="userEmail"
+										placeholder="yeogigaja123@example.com">
+									<p id="emailError" class="errormsg color-red"></p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="email signinfo">
+									<h4>이메일</h4>
+									<input type="email" name="userEmail" id="userEmail"
+										value="${email }" readonly>
+									<p id="emailError" class="errormsg color-red"></p>
+								</div>
+							</c:otherwise>
+						</c:choose>
 
 						<div class="pw signinfo">
 							<h4>비밀번호</h4>
 							<input type="password" name="userPw" id="userPw"
 								placeholder="영어 대소문자, 숫자, 특수문자 포함 8자~20자">
-								<p id="pwError" class="errormsg color-red"></p>
+							<p id="pwError" class="errormsg color-red"></p>
 						</div>
 						<div class="pw signinfo">
 							<h4>비밀번호 확인</h4>
-							<input type="password" id="userPwCheck" name="userPwCheck" placeholder="비밀번호와 동일하게 입력해주세요.">
+							<input type="password" id="userPwCheck" name="userPwCheck"
+								placeholder="비밀번호와 동일하게 입력해주세요.">
 							<p id="pwCheckError" class="errormsg color-red"></p>
 						</div>
 
@@ -82,14 +99,14 @@
 							<h4>휴대폰 번호</h4>
 							<input type="text" name="userPhoneNum" id="phone-input"
 								maxlength="13" placeholder="휴대폰 번호를 입력해주세요.">
-								<p id="phoneNumError" class="errormsg color-red"></p>
+							<p id="phoneNumError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="user_rsd_reg_num signinfo">
 							<h4>주민등록번호</h4>
 							<input type="text" name="userRsdRegNum" id="ssn-input"
 								maxlength="13" placeholder="주민등록번호를 입력해주세요.">
-								<p id="regNumError" class="errormsg color-red"></p>
+							<p id="regNumError" class="errormsg color-red"></p>
 						</div>
 
 						<div class="addresssigninfo">
@@ -97,15 +114,16 @@
 								<h4>주소</h4>
 							</div>
 							<div class="addressbox">
-								<input type="text" id="postcode" name="userPostalCode" placeholder="우편번호" readonly>
-								<button type="button" class="check-btn" onclick="execDaumPostcode()">우편번호
-									찾기</button>
+								<input type="text" id="postcode" name="userPostalCode"
+									placeholder="우편번호" readonly>
+								<button type="button" class="check-btn"
+									onclick="execDaumPostcode()">우편번호 찾기</button>
 								<div></div>
 							</div>
 							<div class="addressinput">
 								<input type="text" id="address" name="userAddr" placeholder="주소"
-									readonly> <input type="text" id="detailAddress" name="userAddrLine"
-									placeholder="상세주소">
+									readonly> <input type="text" id="detailAddress"
+									name="userAddrLine" placeholder="상세주소">
 							</div>
 							<p id="addressError" class="errormsg color-red"></p>
 						</div>

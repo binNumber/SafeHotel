@@ -27,6 +27,10 @@ import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.dto.user.UserSignupDupCheckRequest;
 import com.app.service.user.UserService;
+import com.app.snsLogin.dto.login.SnsLoginUrl;
+import com.app.snsLogin.utill.GoogleLoginApiManager;
+import com.app.snsLogin.utill.KakaoLoginApiManager;
+import com.app.snsLogin.utill.NaverLoginApiManager;
 
 
 @Controller
@@ -35,12 +39,137 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	KakaoLoginApiManager kakaoLoginApiManager;
+	
+	@Autowired
+	GoogleLoginApiManager googleLoginApiManager;
+	
+	@Autowired
+	NaverLoginApiManager naverLoginApiManager;
+	
 	//로그인&회원가입 메인 화면
 	@GetMapping("/signupMain")
-	public String userSign() {
+	public String userSign(Model model) {
+		
+		SnsLoginUrl snsLoginUrl = new SnsLoginUrl();
+		
+		snsLoginUrl.setGoogleUrl(googleLoginApiManager.googleLoginUrl());
+		snsLoginUrl.setNaverUrl(naverLoginApiManager.naverLoginUrl());
+		snsLoginUrl.setKakaoUrl(kakaoLoginApiManager.kakaoLoginUrl());
+		
+		model.addAttribute("snsLoginUrl", snsLoginUrl);
 
 		return "customer/signup/signupMain";
 
+	}
+	
+	//구글 로그인 액션
+	@GetMapping("/api/v1/oauth2/google")
+	public String googleLoginAction(@RequestParam(value="code") String code,
+			HttpSession session) {
+		
+		String email = googleLoginApiManager.getGoogleEmail(code);
+		
+		if(email != null) {
+			//이메일로 유저 검색하기
+			User user = userService.findUserByEmail(email);
+			
+			if(user != null) {//유저 정보가 있으면
+
+				//로그인이 되었다고 치고 메인으로 이동
+				session.setAttribute("user", user);
+				
+				return "redirect:/";
+			} else { //유저 정보가 없으면
+				
+				//이메일 값 세션으로 보내고 회원가입 페이지로 이동
+				session.setAttribute("email", email);
+				
+				return "redirect:/usersignup";
+				
+			}
+		}
+		
+		//다시 로그인&회원가입 메인으로 이동
+		return "redirect:/signupMain";
+	}
+	
+	//네이버 로그인 액션
+	@GetMapping("/naverlogin")
+	public String naverLoginAction(@RequestParam(value="code") String code,
+			@RequestParam(value="state") String state,
+			HttpSession session) {
+		
+		String accessToken = naverLoginApiManager.getAccessToken(code, state);
+		String email = null;
+		
+		if(accessToken != null) {
+			email = naverLoginApiManager.getEmail(accessToken);
+		} else {
+			System.out.println("accessToken 없음");
+		}
+		
+		if(email != null) {//이메일 값이 있으면
+			//이메일로 user 정보 받아오기
+			User user = userService.findUserByEmail(email);
+			
+			if(user != null) {//유저 정보 있으면
+				
+				//로그인이 되었다고 치고 메인으로 이동
+				session.setAttribute("user", user);
+				
+				return "redirect:/";
+				
+			} else { //유저 정보가 없으면
+				
+				//이메일 값 세션으로 보내고 회원가입 페이지로 이동
+				session.setAttribute("email", email);
+				
+				return "redirect:/usersignup";
+			}
+		}
+		
+		//다시 로그인&회원가입 메인으로 이동
+		return "redirect:/signupMain";
+	}
+	
+	//카카오 로그인 액션
+	@GetMapping("/kakaoLogin")
+	public String kakaoLoginAction(@RequestParam(value="code") String code,
+			HttpSession session) {
+		
+		String accessToken = kakaoLoginApiManager.getAccessToken(code);
+		String email = null;
+		
+		if(accessToken != null) {
+			email = kakaoLoginApiManager.getEmail(accessToken);
+		} else {
+			System.out.println("accessToken 없음");
+		}
+		
+		if(email != null) {//이메일 값이 있으면
+			//이메일로 user 정보 받아오기
+			User user = userService.findUserByEmail(email);
+			
+			if(user != null) {//유저 정보 있으면
+				
+				//로그인이 되었다고 치고 메인으로 이동
+				session.setAttribute("user", user);
+				
+				return "redirect:/";
+				
+			} else { //유저 정보가 없으면
+				
+				//이메일 값 세션으로 보내고 회원가입 페이지로 이동
+				session.setAttribute("email", email);
+				
+				return "redirect:/usersignup";
+			}
+		}
+		
+		//다시 로그인&회원가입 메인으로 이동
+		return "redirect:/signupMain";
 	}
 
 	//유저 로그인 페이지로 이동
@@ -115,8 +244,8 @@ public class LoginController {
 
 	//회원가입 화면 불러오기
 	@GetMapping("/usersignup")
-	public String userSignup() { 
-
+	public String userSignup() {
+		
 		return "customer/signup/usersignup";
 	}
 
@@ -144,6 +273,7 @@ public class LoginController {
 				
 				//세션에서 isNicknameAvailable 값 삭제
 				session.removeAttribute("isNicknameAvailable");
+				session.removeAttribute("email");
 				
 				return "redirect:/signupMain";
 

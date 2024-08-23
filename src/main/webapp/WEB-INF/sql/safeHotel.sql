@@ -43,6 +43,36 @@ CREATE TABLE USER_INFO(
     PRIMARY KEY (user_code, user_email, user_rsd_reg_num)
 );
 
+SELECT * FROM user_info;
+
+INSERT INTO USER_REVIEW (
+    review_code,
+    rsvt_code,
+    user_code,
+    acm_code,
+    room_code,
+    rating,
+    review_text,
+    review_date,
+    reply_exists,
+    report_status,
+    report_reason
+) VALUES (
+    11,
+    1,
+    1,
+    1,
+    1,
+    1,
+    'DBȮ�ι�ó����',
+    SYSDATE,
+    '1',
+    '1',
+    '�Ű����� ����'
+);
+
+COMMIT;
+
 SELECT * FROM USER_INFO;
 
 COMMIT;
@@ -216,6 +246,13 @@ CREATE TABLE USER_REVIEW(
 
 SELECT * FROM user_review;
 
+delete
+from user_review;
+
+
+DELETE FROM user_review
+WHERE review_code = 12;
+
 COMMIT;
 
 INSERT INTO user_review
@@ -237,11 +274,36 @@ CREATE TABLE REVIEW_IMG(
 
 SELECT * FROM REVIEW_IMG;
 
-INSERT INTO review_img
-VALUES (1, 1, '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '.jpg', '/review_img/1/20240814-00003');
+delete
+from review_img;
 
 INSERT INTO review_img
-VALUES (2, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h420', '9df5f89dad3541e39437293616f0c5c5_w420_h420', '.jpg', '/review_img/1/20240814-00003');
+VALUES (1, 1, '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '23c8698bdf3b48909dbd2aef57d28dfa_w420_h420', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (2, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h420', '9df5f89dad3541e39437293616f0c5c5_w420_h420', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (3, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4202', '9df5f89dad3541e39437293616f0c5c5_w420_h4202', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (4, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4203', '9df5f89dad3541e39437293616f0c5c5_w420_h4203', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (5, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4204', '9df5f89dad3541e39437293616f0c5c5_w420_h4204', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (6, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4205', '9df5f89dad3541e39437293616f0c5c5_w420_h4205', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (7, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4206', '9df5f89dad3541e39437293616f0c5c5_w420_h4206', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (8, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4207', '9df5f89dad3541e39437293616f0c5c5_w420_h4207', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
+INSERT INTO review_img
+VALUES (9, 1, '9df5f89dad3541e39437293616f0c5c5_w420_h4208', '9df5f89dad3541e39437293616f0c5c5_w420_h4208', '.jpg', '/fileStorage/image/review_img/1/20240822-00044');
+
 
 COMMIT;
 

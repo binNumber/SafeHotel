@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
+import com.app.dto.main.SearchText;
 import com.app.dto.reservation.Reservation;
 import com.app.dto.reservation.ReservationAmount;
 import com.app.dto.review.Review;
@@ -48,6 +49,23 @@ public class UserController {
 	@Autowired
 	ReservationService reservationService;
 
+	@RequestMapping("/test")
+	public String mapTest(Model model) {
+		
+//		int acmCode = 1;
+//
+//		// 업소코드 기반으로 업소 정보 불러오기
+//		Acm acm = acmService.findAcmByAcmCode(acmCode);
+//
+//		if (acm != null) {
+//
+//			// 숙소 정보값 페이지에 전달
+//			model.addAttribute("acm", acm);
+//		}
+		
+		return "maptest";
+	}
+	
 	@GetMapping("/user/mypageCEO")
 	public String myPageCEO() {
 		return "user/myPageCEO";
