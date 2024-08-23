@@ -1663,7 +1663,7 @@ body {
 	margin-top: 20px;
 }
 
-.modal-roomlist-room1 button {
+.room-select-btn {
 	padding: 0 10px;
 	border-radius: 10px;
 	background: transparent;

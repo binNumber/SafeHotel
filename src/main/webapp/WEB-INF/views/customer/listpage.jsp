@@ -74,8 +74,6 @@
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
 							</div>
-							<p>검색한 단어1</p>
-							<p>검색한 단어2</p>
 						</div>
 					</div>
 
@@ -115,7 +113,7 @@
 			</div>
 			<div class="content-top">
 				<div class="content-top-text">
-					<h2>'(${search.searchText})'숙소  ${accommodationCount}개</h2>
+					<h2>${search.searchText} 숙소  ${accommodationCount}개</h2>
 				</div>
 			</div>
 			<div class="content-main">

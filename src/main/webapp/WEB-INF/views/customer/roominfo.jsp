@@ -71,8 +71,6 @@
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
 							</div>
-							<p>검색한 단어1</p>
-							<p>검색한 단어2</p>
 						</div>
 					</div>
 
@@ -166,18 +164,8 @@
 												<h2>${acm.acmName }</h2>
 												<div class="modal-roomlist">
 													<div class="modal-roomlist-room1">
-														<button>
+														<button class="room-select-btn">
 															<p>객실명</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명2</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명3</p>
 														</button>
 													</div>
 												</div>
@@ -482,7 +470,7 @@
 						</div>
 
 						<c:choose>
-							<c:when test="${reviewList != null }">
+							<c:when test="${reviewList != null && !reviewList.isEmpty()}">
 								<c:forEach var="review" items="${reviewList}">
 									<div class="review-section-main">
 										<div class="review-section-left">
