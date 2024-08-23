@@ -24,6 +24,9 @@ public interface UserDAO {
 	//유저코드 기반으로 유저 검색
 	public User findUserByUserCode(int userCode);
 	
+	//이메일로 유저 검색
+	public User findUserByEmail(String email);
+	
 	//다음 유저 번호 불러오기(유저코드 생성)
 	public int getNextUserCode();
 	

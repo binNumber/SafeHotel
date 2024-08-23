@@ -71,17 +71,15 @@
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
 							</div>
-							<p>검색한 단어1</p>
-							<p>검색한 단어2</p>
 						</div>
 					</div>
 
 					<div class="btn-date">
 						<div class="btn-date-checkin">
-							<input type="date">
+							<input type="date" value="${search.checkIn}" id="checkInDate">
 						</div>
 						<div class="btn-date-checkout">
-							<input type="date">
+							<input type="date" value="${search.checkOut}" id="checkOutDate">
 						</div>
 					</div>
 
@@ -102,7 +100,7 @@
 					</div>
 
 					<div class="btn-searchright">
-						<button onclick="location.href='/listpage'">
+						<button>
 							<span><img> 검색 </span>
 						</button>
 					</div>
@@ -166,18 +164,8 @@
 												<h2>${acm.acmName }</h2>
 												<div class="modal-roomlist">
 													<div class="modal-roomlist-room1">
-														<button>
+														<button class="room-select-btn">
 															<p>객실명</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명2</p>
-														</button>
-													</div>
-													<div class="modal-roomlist-room1">
-														<button>
-															<p>객실명3</p>
 														</button>
 													</div>
 												</div>
@@ -221,8 +209,6 @@
 					<div class="roominfo-top">
 						<div class="roominfo-title">
 							<h1>${acm.acmName }</h1>
-
-
 						</div>
 					</div>
 				</div>
@@ -488,7 +474,7 @@
 										<div class="review-section-left">
 											<div class="review-section-left-userinfo">
 												<div class="userinfo-nickname">
-													<p>${review.userNickname }</p>
+													<%-- <p>${review.userNickname }</p> --%>
 												</div>
 												<div class="userinfo-review">
 													<h5>리뷰</h5>
@@ -552,16 +538,16 @@
 				</div>
 
 				<!--  폼 안보내짐 -->
-				<form id="reservationForm" action="/roominfo2" method="post">
+				<form id="reservationForm" action="/roominfo" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
 					<input type="hidden" name="acmName" value="${acm.acmName }">
-					<input type="hidden" name="rsvtChekInDate"
+					<input type="hidden" name="rsvtCheckInDate"
 						value="${searchRoom.checkInDate }"> <input type="hidden"
-						name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+						name="rsvtCheckOutDate" value="${searchRoom.checkOutDate }">
 					<input type="hidden" name="roomCode"> <input type="hidden"
 						name="roomName"> <input type="hidden" name="roomType">
-					<input type="hidden" name="rsvtChekInTime"> <input
-						type="hidden" name="rsvtChekOutTime"> <input type="hidden"
+					<input type="hidden" name="rsvtCheckInTime"> <input
+						type="hidden" name="rsvtCheckOutTime"> <input type="hidden"
 						name="rsvtRoomAmount">
 				</form>
 			</div>
@@ -632,8 +618,6 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>

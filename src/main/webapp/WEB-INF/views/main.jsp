@@ -91,8 +91,6 @@
 											<div class="search-best-history">
 												<h3>최근 검색어</h3>
 											</div>
-											<p>검색한 단어1</p>
-											<p>검색한 단어2</p>
 										</div>
 									</div>
 

@@ -39,6 +39,16 @@ public class UserServiceImpl implements UserService{
 
 		return user;
 	}
+	
+	//이메일로 유저 검색
+	@Override
+	public User findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		
+		User user = userDAO.findUserByEmail(email);
+		
+		return user;
+	}
 
 	//입력한 닉네임이 사용 가능한지 확인 (닉네임 중복 검색)
 	@Override
