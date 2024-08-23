@@ -111,7 +111,7 @@
 			</div>
 
 			<!-- 본문 -->
-			<div class="container_main shadow-lg rounded flex-column justify-content-start align-items-start px-5 py-5">
+			<div class="container_main overflow-y-auto shadow-lg rounded flex-column flex-nowrap justify-content-start align-items-start px-5 py-5">
 				<span class="px-5 fs-4 h-auto">사업장 상세 정보 관리</span>
 				<div class="d-flex flex-row justify-content-start flex-wrap px-4 py-4 mt-1 mb-1 w-100">
 					<div class="d-flex flex-column w-100">
@@ -122,21 +122,143 @@
 										<label for="input_acmDtlIntro" class="form-label w-25">숙소 소개</label>
 										<div class="w-75 d-flex justify-content-end">
 											<input type="button" id="btn_updateAcmDtlIntro" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlIntro()" value="확인" /> 
-											<input type="button" id="btn_changeAcmDtlIntro" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlIntro('${acmDetails.acmDtlIntroduction}')" value="변경" />
+											<input type="button" id="btn_changeAcmDtlIntro" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlIntro('${acmDetail.acmDtlIntroduction}')" value="변경" />
 											
 										</div>
 									</div>
-									<textarea class="form-control w-90 " id="input_acmDtlIntro" rows="3" readonly>${acmDetails.acmDtlIntroduction}</textarea>
+									<textarea class="form-control w-90 " id="input_acmDtlIntro" rows="3" readonly>${acmDetail.acmDtlIntroduction}</textarea>
 								</div>
 								<div class="mb-3 w-100">
 									<div class="w-100 d-flex flex-row">
-										<label for="input_acmDtlNotice" class="form-label w-25">공지 사항</label>
+										<label for="input_acmDtlNotice" class="form-label w-25">공지사항</label>
 										<div class="w-75 d-flex justify-content-end">
 											<input type="button" id="btn_updateAcmDtlNotice" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlNotice()" value="확인" /> 
-											<input type="button" id="btn_changeAcmDtlNotice" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlNotice('${acmDetails.acmDtlNotice}')" value="변경" />
+											<input type="button" id="btn_changeAcmDtlNotice" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlNotice('${acmDetail.acmDtlNotice}')" value="변경" />
 										</div>
 									</div>
-								  <textarea class="form-control w-90" id="input_acmDtlNotice" rows="3" readonly>${acmDetails.acmDtlNotice}</textarea>
+								  <textarea class="form-control w-90" id="input_acmDtlNotice" rows="3" readonly>${acmDetail.acmDtlNotice}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlInfo" class="form-label w-25">기본정보</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlInfo" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlInfo()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlInfo" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlInfo('${acmDetail.acmDtlInfo}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlInfo" rows="3" readonly>${acmDetail.acmDtlInfo}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlUsageGuide" class="form-label w-25">숙소 이용 안내</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlUsageGuide" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlUsageGuide()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlUsageGuide" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlUsageGuide('${acmDetail.acmDtlUsageGuide}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlUsageGuide" rows="3" readonly>${acmDetail.acmDtlUsageGuide}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlAddPersonnel" class="form-label w-25">인원 추가 정보</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlAddPersonnel" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlAddPersonnel()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlAddPersonnel" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlAddPersonnel('${acmDetail.acmDtlAddPersonnel}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlAddPersonnel" rows="3" readonly>${acmDetail.acmDtlAddPersonnel}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlRoomInfo" class="form-label w-25">객실 정보</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlRoomInfo" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlRoomInfo()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlRoomInfo" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlRoomInfo('${acmDetail.acmDtlRoomInfo}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlRoomInfo" rows="3" readonly>${acmDetail.acmDtlRoomInfo}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlFacilities" class="form-label w-25">부대 시설 정보</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlFacilities" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlFacilities()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlFacilities" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlFacilities('${acmDetail.acmDtlFacilities}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlFacilities" rows="3" readonly>${acmDetail.acmDtlFacilities}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlParking" class="form-label w-25">주차장 안내</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlParking" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlParking()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlParking" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlParking('${acmDetail.acmDtlParking}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlParking" rows="3" readonly>${acmDetail.acmDtlParking}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlTransport" class="form-label w-25">대중교통 정보</label>
+										<div class="w-75 d-flex justify-content-end">
+<%-- 											<input type="button" id="btn_updateAcmDtlTransport" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlTransport(${acmDetail.acmCode})" value="확인" /> --%>
+											<input type="button" id="btn_updateAcmDtlTransport" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdate('btn_updateAcmDtlTransport', 'input_acmDtlTransport', 'btn_changeAcmDtlTransport', 'acm_dtl_transport', ${acmDetail.acmCode})" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlTransport" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlTransport(escapeHtml(${acmDetail.acmDtlTransport}))" value="변경" />
+<%-- 											<input type="button" id="btn_changeAcmDtlTransport" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlTransport('${acmDetail.acmDtlTransport}')" value="변경" /> --%>
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlTransport" rows="3" readonly>${acmDetail.acmDtlTransport}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlBenefit" class="form-label w-25">이용 혜택</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlBenefit" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlBenefit()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlBenefit" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlBenefit('${acmDetail.acmDtlBenefit}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlBenefit" rows="3" readonly>${acmDetail.acmDtlBenefit}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlSurroundingInfo" class="form-label w-25">주변 정보</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlSurroundingInfo" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlSurroundingInfo()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlSurroundingInfo" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlSurroundingInfo('${acmDetail.acmDtlSurroundingInfo}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlSurroundingInfo" rows="3" readonly>${acmDetail.acmDtlSurroundingInfo}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlGuide" class="form-label w-25">추가 안내사항</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlGuide" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlGuide()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlGuide" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlGuide('${acmDetail.acmDtlGuide}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlGuide" rows="3" readonly>${acmDetail.acmDtlGuide}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlPolicy" class="form-label w-25">취소 및 환불 규정</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlPolicy" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlPolicy()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlPolicy" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlPolicy('${acmDetail.acmDtlPolicy}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlPolicy" rows="3" readonly>${acmDetail.acmDtlPolicy}</textarea>
+								</div>
+								<div class="mb-3 w-100">
+									<div class="w-100 d-flex flex-row">
+										<label for="input_acmDtlEtc" class="form-label w-25">확인 사항 및 기타</label>
+										<div class="w-75 d-flex justify-content-end">
+											<input type="button" id="btn_updateAcmDtlEtc" class="btn m-1 btn-sm btn-outline-primary d-none" onclick="btnUpdateAcmDtlEtc()" value="확인" /> 
+											<input type="button" id="btn_changeAcmDtlEtc" class="btn m-1 btn-sm btn-outline-secondary" onclick="btnChangeAcmDtlEtc('${acmDetail.acmDtlEtc}')" value="변경" />
+										</div>
+									</div>
+								  <textarea class="form-control w-90" id="input_acmDtlEtc" rows="3" readonly>${acmDetail.acmDtlEtc}</textarea>
 								</div>								
 							</form>
 						</div>

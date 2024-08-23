@@ -26,4 +26,10 @@
 		WHERE acm_code = #{acmCode}
 		AND acc_img_origin_name Like '%대표%'
 	</select>
+	
+<!-- 	<update id="modifyAcmDtlByAcmCode"> -->
+<!-- 		UPDATE ACCOMMODATION_DETAILS  -->
+<!-- 		SET ${} = #{} -->
+<!-- 		WHERE acm_code = #{acmCode} -->
+<!-- 	</update> -->
 </mapper>
