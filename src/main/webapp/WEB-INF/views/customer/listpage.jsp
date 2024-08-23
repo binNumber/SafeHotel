@@ -124,10 +124,11 @@
 						<div class="roomlist">
 							<div class="roomthumbnail">
 								<div class="roomphoto">
-									<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+									<a href="/roominfo?acmCode=${accommodation.acmCodeInt}
+											&searchText=${searchRoom.searchText}
 											&checkInDate=${searchRoom.checkInDate}
 											&checkOutDate=${searchRoom.checkOutDate}
-											&personnel=${searchRoom.personnel}"> <img
+											&personnel=${search.people}"> <img
 										src="${accommodation.fullImageUrl}" alt="숙소 대표사진" />
 									</a>
 								</div>
@@ -145,10 +146,11 @@
 											<a href="roominfo">${accommodation.usageAmountStr}원</a>
 										</h5> --%>
 										<h2 class="roominfo-btn">
-											<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+											<a href="/roominfo?acmCode=${accommodation.acmCodeInt}
+											&searchText=${searchRoom.searchText}
 											&checkInDate=${searchRoom.checkInDate}
 											&checkOutDate=${searchRoom.checkOutDate}
-											&personnel=${searchRoom.personnel}">${accommodation.usageAmountStr}원</a>
+											&personnel=${search.people}">${accommodation.usageAmountStr}원</a>
 										</h2>
 									</div>
 								</div>

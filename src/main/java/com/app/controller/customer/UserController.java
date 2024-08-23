@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.dto.Accommodation.Acm;
 import com.app.dto.admin.AccommodationDetails;
 import com.app.dto.admin.AccommodationImg;
+import com.app.dto.main.SearchText;
 import com.app.dto.reservation.Reservation;
 import com.app.dto.reservation.ReservationAmount;
 import com.app.dto.review.Review;

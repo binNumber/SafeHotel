@@ -39,7 +39,7 @@ public class SearchController {
 		searchRoom.setCheckInDate(checkIngStr);
 		searchRoom.setCheckOutDate(checkOutStr);
 		searchRoom.setPersonnel(people);
-		
+		searchRoom.setSearchText(searchText);
 		model.addAttribute("searchRoom", searchRoom);
 
 		// 로그 출력으로 Date 값 확인
