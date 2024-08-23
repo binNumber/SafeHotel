@@ -76,10 +76,10 @@
 
 					<div class="btn-date">
 						<div class="btn-date-checkin">
-							<input type="date">
+							<input type="date" value="${search.checkIn}" id="checkInDate">
 						</div>
 						<div class="btn-date-checkout">
-							<input type="date">
+							<input type="date" value="${search.checkOut}" id="checkOutDate">
 						</div>
 					</div>
 
@@ -476,7 +476,7 @@
 										<div class="review-section-left">
 											<div class="review-section-left-userinfo">
 												<div class="userinfo-nickname">
-													<p>${review.userNickname }</p>
+													<%-- <p>${review.userNickname }</p> --%>
 												</div>
 												<div class="userinfo-review">
 													<h5>리뷰</h5>
@@ -543,13 +543,13 @@
 				<form id="reservationForm" action="/roominfo2" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
 					<input type="hidden" name="acmName" value="${acm.acmName }">
-					<input type="hidden" name="rsvtChekInDate"
+					<input type="hidden" name="rsvtCheckInDate"
 						value="${searchRoom.checkInDate }"> <input type="hidden"
-						name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+						name="rsvtCheckOutDate" value="${searchRoom.checkOutDate }">
 					<input type="hidden" name="roomCode"> <input type="hidden"
 						name="roomName"> <input type="hidden" name="roomType">
-					<input type="hidden" name="rsvtChekInTime"> <input
-						type="hidden" name="rsvtChekOutTime"> <input type="hidden"
+					<input type="hidden" name="rsvtCheckInTime"> <input
+						type="hidden" name="rsvtCheckOutTime"> <input type="hidden"
 						name="rsvtRoomAmount">
 				</form>
 			</div>

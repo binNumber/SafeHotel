@@ -132,10 +132,16 @@
 								<div class="roominfo">
 									<div class="roominfo-title">
 										<h2>
-											<a href="roominfo">${accommodation.acmName}</a>
+											<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+											&checkInDate=${searchRoom.checkInDate}
+											&checkOutDate=${searchRoom.checkOutDate}
+											&personnel=${searchRoom.personnel}">${accommodation.acmName}</a>
 										</h2>
 										<h5>
-											<a href="roominfo">${accommodation.acmAddr}</a>
+											<a href="/roominfo?acmCode=${accommodation.acmCodeInt }
+											&checkInDate=${searchRoom.checkInDate}
+											&checkOutDate=${searchRoom.checkOutDate}
+											&personnel=${searchRoom.personnel}">${accommodation.acmAddr}</a>
 										</h5>
 									</div>
 									<div class="roominfo-price">
