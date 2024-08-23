@@ -49,6 +49,23 @@ public class UserController {
 	@Autowired
 	ReservationService reservationService;
 
+	@RequestMapping("/test")
+	public String mapTest(Model model) {
+		
+//		int acmCode = 1;
+//
+//		// 업소코드 기반으로 업소 정보 불러오기
+//		Acm acm = acmService.findAcmByAcmCode(acmCode);
+//
+//		if (acm != null) {
+//
+//			// 숙소 정보값 페이지에 전달
+//			model.addAttribute("acm", acm);
+//		}
+		
+		return "maptest";
+	}
+	
 	@GetMapping("/user/mypageCEO")
 	public String myPageCEO() {
 		return "user/myPageCEO";

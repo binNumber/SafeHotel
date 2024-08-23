@@ -17,6 +17,9 @@ public interface UserService {
 	//유저코드로 유저 검색
 	public User findUserByUserCode(int userCode);
 	
+	//이메일로 유저 검색
+	public User findUserByEmail(String email);
+	
 	//입력한 닉네임이 사용 가능한지 확인 (닉네임 중복 검색)
 	public boolean isNicknameDuplicate(String userNickname);
 	public boolean isNicknameDuplicate(MypageSearchNickname searchNickname);

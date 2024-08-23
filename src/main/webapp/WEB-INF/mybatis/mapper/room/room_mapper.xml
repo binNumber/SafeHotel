@@ -21,10 +21,10 @@
 				r.room_info room_info, r.room_amenities room_amenities, r.room_status room_status
 		FROM ROOM r
 		LEFT JOIN (SELECT rsvt.room_code, COUNT(*) AS reserved_count
-		FROM  RESERVATION rsvt
-		WHERE rsvt.rsvt_chek_in_date <= TO_DATE(#{checkOutDate}, 'YYYY/MM/DD')
-		AND rsvt.rsvt_chek_out_date >= TO_DATE(#{checkInDate}, 'YYYY/MM/DD')
-		GROUP BY rsvt.room_code) reserved_rooms
+					FROM  RESERVATION rsvt
+					WHERE rsvt.rsvt_chek_in_date <= TO_DATE(#{checkOutDate}, 'YYYY/MM/DD')
+					AND rsvt.rsvt_chek_out_date >= TO_DATE(#{checkInDate}, 'YYYY/MM/DD')
+					GROUP BY rsvt.room_code) reserved_rooms
 		ON r.room_code = reserved_rooms.room_code
 		WHERE r.acm_code = #{acmCode}
 		AND r.room_max_capacity <= #{personnel}

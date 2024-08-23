@@ -57,21 +57,21 @@
 				<div class="signuplist">
 				
 					<div class="sociallogin naver">
-						<button>
+						<button onclick="location.href='${snsLoginUrl.naverUrl}'">
 							<img src="img/naver.png" alt="네이버로 로그인하기">
 							네이버로 로그인하기
 						</button>
 					</div>
 					
 					<div class="sociallogin kakao">
-						<button>
+						<button onclick="location.href='${snsLoginUrl.kakaoUrl}'">
 							<img src="img/kakaotalk.png" alt="카카오톡으로 로그인하기">
 							카카오톡으로 로그인하기
 						</button>
 					</div>
 
 					<div class="sociallogin google">
-						<button>
+						<button onclick="location.href='${snsLoginUrl.googleUrl}'">
 							<img src="img/google.png" alt="구글로 로그인하기">
 							구글로 로그인하기
 						</button>
@@ -93,6 +93,7 @@
 			</div>
 		</div>
 		<script src="js/script.js"></script>
+		<script src="js/customer/snsLoginApi.js"></script>
 	</div>
 </body>
 </html>

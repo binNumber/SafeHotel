@@ -60,6 +60,16 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
+	//이메일로 유저 검색
+	@Override
+	public User findUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		
+		User user = sqlSessionTemplate.selectOne("user_mapper.findUserByEmail", email);
+		
+		return user;
+	}
+	
 	//다음 유저 번호 불러오기(유저코드 생성)
 	@Override
 	public int getNextUserCode() {

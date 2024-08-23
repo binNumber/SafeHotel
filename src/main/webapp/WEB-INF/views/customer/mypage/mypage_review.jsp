@@ -11,10 +11,16 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 	integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
 <link href="/css/customer/mypage_review.css" rel="stylesheet"
 	type="text/css">
 <script src="/js/customer/alertMsg.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
 	<div id="write-review-popup" class="display-none">
@@ -48,8 +54,6 @@
 
 						<div id="review-img"></div>
 
-
-
 						<div>
 							<h3>업로드할 이미지 목록</h3>
 						</div>
@@ -61,7 +65,8 @@
 				</div>
 
 				<div id="wirte-review-form">
-					<form action="/mypage/modifyReview" method="post" enctype="multipart/form-data">
+					<form action="/mypage/modifyReview" method="post"
+						enctype="multipart/form-data">
 						<textarea id="reviewText" name="reviewText"></textarea>
 						<input type="hidden" name="reviewCode" id="reviewCode">
 
@@ -180,49 +185,14 @@
 									</h4>
 								</div>
 
-
-								<c:choose>
-									<c:when test="${fn:length(review.reviewImgList) > 2}">
-										<div class="review-img-event-container">
-											<div class="review-eventsection">
-												<div class="review-btn_sectionpage prev">
-													<button class="prev">&lt;</button>
-												</div>
-												<div class="review-sectionpage">
-													<div class="review-img-slides">
-														<c:forEach var="img" items="${review.reviewImgList }">
-															<div class="review-event list">
-																<img
-																	src="${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
-															</div>
-														</c:forEach>
-													</div>
-												</div>
-												<div class="review-btn_sectionpage next">
-													<button class="next">&gt;</button>
-												</div>
-											</div>
-										</div>
-									</c:when>
-									<c:when test="${fn:length(review.reviewImgList) == 0}">
-									</c:when>
-									<c:otherwise>
-										<div class="review-img-container">
-											<div class="review-imgsection">
-												<div class="review-img-sectionpage">
-													<div class="review-img-box">
-														<c:forEach var="img" items="${review.reviewImgList }">
-															<div class="review-img">
-																<img
-																	src="${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}" />
-															</div>
-														</c:forEach>
-													</div>
-												</div>
-											</div>
-										</div>
-									</c:otherwise>
-								</c:choose>
+								<div class="review-img-event-container">
+									<div class="img-slide">
+										<c:forEach var="img" items="${review.reviewImgList }">
+											<img
+												src="${img.reviewImgUrl}/${img.reviewImgSaveName }${img.reviewImgExtension}">
+										</c:forEach>
+									</div>
+								</div>
 
 								<p class="review-text-box">${review.reviewText }</p>
 								<div class="more-text display-none">
@@ -231,7 +201,9 @@
 								<div class="review-btn">
 									<button type="button" class="write-review-popup-btn"
 										data-review-code="${review.reviewCode}">리뷰 수정</button>
-									<button type="button" onclick="location.href='/mypage/removeReview?reviewCode=${review.reviewCode}'">리뷰 삭제</button>
+									<button type="button"
+										onclick="location.href='/mypage/removeReview?reviewCode=${review.reviewCode}'">리뷰
+										삭제</button>
 								</div>
 							</div>
 						</div>
@@ -240,13 +212,12 @@
 								<div class="reply-line"></div>
 								<div class="reply-text-container">
 									<div>
-										<h3>${review.acmName } 사장님 답변</h3>
+										<h3>${review.acmName }사장님답변</h3>
 										<h3>|</h3>
 										<h4>작성날짜 : 2024/08/10</h4>
 
 									</div>
-									<p>안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상
-										노력하겠습니다^^</p>
+									<p>안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상 노력하겠습니다^^</p>
 									<div class="more-text display-none">
 										더보기<i class="fa-solid fa-chevron-down"></i>
 									</div>

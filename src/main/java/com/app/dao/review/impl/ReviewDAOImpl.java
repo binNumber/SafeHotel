@@ -145,7 +145,4 @@ public class ReviewDAOImpl implements ReviewDAO {
 		
 		return reply;
 	}
-	
-	
-
 }

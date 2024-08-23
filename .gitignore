@@ -176,3 +176,6 @@ $RECYCLE.BIN/
 
 # MS Office Temporary File
 ~$*
+
+#etc project
+src/main/resources/snsapi/*.properties

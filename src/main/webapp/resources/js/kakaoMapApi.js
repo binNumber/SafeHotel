@@ -1,8 +1,14 @@
 // 카카오 맵 API 적용
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+var placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 }),
+	contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+	markers = [], // 마커를 담을 배열입니다
+	currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+
 var mapContainer = document.querySelector('.roominfo-top-map'); // 지도를 담을 영역의 DOM 레퍼런스
 var mapOption = { // 지도를 생성할 때 필요한 기본 옵션
 	center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	level: 3 // 지도의 레벨(확대, 축소 정도)
+	level: 5 // 지도의 레벨(확대, 축소 정도)
 };
 
 // 지도를 생성
@@ -35,3 +41,4 @@ geocoder.addressSearch(addr, function(result, status) {
 		map.setCenter(coords);
 	}
 });
+
