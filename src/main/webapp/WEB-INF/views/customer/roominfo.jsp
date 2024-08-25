@@ -575,15 +575,15 @@
 				<form id="reservationForm" action="/roominfo" method="post">
 					<input type="hidden" name="acmCode" value="${acm.acmCode }">
 					<input type="hidden" name="acmName" value="${acm.acmName }">
-					<input type="hidden" name="rsvtCheckInDate"
-						value="${searchRoom.checkInDate }"> <input type="hidden"
-						name="rsvtCheckOutDate" value="${searchRoom.checkOutDate }">
-					<input type="hidden" name="roomCode"> <input type="hidden"
-						name="roomName"> <input type="hidden" name="roomType">
-					<input type="hidden" name="rsvtCheckInTime"> <input
-						type="hidden" name="rsvtCheckOutTime"> <input
-						type="hidden" name="rsvtRoomAmount">
+					<input type="hidden" name="rsvtChekInDate" value="${searchRoom.checkInDate }">
+					<input type="hidden" name="rsvtChekOutDate" value="${searchRoom.checkOutDate }">
+					<input type="hidden" name="roomCode"> <input type="hidden" name="roomName">
+					<input type="hidden" name="roomType">
+					<input type="hidden" name="rsvtChekInTime">
+					<input type="hidden" name="rsvtChekOutTime">
+					<input type="hidden" name="rsvtRoomAmount">
 				</form>
+				
 			</div>
 			<div class="footer">
 				<div class="footer-top">
@@ -652,10 +652,9 @@
 				</div>
 			</div>
 		</div>
-
+		<script src="js/script.js"></script>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
-		<script src="js/script.js"></script>
 		<script src="/js/search/search.js"></script>
 		<script src="js/kakaoMapApi.js"></script>
 		<script src="js/customer/reservation_form_action.js"></script>
