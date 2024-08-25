@@ -12,7 +12,7 @@
 		FROM ACCOMMODATION
 		WHERE acm_name LIKE #{searchText} OR
 		acm_addr LIKE #{searchText}
-		AND acm_reg_site = 1
+		<!-- AND acm_reg_site = 1 -->
 	</select>
 
 	<!-- acm_code로 숙소 정보를 가져오는 쿼리 -->

@@ -33,6 +33,9 @@
 		<typeAlias type="com.app.dto.room.Room" alias="Room"/>
 		<typeAlias type="com.app.dto.room.SearchRoomCondition" alias="SearchRoomCondition"/>
 		
+		<typeAlias type="com.app.dto.map.Hospital" alias="Hospital"/>
+		<typeAlias type="com.app.dto.map.PoliceStation" alias="PoliceStation"/>
+		
 	</typeAliases>
 							
 </configuration>							

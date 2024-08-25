@@ -16,6 +16,20 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&family=Nanum+Myeongjo&family=Noto+Serif+KR:wght@200..900&display=swap"
 	rel="stylesheet">
+
+<style>
+.category .ico_hospital {
+	background: url('img/hospitalMarker.png') no-repeat;
+	margin : 2px 0;
+	margin-left: 8px;
+}
+
+.category .ico_police {
+	background: url('img/policeMarker.png') no-repeat;
+	margin : 2px 0;
+	margin-left: 8px;
+}
+</style>
 </head>
 <body>
 	<div class="container-roominfo">
@@ -66,7 +80,8 @@
 				<div class="search-main">
 					<div class="input-search">
 						<img src='/img/magnifier.png' /> <input id="search_term"
-							name="search_term" type="text" placeholder="${searchRoom.searchText}">
+							name="search_term" type="text"
+							value="${acm.acmName }" readOnly>
 						<div class="hide search-best" id="search_best">
 							<div class="search-best-history">
 								<h3>최근 검색어</h3>
@@ -76,17 +91,12 @@
 
 					<div class="btn-date">
 						<div class="btn-date-checkin">
-<<<<<<< HEAD
-							<input type="date" value="${searchRoom.checkInDate}" id="checkInDate">
+							<input type="date" value="${searchRoom.checkInDate}"
+								id="checkInDate">
 						</div>
 						<div class="btn-date-checkout">
-							<input type="date" value="${searchRoom.checkOutDate}" id="checkOutDate">
-=======
-							<input type="date" value="${search.checkIn}" id="checkInDate">
-						</div>
-						<div class="btn-date-checkout">
-							<input type="date" value="${search.checkOut}" id="checkOutDate">
->>>>>>> 2b25406a9bb24ae7848e7e6fe218dfc0a8f710fd
+							<input type="date" value="${searchRoom.checkOutDate}"
+								id="checkOutDate">
 						</div>
 					</div>
 
@@ -109,11 +119,7 @@
 					</div>
 
 					<div class="btn-searchright">
-<<<<<<< HEAD
 						<button onclick="submitSearchForm()">
-=======
-						<button>
->>>>>>> 2b25406a9bb24ae7848e7e6fe218dfc0a8f710fd
 							<span><img> 검색 </span>
 						</button>
 					</div>
@@ -230,8 +236,23 @@
 					<input type="hidden" id="acmAddrInput" value="${acm.acmAddr }">
 					<input type="hidden" id="acmNameInput" value="${acm.acmName }">
 				</div>
-				<div class="roominfo-top-map"></div>
+
+				<div id="mapwrap">
+					<div class="roominfo-top-map"></div>
+					<div class="category">
+						<ul>
+							<li id="hospitalMenu" onclick="changeMarker('hospital')"><span
+								class="ico_comm ico_hospital"></span> 병원</li>
+							<li id="policeMenu" onclick="changeMarker('police')"><span
+								class="ico_comm ico_police"></span> 경찰서</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" name="acmAddr" value="${acmAddr}">
+
 				<div class="sectionline"></div>
+
 			</div>
 			<div id="section3">
 				<div class=content-roominfo-list>
@@ -560,8 +581,8 @@
 					<input type="hidden" name="roomCode"> <input type="hidden"
 						name="roomName"> <input type="hidden" name="roomType">
 					<input type="hidden" name="rsvtCheckInTime"> <input
-						type="hidden" name="rsvtCheckOutTime"> <input type="hidden"
-						name="rsvtRoomAmount">
+						type="hidden" name="rsvtCheckOutTime"> <input
+						type="hidden" name="rsvtRoomAmount">
 				</form>
 			</div>
 			<div class="footer">
@@ -631,6 +652,7 @@
 				</div>
 			</div>
 		</div>
+
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e83285c350f38211a25bc3a79660dac3&libraries=services"></script>
 		<script src="js/script.js"></script>

@@ -56,5 +56,4 @@ public class AccommodationDAOImpl implements AccommodationDAO {
 		
 		return acmRepImg;
 	}
-
 }

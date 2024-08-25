@@ -212,12 +212,12 @@
 								<div class="reply-line"></div>
 								<div class="reply-text-container">
 									<div>
-										<h3>${review.acmName }사장님답변</h3>
+										<h3>${review.acmName} 사장님답변</h3>
 										<h3>|</h3>
-										<h4>작성날짜 : 2024/08/10</h4>
+										<h4>작성날짜 : ${review.reply.replyDate }</h4>
 
 									</div>
-									<p>안녕하세요! 리뷰 감사합니다~! 언제나 찾아오고 싶은 장소가 되게끔 항상 노력하겠습니다^^</p>
+									<p>${review.reply.replyText }</p>
 									<div class="more-text display-none">
 										더보기<i class="fa-solid fa-chevron-down"></i>
 									</div>

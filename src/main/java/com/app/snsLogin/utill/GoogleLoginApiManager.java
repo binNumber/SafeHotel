@@ -33,30 +33,38 @@ public class GoogleLoginApiManager {
 	
 	public String getGoogleEmail(String code) {
 		
-		RestTemplate restTemplate = new RestTemplate();
+		String email = null;
 		
-		GoogleRequest googleOAuthRequestParam = GoogleRequest
-	            .builder()
-	            .clientId(GOOGLE_CLIENT_ID)
-	            .clientSecret(GOOGLE_CLIENT_PW)
-	            .code(code)
-	            .redirectUri("http://localhost:8080/api/v1/oauth2/google")
-	            .grantType("authorization_code").build();
+		try {
 		
-		ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
-	            googleOAuthRequestParam, GoogleResponse.class);
-		
-		String jwtToken=resultEntity.getBody().getId_token();
-		
-		Map<String, String> map=new HashMap<>();
-		map.put("id_token",jwtToken);
-		
-		ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
-	            map, GoogleInfResponse.class);
-		
-		//구글 로그인에서 이메일 뽑아오기
-		String email = resultEntity2.getBody().getEmail();
-		
+			RestTemplate restTemplate = new RestTemplate();
+			
+			GoogleRequest googleOAuthRequestParam = GoogleRequest
+		            .builder()
+		            .clientId(GOOGLE_CLIENT_ID)
+		            .clientSecret(GOOGLE_CLIENT_PW)
+		            .code(code)
+		            .redirectUri("http://localhost:8080/api/v1/oauth2/google")
+		            .grantType("authorization_code").build();
+			
+			ResponseEntity<GoogleResponse> resultEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token",
+		            googleOAuthRequestParam, GoogleResponse.class);
+			
+			String jwtToken=resultEntity.getBody().getId_token();
+			
+			Map<String, String> map=new HashMap<>();
+			map.put("id_token",jwtToken);
+			
+			ResponseEntity<GoogleInfResponse> resultEntity2 = restTemplate.postForEntity("https://oauth2.googleapis.com/tokeninfo",
+		            map, GoogleInfResponse.class);
+			
+			//구글 로그인에서 이메일 뽑아오기
+			email = resultEntity2.getBody().getEmail();
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 		return email;
 	}
 	

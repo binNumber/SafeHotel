@@ -1,30 +1,3 @@
-INSERT INTO USER_REVIEW (
-    review_code,
-    rsvt_code,
-    user_code,
-    acm_code,
-    room_code,
-    rating,
-    review_text,
-    review_date,
-    reply_exists,
-    report_status,
-    report_reason
-) VALUES (
-    12,
-    1,
-    1,
-    1,
-    1,
-    1,
-    'DB확인및처리용',
-    SYSDATE,
-    '1',
-    '1',
-    '신고사유 없음'
-);
-commit;
-
 --유저 정보 테이블
 CREATE TABLE USER_INFO(
     user_code NUMBER(10) NOT NULL,
@@ -64,11 +37,11 @@ INSERT INTO USER_REVIEW (
     1,
     1,
     1,
-    'DBȮ�ι�ó����',
+    'DB확인및처리용',
     SYSDATE,
     '1',
     '1',
-    '�Ű����� ����'
+    '신고사유 없음'
 );
 
 COMMIT;
@@ -256,7 +229,7 @@ WHERE review_code = 12;
 COMMIT;
 
 INSERT INTO user_review
-VALUES (1, '20240814-00003', 1, 5, 16, 5, '지하철역에서 가까운 위치라서 접근성이 너무 좋았어요!!
+VALUES (1, '20240822-00044', 1, 5, 16, 5, '지하철역에서 가까운 위치라서 접근성이 너무 좋았어요!!
 대신 숙소 주변에 편의점이 없어서ㅠ 내부 매점을 이용해야하긴하지만, 역근처 편의점에서 필요한것들 사오면 됐어요
 화장실에 비데가 있어서 좋았고, 침구 컨디션도 상당히 좋아서 꿀잠 잤습니다 ㅎㅎ
 그리고 객실 창문으로 산이 보이는데, 아침에 일어나서 커튼을 열고 앉아서 멍때리기도 했습니다 뷰가 참 좋았어요~%%주차공간도 꽤 넉넉해서 불편한 점이 없었습니다!!
