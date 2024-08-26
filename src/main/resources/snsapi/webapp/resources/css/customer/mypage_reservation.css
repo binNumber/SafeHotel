@@ -1,0 +1,790 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+/* ------- top 설정 ------- */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@font-face {
+	font-family: 'SUIT-Regular';
+	src:
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+		format('woff2');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* a {
+	text-decoration: none;
+}
+
+body, html {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	font-family: 'SUIT-Regular';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.nav-top {
+	display: flex;
+	justify-content: space-between;
+	height: 80px;
+	width: 90%;
+	margin: 0 auto;
+	align-items: center;
+	border-bottom: 1px solid lightgray;
+}
+
+.nav-top-left img {
+	width: 30px;
+	height: auto;
+}
+
+.nav-top-left {
+	width: 17%;
+}
+
+.nav-top-right {
+	width: 17%;
+}
+
+.hidenav {
+	position: fixed;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background-color: #fff;
+	overflow-x: hidden;
+	transition: 0.3s;
+	z-index: 25;
+}
+
+.hidenav.show {
+	left: 0;
+}
+
+.hidenavcontent {
+	margin-top: 100px;
+}
+
+.hidenavcontent ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.hidenavcontent ul li {
+	padding: 8px 16px;
+}
+
+.hidenavcontent ul li a {
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+.close-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	color: black;
+}
+
+.subcategories {
+	overflow: hidden;
+	max-height: 0;
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories.show {
+	transition: max-height 0.5s ease-out;
+}
+
+.subcategories li {
+	opacity: 0;
+}
+
+.category {
+	cursor: pointer;
+}
+
+.nav-top-right button {
+	width: 120px;
+	height: 50px;
+	background-color: transparent;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.nav-top-right button:hover {
+	background-color: lightgray;
+	border: 1px solid lightgray;
+	cursor: pointer;
+}
+
+.nav-top-center a {
+	font-family: 'SUIT-Regular';
+	font-weight: normal;
+	font-style: normal;
+}
+
+#success-login {
+	display: flex;
+}
+
+#mypage-btn {
+	width: 100px;
+	margin-right: 3px;
+}
+
+#logout-btn {
+	width: 80px;
+}
+
+/* ------- top 설정 ------- */
+
+
+/* -----mypage sidebar 설정-----*/
+.main {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: 30px auto;
+}
+
+.mypage-sidebar {
+	width: 350px;
+	font-size: 20px;
+	margin-right: 30px;
+}
+
+.mypage-sidebar ul {
+	list-style-type: none;
+	/*여기 배경이 투명해야 hover 정상 적용*/
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.mypage-sidebar li {
+	width: 100%;
+	height: 70px;
+	padding: 0 20px;
+	border: 1px solid lightgray;
+}
+
+.mypage-sidebar a {
+	height: 100%;
+	color: black;
+	text-decoration: none;
+	margin: auto 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.mypage-sidebar li:first-child {
+	border-radius: 10px 10px 0 0;
+}
+
+/* 마지막 li 요소에서 border-bottom 제거 */
+.mypage-sidebar li:last-child {
+	border-radius: 0 0 10px 10px;
+}
+
+.mypage-sidebar li:hover {
+	cursor: pointer;
+	background-color: lightgray;
+	color: white;
+}
+
+/* -----mypage sidebar 설정-----*/
+
+/* -- reservation 페이지 css -- */
+.reserve_content {
+	width: 100%;
+	padding: 0 20px;
+}
+
+.status-container {
+	width: 100%;
+	height: 50px;
+	border-bottom: 2px solid lightgray;
+	margin: 20px 0;
+	display: flex;
+	font-size: 20px;
+	display: flex;
+	position: relative; /* border-bottom 위치 조정을 위해 필요 */
+}
+
+.reserve-status {
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	position: relative; /* border-bottom 위치 조정을 위해 필요 */
+	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
+	border-bottom: 2px solid transparent; /* 기본 상태에서 border-bottom 설정 */
+}
+
+.reserve-status:hover {
+	color: #1273E4;
+	border-bottom: 2px solid #1273E4;
+}
+
+.status-select {
+	color: #1273E4;
+	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
+	border-bottom: 2px solid #1273E4;
+}
+
+#reserve-container hr {
+	border: 0;
+	height: 1px;
+	background-color: lightgray;
+}
+
+.reserve-box {
+	width: 100%;
+	height: 230px;
+	padding: 20px;
+	margin: 30px 0;
+	border-radius: 10px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.reserve-box img {
+	border-radius: 10px;
+}
+
+.reserve-text-container {
+	width: 100%;
+	height: 170px;
+	margin-left: 20px;
+	/* position: relative; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.reserve-text-container a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit;        /* 부모 요소의 색상 상속 */
+}
+
+.reserve-text-container p {
+	font-size: 15px;
+	font-weight: normal;
+	color: gray;
+}
+
+.reserve-text-container h3 {
+	color: #2F4F4F;
+}
+
+.checkin-text {
+	font-weight: normal;
+	color: gray;
+}
+
+.reserve-btn button {
+	width: 120px;
+	height: 50px;
+	background-color: #EBEBEB;
+	border: 1px solid #EBEBEB;
+	border-radius: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/* -- 리뷰작성 팝업창 -- */
+#write-review-popup {
+	position: fixed; /* 화면에 고정 */
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000; /* 팝업이 다른 요소들 위에 보이도록 */
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#write-review-container {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center;
+}
+
+#write-review-box {
+	width: 90vw;
+	/* height: 70vw; */
+	border-radius: 10px;
+	background-color: white;
+	opacity: 100%;
+	padding: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#write-review-text-container {
+	width: 100%
+}
+
+#write-review-info h4 {
+	color: gray;
+	font-weight: normal;
+	margin-top: 4px;
+	margin-bottom: 10px;
+}
+
+#write-review-container-cancel {
+	width: 10px;
+	opacity: 1;
+}
+
+#icon-cancel {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#write-review-box h1 {
+	margin-bottom: 10px;
+}
+
+.reserve-modify-btn {
+	display: flex;
+}
+
+.reserve-modify-btn button {
+	width: 50%;
+	height: 50px;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.reserve-modify-btn-complete button {
+	width: 100%;
+	height: 50px;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.reserve-modify-btn button:first-child {
+	margin-right: 20px;
+}
+
+#write-review-box {
+	margin: auto 0;
+}
+
+#write-review-box hr {
+	opacity: 30%;
+	margin: 30px 0;
+}
+
+#reservation-modify-form {
+	width: 100%;
+	margin-top: 20px;
+}
+
+#reservation-modify-gustName, #reservation-modify-gusttel {
+	width: 40%;
+	display: inline-block;
+}
+
+#reservation-modify-gustName {
+	margin-right: 20px;
+}
+
+#reservation-modify-form input {
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	padding: 0 15px;
+	font-size: 16px;
+}
+
+#wirte-review-form {
+	width: 100%;
+	height: 20%;
+}
+
+#reviewText {
+	all: unset;
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	overflow: auto;
+	margin-top: 20px;
+	box-sizing: border-box;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+
+#reviewText-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn-write {
+	width: 100%;
+	height: 50px;
+	border: 0px;
+	background-color: #1273E4;
+	border-radius: 10px;
+	font-size: 20px;
+	color: white;
+	font-weight: bold;
+	background-color: #1273E4;
+	
+	margin : 15px 0;
+}
+
+.file-upload-container {
+	
+	width : 100%;
+	
+	display : flex;
+	align-items : center;
+}
+
+.file-upload-btn {
+	width : 150px;
+	height : 30px;
+	
+	border : 0px;
+	border : 1px solid #1273E4;
+	border-radius : 10px;
+	
+	text-align : center;
+	
+	background-color : white;
+
+	font-weight : bold;
+	font-size : 17px;
+
+	color : #1273E4;
+	
+	margin-right : 10px;
+	
+	display : flex;
+	justify-content : center;
+	align-items: center;
+}
+
+.fa-regular.fa-image {
+	margin-right : 10px;
+}
+
+.acm-info-text a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit;        /* 부모 요소의 색상 상속 */
+}
+
+/* -- 리뷰 작성용 이미지 이벤트 css -- */
+#review-img-preview {
+	width : 100%;
+	height : auto;
+	overflow :auto;
+	
+	white-space: nowrap;
+}
+
+.preview-image {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px;
+    
+    border-radius : 10px;
+}
+
+.preview-image img {
+	max-width: 200px;
+    max-height: 200px;
+}
+
+/* --checkReserve_detail(예약상세) 페이지 css --*/
+.reserve-info-content {
+	width: 100%;
+	padding: 0 20px;
+}
+
+.reserve-info-content hr {
+	border: none;
+	border-top: 1px solid lightgray;
+	opacity: 50%;
+	margin: 30px 0;
+}
+
+#back-icon-margin {
+	margin-left: 20px;
+}
+
+#acm_info {
+	display: flex;
+}
+
+#reserve-info-container h1 {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+
+#acm_info img {
+	border-radius: 10px;
+	margin-right: 20px;
+}
+
+#acm_info h2 {
+	margin-bottom: 7px;
+}
+
+#acm_info h3 {
+	color: #1273E4;
+}
+
+.reserve-info-content table {
+	width: 100%;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+	background-color: #F0F2F4;
+}
+
+.reserve-info-content th {
+	text-align: left;
+	font-size: 18px;
+	font-weight: normal;
+	height: 35px;
+}
+
+#reserve-info th:first-child, #reserve-user-info th:first-child,
+	#payment-info th:first-child, #amount-info th:first-child,
+	#total-amount-info th:first-child {
+	width: 150px;
+}
+
+#reserve-info th:last-child, #reserve-user-info th:last-child,
+	#payment-info th:last-child, #amount-info th:last-child,
+	#total-amount-info th:last-child {
+	color: #6D6D6D;
+}
+
+#reserve-user-info h2 {
+	margin-bottom: 10px;
+}
+
+#reserve-user-info h2, #payment-container h2 {
+	margin-bottom: 10px;
+}
+
+#payment-container hr {
+	margin: 30px 20px;
+}
+
+#payment-container {
+	margin-bottom: 20px;
+}
+
+#reserve-user-info span {
+	color: #1273E4;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.separator td {
+	height: 1px;
+	background-color: gray; /* 구분선 스타일 */
+	opacity: 20%;
+}
+
+.blankSpace td {
+	height: 10px;
+}
+
+/* -- reservation info 수정 팝업창 -- */
+#modify-reservation-popup {
+	position: fixed; /* 화면에 고정 */
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000; /* 팝업이 다른 요소들 위에 보이도록 */
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#modify-reservation-container {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center;
+}
+
+#modify-reservation-box {
+	width: 80vw;
+	/* height: 58vw; */
+	border-radius: 10px;
+	background-color: white;
+	opacity: 100%;
+	padding: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#reservation-modify-text-container {
+	width: 100%
+}
+
+#modify-reservation-container-cancel {
+	width: 10px;
+	opacity: 1;
+}
+
+#icon-cancel {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#modify-reservation-box h1 {
+	margin-bottom: 10px;
+}
+
+#reserve-modify-btn {
+	display: flex;
+}
+
+#reserve-modify-btn button {
+	width: 50%;
+	height: 50px;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+#reserve-modify-btn button:first-child {
+	margin-right: 20px;
+}
+
+#modify-reservation-box {
+	margin: auto 0;
+}
+
+#modify-reservation-box h2 {
+	margin-top: 20px;
+}
+
+#modify-reservation-acmInfo {
+	margin-top: 15px;
+}
+
+#modify-reserve-info table {
+	text-align: left;
+	margin-top: 10px;
+}
+
+#modify-reserve-info th {
+	height: 40px;
+	font-size: 17px;
+	font-weight: normal;
+}
+
+#modify-reserve-info th:first-child {
+	width: 100px;
+}
+
+#modify-reserve-info th:last-child {
+	color: #6D6D6D;
+}
+
+#modify-reservation-box hr {
+	opacity: 30%;
+	margin: 30px 0;
+}
+
+#reservation-modify-form {
+	width: 100%;
+	margin-top: 20px;
+}
+
+#reservation-modify-gustName, #reservation-modify-gusttel {
+	width: 40%;
+	display: inline-block;
+}
+
+#reservation-modify-gustName {
+	margin-right: 20px;
+}
+
+#reservation-modify-form input {
+	width: 100%;
+	height: 50px;
+	border-radius: 5px;
+	border: 1px solid lightgray;
+	padding: 0 15px;
+	font-size: 16px;
+}
+
+.btn-modify {
+	width: 100%;
+	height: 50px;
+	background-color: #1273E4;
+	color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+/* -----js용 css------ */
+.display-none {
+	display:none;
+}
+
+/* ---평점 관련 css--- */
+.color-gold {
+	color : gold;
+}
+
+.nav-top-center img {
+	height: 30px;
+	width: auto;
+}
