@@ -1,12 +1,3 @@
-//addFlashAttribute로 msg를 보낸 경우 alert창으로 출력하기
-window.onload = function() {
-
-	var msg = /*[[${msg}]]*/ '';
-	if (msg) {
-		alert(msg);
-	}
-}
-
 document.addEventListener("DOMContentLoaded", function() {
 	// 슬라이드 쇼 관련 변수 및 함수 설정
 	let currentSlide = 0;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="map_mapper">
+
+	<!-- 전국 병원 위치 정보 불러오기 -->
+	<select id="findHospitalListByAcmAdddr" parameterType="String" resultType="Hospital">
+		SELECT hospital_name || ' ' || NVL(hospital_spot, '') AS name,
+			hospital_cptrvn || ' ' || hospital_sigungu || ' ' || hospital_rdnmadr || ' ' || hospital_buld_no AS addr,
+			hospital_type
+		FROM HOSPITAL
+		WHERE hospital_cptrvn || ' ' || hospital_sigungu || ' ' || hospital_rdnmadr || ' ' || hospital_buld_no LIKE CONCAT(CONCAT('%', #{acmAddr}), '%')
+		AND hospital_type IN ('대학병원', '종합병원', '내과', '소아과', '가정의학과')
+	</select>
+	
+	<!-- 전국 경찰서 위치 정보 불러오기 -->
+	<select id="findPoliceStationListByAcmAddr" parameterType="String" resultType="PoliceStation">
+		SELECT plc_name || plc_type As name,
+				plc_addr As addr
+		FROM police_station
+		WHERE plc_addr LIKE CONCAT(CONCAT('%', #{acmAddr}), '%')
+	</select>
+	
+	<select id="findAcmAddrByAcmCode" parameterType="int" resultType="String">
+		SELECT SUBSTR(acm_addr, 1, INSTR(acm_addr, ' ', 1, 2) - 1) AS extracted_address
+		FROM ACCOMMODATION
+		WHERE acm_code = #{acmCode}
+	</select>
+	
+</mapper>

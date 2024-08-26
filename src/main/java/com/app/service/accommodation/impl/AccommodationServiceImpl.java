@@ -55,5 +55,4 @@ public class AccommodationServiceImpl implements AccommodationService {
 		
 		return acmRepImg;
 	}
-
 }

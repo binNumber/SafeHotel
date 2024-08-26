@@ -63,7 +63,7 @@ public class MypageController {
 
 	//user mypage
 	@GetMapping("/checkPw")
-	public String CheckPw(HttpSession session) {
+	public String CheckPw(HttpSession session, RedirectAttributes redirect) {
 		
 		if(session.getAttribute("isCheckPw") != null) {
 			
@@ -72,7 +72,6 @@ public class MypageController {
 		
 		return "customer/mypage/mypage_pwcheck";
 	}
-
 
 	//비밀번호 체크 액션
 	@PostMapping("/checkPw")
@@ -85,6 +84,8 @@ public class MypageController {
 
 			//세션에 비밀번호 확인에 대한 true로 저장
 			session.setAttribute("isCheckPw", "OK");
+			
+			redirect.addFlashAttribute("msg", "비밀번호 확인이 완료되었습니다.");
 
 			return "redirect:/mypage/userInfo";
 
@@ -438,7 +439,8 @@ public class MypageController {
 	}
 
 	@RequestMapping("/savetReview")
-	public String saveReview(WriteReviewForm reviewForm, Model model) {
+	public String saveReview(WriteReviewForm reviewForm, Model model,
+			RedirectAttributes redirect) {
 
 		Review review = new Review();
 		int reviewCode = reviewService.getNextReviewCode();
@@ -459,6 +461,7 @@ public class MypageController {
 			reviewResult = reviewService.saveUserReview(review);
 
 			if(reviewResult > 0) {
+				redirect.addFlashAttribute("msg", "리뷰가 성공적으로 저장되었습니다.");
 				System.out.println("리뷰 저장 성공");
 
 				//리뷰 이미지 저장
@@ -517,8 +520,9 @@ public class MypageController {
 	}
 
 	@PostMapping("/modifyReview")
-	public String modifyReview(ModifyReviewCondition modifyReview) {
-
+	public String modifyReview(ModifyReviewCondition modifyReview,
+			RedirectAttributes redirect) {
+		
 		int reviewResult = reviewService.modifyReivew(modifyReview);
 
 		if(reviewResult > 0) {
@@ -527,13 +531,13 @@ public class MypageController {
 			//리뷰코드 기반으로 리뷰 불러오기
 			Review review = reviewService.findReviewByReviewCode(modifyReview.getReviewCode());
 
-			if(modifyReview.getReviewImgFile() != null) {
+			if(modifyReview.getReviewImgFile() != null && !modifyReview.getReviewImgFile().isEmpty()) {
 
 				//리뷰 이미지 저장
 				List<MultipartFile> inputImgList = modifyReview.getReviewImgFile();
 
 				//결과 전달
-				/* String alertMsg = null; */
+				String msg = null;
 
 				for(MultipartFile img : inputImgList) {
 
@@ -548,10 +552,10 @@ public class MypageController {
 
 						if(imgResult > 0) {
 							System.out.println("이미지 저장 성공");
-							/* alertMsg = "리뷰를 성공적으로 수정했습니다."; */
+							msg = "리뷰를 성공적으로 수정했습니다.";
 						} else {
 							System.out.println("이미지 저장 실패");
-							/* alertMsg = "리뷰를 수정하지 못했습니다. 다시 시도해주세요."; */
+							msg = "리뷰를 수정하지 못했습니다. 다시 시도해주세요.";
 						}
 
 					} catch (IllegalStateException | IOException e) {
@@ -559,10 +563,9 @@ public class MypageController {
 						e.printStackTrace();
 					}
 				}
+				redirect.addFlashAttribute("msg", msg);
 
 			}
-
-			/* redirectAttributes.addFlashAttribute("alertMsg", alertMsg); */
 		}
 
 		return "redirect:/mypage/review";
@@ -570,7 +573,8 @@ public class MypageController {
 
 	//리뷰삭제
 	@GetMapping("/removeReview")
-	public String removeReview(@RequestParam int reviewCode) {
+	public String removeReview(@RequestParam int reviewCode,
+			RedirectAttributes redirect) {
 
 		System.out.println(reviewCode);
 
@@ -594,10 +598,10 @@ public class MypageController {
 			int imgResult = reviewService.deleteReviewImg(reviewCode);
 
 			if(result > 0 && imgResult > 0) {//삭제 성공
-				System.out.println("리뷰 삭제 완료");
+				redirect.addFlashAttribute("msg", "리뷰가 정상적으로 삭제되었습니다.");
 
 			} else {//삭제 실패
-				System.out.println("리뷰 삭제 실패");
+				redirect.addFlashAttribute("msg", "리뷰 삭제에 실패했습니다.");
 			}
 		}		
 

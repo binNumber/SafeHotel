@@ -1,8 +1,11 @@
 //addFlashAttribute로 msg를 보낸 경우 alert창으로 출력하기
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
+	var msg = document.querySelector('.msg').value;
+	var url = document.querySelector('.url').value;
 	
-    var msg = /*[[${msg}]]*/ '';
-    if (msg) {
-        alert(msg);
-    }
-}
+	if(msg) {
+		alert(msg);
+	}
+	
+	location.href=url;
+});

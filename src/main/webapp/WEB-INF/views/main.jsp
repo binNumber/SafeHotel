@@ -13,6 +13,7 @@
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+<script src="/js/customer/alertMsg.js"></script>
 </head>
 <body>
 	<div class="container">
