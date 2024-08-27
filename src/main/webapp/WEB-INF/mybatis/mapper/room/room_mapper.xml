@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!DOCTYPE mapper PUBLIC 
-	"-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="room_mapper">
 
 	<!-- 기반으로 리뷰 리스트 불러오기 -->
- 	<select id="findRoomListBySearchRoomCondtion" parameterType="SearchRoomCondition" resultType="Room">
+	<select id="findRoomListBySearchRoomCondtion"
+		parameterType="SearchRoomCondition" resultType="Room">
 		<![CDATA[
 		SELECT r.room_code room_code, r.acm_code acm_code, r.room_name room_name,
 				r.room_type room_type, r.total_rooms total_rooms,
@@ -31,7 +30,7 @@
 		ORDER BY room_code
 		]]>
 	</select>
-	
+
 	<select id="findRoomListByAcmCode" parameterType="int" resultType="Room">
 		SELECT * FROM room
 		WHERE acm_code = #{acmCode}

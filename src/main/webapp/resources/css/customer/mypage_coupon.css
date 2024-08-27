@@ -10,8 +10,7 @@
 @font-face {
 	font-family: 'SUIT-Regular';
 	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -20,7 +19,8 @@
 	text-decoration: none;
 }
 
-body, html {
+body,
+html {
 	width: 100%;
 	overflow-x: hidden;
 }
@@ -222,7 +222,8 @@ body {
 	margin: 20px 0;
 	display: flex;
 	font-size: 20px;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
+	position: relative;
+	/* border-bottom 위치 조정을 위해 필요 */
 }
 
 .coupon-status {
@@ -231,9 +232,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
-	border-bottom: 2px solid transparent; /* 기본 상태에서 border-bottom 설정 */
+	position: relative;
+	/* border-bottom 위치 조정을 위해 필요 */
+	margin-bottom: -2px;
+	/* 상위 요소와 맞춤을 위해 margin 조정 */
+	border-bottom: 2px solid transparent;
+	/* 기본 상태에서 border-bottom 설정 */
 }
 
 .coupon-status:hover {

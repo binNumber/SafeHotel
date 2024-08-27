@@ -130,7 +130,7 @@ $(document).ready(function() {
 	// 실시간 오류 메시지 제거
 	$(' input[name="userNickname"], input[name="userPhoneNum"], input[name="userPostalCode"]').on('input', function() {
 		const inputText = $(this).attr('userNickname');
-		
+
 		if (inputText === 'userNickname') {
 			$('#nicknameMessage').text('');
 		} else if (inputText === 'userPhoneNum') {
@@ -146,7 +146,7 @@ $(document).ready(function() {
 
 		// 모든 오류 메시지 초기화
 		$('.error').text('');
-		
+
 		// 닉네임 검사
 		let userNickname = $('input[name="userNickname"]').val();
 		if (!userNickname) {

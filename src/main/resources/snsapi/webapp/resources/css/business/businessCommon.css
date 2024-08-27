@@ -9,18 +9,18 @@
 @font-face {
 	font-family: 'SUIT-Regular';
 	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }
 
 * a {
-	color: inherit; 
+	color: inherit;
 	text-decoration: none;
 }
 
-body, html {
+body,
+html {
 	width: 100%;
 }
 
@@ -29,7 +29,7 @@ body {
 	font-weight: bold;
 	font-style: normal;
 	background-color: #A7A9AC;
-	display : flex;
+	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	flex-direction: row;
@@ -39,7 +39,7 @@ body {
 	margin-right: 1vw;
 }
 
-.container_backSize{
+.container_backSize {
 	width: 90vw;
 	height: 85vh;
 	margin: 0 auto;
@@ -49,14 +49,14 @@ body {
 	border: 2px solid #D1CCC8;
 }
 
-.division-line{
+.division-line {
 	border-top: 1px solid #D1CCC8;
-    margin: 3px auto;
-    width: 95%;
+	margin: 3px auto;
+	width: 95%;
 }
 
 
-.container-size{
+.container-size {
 	width: 85vw;
 	height: 85vh;
 	padding: 0;
@@ -71,7 +71,7 @@ body {
 }
 
 
-.container_main{
+.container_main {
 	width: 67vw;
 	height: 85vh;
 	background-color: white;

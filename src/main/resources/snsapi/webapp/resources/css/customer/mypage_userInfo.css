@@ -10,8 +10,7 @@
 @font-face {
 	font-family: 'SUIT-Regular';
 	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -20,7 +19,8 @@
 	text-decoration: none;
 }
 
-body, html {
+body,
+html {
 	width: 100%;
 	overflow-x: hidden;
 }
@@ -226,10 +226,10 @@ body {
 }
 
 #postcode {
-	margin-bottom : 10px;
+	margin-bottom: 10px;
 }
 
-#modifyForm > div {
+#modifyForm>div {
 	margin-top: 20px;
 }
 
@@ -289,25 +289,25 @@ body {
 }
 
 #nicknameMessage {
-	margin-top : 5px;
-	font-weight : normal;
+	margin-top: 5px;
+	font-weight: normal;
 }
 
 .errormsg {
-	margin-top : 5px;
-	font-weight : normal;
-	font-size : 15px;
-	text-align : left;
+	margin-top: 5px;
+	font-weight: normal;
+	font-size: 15px;
+	text-align: left;
 }
 
 /* 유저 회원가입 기입 시 오류가 있는 경우 */
 .color-red {
-	color : red;
+	color: red;
 }
 
 /* 유저 회원가입 기입 시 오류가 있는 경우 */
 .color-blue {
-	color : blue;
+	color: blue;
 }
 
 .nav-top-center img {

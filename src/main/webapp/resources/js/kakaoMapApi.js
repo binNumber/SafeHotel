@@ -47,115 +47,115 @@ var policeMarkerImageSrc = 'img/policeMarker.png';	//경찰서 마커 이미지
 
 // 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수
 function createMarkerImage(src, size, options) {
-    return new kakao.maps.MarkerImage(src, size, options);
+	return new kakao.maps.MarkerImage(src, size, options);
 }
 
 // 좌표와 마커이미지를 받아 마커를 생성하여 리턴하는 함수
 function createMarker(position, image) {
-    return new kakao.maps.Marker({
-        position: position,
-        image: image
-    });
+	return new kakao.maps.Marker({
+		position: position,
+		image: image
+	});
 }
 
 // 병원 마커를 생성하고 병원 마커 배열에 추가하는 함수
 function createHospitalMarkers() {
-    var imageSize = new kakao.maps.Size(52, 56);
-    var imageOptions = {  
-        spriteOrigin: new kakao.maps.Point(10, 0),
-        spriteSize: new kakao.maps.Size(46, 36)
-    };
-    var markerImage = createMarkerImage(hospitalMarkerImageSrc, imageSize, imageOptions);
+	var imageSize = new kakao.maps.Size(52, 56);
+	var imageOptions = {
+		spriteOrigin: new kakao.maps.Point(10, 0),
+		spriteSize: new kakao.maps.Size(46, 36)
+	};
+	var markerImage = createMarkerImage(hospitalMarkerImageSrc, imageSize, imageOptions);
 
-    hospitalPositions.forEach(function(position) {
-        geocoder.addressSearch(position.address, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                var marker = createMarker(coords, markerImage);
-                marker.setMap(null);  // 기본으로는 지도를 숨김
-                hospitalMarkers.push(marker);
-            }
-        });
-    });
+	hospitalPositions.forEach(function(position) {
+		geocoder.addressSearch(position.address, function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				var marker = createMarker(coords, markerImage);
+				marker.setMap(null);  // 기본으로는 지도를 숨김
+				hospitalMarkers.push(marker);
+			}
+		});
+	});
 }
 
 // 경찰서 마커를 생성하고 경찰서 마커 배열에 추가하는 함수
 function createPoliceMarkers() {
-    var imageSize = new kakao.maps.Size(52, 56);
-    var imageOptions = {  
-        spriteOrigin: new kakao.maps.Point(10, 0),
-        spriteSize: new kakao.maps.Size(46, 36)
-    };
-    var markerImage = createMarkerImage(policeMarkerImageSrc, imageSize, imageOptions);
+	var imageSize = new kakao.maps.Size(52, 56);
+	var imageOptions = {
+		spriteOrigin: new kakao.maps.Point(10, 0),
+		spriteSize: new kakao.maps.Size(46, 36)
+	};
+	var markerImage = createMarkerImage(policeMarkerImageSrc, imageSize, imageOptions);
 
-    policePositions.forEach(function(position) {
-        geocoder.addressSearch(position.address, function(result, status) {
-            if (status === kakao.maps.services.Status.OK) {
-                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                var marker = createMarker(coords, markerImage);
-                marker.setMap(null);  // 기본으로는 지도를 숨김
-                policeMarkers.push(marker);
-            }
-        });
-    });
+	policePositions.forEach(function(position) {
+		geocoder.addressSearch(position.address, function(result, status) {
+			if (status === kakao.maps.services.Status.OK) {
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				var marker = createMarker(coords, markerImage);
+				marker.setMap(null);  // 기본으로는 지도를 숨김
+				policeMarkers.push(marker);
+			}
+		});
+	});
 }
 
 // 병원 마커들의 지도 표시 여부를 설정하는 함수
 function setHospitalMarkers(mapInstance) {
-    hospitalMarkers.forEach(function(marker) {
-        marker.setMap(mapInstance);
-    });
+	hospitalMarkers.forEach(function(marker) {
+		marker.setMap(mapInstance);
+	});
 }
 
 // 경찰서 마커들의 지도 표시 여부를 설정하는 함수
 function setPoliceMarkers(mapInstance) {
-    policeMarkers.forEach(function(marker) {
-        marker.setMap(mapInstance);
-    });
+	policeMarkers.forEach(function(marker) {
+		marker.setMap(mapInstance);
+	});
 }
 
 // 카테고리를 클릭했을 때 type에 따라 카테고리의 스타일과 지도에 표시되는 마커를 변경
 function changeMarker(type) {
-    var hospitalMenu = document.getElementById('hospitalMenu');
-    var policeMenu = document.getElementById('policeMenu');
+	var hospitalMenu = document.getElementById('hospitalMenu');
+	var policeMenu = document.getElementById('policeMenu');
 
-    if (type === 'hospital') {
-        hospitalMenu.className = 'menu_selected';
-        policeMenu.className = '';
-        setHospitalMarkers(map);
-        setPoliceMarkers(null);
-    } else if (type === 'police') {
-        hospitalMenu.className = '';
-        policeMenu.className = 'menu_selected';
-        setHospitalMarkers(null);
-        setPoliceMarkers(map);
-    }
+	if (type === 'hospital') {
+		hospitalMenu.className = 'menu_selected';
+		policeMenu.className = '';
+		setHospitalMarkers(map);
+		setPoliceMarkers(null);
+	} else if (type === 'police') {
+		hospitalMenu.className = '';
+		policeMenu.className = 'menu_selected';
+		setHospitalMarkers(null);
+		setPoliceMarkers(map);
+	}
 }
 
 
 //Ajax로 병원이랑 경찰서 주소 정보 불러오는 함수
 function fetchData() {
-    var acmAddr = document.querySelector('input[name="acmAddr"]').value;
+	var acmAddr = document.querySelector('input[name="acmAddr"]').value;
 
-    fetch('/api/hospitals?acmAddr=' + encodeURIComponent(acmAddr))
-        .then(response => response.json())
-        .then(data => {
-            hospitalPositions = data.map(h => ({ title: h.name, address: h.addr }));
-            createHospitalMarkers();
-        })
-        .catch(error => console.error('Error fetching hospitals:', error));
+	fetch('/api/hospitals?acmAddr=' + encodeURIComponent(acmAddr))
+		.then(response => response.json())
+		.then(data => {
+			hospitalPositions = data.map(h => ({ title: h.name, address: h.addr }));
+			createHospitalMarkers();
+		})
+		.catch(error => console.error('Error fetching hospitals:', error));
 
-    fetch('/api/police?acmAddr=' + encodeURIComponent(acmAddr))
-        .then(response => response.json())
-        .then(data => {
-            policePositions = data.map(p => ({ title: p.name, address: p.addr }));
-            createPoliceMarkers();
-        })
-        .catch(error => console.error('Error fetching police stations:', error));
+	fetch('/api/police?acmAddr=' + encodeURIComponent(acmAddr))
+		.then(response => response.json())
+		.then(data => {
+			policePositions = data.map(p => ({ title: p.name, address: p.addr }));
+			createPoliceMarkers();
+		})
+		.catch(error => console.error('Error fetching police stations:', error));
 }
 
 // 페이지가 로드되면 데이터 요청
 window.onload = function() {
-    fetchData();
+	fetchData();
 };
 

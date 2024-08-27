@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var patmentBtn = document.querySelector('.patment');
 
 	patmentBtn.addEventListener('click', function() {
-		
+
 		var name = document.getElementById('nameInput');
 		var tel = document.getElementById('phoneInput');
 

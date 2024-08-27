@@ -2,10 +2,10 @@
 document.addEventListener('DOMContentLoaded', function() {
 	var msg = document.querySelector('.msg').value;
 	var url = document.querySelector('.url').value;
-	
-	if(msg) {
+
+	if (msg) {
 		alert(msg);
 	}
-	
-	location.href=url;
+
+	location.href = url;
 });

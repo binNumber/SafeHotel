@@ -12,8 +12,7 @@
 @font-face {
 	font-family: 'SUIT-Regular';
 	src:
-		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-		format('woff2');
+		url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -22,7 +21,8 @@
 	text-decoration: none;
 }
 
-body, html {
+body,
+html {
 	width: 100%;
 	overflow-x: hidden;
 }
@@ -225,7 +225,8 @@ body {
 	display: flex;
 	font-size: 20px;
 	display: flex;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
+	position: relative;
+	/* border-bottom 위치 조정을 위해 필요 */
 }
 
 .reserve-status {
@@ -234,9 +235,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	position: relative; /* border-bottom 위치 조정을 위해 필요 */
-	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
-	border-bottom: 2px solid transparent; /* 기본 상태에서 border-bottom 설정 */
+	position: relative;
+	/* border-bottom 위치 조정을 위해 필요 */
+	margin-bottom: -2px;
+	/* 상위 요소와 맞춤을 위해 margin 조정 */
+	border-bottom: 2px solid transparent;
+	/* 기본 상태에서 border-bottom 설정 */
 }
 
 .reserve-status:hover {
@@ -246,7 +250,8 @@ body {
 
 .status-select {
 	color: #1273E4;
-	margin-bottom: -2px; /* 상위 요소와 맞춤을 위해 margin 조정 */
+	margin-bottom: -2px;
+	/* 상위 요소와 맞춤을 위해 margin 조정 */
 	border-bottom: 2px solid #1273E4;
 }
 
@@ -283,8 +288,10 @@ body {
 }
 
 .reserve-text-container a {
-	text-decoration: none; /* 밑줄 제거 */
-	color: inherit;        /* 부모 요소의 색상 상속 */
+	text-decoration: none;
+	/* 밑줄 제거 */
+	color: inherit;
+	/* 부모 요소의 색상 상속 */
 }
 
 .reserve-text-container p {
@@ -314,12 +321,14 @@ body {
 
 /* -- 리뷰작성 팝업창 -- */
 #write-review-popup {
-	position: fixed; /* 화면에 고정 */
+	position: fixed;
+	/* 화면에 고정 */
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	z-index: 1000; /* 팝업이 다른 요소들 위에 보이도록 */
+	z-index: 1000;
+	/* 팝업이 다른 요소들 위에 보이도록 */
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -327,7 +336,8 @@ body {
 	margin: 0;
 	height: 100%;
 	display: flex;
-	justify-content: center; /* 수평 중앙 정렬 */
+	justify-content: center;
+	/* 수평 중앙 정렬 */
 	align-items: center;
 }
 
@@ -416,7 +426,8 @@ body {
 	margin-top: 20px;
 }
 
-#reservation-modify-gustName, #reservation-modify-gusttel {
+#reservation-modify-gustName,
+#reservation-modify-gusttel {
 	width: 40%;
 	display: inline-block;
 }
@@ -468,71 +479,73 @@ body {
 	color: white;
 	font-weight: bold;
 	background-color: #1273E4;
-	
-	margin : 15px 0;
+
+	margin: 15px 0;
 }
 
 .file-upload-container {
-	
-	width : 100%;
-	
-	display : flex;
-	align-items : center;
+
+	width: 100%;
+
+	display: flex;
+	align-items: center;
 }
 
 .file-upload-btn {
-	width : 150px;
-	height : 30px;
-	
-	border : 0px;
-	border : 1px solid #1273E4;
-	border-radius : 10px;
-	
-	text-align : center;
-	
-	background-color : white;
+	width: 150px;
+	height: 30px;
 
-	font-weight : bold;
-	font-size : 17px;
+	border: 0px;
+	border: 1px solid #1273E4;
+	border-radius: 10px;
 
-	color : #1273E4;
-	
-	margin-right : 10px;
-	
-	display : flex;
-	justify-content : center;
+	text-align: center;
+
+	background-color: white;
+
+	font-weight: bold;
+	font-size: 17px;
+
+	color: #1273E4;
+
+	margin-right: 10px;
+
+	display: flex;
+	justify-content: center;
 	align-items: center;
 }
 
 .fa-regular.fa-image {
-	margin-right : 10px;
+	margin-right: 10px;
 }
 
 .acm-info-text a {
-	text-decoration: none; /* 밑줄 제거 */
-	color: inherit;        /* 부모 요소의 색상 상속 */
+	text-decoration: none;
+	/* 밑줄 제거 */
+	color: inherit;
+	/* 부모 요소의 색상 상속 */
 }
 
 /* -- 리뷰 작성용 이미지 이벤트 css -- */
 #review-img-preview {
-	width : 100%;
-	height : auto;
-	overflow :auto;
-	
+	width: 100%;
+	height: auto;
+	overflow: auto;
+
 	white-space: nowrap;
 }
 
 .preview-image {
-    max-width: 200px;
-    max-height: 200px;
-    margin: 5px;
-    
-    border-radius : 10px;
+	max-width: 200px;
+	max-height: 200px;
+	margin: 5px;
+
+	border-radius: 10px;
 }
 
 .preview-image img {
 	max-width: 200px;
-    max-height: 200px;
+	max-height: 200px;
 }
 
 /* --checkReserve_detail(예약상세) 페이지 css --*/
@@ -589,15 +602,19 @@ body {
 	height: 35px;
 }
 
-#reserve-info th:first-child, #reserve-user-info th:first-child,
-	#payment-info th:first-child, #amount-info th:first-child,
-	#total-amount-info th:first-child {
+#reserve-info th:first-child,
+#reserve-user-info th:first-child,
+#payment-info th:first-child,
+#amount-info th:first-child,
+#total-amount-info th:first-child {
 	width: 150px;
 }
 
-#reserve-info th:last-child, #reserve-user-info th:last-child,
-	#payment-info th:last-child, #amount-info th:last-child,
-	#total-amount-info th:last-child {
+#reserve-info th:last-child,
+#reserve-user-info th:last-child,
+#payment-info th:last-child,
+#amount-info th:last-child,
+#total-amount-info th:last-child {
 	color: #6D6D6D;
 }
 
@@ -605,7 +622,8 @@ body {
 	margin-bottom: 10px;
 }
 
-#reserve-user-info h2, #payment-container h2 {
+#reserve-user-info h2,
+#payment-container h2 {
 	margin-bottom: 10px;
 }
 
@@ -625,7 +643,8 @@ body {
 
 .separator td {
 	height: 1px;
-	background-color: gray; /* 구분선 스타일 */
+	background-color: gray;
+	/* 구분선 스타일 */
 	opacity: 20%;
 }
 
@@ -635,12 +654,14 @@ body {
 
 /* -- reservation info 수정 팝업창 -- */
 #modify-reservation-popup {
-	position: fixed; /* 화면에 고정 */
+	position: fixed;
+	/* 화면에 고정 */
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	z-index: 1000; /* 팝업이 다른 요소들 위에 보이도록 */
+	z-index: 1000;
+	/* 팝업이 다른 요소들 위에 보이도록 */
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -648,7 +669,8 @@ body {
 	margin: 0;
 	height: 100%;
 	display: flex;
-	justify-content: center; /* 수평 중앙 정렬 */
+	justify-content: center;
+	/* 수평 중앙 정렬 */
 	align-items: center;
 }
 
@@ -744,7 +766,8 @@ body {
 	margin-top: 20px;
 }
 
-#reservation-modify-gustName, #reservation-modify-gusttel {
+#reservation-modify-gustName,
+#reservation-modify-gusttel {
 	width: 40%;
 	display: inline-block;
 }
@@ -776,12 +799,12 @@ body {
 
 /* -----js용 css------ */
 .display-none {
-	display:none;
+	display: none;
 }
 
 /* ---평점 관련 css--- */
 .color-gold {
-	color : gold;
+	color: gold;
 }
 
 .nav-top-center img {

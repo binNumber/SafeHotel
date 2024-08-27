@@ -10,12 +10,12 @@
 	align-items: center;
 }
 
-.div_logo{
-	 margin-left: 1vw;
-	 cursor: pointer;
+.div_logo {
+	margin-left: 1vw;
+	cursor: pointer;
 }
 
-.div_profile{
+.div_profile {
 	margin-right: 3vw;
 	cursor: potiner;
 }

@@ -29,8 +29,8 @@ public class SearchController {
 	RoomService roomService;
 
 	@GetMapping("/search/listpage")
-	public String search(@RequestParam String searchText, @RequestParam Date checkIn, @RequestParam Date checkOut,
-			@RequestParam int people, Model model) {
+	public String search(@RequestParam String searchText, @RequestParam Date checkIn,
+			@RequestParam Date checkOut, @RequestParam int people, Model model) {
 
 		String checkIngStr = checkIn + "";
 		String checkOutStr = checkOut + "";

@@ -7,7 +7,7 @@ function btnUpdateName(userCode) {
 	document.getElementById("btn_updateName").classList.add('d-none');
 	document.getElementById("input_Name").readOnly = true;
 	document.getElementById("btn_changeName").value = "변경";
-	
+
 	let data = {
 		userCode: userCode,
 		userName: $("#input_Name").val(),

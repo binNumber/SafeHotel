@@ -57,16 +57,6 @@ public class UserController {
 	@Autowired
 	MapService mapService;
 	
-	@GetMapping("/alert")
-	public String alert(@RequestParam String msg,
-			@RequestParam String url, Model model) {
-		
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-		
-		return "alert";
-	}
-	
 	@GetMapping("/user/mypageCEO")
 	public String myPageCEO() {
 		return "user/myPageCEO";
@@ -80,11 +70,6 @@ public class UserController {
 	@GetMapping("/user/mypageAdmin")
 	public String myPageAdmin() {
 		return "admin/myPageAdmin";
-	}
-
-	@GetMapping("/listpage")
-	public String listpage() {
-		return "customer/listpage";
 	}
 
 	@GetMapping("/roominfo")

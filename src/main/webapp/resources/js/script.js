@@ -152,58 +152,58 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 기본 체크인 및 체크아웃 날짜 설정
-    const checkInDateInput = document.getElementById('checkInDate');
-    const checkOutDateInput = document.getElementById('checkOutDate');
-    
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    
-    checkInDateInput.value = today.toISOString().split('T')[0]; // 오늘 날짜를 yyyy-mm-dd 형식으로 설정
-    checkOutDateInput.value = tomorrow.toISOString().split('T')[0]; // 내일 날짜를 yyyy-mm-dd 형식으로 설정
+	// 기본 체크인 및 체크아웃 날짜 설정
+	const checkInDateInput = document.getElementById('checkInDate');
+	const checkOutDateInput = document.getElementById('checkOutDate');
 
-    // 로컬 스토리지에서 검색어 가져오기
-    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    const searchBestHistoryDiv = document.querySelector('.search-best-history');
-    updateSearchHistory(searchHistory, searchBestHistoryDiv);
+	const today = new Date();
+	const tomorrow = new Date();
+	tomorrow.setDate(today.getDate() + 1);
 
-    // 검색어 입력 이벤트 처리
-    const searchInput = document.getElementById('search_term');
-    const searchButton = document.querySelector('.btn-searchright button');
+	checkInDateInput.value = today.toISOString().split('T')[0]; // 오늘 날짜를 yyyy-mm-dd 형식으로 설정
+	checkOutDateInput.value = tomorrow.toISOString().split('T')[0]; // 내일 날짜를 yyyy-mm-dd 형식으로 설정
 
-    const addSearchTermToHistory = () => {
-        const searchTerm = searchInput.value.trim();
-        if (searchTerm !== '') {
-            searchHistory.unshift(searchTerm); // 최근 검색어가 위로 오도록 맨 앞에 추가
-            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-            updateSearchHistory(searchHistory, searchBestHistoryDiv);
-            searchInput.value = ''; // 입력창 초기화
-        }
-    };
+	// 로컬 스토리지에서 검색어 가져오기
+	const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+	const searchBestHistoryDiv = document.querySelector('.search-best-history');
+	updateSearchHistory(searchHistory, searchBestHistoryDiv);
 
-    searchInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchButton.click(); // 엔터키 입력 시 검색 버튼 클릭 트리거
-        }
-    });
+	// 검색어 입력 이벤트 처리
+	const searchInput = document.getElementById('search_term');
+	const searchButton = document.querySelector('.btn-searchright button');
 
-    searchButton.addEventListener('click', function() {
-        addSearchTermToHistory();
-    });
+	const addSearchTermToHistory = () => {
+		const searchTerm = searchInput.value.trim();
+		if (searchTerm !== '') {
+			searchHistory.unshift(searchTerm); // 최근 검색어가 위로 오도록 맨 앞에 추가
+			localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+			updateSearchHistory(searchHistory, searchBestHistoryDiv);
+			searchInput.value = ''; // 입력창 초기화
+		}
+	};
+
+	searchInput.addEventListener('keydown', function(event) {
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			searchButton.click(); // 엔터키 입력 시 검색 버튼 클릭 트리거
+		}
+	});
+
+	searchButton.addEventListener('click', function() {
+		addSearchTermToHistory();
+	});
 });
 
 // 검색어 히스토리 업데이트 함수
 function updateSearchHistory(history, container) {
-    const historyItems = container.querySelectorAll('p');
-    historyItems.forEach(item => item.remove()); // 기존 항목 제거
+	const historyItems = container.querySelectorAll('p');
+	historyItems.forEach(item => item.remove()); // 기존 항목 제거
 
-    history.slice(0, 5).forEach(term => { // 최근 5개의 검색어만 표시
-        const p = document.createElement('p');
-        p.textContent = term;
-        container.appendChild(p);
-    });
+	history.slice(0, 5).forEach(term => { // 최근 5개의 검색어만 표시
+		const p = document.createElement('p');
+		p.textContent = term;
+		container.appendChild(p);
+	});
 }
 
 
@@ -417,77 +417,77 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /*---------------------------main페이지-------------------------*/
 document.addEventListener("DOMContentLoaded", function() {
-    // 기본 인원수 설정
-    const peopleCount = document.querySelector('#people_picker .people-count');
-    const initialCount = parseInt(peopleCount?.getAttribute('data-initial-count')) || 2;
-    if (peopleCount) {
-        peopleCount.textContent = initialCount;
-        updatePeopleButton();
-    }
+	// 기본 인원수 설정
+	const peopleCount = document.querySelector('#people_picker .people-count');
+	const initialCount = parseInt(peopleCount?.getAttribute('data-initial-count')) || 2;
+	if (peopleCount) {
+		peopleCount.textContent = initialCount;
+		updatePeopleButton();
+	}
 
-    // .input-search input 클릭 이벤트
-    const searchInput = document.querySelector('.input-search input');
-    if (searchInput) {
-        searchInput.addEventListener('click', function(event) {
-            closeAllHiddenSections();
-            document.getElementById('search_best')?.classList.toggle('show');
-            event.stopPropagation();
-        });
-    }
+	// .input-search input 클릭 이벤트
+	const searchInput = document.querySelector('.input-search input');
+	if (searchInput) {
+		searchInput.addEventListener('click', function(event) {
+			closeAllHiddenSections();
+			document.getElementById('search_best')?.classList.toggle('show');
+			event.stopPropagation();
+		});
+	}
 
-    // #btn_people 클릭 이벤트
-    const btnPeople = document.querySelector('#btn_people');
-    if (btnPeople) {
-        btnPeople.addEventListener('click', function(event) {
-            closeAllHiddenSections();
-            document.getElementById('people_picker')?.classList.toggle('show');
-            event.stopPropagation();
-        });
-    }
+	// #btn_people 클릭 이벤트
+	const btnPeople = document.querySelector('#btn_people');
+	if (btnPeople) {
+		btnPeople.addEventListener('click', function(event) {
+			closeAllHiddenSections();
+			document.getElementById('people_picker')?.classList.toggle('show');
+			event.stopPropagation();
+		});
+	}
 
-    // 다른 곳 클릭 시 숨겨진 요소 닫기
-    document.addEventListener('click', function(event) {
-        closeAllHiddenSections();
-    });
+	// 다른 곳 클릭 시 숨겨진 요소 닫기
+	document.addEventListener('click', function(event) {
+		closeAllHiddenSections();
+	});
 
-    // 요소 내부 클릭 시 숨겨진 요소 닫히지 않게 하기
-    document.getElementById('search_best')?.addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
+	// 요소 내부 클릭 시 숨겨진 요소 닫히지 않게 하기
+	document.getElementById('search_best')?.addEventListener('click', function(event) {
+		event.stopPropagation();
+	});
 
-    document.getElementById('people_picker')?.addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
+	document.getElementById('people_picker')?.addEventListener('click', function(event) {
+		event.stopPropagation();
+	});
 
-    // 인원 수 조절 버튼 이벤트
-    const decreaseButton = document.querySelector('#people_picker .decrease');
-    const increaseButton = document.querySelector('#people_picker .increase');
+	// 인원 수 조절 버튼 이벤트
+	const decreaseButton = document.querySelector('#people_picker .decrease');
+	const increaseButton = document.querySelector('#people_picker .increase');
 
-    decreaseButton?.addEventListener('click', function() {
-        let count = parseInt(peopleCount.textContent);
-        if (count > 1) {
-            peopleCount.textContent = count - 1;
-            updatePeopleButton();
-        }
-    });
+	decreaseButton?.addEventListener('click', function() {
+		let count = parseInt(peopleCount.textContent);
+		if (count > 1) {
+			peopleCount.textContent = count - 1;
+			updatePeopleButton();
+		}
+	});
 
-    increaseButton?.addEventListener('click', function() {
-        let count = parseInt(peopleCount.textContent);
-        peopleCount.textContent = count + 1;
-        updatePeopleButton();
-    });
+	increaseButton?.addEventListener('click', function() {
+		let count = parseInt(peopleCount.textContent);
+		peopleCount.textContent = count + 1;
+		updatePeopleButton();
+	});
 
-    function updatePeopleButton() {
-        const btnPeopleSpan = document.querySelector('#btn_people span');
-        if (btnPeopleSpan) {
-            btnPeopleSpan.textContent = `인원 ${peopleCount.textContent}`;
-        }
-    }
+	function updatePeopleButton() {
+		const btnPeopleSpan = document.querySelector('#btn_people span');
+		if (btnPeopleSpan) {
+			btnPeopleSpan.textContent = `인원 ${peopleCount.textContent}`;
+		}
+	}
 
-    function closeAllHiddenSections() {
-        document.getElementById('search_best')?.classList.remove('show');
-        document.getElementById('people_picker')?.classList.remove('show');
-    }
+	function closeAllHiddenSections() {
+		document.getElementById('search_best')?.classList.remove('show');
+		document.getElementById('people_picker')?.classList.remove('show');
+	}
 });
 
 //상세페이지 stiky nav bar
@@ -612,87 +612,87 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //상세정보 창 사진 모두보기버튼
 document.addEventListener("DOMContentLoaded", function() {
-    const openModalBtn = document.getElementById("openModalBtn");
-    const closeModalBtn = document.getElementById("closeModalBtn");
-    const modal = document.getElementById("photoModal");
-    const largeImage = document.getElementById("largeImage");
-    const thumbnails = document.querySelectorAll(".gallery-thumbnail");
-    const prevBtn = document.querySelector(".gallery-prev");
-    const nextBtn = document.querySelector(".gallery-next");
+	const openModalBtn = document.getElementById("openModalBtn");
+	const closeModalBtn = document.getElementById("closeModalBtn");
+	const modal = document.getElementById("photoModal");
+	const largeImage = document.getElementById("largeImage");
+	const thumbnails = document.querySelectorAll(".gallery-thumbnail");
+	const prevBtn = document.querySelector(".gallery-prev");
+	const nextBtn = document.querySelector(".gallery-next");
 
-    let currentIndex = 0;
+	let currentIndex = 0;
 
-    openModalBtn.addEventListener("click", function() {
-        modal.style.display = "block";
-        // 모달창을 열 때 첫 번째 이미지를 표시
-        currentIndex = 0;
-        updateLargeImage();
-    });
+	openModalBtn.addEventListener("click", function() {
+		modal.style.display = "block";
+		// 모달창을 열 때 첫 번째 이미지를 표시
+		currentIndex = 0;
+		updateLargeImage();
+	});
 
-    closeModalBtn.addEventListener("click", function() {
-        modal.style.display = "none";
-    });
+	closeModalBtn.addEventListener("click", function() {
+		modal.style.display = "none";
+	});
 
-    window.addEventListener("click", function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    });
+	window.addEventListener("click", function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	});
 
-    thumbnails.forEach(function(thumbnail, index) {
-        thumbnail.addEventListener("click", function() {
-            const largeSrc = this.getAttribute("data-large-src");
-            largeImage.setAttribute("src", largeSrc);
-            currentIndex = index;
+	thumbnails.forEach(function(thumbnail, index) {
+		thumbnail.addEventListener("click", function() {
+			const largeSrc = this.getAttribute("data-large-src");
+			largeImage.setAttribute("src", largeSrc);
+			currentIndex = index;
 
-            updateActiveThumbnail();
-            scrollToActiveThumbnail(); // 썸네일 클릭 시 스크롤 이동
-        });
-    });
+			updateActiveThumbnail();
+			scrollToActiveThumbnail(); // 썸네일 클릭 시 스크롤 이동
+		});
+	});
 
-    prevBtn.addEventListener("click", function() {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
-        updateLargeImage();
-    });
+	prevBtn.addEventListener("click", function() {
+		currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+		updateLargeImage();
+	});
 
-    nextBtn.addEventListener("click", function() {
-        currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
-        updateLargeImage();
-    });
+	nextBtn.addEventListener("click", function() {
+		currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+		updateLargeImage();
+	});
 
-    function updateLargeImage() {
-        const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
-        largeImage.setAttribute("src", largeSrc);
+	function updateLargeImage() {
+		const largeSrc = thumbnails[currentIndex].getAttribute("data-large-src");
+		largeImage.setAttribute("src", largeSrc);
 
-        updateActiveThumbnail();
-        scrollToActiveThumbnail();
-    }
-
-    function updateActiveThumbnail() {
-        // 모든 썸네일에서 'active' 클래스를 제거합니다.
-        thumbnails.forEach(function(thumbnail) {
-            thumbnail.classList.remove("active");
-        });
-
-        // 현재 썸네일에 'active' 클래스를 추가합니다.
-        thumbnails[currentIndex].classList.add("active");
-    }
-
-	function scrollToActiveThumbnail() {
-	    const thumbnailContainer = document.querySelector(".thumbnail-container-wrapper");
-	    const activeThumbnail = thumbnails[currentIndex];
-
-	    // 활성화된 썸네일이 컨테이너의 중앙에 오도록 스크롤 위치를 계산
-	    const offsetLeft = activeThumbnail.offsetLeft - (thumbnailContainer.offsetWidth / 2) + (activeThumbnail.offsetWidth / 2);
-
-	    thumbnailContainer.scrollLeft = offsetLeft;
+		updateActiveThumbnail();
+		scrollToActiveThumbnail();
 	}
 
-    // 모달이 열리면 첫 번째 이미지를 기본 활성화된 이미지로 설정합니다.
-    openModalBtn.addEventListener("click", function() {
-        currentIndex = 0;
-        updateLargeImage();
-    });
+	function updateActiveThumbnail() {
+		// 모든 썸네일에서 'active' 클래스를 제거합니다.
+		thumbnails.forEach(function(thumbnail) {
+			thumbnail.classList.remove("active");
+		});
+
+		// 현재 썸네일에 'active' 클래스를 추가합니다.
+		thumbnails[currentIndex].classList.add("active");
+	}
+
+	function scrollToActiveThumbnail() {
+		const thumbnailContainer = document.querySelector(".thumbnail-container-wrapper");
+		const activeThumbnail = thumbnails[currentIndex];
+
+		// 활성화된 썸네일이 컨테이너의 중앙에 오도록 스크롤 위치를 계산
+		const offsetLeft = activeThumbnail.offsetLeft - (thumbnailContainer.offsetWidth / 2) + (activeThumbnail.offsetWidth / 2);
+
+		thumbnailContainer.scrollLeft = offsetLeft;
+	}
+
+	// 모달이 열리면 첫 번째 이미지를 기본 활성화된 이미지로 설정합니다.
+	openModalBtn.addEventListener("click", function() {
+		currentIndex = 0;
+		updateLargeImage();
+	});
 });
 
 
@@ -700,147 +700,147 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 방문 방법 버튼들을 모두 선택
-    var visitMethodButtons = document.querySelectorAll('.left-usermethod-btn button');
+	// 방문 방법 버튼들을 모두 선택
+	var visitMethodButtons = document.querySelectorAll('.left-usermethod-btn button');
 
-    // 각 버튼에 클릭 이벤트 리스너를 추가
-    visitMethodButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // 모든 버튼의 기존 스타일을 초기화
-            visitMethodButtons.forEach(function(btn) {
-                btn.style.backgroundColor = '#fff';
-                btn.style.border = '1px solid lightgray';
-                btn.style.color = '#000'; // 텍스트 색상 초기화
-            });
+	// 각 버튼에 클릭 이벤트 리스너를 추가
+	visitMethodButtons.forEach(function(button) {
+		button.addEventListener('click', function() {
+			// 모든 버튼의 기존 스타일을 초기화
+			visitMethodButtons.forEach(function(btn) {
+				btn.style.backgroundColor = '#fff';
+				btn.style.border = '1px solid lightgray';
+				btn.style.color = '#000'; // 텍스트 색상 초기화
+			});
 
-            // 클릭된 버튼의 스타일 변경
-            this.style.backgroundColor = '#f2f8ff';
-            this.style.border = '1px solid #b7d5f6';
-            this.style.color = '#1273e5'; // 선택된 버튼의 텍스트 색상 변경
-        });
-    });
+			// 클릭된 버튼의 스타일 변경
+			this.style.backgroundColor = '#f2f8ff';
+			this.style.border = '1px solid #b7d5f6';
+			this.style.color = '#1273e5'; // 선택된 버튼의 텍스트 색상 변경
+		});
+	});
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    var modal = document.getElementById('myModal');
-    var btn = document.getElementById('openModal');
-    var closeBtn = document.getElementById('closeModal');
-    var requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
-    var body = document.body;
+	var modal = document.getElementById('myModal');
+	var btn = document.getElementById('openModal');
+	var closeBtn = document.getElementById('closeModal');
+	var requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+	var body = document.body;
 
-    // 모달 열기
-    btn.addEventListener('click', function(event) {
-        // 모든 필수 체크박스가 체크되어 있는지 확인
-        var allChecked = Array.from(requiredConsents).every(function(checkbox) {
-            return checkbox.checked;
-        });
+	// 모달 열기
+	btn.addEventListener('click', function(event) {
+		// 모든 필수 체크박스가 체크되어 있는지 확인
+		var allChecked = Array.from(requiredConsents).every(function(checkbox) {
+			return checkbox.checked;
+		});
 
-        if (allChecked) {
-            modal.style.display = 'block'; // 모든 필수 항목이 체크된 경우 모달 열기
-            body.style.overflow = 'hidden'; // 배경의 스크롤을 없앰
-        } else {
-            event.preventDefault(); // 기본 동작 막기
-        }
-    });
+		if (allChecked) {
+			modal.style.display = 'block'; // 모든 필수 항목이 체크된 경우 모달 열기
+			body.style.overflow = 'hidden'; // 배경의 스크롤을 없앰
+		} else {
+			event.preventDefault(); // 기본 동작 막기
+		}
+	});
 
-    // 모달 닫기 버튼 클릭 시 모달 닫기
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-        body.style.overflow = 'auto'; // 배경의 스크롤을 다시 활성화
-    });
+	// 모달 닫기 버튼 클릭 시 모달 닫기
+	closeBtn.addEventListener('click', function() {
+		modal.style.display = 'none';
+		body.style.overflow = 'auto'; // 배경의 스크롤을 다시 활성화
+	});
 });
 
 
 //결제창 
 document.addEventListener("DOMContentLoaded", function() {
-    var toggleArea = document.getElementById('toggleArea');
-    var arrowIcon = document.getElementById('arrowIcon');
-    var refundDetails = document.getElementById('refundDetails');
+	var toggleArea = document.getElementById('toggleArea');
+	var arrowIcon = document.getElementById('arrowIcon');
+	var refundDetails = document.getElementById('refundDetails');
 
-    toggleArea.addEventListener('click', function() {
-        // refundDetails의 표시 상태에 따라 toggle
-        if (refundDetails.style.display === "none" || refundDetails.style.display === "") {
-            refundDetails.style.display = "block";
-            arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
-        } else {
-            refundDetails.style.display = "none";
-            arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
-        }
-    });
+	toggleArea.addEventListener('click', function() {
+		// refundDetails의 표시 상태에 따라 toggle
+		if (refundDetails.style.display === "none" || refundDetails.style.display === "") {
+			refundDetails.style.display = "block";
+			arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
+		} else {
+			refundDetails.style.display = "none";
+			arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
+		}
+	});
 });
 
 //예약하기 페이지 버튼
 document.addEventListener('DOMContentLoaded', function() {
-    const allConsentButton = document.getElementById('allConsentButton');
-    const allConsentCheckbox = document.getElementById('allConsent');
-    const consentList = document.getElementById('consentList');
-    const arrowIcon = document.getElementById('arrowIcon');
-    const individualConsents = document.querySelectorAll('.individual-consent');
-    const btnConsent = document.querySelector('.btn-consent button');
+	const allConsentButton = document.getElementById('allConsentButton');
+	const allConsentCheckbox = document.getElementById('allConsent');
+	const consentList = document.getElementById('consentList');
+	const arrowIcon = document.getElementById('arrowIcon');
+	const individualConsents = document.querySelectorAll('.individual-consent');
+	const btnConsent = document.querySelector('.btn-consent button');
 
-    allConsentButton.addEventListener('click', function() {
-        consentList.classList.toggle('open');
-        arrowIcon.classList.toggle('open');
+	allConsentButton.addEventListener('click', function() {
+		consentList.classList.toggle('open');
+		arrowIcon.classList.toggle('open');
 
-        if (consentList.classList.contains('open')) {
-            arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
-        } else {
-            arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
-        }
-    });
+		if (consentList.classList.contains('open')) {
+			arrowIcon.src = 'img/arrow_up.png'; // 화살표가 위로 향하도록 이미지 변경
+		} else {
+			arrowIcon.src = 'img/arrow_down.png'; // 화살표가 아래로 향하도록 이미지 변경
+		}
+	});
 
-    allConsentCheckbox.addEventListener('click', function(e) {
-        e.stopPropagation(); // 부모 요소로의 클릭 이벤트 전파를 막음
-        const isChecked = this.checked;
-        individualConsents.forEach(function(checkbox) {
-            checkbox.checked = isChecked;
-        });
-    });
+	allConsentCheckbox.addEventListener('click', function(e) {
+		e.stopPropagation(); // 부모 요소로의 클릭 이벤트 전파를 막음
+		const isChecked = this.checked;
+		individualConsents.forEach(function(checkbox) {
+			checkbox.checked = isChecked;
+		});
+	});
 
-    individualConsents.forEach(function(checkbox) {
-        checkbox.addEventListener('click', function() {
-            const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
-            const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
-                return checkbox.checked;
-            });
+	individualConsents.forEach(function(checkbox) {
+		checkbox.addEventListener('click', function() {
+			const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+			const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
+				return checkbox.checked;
+			});
 
-            if (!allRequiredChecked) {
-                allConsentCheckbox.checked = false;
-            }
-        });
-    });
+			if (!allRequiredChecked) {
+				allConsentCheckbox.checked = false;
+			}
+		});
+	});
 
-    btnConsent.addEventListener('click', function(e) {
-        const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
-        const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
-            return checkbox.checked;
-        });
+	btnConsent.addEventListener('click', function(e) {
+		const requiredConsents = document.querySelectorAll('.individual-consent[data-required="true"]');
+		const allRequiredChecked = Array.from(requiredConsents).every(function(checkbox) {
+			return checkbox.checked;
+		});
 
-        if (!allRequiredChecked) {
-            e.preventDefault(); // 버튼의 기본 동작을 막음 (예: 폼 제출 방지)
-            alert('필수 항목에 모두 동의해주세요.');
-        }
-    });
+		if (!allRequiredChecked) {
+			e.preventDefault(); // 버튼의 기본 동작을 막음 (예: 폼 제출 방지)
+			alert('필수 항목에 모두 동의해주세요.');
+		}
+	});
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 결제 수단 버튼들을 모두 선택
-    var payButtons = document.querySelectorAll('.pay button');
+	// 결제 수단 버튼들을 모두 선택
+	var payButtons = document.querySelectorAll('.pay button');
 
-    // 각 버튼에 클릭 이벤트 리스너를 추가
-    payButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // 모든 버튼의 기존 스타일을 초기화
-            payButtons.forEach(function(btn) {
-                btn.style.backgroundColor = '#fff';
-                btn.style.border = '1.5px solid #ebebeb';
-            });
+	// 각 버튼에 클릭 이벤트 리스너를 추가
+	payButtons.forEach(function(button) {
+		button.addEventListener('click', function() {
+			// 모든 버튼의 기존 스타일을 초기화
+			payButtons.forEach(function(btn) {
+				btn.style.backgroundColor = '#fff';
+				btn.style.border = '1.5px solid #ebebeb';
+			});
 
-            // 클릭된 버튼의 스타일 변경
-            this.style.backgroundColor = '#f2f8ff';
-            this.style.border = '1.5px solid #b7d5f6';
-        });
-    });
+			// 클릭된 버튼의 스타일 변경
+			this.style.backgroundColor = '#f2f8ff';
+			this.style.border = '1.5px solid #b7d5f6';
+		});
+	});
 });
 
 //검색창 달력 라이브러리

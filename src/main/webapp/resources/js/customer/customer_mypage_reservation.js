@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
 //리뷰 작성 관련 스크립트
 document.addEventListener("DOMContentLoaded", function() {
 	const cancelIcon = document.querySelector("#icon-cancel");
-	
+
 	// 리뷰 작성&수정 팝업 닫기
 	if (cancelIcon) {
 		cancelIcon.addEventListener("click", () => {
@@ -150,7 +150,7 @@ function handleFileSelect(event) {
 		const previewContainer = document.getElementById('review-img-preview');
 
 		if (previewContainer) {
-			
+
 			previewContainer.style.height = '200px';
 
 			previewContainer.innerHTML = '';
@@ -178,8 +178,8 @@ function handleFileSelect(event) {
 //평점 마우스오버 했을 때
 function mouseoverStar(count) {
 	const star = document.querySelectorAll('.star');
-	
-	for(var i=0; i<count; i++) {
+
+	for (var i = 0; i < count; i++) {
 		star[i].classList.add('color-gold');
 	}
 }
@@ -188,17 +188,17 @@ function mouseoverStar(count) {
 let clickStar = false;
 
 function rating(count) {
-	
+
 	const star = document.querySelectorAll('.star');
 	star.forEach(star => star.classList.remove('color-gold'));
-	
-	for(var i=0; i<count; i++) {
-			star[i].classList.add('color-gold');
+
+	for (var i = 0; i < count; i++) {
+		star[i].classList.add('color-gold');
 	}
-	
+
 	clickStar = true;
 	console.log(count + '번 별 클릭되었습니다.');
-	
+
 	const ratingVlaue = document.getElementById('rating');
 	ratingVlaue.value = count;
 	console.log(ratingVlaue.value);
@@ -208,11 +208,11 @@ function rating(count) {
 function mouseoutStar(count) {
 
 	//클릭 상태가 아닐 때만 적용
-	if(!clickStar) {
+	if (!clickStar) {
 		const star = document.querySelectorAll('.star');
-			
-			for(var i=0; i<count; i++) {
-				star[i].classList.remove('color-gold');
-			}
+
+		for (var i = 0; i < count; i++) {
+			star[i].classList.remove('color-gold');
+		}
 	}
 }
